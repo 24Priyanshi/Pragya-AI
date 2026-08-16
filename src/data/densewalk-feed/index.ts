@@ -1,3 +1,4 @@
+import { facets, placeholderTags } from "@/data/densewalk-taxonomy";
 import type {
   DistributionRow,
   FeedClip,
@@ -175,7 +176,13 @@ function rotate(frames: readonly RawFrame[], offset: number): readonly RawFrame[
   return [...frames.slice(shift), ...frames.slice(0, shift)];
 }
 
-function toClip(raw: RawClip, id: string, source: FeedClip["source"], offset: number): FeedClip {
+function toClip(
+  raw: RawClip,
+  id: string,
+  source: FeedClip["source"],
+  offset: number,
+  tags: Readonly<Record<string, string>>,
+): FeedClip {
   const ordered = offset === 0 ? raw.frames : rotate(raw.frames, offset);
   // Keyframes are sampled sparsely, so the span comes from the timestamps —
   // frames / fps would describe the source video, not this clip.
@@ -203,6 +210,7 @@ function toClip(raw: RawClip, id: string, source: FeedClip["source"], offset: nu
     peakPeople: evidence.peak_people,
     peakVehicles: evidence.peak_vehicles,
     instruction: raw.instruction.text,
+    tags,
     dominantAction: distribution[0].action,
     dominantLabel: distribution[0].label,
     avgConfidence: Math.round((frames.reduce((sum, f) => sum + f.confidence, 0) / frames.length) * 10) / 10,
@@ -218,11 +226,13 @@ function buildFeed(): FeedData {
   const clips: FeedClip[] = [];
 
   for (const raw of SOURCES) {
-    clips.push(toClip(raw, raw.video_id, "sample", 0));
+    // The real export carries no taxonomy fields, so the sample stays untagged
+    // rather than being given values no tagger assigned.
+    clips.push(toClip(raw, raw.video_id, "sample", 0, {}));
     for (let n = 1; n <= REORDERINGS_PER_SOURCE; n += 1) {
       // A prime step keeps successive re-orderings from landing on similar sequences.
       const offset = (n * 7) % raw.frames.length;
-      clips.push(toClip(raw, `${raw.video_id}-R${String(n).padStart(2, "0")}`, "placeholder", offset));
+      clips.push(toClip(raw, `${raw.video_id}-R${String(n).padStart(2, "0")}`, "placeholder", offset, placeholderTags(n)));
     }
   }
 
@@ -230,6 +240,7 @@ function buildFeed(): FeedData {
     clips,
     actions: [...new Set(SOURCES.flatMap((s) => s.action_space.discrete))],
     modes: [...new Set(clips.flatMap((c) => c.frames.map((f) => f.mode)))].sort(),
+    facets,
     convention: SOURCES[0].action_space.convention,
     totalFrames: clips.reduce((sum, c) => sum + c.frames.length, 0),
   };

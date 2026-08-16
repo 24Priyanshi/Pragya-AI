@@ -129,6 +129,13 @@ export interface NarrativeLine {
   readonly text: string;
 }
 
+export interface TaxonomyFacet {
+  /** Slug used as the tag key and the React key, e.g. "scene-type". */
+  readonly key: string;
+  readonly name: string;
+  readonly values: readonly string[];
+}
+
 export interface FeedClip {
   readonly id: string;
   /** "sample" is a real annotation export; "placeholder" re-orders one. */
@@ -146,6 +153,12 @@ export interface FeedClip {
   readonly peakPeople: number;
   readonly peakVehicles: number;
   readonly instruction: string;
+  /**
+   * Facet key → value. Empty for clips the tagging pass has not reached; the
+   * annotation export carries no taxonomy fields yet, so only placeholders
+   * are tagged today.
+   */
+  readonly tags: Readonly<Record<string, string>>;
   readonly dominantAction: string;
   readonly dominantLabel: string;
   readonly avgConfidence: number;
@@ -160,6 +173,7 @@ export interface FeedData {
   readonly clips: readonly FeedClip[];
   readonly actions: readonly string[];
   readonly modes: readonly string[];
+  readonly facets: readonly TaxonomyFacet[];
   readonly convention: string;
   readonly totalFrames: number;
 }

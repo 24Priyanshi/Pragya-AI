@@ -40,9 +40,7 @@ function VideoStage({ clip }: { clip: FeedClip }) {
             }}
           />
           <div className="relative flex flex-col items-center gap-3">
-            <span className="grid h-14 w-14 place-items-center border border-primary-fixed/40 text-lg text-primary-fixed">
-              ▶
-            </span>
+            <span className="grid h-14 w-14 place-items-center border border-primary-fixed/40 text-lg text-primary-fixed">▶</span>
             <span className="inter text-[11px] uppercase tracking-widest text-primary-fixed/60">Awaiting upload</span>
           </div>
         </div>
@@ -77,15 +75,12 @@ export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number })
           <div>
             <h3 className="plus-jakarta-sans text-3xl font-light tracking-tighter text-on-surface">Clip {clip.id}</h3>
             <small className="inter mt-1 block text-sm text-on-surface-variant">
-              {clip.keyframes} keyframes over {clip.duration} · {clip.fps} fps source · frame-level navigation
-              instructions
+              {clip.keyframes} keyframes over {clip.duration} · {clip.fps} fps source · frame-level navigation instructions
             </small>
           </div>
         </div>
         <div className="flex flex-wrap justify-end gap-2">
-          <Chip tone={clip.source === "sample" ? "strong" : "muted"}>
-            {clip.source === "sample" ? "Sample" : "Placeholder"}
-          </Chip>
+          <Chip tone={clip.source === "sample" ? "strong" : "muted"}>{clip.source === "sample" ? "Sample" : "Placeholder"}</Chip>
           <Chip>{clip.locationLabel}</Chip>
           <Chip>{clip.densityLabel} density</Chip>
           <Chip tone="accent">{clip.dominantLabel}</Chip>
@@ -135,9 +130,7 @@ export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number })
             <div className="mt-4 space-y-3">
               {clip.distribution.map((row) => (
                 <div className="grid grid-cols-[9rem_1fr_2.5rem] items-center gap-3" key={row.action}>
-                  <span className="inter truncate text-sm text-on-surface-variant">
-                    {row.action.replaceAll("_", " ")}
-                  </span>
+                  <span className="inter truncate text-sm text-on-surface-variant">{row.action.replaceAll("_", " ")}</span>
                   <span className="h-2.5 bg-surface-container">
                     <span
                       className={cn("block h-full", actionClass(row.action))}
