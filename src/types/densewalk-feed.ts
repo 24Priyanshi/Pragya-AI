@@ -128,6 +128,23 @@ export interface NarrativeLine {
   readonly time: string;
   readonly text: string;
 }
+ 
+/**
+ * A tab in the feed: the four instruction languages plus the Isaac Sim track.
+ *
+ * The language tracks all describe the same captures, so they render the same
+ * cards over the same measurements — only the instruction text changes. The
+ * simulation track is a different corpus entirely and carries no clips yet.
+ */
+export interface FeedTrack {
+  readonly key: string;
+  readonly label: string;
+  readonly kind: "language" | "simulation";
+  /** Shown above the feed for this track, and as the body of an empty track. */
+  readonly note: string;
+  /** False while frame observations are still served from the English source. */
+  readonly observationsTranslated: boolean;
+}
 
 export interface TaxonomyFacet {
   /** Slug used as the tag key and the React key, e.g. "scene-type". */
@@ -152,7 +169,10 @@ export interface FeedClip {
   readonly densityLabel: string;
   readonly peakPeople: number;
   readonly peakVehicles: number;
+  /** Clip-level instruction for the open track; swapped in by track, not stored per copy. */
   readonly instruction: string;
+  /** Track key → clip-level instruction, so one clip set serves every language tab. */
+  readonly instructions: Readonly<Record<string, string>>;
   /**
    * Facet key → value. Empty for clips the tagging pass has not reached; the
    * annotation export carries no taxonomy fields yet, so only placeholders
@@ -174,6 +194,7 @@ export interface FeedData {
   readonly actions: readonly string[];
   readonly modes: readonly string[];
   readonly facets: readonly TaxonomyFacet[];
+  readonly tracks: readonly FeedTrack[];
   readonly convention: string;
   readonly totalFrames: number;
 }

@@ -61,7 +61,16 @@ function InfoCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number }) {
+interface ClipCardProps {
+  clip: FeedClip;
+  ordinal: number;
+  /** Language tab this card is being read under; null on the English tab. */
+  trackLabel?: string | null;
+  /** False when the track's text is a stand-in rather than annotation output. */
+  translated?: boolean;
+}
+
+export function ClipCard({ clip, ordinal, trackLabel = null, translated = true }: ClipCardProps) {
   const [selected, setSelected] = useState(0);
   const frame = clip.frames[selected] ?? clip.frames[0];
 
@@ -81,6 +90,7 @@ export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number })
         </div>
         <div className="flex flex-wrap justify-end gap-2">
           <Chip tone={clip.source === "sample" ? "strong" : "muted"}>{clip.source === "sample" ? "Sample" : "Placeholder"}</Chip>
+          {trackLabel ? <Chip tone="muted">{trackLabel}</Chip> : null}
           <Chip>{clip.locationLabel}</Chip>
           <Chip>{clip.densityLabel} density</Chip>
           <Chip tone="accent">{clip.dominantLabel}</Chip>
@@ -109,7 +119,10 @@ export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number })
         </div>
 
         <div className="border-l-2 border-primary bg-surface-container-low p-6">
-          <FieldLabel>Clip-level instruction</FieldLabel>
+          <div className="flex flex-wrap items-center gap-3">
+            <FieldLabel>Clip-level instruction{trackLabel ? ` · ${trackLabel}` : ""}</FieldLabel>
+            {trackLabel && !translated ? <Chip tone="muted">Stand-in translation</Chip> : null}
+          </div>
           <p className="inter mt-3 max-w-5xl text-base leading-relaxed text-on-surface">{clip.instruction}</p>
           <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {clip.reasons.map((reason) => (
@@ -182,6 +195,8 @@ export function ClipCard({ clip, ordinal }: { clip: FeedClip; ordinal: number })
                   {flag.replaceAll("_", " ")}
                 </Chip>
               ))}
+              {/* Observations have no translation yet, so say which source this text came from. */}
+              {trackLabel ? <Chip tone="muted">English source</Chip> : null}
             </div>
 
             <p className="inter max-w-5xl text-base leading-relaxed text-on-surface-variant">{frame.observation}</p>

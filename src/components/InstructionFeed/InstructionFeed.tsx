@@ -8,6 +8,7 @@ import type { FeedData, FrameRisk } from "@/types/densewalk-feed";
 import { ClipCard } from "./ClipCard";
 import { FieldLabel } from "./primitives";
 import { TaxonomySidebar, type FacetSelection } from "./TaxonomySidebar";
+import { TrackTabs } from "./TrackTabs";
 
 /**
  * "Instruction Feed" — the dataset explorer that follows the DenseWalk hero.
@@ -33,6 +34,35 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   const [risk, setRisk] = useState("");
   const [limit, setLimit] = useState<number>(PAGE_SIZES[0]);
   const [selection, setSelection] = useState<FacetSelection>({});
+  const [track, setTrack] = useState(data.tracks[0].key);
+
+  const activeTrack = data.tracks.find((t) => t.key === track) ?? data.tracks[0];
+
+  const trackCounts = useMemo(
+    () =>
+      Object.fromEntries(data.tracks.map((t) => [t.key, t.kind === "language" ? data.clips.length : 0])) as Record<
+        string,
+        number
+      >,
+    [data.clips.length, data.tracks],
+  );
+
+  /**
+   * Every language tab renders the same clips over the same measurements — the
+   * geometry and timing of a walk do not change with the language describing
+   * it — so the instruction text is swapped per track rather than a separate
+   * clip set being shipped for each. `translated` is false when the track falls
+   * back to English, which the card badges instead of passing it off.
+   */
+  const trackClips = useMemo(() => {
+    if (activeTrack.kind !== "language") return [];
+    return data.clips.map((clip) => ({
+      ...clip,
+      instruction: clip.instructions[activeTrack.key] ?? clip.instructions.english,
+    }));
+  }, [data.clips, activeTrack]);
+
+  const translated = activeTrack.key === "english" || data.clips.every((c) => activeTrack.key in c.instructions);
 
   function selectFacet(facetKey: string, value: string | null) {
     setSelection((current) => {
@@ -61,14 +91,14 @@ export function InstructionFeed({ data }: { data: FeedData }) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return data.clips.filter((clip) => {
+    return trackClips.filter((clip) => {
       if (q && !haystacks.get(clip.id)?.includes(q)) return false;
       if (action && !clip.frames.some((f) => f.action === action)) return false;
       if (mode && !clip.frames.some((f) => f.mode === mode)) return false;
       if (risk && clip.risk !== risk) return false;
       return Object.entries(selection).every(([key, value]) => clip.tags[key] === value);
     });
-  }, [data.clips, haystacks, query, action, mode, risk, selection]);
+  }, [trackClips, haystacks, query, action, mode, risk, selection]);
 
   const visible = limit === 0 ? filtered : filtered.slice(0, limit);
   const sampleCount = data.clips.filter((c) => c.source === "sample").length;
@@ -105,101 +135,128 @@ export function InstructionFeed({ data }: { data: FeedData }) {
         </div>
       </div>
 
-      {/* The taxonomy rail is the one split on this page; each clip card below
-          still runs the full width of the content column. */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[19rem_minmax(0,1fr)] lg:items-start">
-        <TaxonomySidebar
-          clips={data.clips}
-          facets={data.facets}
-          onClear={() => setSelection({})}
-          onSelect={selectFacet}
-          selection={selection}
-        />
+      <TrackTabs active={track} counts={trackCounts} onSelect={setTrack} tracks={data.tracks} />
 
-        <div>
-          <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem_11rem]">
-            <input
-              aria-label="Search clips, actions and frame instructions"
-              className={CONTROL_CLASS}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search clip id, instruction, action, keyframe…"
-              type="search"
-              value={query}
-            />
-            <select
-              aria-label="Filter by action"
-              className={CONTROL_CLASS}
-              onChange={(e) => setAction(e.target.value)}
-              value={action}
-            >
-              <option value="">All actions</option>
-              {data.actions.map((a) => (
-                <option key={a} value={a}>
-                  {a.replaceAll("_", " ")}
-                </option>
-              ))}
-            </select>
-            <select
-              aria-label="Filter by motion mode"
-              className={CONTROL_CLASS}
-              onChange={(e) => setMode(e.target.value)}
-              value={mode}
-            >
-              <option value="">All modes</option>
-              {data.modes.map((m) => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
-              ))}
-            </select>
-            <select aria-label="Filter by risk" className={CONTROL_CLASS} onChange={(e) => setRisk(e.target.value)} value={risk}>
-              <option value="">All risk levels</option>
-              {RISKS.map((r) => (
-                <option key={r} value={r}>
-                  {r} risk
-                </option>
-              ))}
-            </select>
-            <select
-              aria-label="Number of clips to show"
-              className={CONTROL_CLASS}
-              onChange={(e) => setLimit(Number(e.target.value))}
-              value={limit}
-            >
-              {PAGE_SIZES.map((size) => (
-                <option key={size} value={size}>
-                  {size === 0 ? "Show all" : `Show ${size}`}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <p className="inter mb-8 border border-outline-variant/10 bg-surface-container-lowest px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
-            {sampleCount} of {data.clips.length} cards is a real annotation export. The rest replay that clip&rsquo;s actual
-            frames in a different temporal order so the feed, filters and timeline can be reviewed end to end — they are marked{" "}
-            <span className="text-on-surface">Placeholder</span>, and no metric on them is fabricated. Video stages stay as
-            placeholders until the mosaic renders are uploaded.
-          </p>
-
-          <div className="mb-6">
-            <FieldLabel>
-              Showing {visible.length} of {filtered.length} matching clips
-            </FieldLabel>
-          </div>
-
-          {visible.length === 0 ? (
-            <div className="border border-outline-variant/10 bg-surface-container-lowest px-6 py-20 text-center">
-              <p className="inter text-base text-on-surface-variant">No clip matches those filters.</p>
-            </div>
-          ) : (
-            <div className="grid gap-6">
-              {visible.map((clip, i) => (
-                <ClipCard clip={clip} key={clip.id} ordinal={i + 1} />
-              ))}
-            </div>
-          )}
+      {trackClips.length === 0 ? (
+        <div className="border border-outline-variant/10 bg-surface-container-lowest px-6 py-24 text-center">
+          <FieldLabel>{activeTrack.label} track</FieldLabel>
+          <p className="inter mx-auto mt-4 max-w-md text-base leading-relaxed text-on-surface-variant">{activeTrack.note}</p>
         </div>
-      </div>
+      ) : (
+        /* The taxonomy rail is the one split on this page; each clip card below
+         still runs the full width of the content column. */
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[19rem_minmax(0,1fr)] lg:items-start">
+          <TaxonomySidebar
+            clips={trackClips}
+            facets={data.facets}
+            onClear={() => setSelection({})}
+            onSelect={selectFacet}
+            selection={selection}
+          />
+
+          <div>
+            <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem_11rem]">
+              <input
+                aria-label="Search clips, actions and frame instructions"
+                className={CONTROL_CLASS}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search clip id, instruction, action, keyframe…"
+                type="search"
+                value={query}
+              />
+              <select
+                aria-label="Filter by action"
+                className={CONTROL_CLASS}
+                onChange={(e) => setAction(e.target.value)}
+                value={action}
+              >
+                <option value="">All actions</option>
+                {data.actions.map((a) => (
+                  <option key={a} value={a}>
+                    {a.replaceAll("_", " ")}
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Filter by motion mode"
+                className={CONTROL_CLASS}
+                onChange={(e) => setMode(e.target.value)}
+                value={mode}
+              >
+                <option value="">All modes</option>
+                {data.modes.map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Filter by risk"
+                className={CONTROL_CLASS}
+                onChange={(e) => setRisk(e.target.value)}
+                value={risk}
+              >
+                <option value="">All risk levels</option>
+                {RISKS.map((r) => (
+                  <option key={r} value={r}>
+                    {r} risk
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Number of clips to show"
+                className={CONTROL_CLASS}
+                onChange={(e) => setLimit(Number(e.target.value))}
+                value={limit}
+              >
+                {PAGE_SIZES.map((size) => (
+                  <option key={size} value={size}>
+                    {size === 0 ? "Show all" : `Show ${size}`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-8 space-y-2">
+              {activeTrack.key !== "english" ? (
+                <p className="inter border-l-2 border-primary bg-surface-container-low px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
+                  <span className="text-on-surface">{activeTrack.label} track.</span> {activeTrack.note}
+                </p>
+              ) : null}
+              <p className="inter border border-outline-variant/10 bg-surface-container-lowest px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
+                {sampleCount} of {data.clips.length} cards is a real annotation export. The rest replay that clip&rsquo;s actual
+                frames in a different temporal order so the feed, filters and timeline can be reviewed end to end — they are
+                marked <span className="text-on-surface">Placeholder</span>, and no metric on them is fabricated. Video stages
+                stay as placeholders until the mosaic renders are uploaded.
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <FieldLabel>
+                Showing {visible.length} of {filtered.length} matching clips
+              </FieldLabel>
+            </div>
+
+            {visible.length === 0 ? (
+              <div className="border border-outline-variant/10 bg-surface-container-lowest px-6 py-20 text-center">
+                <p className="inter text-base text-on-surface-variant">No clip matches those filters.</p>
+              </div>
+            ) : (
+              <div className="grid gap-6">
+                {visible.map((clip, i) => (
+                  <ClipCard
+                    clip={clip}
+                    key={clip.id}
+                    ordinal={i + 1}
+                    trackLabel={activeTrack.key === "english" ? null : activeTrack.label}
+                    translated={translated}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

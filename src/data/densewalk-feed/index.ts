@@ -4,6 +4,7 @@ import type {
   FeedClip,
   FeedData,
   FeedFrame,
+  FeedTrack,
   FrameRisk,
   NarrativeLine,
   RawClip,
@@ -32,6 +33,75 @@ const SOURCES: readonly RawClip[] = [sample as RawClip];
 
 /** Re-orderings generated per real clip while only one export exists. Set to 0 once enough ship. */
 const REORDERINGS_PER_SOURCE = 11;
+
+/**
+ * The feed's tabs.
+ *
+ * The four language tracks describe the same captures, so they share one clip
+ * set and swap only the instruction text — geometry, timing, actions and
+ * taxonomy are properties of the walk, not of the language describing it.
+ * Simulation is a separate corpus and holds no clips yet.
+ */
+const TRACKS: readonly FeedTrack[] = [
+  {
+    key: "english",
+    label: "English",
+    kind: "language",
+    note: "Instructions as they appear in the annotation exports.",
+    observationsTranslated: true,
+  },
+  {
+    key: "hindi",
+    label: "Hindi",
+    kind: "language",
+    note: "Clip-level instructions are shown in Hindi. Frame observations are still served from the English source until the multilingual pass runs.",
+    observationsTranslated: false,
+  },
+  {
+    key: "bangla",
+    label: "Bangla",
+    kind: "language",
+    note: "Clip-level instructions are shown in Bangla. Frame observations are still served from the English source until the multilingual pass runs.",
+    observationsTranslated: false,
+  },
+  {
+    key: "telegu",
+    label: "Telegu",
+    kind: "language",
+    note: "Clip-level instructions are shown in Telegu. Frame observations are still served from the English source until the multilingual pass runs.",
+    observationsTranslated: false,
+  },
+  {
+    key: "simulation",
+    label: "Simulation",
+    kind: "simulation",
+    note: "Isaac Sim rollouts are exported separately from the walk-through captures and have not landed yet.",
+    observationsTranslated: false,
+  },
+];
+
+/**
+ * Clip id → track key → clip-level instruction.
+ *
+ * Stand-ins so each language tab reads in its own script; they are NOT
+ * annotation output, and the UI badges them as such. Delete an entry the moment
+ * the real export carries that language, and the tab picks the real string up.
+ */
+const INSTRUCTION_TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, string>>>> = {
+  "003105": {
+    hindi:
+      "खाली मिश्रित सड़क से होकर आगे बढ़ें, जहाँ आस-पास कोई व्यक्ति या वाहन नहीं मिला, और आगे का रास्ता बार-बार बाधित है। दूसरों से सुरक्षित दूरी बनाए रखें और परिस्थितियों के अनुरूप गति से चलें।",
+    bangla:
+      "খালি মিশ্র রাস্তা ধরে এগিয়ে যান, যেখানে কাছাকাছি কোনো মানুষ বা যানবাহন শনাক্ত হয়নি, এবং সামনের পথ বারবার বাধাগ্রস্ত। অন্যদের থেকে নিরাপদ দূরত্ব বজায় রাখুন এবং পরিস্থিতি অনুযায়ী গতিতে চলুন।",
+    telegu:
+      "ఖాళీగా ఉన్న మిశ్రమ వీధి గుండా ముందుకు సాగండి, సమీపంలో ఎవరూ కానీ వాహనాలు కానీ గుర్తించబడలేదు, ముందున్న దారి తరచుగా అడ్డుపడుతోంది. ఇతరుల నుండి సురక్షితమైన దూరం ఉంచండి, పరిస్థితులకు తగిన వేగంతో కదలండి.",
+  },
+};
+
+/** English from the export, plus whatever translations exist for that source clip. */
+function instructionsFor(sourceId: string, english: string): Readonly<Record<string, string>> {
+  return { english, ...(INSTRUCTION_TRANSLATIONS[sourceId] ?? {}) };
+}
 
 /**
  * Clip id → mp4 under public/. Empty for now, so every stage renders the
@@ -210,6 +280,7 @@ function toClip(
     peakPeople: evidence.peak_people,
     peakVehicles: evidence.peak_vehicles,
     instruction: raw.instruction.text,
+    instructions: instructionsFor(raw.video_id, raw.instruction.text),
     tags,
     dominantAction: distribution[0].action,
     dominantLabel: distribution[0].label,
@@ -241,6 +312,7 @@ function buildFeed(): FeedData {
     actions: [...new Set(SOURCES.flatMap((s) => s.action_space.discrete))],
     modes: [...new Set(clips.flatMap((c) => c.frames.map((f) => f.mode)))].sort(),
     facets,
+    tracks: TRACKS,
     convention: SOURCES[0].action_space.convention,
     totalFrames: clips.reduce((sum, c) => sum + c.frames.length, 0),
   };
