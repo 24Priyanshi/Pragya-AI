@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Rounded background -->
+  <rect x="0" y="0" width="512" height="512" rx="100" ry="100" fill="#2d1b4e"/>
+  
+  <!-- Large, prominent text with better letter spacing -->
+  <text x="256" y="380" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="340" font-weight="900" text-anchor="middle" fill="#f5f0eb" letter-spacing="-8">
+    यप
+  </text>
+</svg>

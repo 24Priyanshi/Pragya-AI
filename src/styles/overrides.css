@@ -1,0 +1,151 @@
+/*
+ * TYPE SCALE OVERRIDE — the one deliberate deviation from the original.
+ *
+ * Requested change: make all text ~7% larger. Layout spacing (padding, margins,
+ * gaps, max-widths) is untouched, so the typographic hierarchy is preserved and
+ * only text grows. Some blocks will therefore be slightly taller than the
+ * original — that is expected and is the documented Phase 6 diff exception.
+ *
+ * This file exists so that the two verbatim stylesheets stay verbatim:
+ *   - styles/design-system.css is byte-identical to the original (SHA-256 verified)
+ *   - styles/fonts.css is the generated @font-face block
+ * Both are loaded before this file; every rule here overrides by source order
+ * at equal specificity. Delete this file and its import in SiteShell to revert
+ * to pixel-identical output.
+ *
+ * SCALE FACTOR: 1.07. Every value below is base × 1.07, exact, no rounding to
+ * a nearest token. Line-heights scale with their size to keep leading ratios.
+ *
+ * Material Symbols icon sizes are deliberately NOT scaled — they are icons, not
+ * text, and growing them would shift the layout rather than the typography.
+ */
+
+/* ── Inherited base ──────────────────────────────────────────────────────
+   Covers text with no explicit size class: the landing "Core Protocols"
+   paragraphs (which use the non-existent `text-md`, BUG-15) and the
+   "The Evidence" intro. 16px × 1.07. */
+body {
+  font-size: 1.07rem;
+}
+
+/* ── Tailwind named sizes ────────────────────────────────────────────── */
+.text-xs {
+  font-size: 0.8025rem;
+  line-height: 1.07rem;
+}
+.text-sm {
+  font-size: 0.93625rem;
+  line-height: 1.3375rem;
+}
+.text-base {
+  font-size: 1.07rem;
+  line-height: 1.605rem;
+}
+.text-lg {
+  font-size: 1.20375rem;
+  line-height: 1.8725rem;
+}
+.text-xl {
+  font-size: 1.3375rem;
+  line-height: 1.8725rem;
+}
+.text-2xl {
+  font-size: 1.605rem;
+  line-height: 2.14rem;
+}
+.text-3xl {
+  font-size: 2.00625rem;
+  line-height: 2.4075rem;
+}
+.text-4xl {
+  font-size: 2.4075rem;
+  line-height: 2.675rem;
+}
+.text-5xl {
+  font-size: 3.21rem;
+  line-height: 1;
+}
+.text-6xl {
+  font-size: 4.0125rem;
+  line-height: 1;
+}
+.text-7xl {
+  font-size: 4.815rem;
+  line-height: 1;
+}
+
+/* ── Arbitrary sizes used in the markup ──────────────────────────────── */
+.text-\[8px\] {
+  font-size: 8.56px;
+}
+.text-\[9px\] {
+  font-size: 9.63px;
+}
+.text-\[10px\] {
+  font-size: 10.7px;
+}
+.text-\[11px\] {
+  font-size: 11.77px;
+}
+.text-\[0\.6875rem\] {
+  font-size: 0.735625rem;
+}
+.text-\[4rem\] {
+  font-size: 4.28rem;
+}
+
+/* ── Submenu text from design-system.css §20 ─────────────────────────── */
+.submenu-item-label {
+  font-size: 0.869375rem;
+}
+.submenu-item-question {
+  font-size: 0.93625rem;
+}
+.submenu-item-answer {
+  font-size: 0.869375rem;
+}
+.submenu-featured-card > div span:first-child {
+  font-size: 0.66875rem;
+}
+
+/* ── Responsive variants ─────────────────────────────────────────────────
+   These must sit inside matching media queries and after Tailwind's own
+   rules, otherwise the unprefixed overrides above would win at all widths. */
+@media (min-width: 768px) {
+  .md\:text-base {
+    font-size: 1.07rem;
+    line-height: 1.605rem;
+  }
+  .md\:text-xl {
+    font-size: 1.3375rem;
+    line-height: 1.8725rem;
+  }
+  .md\:text-4xl {
+    font-size: 2.4075rem;
+    line-height: 2.675rem;
+  }
+  .md\:text-6xl {
+    font-size: 4.0125rem;
+    line-height: 1;
+  }
+  .md\:text-7xl {
+    font-size: 4.815rem;
+    line-height: 1;
+  }
+  .md\:text-\[6\.5rem\] {
+    font-size: 6.955rem;
+  }
+}
+
+/* design-system.css shrinks the submenu below 640px; scale those too. */
+@media (max-width: 640px) {
+  .submenu-item-label {
+    font-size: 0.8025rem;
+  }
+  .submenu-item-question {
+    font-size: 0.869375rem;
+  }
+  .submenu-item-answer {
+    font-size: 0.8025rem;
+  }
+}

@@ -1,0 +1,16 @@
+/*
+ * Replaces the original's Tailwind Play CDN script tag:
+ *   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+ *
+ * The plugins move to tailwind.config.ts; the theme is a verbatim port of
+ * js/tailwind-config.js. Preflight is left enabled, matching the CDN.
+ *
+ * Cascade order is set in src/app/layout.tsx and mirrors the original <head>:
+ *   1. styles/fonts.css        (was the Google Fonts <link>)
+ *   2. app/globals.css         (was the Tailwind CDN <script>)
+ *   3. styles/design-system.css (was the design-system <link>, verbatim)
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
