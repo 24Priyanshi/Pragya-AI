@@ -13,6 +13,11 @@ export const hero: HeroSpec = {
   src: "/denseWalk_hero.png",
   alt: "DenseWalk humanoid navigation visualization",
   mode: "fill",
+  overlay: true,
+  actions: [
+    { label: "Paper Arxiv", href: "#" },
+    { label: "Dataset", href: "#" },
+  ],
 };
 
 export const stats: readonly StatCard[] = [

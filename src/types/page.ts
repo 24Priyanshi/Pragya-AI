@@ -76,6 +76,11 @@ export interface Contributor {
   readonly bio: string;
 }
 
+export interface HeroAction {
+  readonly label: string;
+  readonly href: string;
+}
+
 export interface HeroSpec {
   readonly src: string;
   readonly alt: string;
@@ -84,4 +89,8 @@ export interface HeroSpec {
    * "auto" — intrinsic-height hero, `object-contain` (factorjepa, kalamprotocol, kalarisena).
    */
   readonly mode: "fill" | "auto";
+  /** Whitish scrim over the image, so overlaid content stays readable. */
+  readonly overlay?: boolean;
+  /** CTAs rendered centred on top of the image. */
+  readonly actions?: readonly HeroAction[];
 }
