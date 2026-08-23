@@ -23,6 +23,9 @@ import { TrackTabs } from "./TrackTabs";
 const RISKS: readonly FrameRisk[] = ["Low", "Medium", "High"];
 const PAGE_SIZES = [6, 12, 0] as const; // 0 = show everything
 
+/** Cards at the top of a page fetch their frames immediately rather than on scroll. */
+const EAGER_CARDS = 3;
+
 const CONTROL_CLASS =
   "inter w-full border border-outline-variant/20 bg-surface-container-lowest px-4 py-3.5 text-sm text-on-surface " +
   "placeholder:text-outline focus:border-primary focus:outline-none focus:ring-0";
@@ -51,18 +54,20 @@ export function InstructionFeed({ data }: { data: FeedData }) {
    * Every language tab renders the same clips over the same measurements — the
    * geometry and timing of a walk do not change with the language describing
    * it — so the instruction text is swapped per track rather than a separate
-   * clip set being shipped for each. `translated` is false when the track falls
-   * back to English, which the card badges instead of passing it off.
+   * clip set being shipped for each.
+   *
+   * `translated` is tracked per clip rather than per track: only one export
+   * carries non-English text today, so a track-wide flag would badge 49 cards
+   * of plain English as a stand-in translation.
    */
   const trackClips = useMemo(() => {
     if (activeTrack.kind !== "language") return [];
     return data.clips.map((clip) => ({
       ...clip,
       instruction: clip.instructions[activeTrack.key] ?? clip.instructions.english,
+      translated: activeTrack.key in clip.instructions,
     }));
   }, [data.clips, activeTrack]);
-
-  const translated = activeTrack.key === "english" || data.clips.every((c) => activeTrack.key in c.instructions);
 
   function selectFacet(facetKey: string, value: string | null) {
     setSelection((current) => {
@@ -73,41 +78,25 @@ export function InstructionFeed({ data }: { data: FeedData }) {
     });
   }
 
-  // Built once per dataset: search scans every frame's observation text, which
-  // is far too much string work to redo on each keystroke.
-  const haystacks = useMemo(
-    () =>
-      new Map(
-        data.clips.map((clip) => [
-          clip.id,
-          [clip.id, clip.location, clip.density, clip.instruction, clip.source]
-            .concat(clip.frames.map((f) => `${f.keyframeId} ${f.action} ${f.mode} ${f.observation}`))
-            .join(" ")
-            .toLowerCase(),
-        ]),
-      ),
-    [data.clips],
-  );
-
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return trackClips.filter((clip) => {
-      if (q && !haystacks.get(clip.id)?.includes(q)) return false;
-      if (action && !clip.frames.some((f) => f.action === action)) return false;
-      if (mode && !clip.frames.some((f) => f.mode === mode)) return false;
+      // `search` and the action/mode sets are precomputed per clip: the frames
+      // they used to be derived from no longer live in the page.
+      if (q && !clip.search.includes(q)) return false;
+      if (action && !clip.actions.includes(action)) return false;
+      if (mode && !clip.modes.includes(mode)) return false;
       if (risk && clip.risk !== risk) return false;
       return Object.entries(selection).every(([key, value]) => clip.tags[key] === value);
     });
-  }, [trackClips, haystacks, query, action, mode, risk, selection]);
+  }, [trackClips, query, action, mode, risk, selection]);
 
   const visible = limit === 0 ? filtered : filtered.slice(0, limit);
-  const sampleCount = data.clips.filter((c) => c.source === "sample").length;
-
   const kpis = [
-    { value: String(data.clips.length), label: "clips in feed" },
-    { value: String(sampleCount), label: sampleCount === 1 ? "real annotation" : "real annotations" },
+    { value: String(data.clips.length), label: "annotated clips" },
     { value: String(data.totalFrames), label: "frame instructions" },
     { value: String(data.actions.length), label: "discrete actions" },
+    { value: String(new Set(data.clips.map((c) => c.location)).size), label: "scene types" },
   ];
 
   return (
@@ -121,8 +110,9 @@ export function InstructionFeed({ data }: { data: FeedData }) {
           </h2>
           <p className="inter mt-6 max-w-3xl text-base leading-relaxed text-on-surface-variant">
             Each card is one walk-through clip: the mosaic render on the left, the full instruction reasoning on the right. The
-            strip beneath every player is that clip&rsquo;s action timeline — select a frame to read the observation the pipeline
-            grounded its instruction in.
+            strip beneath every player is that clip&rsquo;s keyframe timeline — click a frame to scrub the render to its
+            timestamp and read the observation the pipeline grounded its instruction in, and the playhead tracks the clip as
+            it plays.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -224,10 +214,17 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                 </p>
               ) : null}
               <p className="inter border border-outline-variant/10 bg-surface-container-lowest px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
-                {sampleCount} of {data.clips.length} cards is a real annotation export. The rest replay that clip&rsquo;s actual
-                frames in a different temporal order so the feed, filters and timeline can be reviewed end to end — they are
-                marked <span className="text-on-surface">Placeholder</span>, and no metric on them is fabricated. Video stages
-                stay as placeholders until the mosaic renders are uploaded.
+                All {data.clips.length} cards are annotation exports from the{" "}
+                <a
+                  className="text-primary underline underline-offset-4 hover:opacity-70"
+                  href="https://huggingface.co/datasets/s-alam/densewalk-public"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  public DenseWalk release
+                </a>
+                . Every measurement on screen is read from that export, and both the mosaic renders and the per-frame
+                detail stream from the same dataset as you scroll — nothing here is reconstructed.
               </p>
             </div>
 
@@ -246,10 +243,12 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                 {visible.map((clip, i) => (
                   <ClipCard
                     clip={clip}
+                    eager={i < EAGER_CARDS}
+                    framesBase={data.framesBase}
                     key={clip.id}
                     ordinal={i + 1}
                     trackLabel={activeTrack.key === "english" ? null : activeTrack.label}
-                    translated={translated}
+                    translated={clip.translated}
                   />
                 ))}
               </div>

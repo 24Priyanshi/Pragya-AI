@@ -55,6 +55,7 @@ export function actionClass(action: string): string {
   return ACTION_CLASS[action] ?? "bg-outline-variant";
 }
 
+
 /** Risk maps onto the one semantic colour the design system defines, plus neutrals. */
 export function riskTone(risk: string): ChipTone {
   if (risk === "High") return "alert";

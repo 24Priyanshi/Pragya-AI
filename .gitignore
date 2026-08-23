@@ -42,3 +42,6 @@ next-env.d.ts
 
 /temp
 /verification
+
+# Staging for scripts/reencode-mosaics.mjs - large media, never committed
+.mosaic-fixed/

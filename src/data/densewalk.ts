@@ -16,7 +16,7 @@ export const hero: HeroSpec = {
   overlay: true,
   actions: [
     { label: "Paper Arxiv", href: "#" },
-    { label: "Dataset", href: "#" },
+    { label: "Dataset", href: "https://huggingface.co/datasets/s-alam/densewalk-public" },
   ],
 };
 

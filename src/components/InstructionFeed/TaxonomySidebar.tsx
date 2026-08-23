@@ -6,7 +6,11 @@ import type { FeedClip, TaxonomyFacet } from "@/types/densewalk-feed";
 import { FieldLabel } from "./primitives";
 
 /**
- * Left rail holding the 15-field taxonomy.
+ * Left rail holding the clip taxonomy.
+ *
+ * The facets are derived from the annotation exports rather than declared —
+ * see FACET_DEFS in src/data/densewalk-taxonomy.ts — so every row here
+ * corresponds to clips that exist.
  *
  * Each facet is one block from the reference image: a heading, an "All" row
  * carrying the unfiltered total, then one row per value with a colour key and

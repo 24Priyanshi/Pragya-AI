@@ -1,0 +1,2112 @@
+{
+  "video_id": "003405",
+  "fps": 30.0,
+  "n_frames": 60,
+  "instruction": {
+    "text": "Navigate through the sparse mixed street, sharing space with 4 vehicles. Keep a safe distance from others and move at a pace that suits the conditions.",
+    "evidence": {
+      "n_frames": 60,
+      "location": "mixed_street",
+      "density": "sparse",
+      "peak_people": 0,
+      "peak_vehicles": 4
+    }
+  },
+  "action_space": {
+    "discrete": [
+      "standing_still",
+      "walking_slow",
+      "walking_normal",
+      "walking_fast",
+      "turning_left",
+      "turning_right",
+      "stepping_left",
+      "stepping_right"
+    ],
+    "target": [
+      "velocity_mps",
+      "direction_deg",
+      "yaw_rate_dps"
+    ],
+    "label_map": {
+      "standing_still": {
+        "direction_deg": 0.0,
+        "mode": "stand"
+      },
+      "walking_slow": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_normal": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_fast": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "turning_left": {
+        "direction_deg": -45.0,
+        "mode": "turn"
+      },
+      "turning_right": {
+        "direction_deg": 45.0,
+        "mode": "turn"
+      },
+      "stepping_left": {
+        "direction_deg": -90.0,
+        "mode": "sidestep"
+      },
+      "stepping_right": {
+        "direction_deg": 90.0,
+        "mode": "sidestep"
+      }
+    },
+    "convention": "Grounded ego-motion: forward/lateral/yaw recovered by motion-field solve on agent-masked static pixels, metric-scaled by depth. velocity_mps=measured horizontal speed; yaw_rate_dps=measured angular velocity; (forward,lateral,yaw) = holonomic command. weight<1 = low solve-confidence / artifact frame."
+  },
+  "frames": [
+    {
+      "image": "keyframes/003405/003405_kf0000.jpg",
+      "keyframe_id": "003405_kf0000",
+      "time_sec": 0.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 6.2 metres wide, located 12.7 degrees to the left of forward. Corridor extends to 6.9 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 6.2 metre wide corridor at 6.9 metres depth, located 12.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.0,
+        "lateral_mps": 0.0,
+        "forward_mps": 0.0,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.73,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 6.17,
+          "widest_gap_angle_deg": -12.7,
+          "total_free_width_pct": 0.639
+        },
+        "density": "empty"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf",
+        "solve_failed"
+      ]
+    },
+    {
+      "image": "keyframes/003405/003405_kf0001.jpg",
+      "keyframe_id": "003405_kf0001",
+      "time_sec": 0.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 13.6 metres, directly ahead in the centre of the frame. Located 3.4 degrees to the right of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 5.5 metres wide, located 16.5 degrees to the left of forward. Corridor extends to 7.4 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 5.5 metre wide corridor at 7.4 metres depth, located 16.5 degrees to the left of the forward direction. Net flow of 1.2 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 5.6,
+        "lateral_mps": 0.097,
+        "forward_mps": 0.033,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.8,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 5.47,
+          "widest_gap_angle_deg": -16.5,
+          "total_free_width_pct": 0.531
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0002.jpg",
+      "keyframe_id": "003405_kf0002",
+      "time_sec": 0.333,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 12.0 metres, to the left of centre. Located 23.9 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 13.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.5 metres wide, located 10.1 degrees to the left of forward. Corridor extends to 7.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.3 metre wide corridor at 7.3 metres depth, located 30.7 degrees to the left of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%. A 3.5 metre wide corridor at 7.7 metres depth, located 10.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 4.52,
+        "lateral_mps": 0.041,
+        "forward_mps": -0.002,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.64,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.008,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.52,
+          "widest_gap_angle_deg": -10.1,
+          "total_free_width_pct": 0.452
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0003.jpg",
+      "keyframe_id": "003405_kf0003",
+      "time_sec": 0.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 12.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 4.0 metres wide, located 7.8 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.1 metre wide corridor at 7.2 metres depth, located 31.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 4.0 metre wide corridor at 6.7 metres depth, located 7.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 3.86,
+        "lateral_mps": 0.064,
+        "forward_mps": 0.012,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.79,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.005,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.98,
+          "widest_gap_angle_deg": -7.8,
+          "total_free_width_pct": 0.535
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0004.jpg",
+      "keyframe_id": "003405_kf0004",
+      "time_sec": 0.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 9.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.1 metres wide, located 10.0 degrees to the left of forward. Corridor extends to 5.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.8 metre wide corridor at 5.7 metres depth, located 31.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 3.1 metre wide corridor at 5.7 metres depth, located 10.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 2.91,
+        "lateral_mps": 0.014,
+        "forward_mps": -0.063,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.38,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.004,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.11,
+          "widest_gap_angle_deg": -10.0,
+          "total_free_width_pct": 0.496
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0005.jpg",
+      "keyframe_id": "003405_kf0005",
+      "time_sec": 0.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 12.0 metres, to the left of centre. Located 26.6 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 14.2 metres, to the left of centre. Located 13.5 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.1 metres wide, located 3.5 degrees to the left of forward. Corridor extends to 6.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.3 metre wide corridor at 6.9 metres depth, located 19.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.1 metre wide corridor at 6.0 metres depth, located 3.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 2.67,
+        "lateral_mps": 0.027,
+        "forward_mps": -0.014,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.46,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.008,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.09,
+          "widest_gap_angle_deg": -3.5,
+          "total_free_width_pct": 0.38
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0006.jpg",
+      "keyframe_id": "003405_kf0006",
+      "time_sec": 1.0,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 11.6 metres, to the left of centre. Located 27.4 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 13.8 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 13.0 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 6.7 metres depth, located 13.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 2.71,
+        "lateral_mps": 0.028,
+        "forward_mps": -0.022,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.37,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.008,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.16,
+          "widest_gap_angle_deg": -13.0,
+          "total_free_width_pct": 0.336
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0007.jpg",
+      "keyframe_id": "003405_kf0007",
+      "time_sec": 1.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 10.2 metres, to the left of centre. Located 28.4 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 13.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.9 metres wide, located 13.6 degrees to the left of forward. Corridor extends to 6.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.9 metre wide corridor at 6.0 metres depth, located 13.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 3.06,
+        "lateral_mps": 0.032,
+        "forward_mps": -0.033,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.33,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.006,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.89,
+          "widest_gap_angle_deg": -13.6,
+          "total_free_width_pct": 0.344
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0008.jpg",
+      "keyframe_id": "003405_kf0008",
+      "time_sec": 1.333,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 11.9 metres, to the left of centre. Located 29.3 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 14.6 metres, to the left of centre. Located 15.3 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 15.3 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 3 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.5 metres wide, located 8.2 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 7% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.2 metre wide corridor at 6.1 metres depth, located 21.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.5 metre wide corridor at 6.7 metres depth, located 8.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 3.19,
+        "lateral_mps": 0.075,
+        "forward_mps": 0.028,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.1,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.014,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.54,
+          "widest_gap_angle_deg": -8.2,
+          "total_free_width_pct": 0.305
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0009.jpg",
+      "keyframe_id": "003405_kf0009",
+      "time_sec": 1.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 11.8 metres, to the left of centre. Located 30.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 16.2 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 15.5 degrees to the left of forward. Corridor extends to 6.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 7% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 6.6 metres depth, located 15.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 4.4,
+        "lateral_mps": 0.051,
+        "forward_mps": 0.036,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.09,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.013,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.23,
+          "widest_gap_angle_deg": -15.5,
+          "total_free_width_pct": 0.349
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0010.jpg",
+      "keyframe_id": "003405_kf0010",
+      "time_sec": 1.667,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 12.5 metres, to the left of centre. Located 31.6 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 14.5 metres, directly ahead in the centre of the frame. Located 7.3 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 17.8 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.7 metres wide, located 18.8 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 9% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.7 metre wide corridor at 6.7 metres depth, located 18.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 2.52,
+        "lateral_mps": 0.081,
+        "forward_mps": 0.08,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.06,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.015,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.66,
+          "widest_gap_angle_deg": -18.8,
+          "total_free_width_pct": 0.282
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0011.jpg",
+      "keyframe_id": "003405_kf0011",
+      "time_sec": 1.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 17.7 metres, directly ahead in the centre of the frame. Located 3.4 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.4 metres wide, located 19.7 degrees to the left of forward. Corridor extends to 7.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 4.4 metre wide corridor at 7.2 metres depth, located 19.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 4.58,
+        "lateral_mps": 0.095,
+        "forward_mps": 0.109,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.55,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.004,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.37,
+          "widest_gap_angle_deg": -19.7,
+          "total_free_width_pct": 0.436
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0012.jpg",
+      "keyframe_id": "003405_kf0012",
+      "time_sec": 2.0,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 14.7 metres, to the left of centre. Located 33.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 20.7 metres, directly ahead in the centre of the frame. Located 4.3 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.9 metres wide, located 18.5 degrees to the left of forward. Corridor extends to 7.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 9% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.9 metre wide corridor at 7.6 metres depth, located 18.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.6 metre wide corridor at 3.8 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 6.5,
+        "lateral_mps": 0.061,
+        "forward_mps": 0.017,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.59,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.011,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.94,
+          "widest_gap_angle_deg": -18.5,
+          "total_free_width_pct": 0.477
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0013.jpg",
+      "keyframe_id": "003405_kf0013",
+      "time_sec": 2.167,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 14.4 metres, directly ahead in the centre of the frame. Located 9.9 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 16.2 metres, to the left of centre. Located 20.0 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 17.5 metres, directly ahead in the centre of the frame. Located 5.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.8 metres wide, located 28.2 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.8 metre wide corridor at 6.7 metres depth, located 28.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 8.0 metres depth, located 15.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 4.08,
+        "lateral_mps": 0.077,
+        "forward_mps": 0.053,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.53,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.009,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.82,
+          "widest_gap_angle_deg": -28.2,
+          "total_free_width_pct": 0.292
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0014.jpg",
+      "keyframe_id": "003405_kf0014",
+      "time_sec": 2.333,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 16.0 metres, to the left of centre. Located 10.7 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 19.5 metres, to the left of centre. Located 20.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 19.9 metres, directly ahead in the centre of the frame. Located 5.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.8 metres wide, located 28.8 degrees to the left of forward. Corridor extends to 7.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.8 metre wide corridor at 7.2 metres depth, located 28.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.2 metre wide corridor at 8.4 metres depth, located 15.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.5 metre wide corridor at 3.7 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 7.26,
+        "lateral_mps": 0.066,
+        "forward_mps": 0.045,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.57,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.009,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.81,
+          "widest_gap_angle_deg": -28.8,
+          "total_free_width_pct": 0.376
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0015.jpg",
+      "keyframe_id": "003405_kf0015",
+      "time_sec": 2.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 15.8 metres, to the left of centre. Located 11.6 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 19.2 metres, to the left of centre. Located 22.0 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.7 metres wide, located 29.3 degrees to the left of forward. Corridor extends to 7.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 20% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 7.6 metres depth, located 29.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.2 metre wide corridor at 8.9 metres depth, located 16.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 4.5 metres depth, located 4.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 7.43,
+        "lateral_mps": 0.092,
+        "forward_mps": 0.056,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.57,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.73,
+          "widest_gap_angle_deg": -29.3,
+          "total_free_width_pct": 0.405
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0016.jpg",
+      "keyframe_id": "003405_kf0016",
+      "time_sec": 2.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 17.1 metres, to the left of centre. Located 23.4 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 17.9 metres, directly ahead in the centre of the frame. Located 7.7 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.1 metres wide, located 15.3 degrees to the left of forward. Corridor extends to 8.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.6 metre wide corridor at 7.9 metres depth, located 30.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.1 metre wide corridor at 8.1 metres depth, located 15.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 3.93,
+        "lateral_mps": 0.12,
+        "forward_mps": 0.083,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.49,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.003,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.09,
+          "widest_gap_angle_deg": -15.3,
+          "total_free_width_pct": 0.326
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0017.jpg",
+      "keyframe_id": "003405_kf0017",
+      "time_sec": 2.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 18.5 metres, to the left of centre. Located 13.1 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 24.1 metres, directly ahead in the centre of the frame. Located 8.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 25.0 degrees to the left of forward. Corridor extends to 9.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 70% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.0 metre wide corridor at 9.8 metres depth, located 25.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 4.32,
+        "lateral_mps": 0.023,
+        "forward_mps": 0.029,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.55,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.96,
+          "widest_gap_angle_deg": -25.0,
+          "total_free_width_pct": 0.288
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0018.jpg",
+      "keyframe_id": "003405_kf0018",
+      "time_sec": 3.0,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 15.0 metres, to the left of centre. Located 13.4 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A boat is stationary at 20.0 metres, directly ahead in the centre of the frame. Located 8.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.1 metres wide, located 25.1 degrees to the left of forward. Corridor extends to 8.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 12% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.1 metre wide corridor at 8.0 metres depth, located 25.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.95,
+        "lateral_mps": 0.033,
+        "forward_mps": 0.058,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.48,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.004,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.14,
+          "widest_gap_angle_deg": -25.1,
+          "total_free_width_pct": 0.282
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0019.jpg",
+      "keyframe_id": "003405_kf0019",
+      "time_sec": 3.167,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 17.0 metres, to the left of centre. Located 13.1 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 20.3 metres, to the left of centre. Located 24.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 22.1 metres, directly ahead in the centre of the frame. Located 8.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.5 metres wide, located 30.4 degrees to the left of forward. Corridor extends to 8.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.5 metre wide corridor at 8.0 metres depth, located 30.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.3 metre wide corridor at 8.6 metres depth, located 18.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -4.38,
+        "lateral_mps": 0.011,
+        "forward_mps": 0.045,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.49,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.003,
+        "torso_blocked_pct": 0.011,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.49,
+          "widest_gap_angle_deg": -30.4,
+          "total_free_width_pct": 0.239
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0020.jpg",
+      "keyframe_id": "003405_kf0020",
+      "time_sec": 3.333,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 23.2 metres, to the left of centre. Located 22.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 25.1 metres, directly ahead in the centre of the frame. Located 7.4 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.1 metres wide, located 15.0 degrees to the left of forward. Corridor extends to 8.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 16% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.8 metre wide corridor at 8.4 metres depth, located 29.7 degrees to the left of the forward direction. Net flow of 1.2 \u2014 possible movement inside gap. Confidence 85%. A 2.1 metre wide corridor at 8.3 metres depth, located 15.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -5.87,
+        "lateral_mps": -0.011,
+        "forward_mps": 0.029,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.53,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.011,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.09,
+          "widest_gap_angle_deg": -15.0,
+          "total_free_width_pct": 0.33
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0021.jpg",
+      "keyframe_id": "003405_kf0021",
+      "time_sec": 3.5,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 12.1 metres, to the left of centre. Located 11.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. A boat is stationary at 14.2 metres, to the left of centre. Located 21.9 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 15.8 metres, directly ahead in the centre of the frame. Located 6.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 3 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.3 metres wide, located 29.3 degrees to the left of forward. Corridor extends to 5.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.3 metre wide corridor at 5.6 metres depth, located 29.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 6.0 metres depth, located 16.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -3.41,
+        "lateral_mps": -0.032,
+        "forward_mps": 0.031,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.43,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.015,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.29,
+          "widest_gap_angle_deg": -29.3,
+          "total_free_width_pct": 0.266
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0022.jpg",
+      "keyframe_id": "003405_kf0022",
+      "time_sec": 3.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 16.5 metres, directly ahead in the centre of the frame. Located 6.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.0 metres wide, located 21.2 degrees to the left of forward. Corridor extends to 5.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.0 metre wide corridor at 5.5 metres depth, located 21.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -3.6,
+        "lateral_mps": -0.022,
+        "forward_mps": 0.134,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.43,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.004,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.02,
+          "widest_gap_angle_deg": -21.2,
+          "total_free_width_pct": 0.396
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0023.jpg",
+      "keyframe_id": "003405_kf0023",
+      "time_sec": 3.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 13.3 metres, directly ahead in the centre of the frame. Located 10.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 17.1 metres, directly ahead in the centre of the frame. Located 5.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.8 metres wide, located 23.4 degrees to the left of forward. Corridor extends to 5.9 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.8 metre wide corridor at 5.9 metres depth, located 23.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.173,
+        "direction_deg": -67.2,
+        "yaw_rate_dps": -4.51,
+        "lateral_mps": -0.159,
+        "forward_mps": 0.067,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.44,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.009,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.75,
+          "widest_gap_angle_deg": -23.4,
+          "total_free_width_pct": 0.332
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0024.jpg",
+      "keyframe_id": "003405_kf0024",
+      "time_sec": 4.0,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 4 agents detected. A boat is stationary at 12.1 metres, to the left of centre. Located 33.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. A boat is stationary at 12.9 metres, directly ahead in the centre of the frame. Located 9.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 16.3 metres, to the left of centre. Located 19.7 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 16.7 metres, directly ahead in the centre of the frame. Located 5.0 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 2% blocked. 4 agents present \u2014 0 approaching, 0 crossing, 4 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.3 metres wide, located 26.9 degrees to the left of forward. Corridor extends to 5.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.3 metre wide corridor at 5.6 metres depth, located 26.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 6.3 metres depth, located 14.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.218,
+        "direction_deg": -35.7,
+        "yaw_rate_dps": -2.54,
+        "lateral_mps": -0.127,
+        "forward_mps": 0.177,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.43,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.021,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.28,
+          "widest_gap_angle_deg": -26.9,
+          "total_free_width_pct": 0.261
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0025.jpg",
+      "keyframe_id": "003405_kf0025",
+      "time_sec": 4.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 17.3 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 20.5 degrees to the left of forward. Corridor extends to 5.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 5.5 metres depth, located 20.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.218,
+        "direction_deg": -35.9,
+        "yaw_rate_dps": -0.57,
+        "lateral_mps": -0.128,
+        "forward_mps": 0.177,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.82,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.21,
+          "widest_gap_angle_deg": -20.5,
+          "total_free_width_pct": 0.415
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0026.jpg",
+      "keyframe_id": "003405_kf0026",
+      "time_sec": 4.333,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat has just entered the scene at 12.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat has just entered the scene at 18.1 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 19.1 degrees to the left of forward. Corridor extends to 6.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 6.0 metres depth, located 19.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.228,
+        "direction_deg": -13.4,
+        "yaw_rate_dps": -1.27,
+        "lateral_mps": -0.053,
+        "forward_mps": 0.222,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.23,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.01,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.17,
+          "widest_gap_angle_deg": -19.1,
+          "total_free_width_pct": 0.376
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0027.jpg",
+      "keyframe_id": "003405_kf0027",
+      "time_sec": 4.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 17.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.5 metres wide, located 20.4 degrees to the left of forward. Corridor extends to 5.9 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.5 metre wide corridor at 5.9 metres depth, located 20.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.216,
+        "direction_deg": 1.3,
+        "yaw_rate_dps": -1.03,
+        "lateral_mps": 0.005,
+        "forward_mps": 0.216,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.25,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.45,
+          "widest_gap_angle_deg": -20.4,
+          "total_free_width_pct": 0.417
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0028.jpg",
+      "keyframe_id": "003405_kf0028",
+      "time_sec": 4.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat has just entered the scene at 13.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is stationary at 18.9 metres, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 18.9 degrees to the left of forward. Corridor extends to 6.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 7% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 6.1 metres depth, located 18.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -0.26,
+        "lateral_mps": -0.019,
+        "forward_mps": 0.078,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.26,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.01,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.22,
+          "widest_gap_angle_deg": -18.9,
+          "total_free_width_pct": 0.378
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0029.jpg",
+      "keyframe_id": "003405_kf0029",
+      "time_sec": 4.833,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat has just entered the scene at 13.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat has just entered the scene at 17.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is stationary at 20.2 metres, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.5 metres wide, located 11.6 degrees to the left of forward. Corridor extends to 6.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 8% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.5 metre wide corridor at 6.4 metres depth, located 26.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.5 metre wide corridor at 6.3 metres depth, located 11.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.202,
+        "direction_deg": 3.4,
+        "yaw_rate_dps": -0.52,
+        "lateral_mps": 0.012,
+        "forward_mps": 0.202,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.44,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.016,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.5,
+          "widest_gap_angle_deg": -11.6,
+          "total_free_width_pct": 0.332
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0030.jpg",
+      "keyframe_id": "003405_kf0030",
+      "time_sec": 5.0,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is stationary at 11.9 metres, to the left of centre. Located 33.6 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. A boat has just entered the scene at 15.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is stationary at 16.6 metres, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 2 static. Minimum time to contact in this zone is 1.6 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.3 metres wide, located 11.6 degrees to the left of forward. Corridor extends to 5.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.3 metre wide corridor at 5.6 metres depth, located 26.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.3 metre wide corridor at 5.5 metres depth, located 11.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.241,
+        "direction_deg": 5.5,
+        "yaw_rate_dps": -1.02,
+        "lateral_mps": 0.023,
+        "forward_mps": 0.24,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.2,
+        "min_ttc_s": 1.59,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.014,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.33,
+          "widest_gap_angle_deg": -11.6,
+          "total_free_width_pct": 0.336
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0031.jpg",
+      "keyframe_id": "003405_kf0031",
+      "time_sec": 5.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat has just entered the scene at 16.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is stationary at 17.9 metres, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.7 metres wide, located 27.8 degrees to the left of forward. Corridor extends to 5.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 5.8 metres depth, located 27.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.4 metre wide corridor at 5.5 metres depth, located 11.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.176,
+        "direction_deg": -2.3,
+        "yaw_rate_dps": -0.79,
+        "lateral_mps": -0.007,
+        "forward_mps": 0.176,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.19,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.009,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.66,
+          "widest_gap_angle_deg": -27.8,
+          "total_free_width_pct": 0.38
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0032.jpg",
+      "keyframe_id": "003405_kf0032",
+      "time_sec": 5.333,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 18.2 metres, to the left of centre. Located 19.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 19.4 metres, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.9 metres wide, located 27.8 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 8% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.9 metre wide corridor at 6.7 metres depth, located 27.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.6 metre wide corridor at 6.5 metres depth, located 11.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.207,
+        "direction_deg": 2.5,
+        "yaw_rate_dps": -1.65,
+        "lateral_mps": 0.009,
+        "forward_mps": 0.207,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.34,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.008,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.94,
+          "widest_gap_angle_deg": -27.8,
+          "total_free_width_pct": 0.382
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0033.jpg",
+      "keyframe_id": "003405_kf0033",
+      "time_sec": 5.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 15.9 metres, directly ahead in the centre of the frame. Located 4.3 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 16.1 metres, to the left of centre. Located 19.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 2 static. Minimum time to contact in this zone is 1.7 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.8 metres wide, located 27.7 degrees to the left of forward. Corridor extends to 6.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.8 metre wide corridor at 6.0 metres depth, located 27.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.4 metre wide corridor at 5.7 metres depth, located 11.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -1.85,
+        "lateral_mps": -0.051,
+        "forward_mps": 0.103,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.1,
+        "min_ttc_s": 1.7,
+        "n_critical": 0,
+        "n_high": 2,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.008,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.75,
+          "widest_gap_angle_deg": -27.7,
+          "total_free_width_pct": 0.386
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0034.jpg",
+      "keyframe_id": "003405_kf0034",
+      "time_sec": 5.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is walking head-on in the same lane toward the camera at 9.3 m/s. They are 15.4 metres ahead, directly ahead in the centre of the frame. Located 4.1 degrees to the left of the forward axis. Contact in 1.6 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 12.1 metres, to the left of centre. Located 33.4 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 1.6 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.2 metres wide, located 18.5 degrees to the left of forward. Corridor extends to 5.9 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.2 metre wide corridor at 5.9 metres depth, located 18.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.194,
+        "direction_deg": -61.1,
+        "yaw_rate_dps": -1.33,
+        "lateral_mps": -0.17,
+        "forward_mps": 0.094,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.1,
+        "min_ttc_s": 1.65,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.009,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.16,
+          "widest_gap_angle_deg": -18.5,
+          "total_free_width_pct": 0.382
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0035.jpg",
+      "keyframe_id": "003405_kf0035",
+      "time_sec": 5.833,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is walking head-on in the same lane toward the camera at 10.8 m/s. They are 16.0 metres ahead, directly ahead in the centre of the frame. Located 3.9 degrees to the left of the forward axis. Contact in 1.5 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 12.8 metres, to the left of centre. Located 33.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. A boat has just entered the scene at 13.1 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 1 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 1.5 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.9 metres wide, located 21.1 degrees to the left of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 10% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.9 metre wide corridor at 6.7 metres depth, located 21.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.222,
+        "direction_deg": -37.1,
+        "yaw_rate_dps": -1.74,
+        "lateral_mps": -0.134,
+        "forward_mps": 0.177,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.06,
+        "min_ttc_s": 1.48,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.013,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.88,
+          "widest_gap_angle_deg": -21.1,
+          "total_free_width_pct": 0.307
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0036.jpg",
+      "keyframe_id": "003405_kf0036",
+      "time_sec": 6.0,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 4 agents detected. A boat is walking head-on in the same lane toward the camera at 8.4 m/s. They are 18.0 metres ahead, directly ahead in the centre of the frame. Located 3.8 degrees to the left of the forward axis. Contact in 2.1 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 12.9 metres, to the left of centre. Located 33.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. A boat has just entered the scene at 14.0 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A boat has just entered the scene at 16.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 2% blocked. 4 agents present \u2014 1 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 2.1 seconds. Moderate risk \u2014 agents present within action distance. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.5 metres wide, located 25.8 degrees to the left of forward. Corridor extends to 6.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.5 metre wide corridor at 6.4 metres depth, located 25.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.0 metre wide corridor at 7.0 metres depth, located 13.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.166,
+        "direction_deg": -34.5,
+        "yaw_rate_dps": 0.12,
+        "lateral_mps": -0.094,
+        "forward_mps": 0.137,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.07,
+        "min_ttc_s": 2.13,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.02,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.51,
+          "widest_gap_angle_deg": -25.8,
+          "total_free_width_pct": 0.266
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0037.jpg",
+      "keyframe_id": "003405_kf0037",
+      "time_sec": 6.167,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is moving in the same direction at similar speed. They are 14.9 metres ahead, to the left of centre. Low collision risk. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A boat has just entered the scene at 19.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is moving in the same direction at similar speed. They are 19.7 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.8 metres wide, located 11.1 degrees to the left of forward. Corridor extends to 7.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 16% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 7.3 metres depth, located 25.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.8 metre wide corridor at 7.5 metres depth, located 11.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.6 metre wide corridor at 3.5 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.26,
+        "direction_deg": -17.9,
+        "yaw_rate_dps": 0.66,
+        "lateral_mps": -0.08,
+        "forward_mps": 0.247,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.24,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.015,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.81,
+          "widest_gap_angle_deg": -11.1,
+          "total_free_width_pct": 0.465
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0038.jpg",
+      "keyframe_id": "003405_kf0038",
+      "time_sec": 6.333,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is moving in the same direction at similar speed. They are 15.6 metres ahead, to the left of centre. Low collision risk. Distance estimate has moderate uncertainty. A boat has just entered the scene at 20.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A boat is moving in the same direction at similar speed. They are 20.6 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 1% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.8 metres wide, located 10.9 degrees to the left of forward. Corridor extends to 7.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 8% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 7.5 metres depth, located 25.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.8 metre wide corridor at 7.5 metres depth, located 10.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.6 metre wide corridor at 3.4 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.208,
+        "direction_deg": -18.8,
+        "yaw_rate_dps": -0.07,
+        "lateral_mps": -0.067,
+        "forward_mps": 0.197,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.04,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.015,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.82,
+          "widest_gap_angle_deg": -10.9,
+          "total_free_width_pct": 0.461
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0039.jpg",
+      "keyframe_id": "003405_kf0039",
+      "time_sec": 6.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 15.0 metres, to the left of centre. Located 18.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat has just entered the scene at 12.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 1.3 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.8 metres wide, located 27.6 degrees to the left of forward. Corridor extends to 6.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.8 metre wide corridor at 6.1 metres depth, located 27.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 6.6 metres depth, located 13.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.8 metre wide corridor at 4.1 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.05,
+        "lateral_mps": -0.04,
+        "forward_mps": 0.127,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.81,
+        "min_ttc_s": 1.32,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.84,
+          "widest_gap_angle_deg": -27.6,
+          "total_free_width_pct": 0.442
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0040.jpg",
+      "keyframe_id": "003405_kf0040",
+      "time_sec": 6.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is stationary at 14.1 metres, to the left of centre. Located 18.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is walking head-on in the same lane toward the camera at 8.9 m/s. They are 11.9 metres ahead, directly ahead in the centre of the frame. Located 8.4 degrees to the left of the forward axis. Contact in 1.3 seconds if neither changes course. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 1.0 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.7 metres wide, located 27.6 degrees to the left of forward. Corridor extends to 5.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 5.7 metres depth, located 27.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.8 metre wide corridor at 6.2 metres depth, located 13.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.7 metre wide corridor at 4.0 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.17,
+        "direction_deg": -16.4,
+        "yaw_rate_dps": -0.47,
+        "lateral_mps": -0.048,
+        "forward_mps": 0.163,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.71,
+        "min_ttc_s": 0.96,
+        "n_critical": 1,
+        "n_high": 1,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.007,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.71,
+          "widest_gap_angle_deg": -27.6,
+          "total_free_width_pct": 0.429
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0041.jpg",
+      "keyframe_id": "003405_kf0041",
+      "time_sec": 6.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat is moving in the same direction at similar speed. They are 15.2 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A boat is stationary at 17.8 metres, to the left of centre. Located 18.4 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.1 metres wide, located 27.4 degrees to the left of forward. Corridor extends to 7.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.1 metre wide corridor at 7.1 metres depth, located 27.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 7.7 metres depth, located 13.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.8 metre wide corridor at 4.5 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.179,
+        "direction_deg": -28.7,
+        "yaw_rate_dps": -0.34,
+        "lateral_mps": -0.086,
+        "forward_mps": 0.157,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.93,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.15,
+          "widest_gap_angle_deg": -27.4,
+          "total_free_width_pct": 0.442
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0042.jpg",
+      "keyframe_id": "003405_kf0042",
+      "time_sec": 7.0,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is moving in the same direction at similar speed. They are 17.3 metres ahead, to the left of centre. Low collision risk. Distance estimate has moderate uncertainty. A boat is moving in the same direction at similar speed. They are 17.5 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A boat is moving in the same direction at similar speed. They are 22.5 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.0 metres wide, located 25.4 degrees to the left of forward. Corridor extends to 8.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 8% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.0 metre wide corridor at 8.4 metres depth, located 25.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.4 metre wide corridor at 9.5 metres depth, located 13.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 5.0 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.32,
+        "direction_deg": -57.5,
+        "yaw_rate_dps": 0.43,
+        "lateral_mps": -0.27,
+        "forward_mps": 0.172,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.94,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.005,
+        "torso_blocked_pct": 0.004,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.01,
+          "widest_gap_angle_deg": -25.4,
+          "total_free_width_pct": 0.423
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0043.jpg",
+      "keyframe_id": "003405_kf0043",
+      "time_sec": 7.167,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 4 agents detected. A boat is moving in the same direction at similar speed. They are 17.0 metres ahead, to the left of centre. Low collision risk. Distance estimate has moderate uncertainty. A boat is moving in the same direction at similar speed. They are 18.0 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A boat is moving in the same direction at similar speed. They are 22.4 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. A boat is moving in the same direction at similar speed. They are 22.8 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.9 metres wide, located 25.4 degrees to the left of forward. Corridor extends to 7.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 14% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.9 metre wide corridor at 7.8 metres depth, located 25.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.3 metre wide corridor at 8.8 metres depth, located 13.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.6 metre wide corridor at 4.4 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.302,
+        "direction_deg": -48.0,
+        "yaw_rate_dps": 1.17,
+        "lateral_mps": -0.224,
+        "forward_mps": 0.202,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.99,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.005,
+        "torso_blocked_pct": 0.008,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.87,
+          "widest_gap_angle_deg": -25.4,
+          "total_free_width_pct": 0.376
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0044.jpg",
+      "keyframe_id": "003405_kf0044",
+      "time_sec": 7.333,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 4 agents detected. A boat is moving in the same direction at similar speed. They are 22.7 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. A boat is moving in the same direction at similar speed. They are 24.6 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A boat is moving in the same direction at similar speed. They are 30.9 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. A boat is moving in the same direction at similar speed. They are 32.0 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.4 metres wide, located 25.4 degrees to the left of forward. Corridor extends to 10.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.4 metre wide corridor at 10.2 metres depth, located 25.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.7 metre wide corridor at 11.6 metres depth, located 13.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 3.5 metres depth, located 4.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.404,
+        "direction_deg": -16.0,
+        "yaw_rate_dps": 0.49,
+        "lateral_mps": -0.111,
+        "forward_mps": 0.388,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.21,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.004,
+        "torso_blocked_pct": 0.008,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.43,
+          "widest_gap_angle_deg": -25.4,
+          "total_free_width_pct": 0.456
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0045.jpg",
+      "keyframe_id": "003405_kf0045",
+      "time_sec": 7.5,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is moving in the same direction at similar speed. They are 19.9 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. A boat is moving in the same direction at similar speed. They are 21.7 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. A boat is moving in the same direction at similar speed. They are 26.4 metres ahead, to the left of centre. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.2 metres wide, located 25.5 degrees to the left of forward. Corridor extends to 9.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.2 metre wide corridor at 9.3 metres depth, located 25.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.5 metre wide corridor at 10.6 metres depth, located 13.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.3 metre wide corridor at 5.1 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.267,
+        "direction_deg": -15.4,
+        "yaw_rate_dps": 0.06,
+        "lateral_mps": -0.071,
+        "forward_mps": 0.257,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.1,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.004,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.2,
+          "widest_gap_angle_deg": -25.5,
+          "total_free_width_pct": 0.45
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0046.jpg",
+      "keyframe_id": "003405_kf0046",
+      "time_sec": 7.667,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A boat is moving in the same direction at similar speed. They are 17.1 metres ahead, to the left of centre. Low collision risk. Distance estimate has moderate uncertainty. A boat is stationary at 18.5 metres, directly ahead in the centre of the frame. Located 8.1 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. A boat is stationary at 22.4 metres, to the left of centre. Located 18.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.0 metres wide, located 25.5 degrees to the left of forward. Corridor extends to 8.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 9% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.0 metre wide corridor at 8.4 metres depth, located 25.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.4 metre wide corridor at 9.6 metres depth, located 13.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 4.6 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.363,
+        "direction_deg": 1.4,
+        "yaw_rate_dps": -0.24,
+        "lateral_mps": 0.009,
+        "forward_mps": 0.363,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.98,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.004,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.97,
+          "widest_gap_angle_deg": -25.5,
+          "total_free_width_pct": 0.44
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0047.jpg",
+      "keyframe_id": "003405_kf0047",
+      "time_sec": 7.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 18.1 metres, directly ahead in the centre of the frame. Located 8.1 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 4.2 metres wide, located 22.4 degrees to the left of forward. Corridor extends to 8.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.2 metre wide corridor at 8.3 metres depth, located 22.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 4.7 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.279,
+        "direction_deg": -8.7,
+        "yaw_rate_dps": 0.53,
+        "lateral_mps": -0.042,
+        "forward_mps": 0.276,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.95,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.16,
+          "widest_gap_angle_deg": -22.4,
+          "total_free_width_pct": 0.521
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0048.jpg",
+      "keyframe_id": "003405_kf0048",
+      "time_sec": 8.0,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 2 agents detected. A boat has just entered the scene at 15.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A boat is stationary at 18.8 metres, to the left of centre. Located 18.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.1 metres wide, located 27.4 degrees to the left of forward. Corridor extends to 7.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.1 metre wide corridor at 7.0 metres depth, located 27.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 7.9 metres depth, located 13.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 4.1 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -0.42,
+        "lateral_mps": -0.008,
+        "forward_mps": 0.146,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.83,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.002,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.13,
+          "widest_gap_angle_deg": -27.4,
+          "total_free_width_pct": 0.463
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0049.jpg",
+      "keyframe_id": "003405_kf0049",
+      "time_sec": 8.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 15.4 metres, to the left of centre. Located 18.2 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 1.6 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.8 metres wide, located 27.4 degrees to the left of forward. Corridor extends to 5.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.8 metre wide corridor at 5.8 metres depth, located 27.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.6 metre wide corridor at 4.0 metres depth, located 6.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.243,
+        "direction_deg": -9.0,
+        "yaw_rate_dps": -0.15,
+        "lateral_mps": -0.038,
+        "forward_mps": 0.24,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.69,
+        "min_ttc_s": 1.65,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.006,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.76,
+          "widest_gap_angle_deg": -27.4,
+          "total_free_width_pct": 0.502
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0050.jpg",
+      "keyframe_id": "003405_kf0050",
+      "time_sec": 8.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.8 metres wide, located 16.4 degrees to the left of forward. Corridor extends to 3.8 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.8 metre wide corridor at 3.8 metres depth, located 16.4 degrees to the left of the forward direction. Net flow of -1.3 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.242,
+        "direction_deg": -20.5,
+        "yaw_rate_dps": -1.38,
+        "lateral_mps": -0.085,
+        "forward_mps": 0.227,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.54,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.84,
+          "widest_gap_angle_deg": -16.4,
+          "total_free_width_pct": 0.533
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0051.jpg",
+      "keyframe_id": "003405_kf0051",
+      "time_sec": 8.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 15.5 metres, to the left of centre. Located 18.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Minimum time to contact in this zone is 0.6 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.7 metres wide, located 27.3 degrees to the left of forward. Corridor extends to 5.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.7 metre wide corridor at 5.4 metres depth, located 27.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.6 metre wide corridor at 3.8 metres depth, located 6.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.264,
+        "direction_deg": -15.8,
+        "yaw_rate_dps": 0.46,
+        "lateral_mps": -0.072,
+        "forward_mps": 0.254,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.65,
+        "min_ttc_s": 0.59,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.004,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.68,
+          "widest_gap_angle_deg": -27.3,
+          "total_free_width_pct": 0.515
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0052.jpg",
+      "keyframe_id": "003405_kf0052",
+      "time_sec": 8.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 15.3 degrees to the left of forward. Corridor extends to 5.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 7% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 4.0 metre wide corridor at 5.0 metres depth, located 15.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.29,
+        "direction_deg": -4.7,
+        "yaw_rate_dps": 0.26,
+        "lateral_mps": -0.024,
+        "forward_mps": 0.289,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.74,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.98,
+          "widest_gap_angle_deg": -15.3,
+          "total_free_width_pct": 0.564
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0053.jpg",
+      "keyframe_id": "003405_kf0053",
+      "time_sec": 8.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.3 metres wide, located 15.3 degrees to the left of forward. Corridor extends to 5.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 5% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 4.3 metre wide corridor at 5.4 metres depth, located 15.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.326,
+        "direction_deg": 0.4,
+        "yaw_rate_dps": -0.08,
+        "lateral_mps": 0.002,
+        "forward_mps": 0.326,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.73,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.28,
+          "widest_gap_angle_deg": -15.3,
+          "total_free_width_pct": 0.566
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0054.jpg",
+      "keyframe_id": "003405_kf0054",
+      "time_sec": 9.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.7 metres wide, located 15.7 degrees to the left of forward. Corridor extends to 4.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 3.7 metre wide corridor at 4.8 metres depth, located 15.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.336,
+        "direction_deg": 10.8,
+        "yaw_rate_dps": -0.53,
+        "lateral_mps": 0.063,
+        "forward_mps": 0.33,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.63,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.72,
+          "widest_gap_angle_deg": -15.7,
+          "total_free_width_pct": 0.552
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0055.jpg",
+      "keyframe_id": "003405_kf0055",
+      "time_sec": 9.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 13.5 metres, to the left of centre. Located 33.4 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.4 metres wide, located 14.1 degrees to the left of forward. Corridor extends to 4.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 11% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.4 metre wide corridor at 4.7 metres depth, located 14.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.264,
+        "direction_deg": 5.2,
+        "yaw_rate_dps": -0.28,
+        "lateral_mps": 0.024,
+        "forward_mps": 0.263,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.62,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.35,
+          "widest_gap_angle_deg": -14.1,
+          "total_free_width_pct": 0.506
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0056.jpg",
+      "keyframe_id": "003405_kf0056",
+      "time_sec": 9.333,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 10.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.6 metres wide, located 14.7 degrees to the left of forward. Corridor extends to 3.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 4% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.6 metre wide corridor at 3.8 metres depth, located 14.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.232,
+        "direction_deg": 0.7,
+        "yaw_rate_dps": -0.13,
+        "lateral_mps": 0.003,
+        "forward_mps": 0.232,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.52,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.62,
+          "widest_gap_angle_deg": -14.7,
+          "total_free_width_pct": 0.49
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0057.jpg",
+      "keyframe_id": "003405_kf0057",
+      "time_sec": 9.5,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 9.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.4 metres wide, located 14.9 degrees to the left of forward. Corridor extends to 3.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.4 metre wide corridor at 3.5 metres depth, located 14.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.156,
+        "direction_deg": -13.3,
+        "yaw_rate_dps": -0.13,
+        "lateral_mps": -0.036,
+        "forward_mps": 0.152,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.49,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.39,
+          "widest_gap_angle_deg": -14.9,
+          "total_free_width_pct": 0.488
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0058.jpg",
+      "keyframe_id": "003405_kf0058",
+      "time_sec": 9.667,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat has just entered the scene at 12.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.0 metres wide, located 14.2 degrees to the left of forward. Corridor extends to 4.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 3.0 metre wide corridor at 4.2 metres depth, located 14.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.288,
+        "direction_deg": -23.3,
+        "yaw_rate_dps": -0.3,
+        "lateral_mps": -0.114,
+        "forward_mps": 0.265,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.54,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.98,
+          "widest_gap_angle_deg": -14.2,
+          "total_free_width_pct": 0.506
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/003405/003405_kf0059.jpg",
+      "keyframe_id": "003405_kf0059",
+      "time_sec": 9.833,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A boat is stationary at 10.9 metres, to the left of centre. Located 33.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.8 metres wide, located 14.2 degrees to the left of forward. Corridor extends to 4.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 7% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.8 metre wide corridor at 4.0 metres depth, located 14.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.31,
+        "direction_deg": -25.2,
+        "yaw_rate_dps": -0.49,
+        "lateral_mps": -0.132,
+        "forward_mps": 0.281,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.47,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.005,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.83,
+          "widest_gap_angle_deg": -14.2,
+          "total_free_width_pct": 0.508
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    }
+  ]
+}

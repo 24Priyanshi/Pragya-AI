@@ -85,11 +85,11 @@ export interface RawClip {
 export type FrameRisk = "Low" | "Medium" | "High";
 
 export interface FeedFrame {
-  /** Position within this clip's ordering, not within the source file. */
   readonly index: number;
-  /** Kept from the source frame, so provenance survives re-ordering. */
   readonly keyframeId: string;
+  /** Seconds into the mosaic render; what a strip click seeks the player to. */
   readonly timeSec: number;
+  /** `timeSec` formatted for display, e.g. "12.3s". */
   readonly time: string;
   readonly action: string;
   readonly actionLabel: string;
@@ -153,44 +153,84 @@ export interface TaxonomyFacet {
   readonly values: readonly string[];
 }
 
-export interface FeedClip {
+/**
+ * The clip-level facts the taxonomy facets are computed from.
+ *
+ * Split out of `FeedClip` so a facet definition can be written against the
+ * fields it actually reads, and so the tags can be derived from a clip that is
+ * fully built except for its own `tags` — see `FACET_DEFS` in
+ * src/data/densewalk-taxonomy.ts.
+ */
+export interface ClipFacts {
+  readonly keyframes: number;
+  readonly locationLabel: string;
+  readonly densityLabel: string;
+  readonly dominantMode: string;
+  readonly risk: FrameRisk;
+  readonly peakPeople: number;
+  readonly peakVehicles: number;
+  /** Frames on which a free corridor was found. */
+  readonly corridorFrames: number;
+  /** Frames whose action is a full stop. */
+  readonly stopFrames: number;
+}
+
+export interface FeedClip extends ClipFacts {
   readonly id: string;
-  /** "sample" is a real annotation export; "placeholder" re-orders one. */
-  readonly source: "sample" | "placeholder";
-  /** null until a render is dropped into public/densewalk — shows the placeholder stage. */
-  readonly video: string | null;
+  /** Mosaic render, streamed from the public dataset CDN. */
+  readonly video: string;
   readonly fps: number;
   readonly keyframes: number;
   /** Wall-clock span of the clip, taken from the frame timestamps. */
   readonly duration: string;
   readonly location: string;
-  readonly locationLabel: string;
   readonly density: string;
-  readonly densityLabel: string;
-  readonly peakPeople: number;
-  readonly peakVehicles: number;
   /** Clip-level instruction for the open track; swapped in by track, not stored per copy. */
   readonly instruction: string;
   /** Track key → clip-level instruction, so one clip set serves every language tab. */
   readonly instructions: Readonly<Record<string, string>>;
-  /**
-   * Facet key → value. Empty for clips the tagging pass has not reached; the
-   * annotation export carries no taxonomy fields yet, so only placeholders
-   * are tagged today.
-   */
+  /** Facet key → value, derived from the export by `FACET_DEFS`. */
   readonly tags: Readonly<Record<string, string>>;
   readonly dominantAction: string;
   readonly dominantLabel: string;
   readonly avgConfidence: number;
-  readonly risk: FrameRisk;
   readonly distribution: readonly DistributionRow[];
   readonly narrative: readonly NarrativeLine[];
   readonly reasons: readonly string[];
-  readonly frames: readonly FeedFrame[];
+  /**
+   * Distinct action labels and motion modes over the clip's frames.
+   *
+   * Precomputed because the feed's action and mode filters ask "does any frame
+   * do this?", and the frames themselves are no longer in the page — see the
+   * note on `FeedData`.
+   */
+  readonly actions: readonly string[];
+  readonly modes: readonly string[];
+  /**
+   * Lowercased free-text index for this clip: its id, location, density and
+   * instruction, plus the distinct words across all of its frame observations.
+   *
+   * Shipping the observation text itself would put 26 M characters in the page.
+   * The distinct-word reduction costs 14 KB gzipped for the whole corpus and
+   * still answers the searches this box is used for; what it cannot do is match
+   * a phrase spanning two words.
+   */
+  readonly search: string;
 }
 
+/**
+ * The feed as the page ships it.
+ *
+ * Clips carry their summary only. All 250 exports total 38 MB — a 35.6 MB
+ * prerendered page — so each card fetches its own frames from the dataset CDN
+ * when it scrolls into view (see `useClipFrames`), which brings the page to
+ * 26 KB gzipped. `videoBase` and `framesBase` are the two URL prefixes that
+ * addressing needs, kept here so the CDN layout is stated once.
+ */
 export interface FeedData {
   readonly clips: readonly FeedClip[];
+  /** Prefix for `${id}_uni.json`, the per-clip frame export. */
+  readonly framesBase: string;
   readonly actions: readonly string[];
   readonly modes: readonly string[];
   readonly facets: readonly TaxonomyFacet[];

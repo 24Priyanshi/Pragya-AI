@@ -1,0 +1,2048 @@
+{
+  "video_id": "011945",
+  "fps": 30.0,
+  "n_frames": 58,
+  "instruction": {
+    "text": "Navigate through the extreme area, sharing space with up to 9 people and 7 vehicles, with others crossing your path, where the way ahead is frequently obstructed. Keep a safe distance from others and move at a pace that suits the conditions.",
+    "evidence": {
+      "n_frames": 58,
+      "location": "intersection",
+      "density": "extreme",
+      "peak_people": 9,
+      "peak_vehicles": 7
+    }
+  },
+  "action_space": {
+    "discrete": [
+      "standing_still",
+      "walking_slow",
+      "walking_normal",
+      "walking_fast",
+      "turning_left",
+      "turning_right",
+      "stepping_left",
+      "stepping_right"
+    ],
+    "target": [
+      "velocity_mps",
+      "direction_deg",
+      "yaw_rate_dps"
+    ],
+    "label_map": {
+      "standing_still": {
+        "direction_deg": 0.0,
+        "mode": "stand"
+      },
+      "walking_slow": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_normal": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_fast": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "turning_left": {
+        "direction_deg": -45.0,
+        "mode": "turn"
+      },
+      "turning_right": {
+        "direction_deg": 45.0,
+        "mode": "turn"
+      },
+      "stepping_left": {
+        "direction_deg": -90.0,
+        "mode": "sidestep"
+      },
+      "stepping_right": {
+        "direction_deg": 90.0,
+        "mode": "sidestep"
+      }
+    },
+    "convention": "Grounded ego-motion: forward/lateral/yaw recovered by motion-field solve on agent-masked static pixels, metric-scaled by depth. velocity_mps=measured horizontal speed; yaw_rate_dps=measured angular velocity; (forward,lateral,yaw) = holonomic command. weight<1 = low solve-confidence / artifact frame."
+  },
+  "frames": [
+    {
+      "image": "keyframes/011945/011945_kf0000.jpg",
+      "keyframe_id": "011945_kf0000",
+      "time_sec": 0.0,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 8 agents detected. A person is stationary at 1.4 metres, to the right of centre. Located 14.3 degrees to the right of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 1.5 metres, to the right of centre. Located 25.5 degrees to the right of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 1.5 metres, directly ahead in the centre of the frame. Located 3.5 degrees to the right of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 1.7 metres, to the left of centre. Located 16.1 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 1.7 metres, directly ahead in the centre of the frame. Located 5.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 1.8 metres, to the left of centre. Located 28.5 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 3.0 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 10.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 89% blocked. 8 agents present \u2014 0 approaching, 0 crossing, 8 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.5 metres wide, located 31.4 degrees to the right of forward. Corridor extends to 3.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.5 metre wide corridor at 3.6 metres depth, located 31.4 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.0,
+        "lateral_mps": 0.0,
+        "forward_mps": 0.0,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.42,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.893,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.52,
+          "widest_gap_angle_deg": 31.4,
+          "total_free_width_pct": 0.102
+        },
+        "density": "extreme"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf",
+        "solve_failed"
+      ]
+    },
+    {
+      "image": "keyframes/011945/011945_kf0001.jpg",
+      "keyframe_id": "011945_kf0001",
+      "time_sec": 0.167,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 5 agents detected. A person has just entered the scene at 1.1 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 11% obstructed. Minimum obstacle depth is 1.1 metres. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 78% blocked. 4 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.871,
+        "direction_deg": -2.2,
+        "yaw_rate_dps": 4.64,
+        "lateral_mps": -0.033,
+        "forward_mps": 0.87,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.12,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.113,
+        "torso_blocked_pct": 0.782,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0002.jpg",
+      "keyframe_id": "011945_kf0002",
+      "time_sec": 0.333,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 5 agents detected. A person has just entered the scene at 0.9 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 0.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.3 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 10.1 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 83% blocked. 5 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.668,
+        "direction_deg": 15.5,
+        "yaw_rate_dps": 1.98,
+        "lateral_mps": 0.178,
+        "forward_mps": 0.644,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.86,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.836,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0003.jpg",
+      "keyframe_id": "011945_kf0003",
+      "time_sec": 0.5,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 6 agents detected. A person has just entered the scene at 0.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 2.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 7.4 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 10.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 94% blocked. 6 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.739,
+        "direction_deg": -3.6,
+        "yaw_rate_dps": 3.63,
+        "lateral_mps": -0.047,
+        "forward_mps": 0.738,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.56,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.947,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0004.jpg",
+      "keyframe_id": "011945_kf0004",
+      "time_sec": 0.667,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 8 agents detected. A person is crossing right to left. They are 0.8 metres ahead, to the left of centre. Located 24.1 degrees to the left of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is crossing right to left. They are 0.8 metres ahead, to the left of centre. Located 13.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.4 metres ahead, to the right of centre. Located 24.3 degrees to the right of the forward axis. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is moving in the same direction at similar speed. They are 2.0 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.0 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 6.4 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 9.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 95% blocked. 8 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.733,
+        "direction_deg": 1.4,
+        "yaw_rate_dps": 4.23,
+        "lateral_mps": 0.018,
+        "forward_mps": 0.733,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.77,
+        "min_ttc_s": 0.15,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.954,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0005.jpg",
+      "keyframe_id": "011945_kf0005",
+      "time_sec": 0.833,
+      "observation_text": "A extreme intersection scene in daylight conditions. 7 agents detected. A person is crossing right to left. They are 0.5 metres ahead, to the left of centre. Located 25.0 degrees to the left of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing right to left. They are 0.6 metres ahead, to the left of centre. Located 16.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.1 metres ahead, to the right of centre. Located 24.3 degrees to the right of the forward axis. They will cross the forward path in approximately 4.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.2 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is moving in the same direction at similar speed. They are 1.8 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 6.4 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 93% blocked. 7 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_fast",
+        "velocity_mps": 1.094,
+        "direction_deg": -6.4,
+        "yaw_rate_dps": 4.94,
+        "lateral_mps": -0.121,
+        "forward_mps": 1.087,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.56,
+        "min_ttc_s": 0.1,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.934,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0006.jpg",
+      "keyframe_id": "011945_kf0006",
+      "time_sec": 1.0,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 7 agents detected. A person is crossing right to left. They are 2.1 metres ahead, directly ahead in the centre of the frame. Located 6.5 degrees to the left of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 0.9 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.7 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 0.9 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing right to left. They are 1.7 metres ahead, to the left of centre. Located 20.0 degrees to the left of the forward axis. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.8 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 76% blocked. 7 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.613,
+        "direction_deg": 19.6,
+        "yaw_rate_dps": 0.09,
+        "lateral_mps": 0.206,
+        "forward_mps": 0.577,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.94,
+        "min_ttc_s": 0.05,
+        "n_critical": 1,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.766,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0007.jpg",
+      "keyframe_id": "011945_kf0007",
+      "time_sec": 1.167,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 9 agents detected. A person is crossing right to left. They are 1.5 metres ahead, directly ahead in the centre of the frame. Located 7.3 degrees to the left of the forward axis. They will cross the forward path in approximately 0.0 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.4 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.5 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.6 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 1.6 metres ahead, to the right of centre. Located 18.4 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 96% blocked. 9 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.493,
+        "direction_deg": 9.6,
+        "yaw_rate_dps": -0.21,
+        "lateral_mps": 0.082,
+        "forward_mps": 0.486,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.36,
+        "min_ttc_s": 0.04,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.965,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0008.jpg",
+      "keyframe_id": "011945_kf0008",
+      "time_sec": 1.333,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 7 agents detected. A person at 1.2 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.3 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.3 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.3 metres ahead, to the right of centre. Located 19.3 degrees to the right of the forward axis. They will cross the forward path in approximately 2.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing right to left. They are 4.9 metres ahead, directly ahead in the centre of the frame. Located 10.3 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 90% blocked. 7 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 1.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.793,
+        "direction_deg": -8.8,
+        "yaw_rate_dps": 1.6,
+        "lateral_mps": -0.121,
+        "forward_mps": 0.784,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.2,
+        "min_ttc_s": 1.17,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.908,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0009.jpg",
+      "keyframe_id": "011945_kf0009",
+      "time_sec": 1.5,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 9 agents detected. A person at 1.0 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 5.9 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 1.0 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A person at 1.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 1.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing right to left. They are 4.6 metres ahead, directly ahead in the centre of the frame. Located 10.3 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 93% blocked. 9 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.7 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.62,
+        "direction_deg": -5.4,
+        "yaw_rate_dps": -1.78,
+        "lateral_mps": -0.058,
+        "forward_mps": 0.617,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.0,
+        "min_ttc_s": 0.67,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.934,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0010.jpg",
+      "keyframe_id": "011945_kf0010",
+      "time_sec": 1.667,
+      "observation_text": "A extreme intersection scene in daylight conditions. 7 agents detected. A person is crossing left to right. They are 0.9 metres ahead, directly ahead in the centre of the frame. Located 8.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing right to left. They are 6.0 metres ahead, directly ahead in the centre of the frame. Located 5.7 degrees to the left of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 0.8 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 3.8 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 4.6 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 4.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing right to left. They are 4.6 metres ahead, to the left of centre. Located 12.2 degrees to the left of the forward axis. They will cross the forward path in approximately 10.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 87% blocked. 7 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.523,
+        "direction_deg": -15.8,
+        "yaw_rate_dps": -3.47,
+        "lateral_mps": -0.142,
+        "forward_mps": 0.503,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.83,
+        "min_ttc_s": 0.14,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.876,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0011.jpg",
+      "keyframe_id": "011945_kf0011",
+      "time_sec": 1.833,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 7 agents detected. A person is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 10.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing right to left. They are 6.0 metres ahead, directly ahead in the centre of the frame. Located 5.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 4.0 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is stationary at 4.5 metres, to the left of centre. Located 11.8 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 4.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is stationary at 4.5 metres, directly ahead in the centre of the frame. Located 8.6 degrees to the left of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 8.8 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 61% blocked. 7 agents present \u2014 0 approaching, 2 crossing, 2 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.5 metres wide, located 31.1 degrees to the left of forward. Corridor extends to 3.3 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 1% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment. A 0.5 metre wide corridor at 3.3 metres depth, located 31.1 degrees to the left of the forward direction. Net flow of -6.6 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_fast",
+        "velocity_mps": 1.073,
+        "direction_deg": -28.0,
+        "yaw_rate_dps": -0.24,
+        "lateral_mps": -0.504,
+        "forward_mps": 0.947,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.63,
+        "min_ttc_s": 0.13,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.616,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.53,
+          "widest_gap_angle_deg": -31.1,
+          "total_free_width_pct": 0.114
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0012.jpg",
+      "keyframe_id": "011945_kf0012",
+      "time_sec": 2.0,
+      "observation_text": "A sparse pedestrian street scene in daylight conditions. 1 agents detected. A person has just entered the scene at 1.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is good. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. OVERHEAD HAZARD detected: person. Minimum depth 1.0 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 2.129,
+        "direction_deg": -90.0,
+        "yaw_rate_dps": -567.25,
+        "lateral_mps": -1.168,
+        "forward_mps": -1.78,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.64,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "sparse"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf"
+      ]
+    },
+    {
+      "image": "keyframes/011945/011945_kf0013.jpg",
+      "keyframe_id": "011945_kf0013",
+      "time_sec": 2.167,
+      "observation_text": "A moderate pedestrian street scene in daylight conditions. 4 agents detected. A person is moving directly toward the camera. They are 1.0 metres ahead, to the left of centre. Located 25.8 degrees to the left of the forward axis. At current speeds, contact will occur in 0.3 seconds. They occupy the head_overhead zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A pizza has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A cup has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A bowl has just entered the scene at 0.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 42% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. OVERHEAD HAZARD detected: person. Minimum depth 0.9 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.3,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": -27.18,
+        "lateral_mps": 0.299,
+        "forward_mps": -0.024,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.64,
+        "min_ttc_s": 0.27,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.428,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0014.jpg",
+      "keyframe_id": "011945_kf0014",
+      "time_sec": 2.333,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 5 agents detected. A person is moving directly toward the camera. They are 1.1 metres ahead, to the left of centre. Located 23.9 degrees to the left of the forward axis. At current speeds, contact will occur in 0.5 seconds. They occupy the head_overhead zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A bowl has just entered the scene at 0.7 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A bowl has just entered the scene at 0.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 65% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 7% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 1.0 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.223,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": -28.67,
+        "lateral_mps": 0.209,
+        "forward_mps": -0.078,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.68,
+        "min_ttc_s": 0.53,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.657,
+        "torso_blocked_pct": 0.075,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0015.jpg",
+      "keyframe_id": "011945_kf0015",
+      "time_sec": 2.5,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 6 agents detected. A person is moving directly toward the camera. They are 1.1 metres ahead, to the left of centre. Located 21.8 degrees to the left of the forward axis. At current speeds, contact will occur in 0.6 seconds. They occupy the head_overhead zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl has just entered the scene at 0.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A bowl has just entered the scene at 0.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A bottle has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza has just entered the scene at 0.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 63% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 32% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 0.9 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.051,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": -25.05,
+        "lateral_mps": 0.036,
+        "forward_mps": -0.036,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.65,
+        "min_ttc_s": 0.64,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.639,
+        "torso_blocked_pct": 0.323,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0016.jpg",
+      "keyframe_id": "011945_kf0016",
+      "time_sec": 2.667,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 6 agents detected. A person is moving directly toward the camera. They are 1.1 metres ahead, to the left of centre. Located 14.3 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the head_overhead zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 10.8 degrees to the right of the forward axis. They will cross the forward path in approximately 1.6 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A bowl has just entered the scene at 0.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.7 metres ahead, to the left of centre. Located 16.4 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A pizza has just entered the scene at 0.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 59% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 30% blocked. 2 agents present \u2014 0 approaching, 1 crossing, 0 static. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 0.8 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.039,
+        "direction_deg": -22.6,
+        "yaw_rate_dps": -21.76,
+        "lateral_mps": -0.015,
+        "forward_mps": 0.036,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.64,
+        "min_ttc_s": 0.67,
+        "n_critical": 1,
+        "n_high": 2,
+        "surface_blocked_pct": 0.595,
+        "torso_blocked_pct": 0.306,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0017.jpg",
+      "keyframe_id": "011945_kf0017",
+      "time_sec": 2.833,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 1.1 metres ahead, directly ahead in the centre of the frame. Located 9.1 degrees to the left of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A bowl is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 24.6 degrees to the right of the forward axis. They will cross the forward path in approximately 2.1 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A bottle is moving away from the camera. They are 0.7 metres ahead, to the left of centre. No collision risk. Distance estimate is reliable. A pizza is crossing left to right. They are 0.9 metres ahead, to the left of centre. Located 11.9 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A pizza has just entered the scene at 0.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 37% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 2 detected agents in this zone. The mid zone is 39% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 0.9 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.075,
+        "direction_deg": -61.4,
+        "yaw_rate_dps": -18.13,
+        "lateral_mps": -0.066,
+        "forward_mps": 0.036,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.67,
+        "min_ttc_s": 0.82,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.377,
+        "torso_blocked_pct": 0.393,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0018.jpg",
+      "keyframe_id": "011945_kf0018",
+      "time_sec": 3.0,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 26.2 degrees to the right of the forward axis. They will cross the forward path in approximately 2.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle is moving away from the camera. They are 0.7 metres ahead, to the left of centre. No collision risk. Distance estimate is reliable. A pizza is crossing left to right. They are 0.9 metres ahead, directly ahead in the centre of the frame. Located 7.7 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A pizza is crossing left to right. They are 0.9 metres ahead, directly ahead in the centre of the frame. Located 8.1 degrees to the right of the forward axis. They will cross the forward path in approximately 6.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.0 metres ahead, directly ahead in the centre of the frame. Located 6.6 degrees to the left of the forward axis. Distance estimate has moderate uncertainty. The ground zone is 22% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 1 detected agent in this zone. The mid zone is 45% blocked. 4 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.091,
+        "direction_deg": -64.6,
+        "yaw_rate_dps": -16.43,
+        "lateral_mps": -0.082,
+        "forward_mps": 0.039,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.63,
+        "min_ttc_s": 0.03,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.228,
+        "torso_blocked_pct": 0.454,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0019.jpg",
+      "keyframe_id": "011945_kf0019",
+      "time_sec": 3.167,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. Located 10.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A bottle has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 11.9 degrees to the right of the forward axis. They will cross the forward path in approximately 4.9 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A pizza is crossing left to right. They are 0.9 metres ahead, directly ahead in the centre of the frame. Located 4.1 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.0 metres ahead, directly ahead in the centre of the frame. Located 3.6 degrees to the left of the forward axis. Distance estimate has moderate uncertainty. The ground zone is clear. Depth estimation reliability is good. 1 detected agent in this zone. The mid zone is 51% blocked. 4 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.121,
+        "direction_deg": -59.2,
+        "yaw_rate_dps": -12.05,
+        "lateral_mps": -0.104,
+        "forward_mps": 0.062,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.62,
+        "min_ttc_s": 0.03,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.098,
+        "torso_blocked_pct": 0.517,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0020.jpg",
+      "keyframe_id": "011945_kf0020",
+      "time_sec": 3.333,
+      "observation_text": "A dense intersection scene in daylight conditions. 8 agents detected. A bottle at 0.6 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. Located 8.0 degrees to the left of the forward axis. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 25.5 degrees to the right of the forward axis. They will cross the forward path in approximately 1.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A pizza is crossing left to right. They are 0.8 metres ahead, to the right of centre. Located 15.0 degrees to the right of the forward axis. They will cross the forward path in approximately 2.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A dining_table has just entered the scene at 0.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 1.1 metres ahead, directly ahead in the centre of the frame. Distance estimate has moderate uncertainty. The ground zone is 97% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 41% blocked. 3 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -8.83,
+        "lateral_mps": -0.081,
+        "forward_mps": 0.095,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.6,
+        "min_ttc_s": 0.03,
+        "n_critical": 2,
+        "n_high": 1,
+        "surface_blocked_pct": 0.979,
+        "torso_blocked_pct": 0.417,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0021.jpg",
+      "keyframe_id": "011945_kf0021",
+      "time_sec": 3.5,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. Located 5.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl at 0.6 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.1 metres ahead, directly ahead in the centre of the frame. Located 3.6 degrees to the right of the forward axis. They will cross the forward path in approximately 3.6 seconds. Distance estimate has moderate uncertainty. A bottle has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A dining_table has just entered the scene at 0.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 17.7 degrees to the right of the forward axis. They will cross the forward path in approximately 5.2 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 98% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 32% blocked. 2 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -7.48,
+        "lateral_mps": -0.005,
+        "forward_mps": 0.137,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.63,
+        "min_ttc_s": 0.04,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.986,
+        "torso_blocked_pct": 0.322,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0022.jpg",
+      "keyframe_id": "011945_kf0022",
+      "time_sec": 3.667,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl at 0.6 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 20.5 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A dining_table has just entered the scene at 0.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 20.1 degrees to the right of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.2 metres ahead, directly ahead in the centre of the frame. Located 6.9 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 98% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 29% blocked. 2 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.178,
+        "direction_deg": -90.0,
+        "yaw_rate_dps": -2.94,
+        "lateral_mps": -0.178,
+        "forward_mps": -0.004,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.66,
+        "min_ttc_s": 0.05,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.986,
+        "torso_blocked_pct": 0.294,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0023.jpg",
+      "keyframe_id": "011945_kf0023",
+      "time_sec": 3.833,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.0 metres ahead, directly ahead in the centre of the frame. Located 8.6 degrees to the right of the forward axis. They will cross the forward path in approximately 3.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 18.0 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A chair has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 22.7 degrees to the right of the forward axis. Distance estimate is reliable. The ground zone is 96% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 30% blocked. 2 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.201,
+        "direction_deg": -77.6,
+        "yaw_rate_dps": -3.22,
+        "lateral_mps": -0.196,
+        "forward_mps": 0.043,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.64,
+        "min_ttc_s": 0.02,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.966,
+        "torso_blocked_pct": 0.3,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0024.jpg",
+      "keyframe_id": "011945_kf0024",
+      "time_sec": 4.0,
+      "observation_text": "A dense intersection scene in daylight conditions. 8 agents detected. A bottle at 0.6 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 24.2 degrees to the right of the forward axis. They will cross the forward path in approximately 4.0 seconds. Distance estimate is reliable. A person is crossing left to right. They are 1.0 metres ahead, directly ahead in the centre of the frame. Located 9.9 degrees to the right of the forward axis. They will cross the forward path in approximately 2.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 15.4 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle has just entered the scene at 0.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 1.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 98% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 38% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.159,
+        "direction_deg": -72.5,
+        "yaw_rate_dps": -4.01,
+        "lateral_mps": -0.152,
+        "forward_mps": 0.048,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.63,
+        "min_ttc_s": 0.02,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.981,
+        "torso_blocked_pct": 0.383,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0025.jpg",
+      "keyframe_id": "011945_kf0025",
+      "time_sec": 4.167,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. Located 5.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. A bottle at 0.7 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 12.8 degrees to the left of the forward axis. They will cross the forward path in approximately 4.5 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 24.7 degrees to the right of the forward axis. They will cross the forward path in approximately 5.7 seconds. Distance estimate is reliable. A person is crossing left to right. They are 1.2 metres ahead, to the right of centre. Located 12.4 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 97% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 33% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.207,
+        "direction_deg": -90.0,
+        "yaw_rate_dps": -3.42,
+        "lateral_mps": -0.206,
+        "forward_mps": -0.017,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.61,
+        "min_ttc_s": 0.05,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.972,
+        "torso_blocked_pct": 0.335,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0026.jpg",
+      "keyframe_id": "011945_kf0026",
+      "time_sec": 4.333,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle at 0.6 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A bottle is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. Located 9.9 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A dining_table is stationary at 0.7 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. Located 8.4 degrees to the right of the forward axis. Distance estimate is reliable. A bottle has just entered the scene at 0.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A pizza is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 25.3 degrees to the right of the forward axis. Distance estimate is reliable. A person is crossing left to right. They are 1.0 metres ahead, to the right of centre. Located 13.8 degrees to the right of the forward axis. They will cross the forward path in approximately 6.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 96% obstructed. Minimum obstacle depth is 0.6 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 33% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -7.59,
+        "lateral_mps": -0.108,
+        "forward_mps": 0.089,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.64,
+        "min_ttc_s": 0.04,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.966,
+        "torso_blocked_pct": 0.336,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0027.jpg",
+      "keyframe_id": "011945_kf0027",
+      "time_sec": 4.5,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 1.0 metres ahead, to the right of centre. Located 14.7 degrees to the right of the forward axis. They will cross the forward path in approximately 2.1 seconds. Distance estimate has moderate uncertainty. A bottle has just entered the scene at 0.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A bottle is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. Located 6.9 degrees to the left of the forward axis. Distance estimate is reliable. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle has just entered the scene at 0.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A bottle is crossing left to right. They are 0.8 metres ahead, to the left of centre. Located 23.6 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 99% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 9% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -8.47,
+        "lateral_mps": -0.062,
+        "forward_mps": 0.121,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.61,
+        "min_ttc_s": 2.13,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.991,
+        "torso_blocked_pct": 0.097,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0028.jpg",
+      "keyframe_id": "011945_kf0028",
+      "time_sec": 4.667,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 15.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bottle is crossing left to right. They are 0.5 metres ahead, directly ahead in the centre of the frame. Located 3.6 degrees to the left of the forward axis. They will cross the forward path in approximately 1.8 seconds. Distance estimate is reliable. A person is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 16.9 degrees to the right of the forward axis. They will cross the forward path in approximately 1.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle is crossing left to right. They are 0.7 metres ahead, to the left of centre. Located 20.8 degrees to the left of the forward axis. They will cross the forward path in approximately 4.0 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A tv has just entered the scene at 1.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair is crossing left to right. They are 2.5 metres ahead, directly ahead in the centre of the frame. Located 8.4 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is 97% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 9% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 4.0 seconds. Agents present but no imminent threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.205,
+        "direction_deg": -49.6,
+        "yaw_rate_dps": -8.15,
+        "lateral_mps": -0.156,
+        "forward_mps": 0.133,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.57,
+        "min_ttc_s": 0.07,
+        "n_critical": 1,
+        "n_high": 2,
+        "surface_blocked_pct": 0.97,
+        "torso_blocked_pct": 0.098,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0029.jpg",
+      "keyframe_id": "011945_kf0029",
+      "time_sec": 4.833,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A bottle at 0.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A person is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 19.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.5 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 1.3 seconds. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A tv has just entered the scene at 1.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair is crossing left to right. They are 2.5 metres ahead, directly ahead in the centre of the frame. Located 6.2 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is 95% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 2 detected agents in this zone. The mid zone is 12% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.5 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.248,
+        "direction_deg": -64.7,
+        "yaw_rate_dps": -8.77,
+        "lateral_mps": -0.224,
+        "forward_mps": 0.106,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.53,
+        "min_ttc_s": 0.52,
+        "n_critical": 2,
+        "n_high": 2,
+        "surface_blocked_pct": 0.951,
+        "torso_blocked_pct": 0.127,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0030.jpg",
+      "keyframe_id": "011945_kf0030",
+      "time_sec": 5.0,
+      "observation_text": "A dense intersection scene in daylight conditions. 8 agents detected. A bottle is crossing left to right. They are 0.5 metres ahead, directly ahead in the centre of the frame. Located 4.7 degrees to the right of the forward axis. They will cross the forward path in approximately 1.0 seconds. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 26.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. A person is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 21.5 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle at 0.6 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A microwave has just entered the scene at 1.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair is crossing left to right. They are 2.2 metres ahead, directly ahead in the centre of the frame. Located 3.9 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is 97% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 8% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.151,
+        "direction_deg": -31.2,
+        "yaw_rate_dps": -12.57,
+        "lateral_mps": -0.078,
+        "forward_mps": 0.129,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.49,
+        "min_ttc_s": 0.02,
+        "n_critical": 5,
+        "n_high": 0,
+        "surface_blocked_pct": 0.975,
+        "torso_blocked_pct": 0.087,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0031.jpg",
+      "keyframe_id": "011945_kf0031",
+      "time_sec": 5.167,
+      "observation_text": "A dense intersection scene in daylight conditions. 8 agents detected. A bottle is crossing left to right. They are 0.5 metres ahead, directly ahead in the centre of the frame. Located 9.6 degrees to the right of the forward axis. They will cross the forward path in approximately 1.0 seconds. Distance estimate is reliable. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 16.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate is reliable. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 29.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. A person is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 22.3 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bowl has just entered the scene at 0.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A microwave is crossing left to right. They are 2.2 metres ahead, to the left of centre. Located 27.3 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 2.4 metres ahead, directly ahead in the centre of the frame. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is 96% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 5 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.191,
+        "direction_deg": -20.2,
+        "yaw_rate_dps": -13.54,
+        "lateral_mps": -0.066,
+        "forward_mps": 0.179,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.48,
+        "min_ttc_s": 0.1,
+        "n_critical": 5,
+        "n_high": 0,
+        "surface_blocked_pct": 0.964,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0032.jpg",
+      "keyframe_id": "011945_kf0032",
+      "time_sec": 5.333,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 19.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is reliable. A person is crossing left to right. They are 0.7 metres ahead, to the right of centre. Located 23.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 14.2 degrees to the right of the forward axis. They will cross the forward path in approximately 2.8 seconds. Distance estimate is reliable. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A sink has just entered the scene at 0.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A microwave is crossing left to right. They are 2.6 metres ahead, to the left of centre. Located 25.9 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 95% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.125,
+        "direction_deg": -73.7,
+        "yaw_rate_dps": -10.41,
+        "lateral_mps": -0.12,
+        "forward_mps": 0.035,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.57,
+        "min_ttc_s": 0.33,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.957,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0033.jpg",
+      "keyframe_id": "011945_kf0033",
+      "time_sec": 5.5,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 23.8 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is reliable. A person is crossing left to right. They are 0.6 metres ahead, to the right of centre. Located 23.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.8 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. A dining_table is stationary at 0.6 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A bottle is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 18.8 degrees to the right of the forward axis. They will cross the forward path in approximately 2.1 seconds. Distance estimate is reliable. A chair is crossing left to right. They are 0.8 metres ahead, directly ahead in the centre of the frame. Located 3.1 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A microwave is crossing left to right. They are 2.7 metres ahead, to the left of centre. Located 23.8 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 95% obstructed. Minimum obstacle depth is 0.5 metres. Depth estimation reliability is moderate. 3 detected agents in this zone. The mid zone is 7% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.176,
+        "direction_deg": -90.0,
+        "yaw_rate_dps": -8.76,
+        "lateral_mps": -0.172,
+        "forward_mps": -0.039,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.58,
+        "min_ttc_s": 0.05,
+        "n_critical": 3,
+        "n_high": 1,
+        "surface_blocked_pct": 0.953,
+        "torso_blocked_pct": 0.071,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0034.jpg",
+      "keyframe_id": "011945_kf0034",
+      "time_sec": 5.667,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.4 metres ahead, to the right of centre. Located 27.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 0.5 metres ahead, to the right of centre. Located 24.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. A chair is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. Located 4.7 degrees to the right of the forward axis. They will cross the forward path in approximately 3.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. A sink is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 19.5 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A microwave is crossing left to right. They are 2.2 metres ahead, to the left of centre. Located 21.8 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 95% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 7% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -8.6,
+        "lateral_mps": -0.026,
+        "forward_mps": 0.005,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.47,
+        "min_ttc_s": 0.04,
+        "n_critical": 4,
+        "n_high": 0,
+        "surface_blocked_pct": 0.956,
+        "torso_blocked_pct": 0.073,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0035.jpg",
+      "keyframe_id": "011945_kf0035",
+      "time_sec": 5.833,
+      "observation_text": "A dense intersection scene in daylight conditions. 7 agents detected. A bottle is crossing left to right. They are 0.4 metres ahead, to the right of centre. Located 30.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is reliable. A bottle is crossing left to right. They are 0.4 metres ahead, to the right of centre. Located 27.3 degrees to the right of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A bottle is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. A sink is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 17.8 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 1.0 metres ahead, to the right of centre. Located 25.5 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A microwave is crossing left to right. They are 2.1 metres ahead, to the left of centre. Located 20.3 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. The ground zone is 94% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 4 detected agents in this zone. The mid zone is 7% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: chair. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -3.72,
+        "lateral_mps": -0.061,
+        "forward_mps": 0.056,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.46,
+        "min_ttc_s": 0.04,
+        "n_critical": 4,
+        "n_high": 0,
+        "surface_blocked_pct": 0.948,
+        "torso_blocked_pct": 0.079,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0036.jpg",
+      "keyframe_id": "011945_kf0036",
+      "time_sec": 6.0,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A bottle is crossing left to right. They are 0.4 metres ahead, to the right of centre. Located 29.3 degrees to the right of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is reliable. A chair is crossing left to right. They are 0.6 metres ahead, directly ahead in the centre of the frame. Located 6.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.0 seconds. Distance estimate is reliable. A sink is crossing left to right. They are 0.6 metres ahead, to the left of centre. Located 17.0 degrees to the left of the forward axis. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.1 metres ahead, to the right of centre. Located 25.8 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A microwave is crossing left to right. They are 2.2 metres ahead, to the left of centre. Located 19.3 degrees to the left of the forward axis. Distance estimate is reliable. The ground zone is 41% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 2 detected agents in this zone. The mid zone is 8% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.0 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": -0.24,
+        "lateral_mps": -0.03,
+        "forward_mps": 0.021,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.46,
+        "min_ttc_s": 0.04,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.41,
+        "torso_blocked_pct": 0.081,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0037.jpg",
+      "keyframe_id": "011945_kf0037",
+      "time_sec": 6.167,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 5 agents detected. A chair at 0. They may block the path ahead. Distance estimate is uncertain \u2014 poor depth signal. A bottle at 0. They may block the path ahead. Distance estimate is reliable. A sink at 0. They may block the path ahead. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 1.1 metres ahead, to the right of centre. Located 25.5 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A microwave at 2. They may block the path ahead. Distance estimate is reliable. The ground zone is 28% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 1 detected agent in this zone. The mid zone is 8% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 5.05,
+        "lateral_mps": 0.006,
+        "forward_mps": -0.004,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.44,
+        "min_ttc_s": 0.05,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.285,
+        "torso_blocked_pct": 0.083,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0038.jpg",
+      "keyframe_id": "011945_kf0038",
+      "time_sec": 6.333,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 5 agents detected. A dining_table is stationary at 0.4 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A bottle is crossing left to right. They are 0.7 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 1.3 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A sink at 0.6 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person at 1.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate has moderate uncertainty. A microwave at 2.1 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. The ground zone is 94% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 2 detected agents in this zone. The mid zone is 10% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 1.3 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.068,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": 10.63,
+        "lateral_mps": 0.065,
+        "forward_mps": -0.02,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.44,
+        "min_ttc_s": 1.04,
+        "n_critical": 0,
+        "n_high": 2,
+        "surface_blocked_pct": 0.947,
+        "torso_blocked_pct": 0.104,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0039.jpg",
+      "keyframe_id": "011945_kf0039",
+      "time_sec": 6.5,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 5 agents detected. A microwave at 2.2 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. A sink at 0.6 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A person at 1.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A bottle has just entered the scene at 0.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 95% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. OVERHEAD HAZARD detected: person. Minimum depth 0.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.009,
+        "direction_deg": -90.0,
+        "yaw_rate_dps": 19.63,
+        "lateral_mps": -0.009,
+        "forward_mps": -0.0,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.46,
+        "min_ttc_s": 1.26,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.956,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0040.jpg",
+      "keyframe_id": "011945_kf0040",
+      "time_sec": 6.667,
+      "observation_text": "A moderate mixed street scene in daylight conditions. 3 agents detected. A bottle is crossing left to right. They are 0.4 metres ahead, to the right of centre. Located 20.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A bowl at 0.6 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is reliable. A dining_table is stationary at 0.5 metres, directly ahead in the centre of the frame. They are a fixed obstacle in the surface zone. Distance estimate has moderate uncertainty. The ground zone is 98% obstructed. Minimum obstacle depth is 0.4 metres. Depth estimation reliability is good. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 2.116,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": -20.01,
+        "lateral_mps": 2.09,
+        "forward_mps": -0.331,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.45,
+        "min_ttc_s": 0.05,
+        "n_critical": 1,
+        "n_high": 1,
+        "surface_blocked_pct": 0.98,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "moderate"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf"
+      ]
+    },
+    {
+      "image": "keyframes/011945/011945_kf0041.jpg",
+      "keyframe_id": "011945_kf0041",
+      "time_sec": 6.833,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 4 agents detected. A person at 3.1 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A car has just entered the scene at 3.1 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 3.3 metres ahead, to the right of centre. Located 19.3 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 69% blocked. 4 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 1.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 0.9 metres wide, located 28.4 degrees to the left of forward. Corridor extends to 3.5 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.9 metre wide corridor at 3.5 metres depth, located 28.4 degrees to the left of the forward direction. Net flow of 1.4 \u2014 possible movement inside gap. Confidence 85%. A 0.6 metre wide corridor at 3.6 metres depth, located 11.9 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.756,
+        "direction_deg": 15.2,
+        "yaw_rate_dps": -2.06,
+        "lateral_mps": 0.198,
+        "forward_mps": 0.73,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.43,
+        "min_ttc_s": 1.15,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.695,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.93,
+          "widest_gap_angle_deg": -28.4,
+          "total_free_width_pct": 0.305
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0042.jpg",
+      "keyframe_id": "011945_kf0042",
+      "time_sec": 7.0,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 4 agents detected. A person at 3.0 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car has just entered the scene at 3.0 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 3.4 metres ahead, to the right of centre. Located 19.1 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 6.3 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 64% blocked. 4 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.8 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 0.8 metres wide, located 29.5 degrees to the left of forward. Corridor extends to 3.6 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.8 metre wide corridor at 3.6 metres depth, located 29.5 degrees to the left of the forward direction. Net flow of 1.4 \u2014 possible movement inside gap. Confidence 85%. A 0.4 metre wide corridor at 2.8 metres depth, located 31.2 degrees to the right of the forward direction. Net flow of 3.6 \u2014 possible movement inside gap. Confidence 40%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.817,
+        "direction_deg": 12.1,
+        "yaw_rate_dps": -2.33,
+        "lateral_mps": 0.171,
+        "forward_mps": 0.799,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.7,
+        "min_ttc_s": 0.85,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.641,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.8,
+          "widest_gap_angle_deg": -29.5,
+          "total_free_width_pct": 0.266
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0043.jpg",
+      "keyframe_id": "011945_kf0043",
+      "time_sec": 7.167,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 8 agents detected. A person at 2.9 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.9 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.5 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 2.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A car is crossing right to left. They are 2.9 metres ahead, directly ahead in the centre of the frame. Located 9.5 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 3. They may block the path ahead. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 6.1 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 10.5 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 90% blocked. 7 agents present \u2014 0 approaching, 1 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.649,
+        "direction_deg": 33.8,
+        "yaw_rate_dps": -3.11,
+        "lateral_mps": 0.361,
+        "forward_mps": 0.539,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.85,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.084,
+        "torso_blocked_pct": 0.902,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0044.jpg",
+      "keyframe_id": "011945_kf0044",
+      "time_sec": 7.333,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 8 agents detected. A person at 2.8 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.9 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 3.2 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A car is crossing right to left. They are 2.8 metres ahead, directly ahead in the centre of the frame. Located 9.5 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car has just entered the scene at 2.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 6.0 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 11.2 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 90% blocked. 8 agents present \u2014 0 approaching, 1 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.641,
+        "direction_deg": 29.3,
+        "yaw_rate_dps": -3.99,
+        "lateral_mps": 0.314,
+        "forward_mps": 0.559,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.83,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.9,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0045.jpg",
+      "keyframe_id": "011945_kf0045",
+      "time_sec": 7.5,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 7 agents detected. A person is crossing left to right. They are 5.8 metres ahead, to the right of centre. Located 26.6 degrees to the right of the forward axis. They will cross the forward path in approximately 1.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.7 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.8 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 3.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 2.8 metres ahead, to the left of centre. Located 12.8 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A car has just entered the scene at 3.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 89% blocked. 7 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 1.5 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.588,
+        "direction_deg": 36.6,
+        "yaw_rate_dps": -5.13,
+        "lateral_mps": 0.35,
+        "forward_mps": 0.472,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.77,
+        "min_ttc_s": 1.54,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.892,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0046.jpg",
+      "keyframe_id": "011945_kf0046",
+      "time_sec": 7.667,
+      "observation_text": "A extreme intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 5.4 metres ahead, to the right of centre. Located 28.1 degrees to the right of the forward axis. They will cross the forward path in approximately 1.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.6 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 3.0 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.6 metres ahead, to the left of centre. Located 13.9 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A car has just entered the scene at 4.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 5.5 metres ahead, to the right of centre. Located 33.0 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 94% blocked. 6 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 1.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.798,
+        "direction_deg": 36.2,
+        "yaw_rate_dps": -9.08,
+        "lateral_mps": 0.472,
+        "forward_mps": 0.644,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.67,
+        "min_ttc_s": 1.06,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.94,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0047.jpg",
+      "keyframe_id": "011945_kf0047",
+      "time_sec": 7.833,
+      "observation_text": "A extreme intersection scene in daylight conditions. 7 agents detected. A person is crossing left to right. They are 5.2 metres ahead, to the right of centre. Located 29.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.5 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.5 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person at 2.9 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.5 metres ahead, to the left of centre. Located 15.0 degrees to the left of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. A car has just entered the scene at 4.0 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 5.2 metres ahead, to the right of centre. Located 33.6 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 92% blocked. 7 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.9 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.834,
+        "direction_deg": 27.5,
+        "yaw_rate_dps": -4.38,
+        "lateral_mps": 0.385,
+        "forward_mps": 0.74,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.54,
+        "min_ttc_s": 0.93,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.923,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0048.jpg",
+      "keyframe_id": "011945_kf0048",
+      "time_sec": 8.0,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 8 agents detected. A person is crossing right to left. They are 2.4 metres ahead, to the left of centre. Located 16.2 degrees to the left of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.7 metres ahead, to the right of centre. Located 30.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person at 2.6 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.4 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.4 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car is moving in the same direction at similar speed. They are 4.0 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car has just entered the scene at 4.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 8.2 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 91% blocked. 8 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.578,
+        "direction_deg": 32.0,
+        "yaw_rate_dps": -2.4,
+        "lateral_mps": 0.306,
+        "forward_mps": 0.49,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.4,
+        "min_ttc_s": 0.18,
+        "n_critical": 2,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.915,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0049.jpg",
+      "keyframe_id": "011945_kf0049",
+      "time_sec": 8.167,
+      "observation_text": "A extreme intersection scene in daylight conditions. 6 agents detected. A person at 2.4 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.6 metres ahead, to the right of centre. Located 22.8 degrees to the right of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 3.0 metres ahead, to the right of centre. Located 31.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car is moving in the same direction at similar speed. They are 4.0 metres ahead, directly ahead in the centre of the frame. Low collision risk. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car has just entered the scene at 4.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 10.4 metres ahead, to the right of centre. Located 16.6 degrees to the right of the forward axis. They will cross the forward path in approximately 9.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 83% blocked. 6 agents present \u2014 0 approaching, 3 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.9 metres wide, located 29.5 degrees to the left of forward. Corridor extends to 3.9 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.9 metre wide corridor at 3.9 metres depth, located 29.5 degrees to the left of the forward direction. Net flow of 1.3 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.721,
+        "direction_deg": 27.6,
+        "yaw_rate_dps": -2.14,
+        "lateral_mps": 0.334,
+        "forward_mps": 0.639,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.39,
+        "min_ttc_s": 0.24,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.834,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.88,
+          "widest_gap_angle_deg": -29.5,
+          "total_free_width_pct": 0.16
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0050.jpg",
+      "keyframe_id": "011945_kf0050",
+      "time_sec": 8.333,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 6 agents detected. A person at 2.1 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.2 metres ahead, to the right of centre. Located 23.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person at 2. They may block the path ahead. Distance estimate is uncertain \u2014 poor depth signal. A car at 3. They may block the path ahead. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A car at 2.2 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 10.0 metres ahead, to the right of centre. Located 16.9 degrees to the right of the forward axis. They will cross the forward path in approximately 3.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 97% blocked. 5 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 2.1 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.601,
+        "direction_deg": 30.3,
+        "yaw_rate_dps": 0.03,
+        "lateral_mps": 0.303,
+        "forward_mps": 0.519,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.16,
+        "min_ttc_s": 0.19,
+        "n_critical": 4,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.975,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0051.jpg",
+      "keyframe_id": "011945_kf0051",
+      "time_sec": 8.5,
+      "observation_text": "A extreme intersection scene in daylight conditions. 6 agents detected. A person at 2.0 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.1 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.2 metres ahead, to the right of centre. Located 24.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.2 metres ahead, to the right of centre. Located 31.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A car is stationary at 3.9 metres, directly ahead in the centre of the frame. Located 6.1 degrees to the right of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 9.9 metres ahead, to the right of centre. Located 17.0 degrees to the right of the forward axis. They will cross the forward path in approximately 3.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 93% blocked. 5 agents present \u2014 0 approaching, 2 crossing, 1 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 2.0 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.606,
+        "direction_deg": 30.5,
+        "yaw_rate_dps": -0.32,
+        "lateral_mps": 0.307,
+        "forward_mps": 0.522,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.07,
+        "min_ttc_s": 0.16,
+        "n_critical": 4,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.934,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0052.jpg",
+      "keyframe_id": "011945_kf0052",
+      "time_sec": 8.667,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 6 agents detected. A person at 2.0 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.0 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.1 metres ahead, to the right of centre. Located 24.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person at 2.1 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 3.8 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is walking head-on in the same lane toward the camera at 3.2 m/s. They are 9.8 metres ahead, to the right of centre. Located 17.0 degrees to the right of the forward axis. Contact in 3.0 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 95% blocked. 4 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 1.9 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.605,
+        "direction_deg": 29.7,
+        "yaw_rate_dps": -0.45,
+        "lateral_mps": 0.3,
+        "forward_mps": 0.525,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.99,
+        "min_ttc_s": 0.15,
+        "n_critical": 4,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.952,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0053.jpg",
+      "keyframe_id": "011945_kf0053",
+      "time_sec": 8.833,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 5 agents detected. A person is crossing left to right. They are 1.8 metres ahead, to the right of centre. Located 25.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person at 1.8 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 1.9 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 3.5 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is walking head-on in the same lane toward the camera at 5.8 m/s. They are 8.9 metres ahead, to the right of centre. Located 17.0 degrees to the right of the forward axis. Contact in 1.5 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 93% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.4 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 1.8 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.513,
+        "direction_deg": 30.8,
+        "yaw_rate_dps": -0.11,
+        "lateral_mps": 0.263,
+        "forward_mps": 0.441,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.82,
+        "min_ttc_s": 0.41,
+        "n_critical": 4,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.938,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0054.jpg",
+      "keyframe_id": "011945_kf0054",
+      "time_sec": 9.0,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 6 agents detected. A person at 1.8 metres, to the left of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 1.8 metres ahead, to the right of centre. Located 30.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 1.8 metres ahead, to the right of centre. Located 25.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A car at 1.8 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person is walking head-on in the same lane toward the camera at 30.3 m/s. They are 3.1 metres ahead, to the right of centre. Located 16.8 degrees to the right of the forward axis. Contact in 0.1 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. A car at 3.5 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 95% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.5 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 1.7 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.506,
+        "direction_deg": 43.0,
+        "yaw_rate_dps": -0.8,
+        "lateral_mps": 0.345,
+        "forward_mps": 0.37,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.75,
+        "min_ttc_s": 0.1,
+        "n_critical": 5,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.954,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0055.jpg",
+      "keyframe_id": "011945_kf0055",
+      "time_sec": 9.167,
+      "observation_text": "A extreme mixed street scene in daylight conditions. 5 agents detected. A person is crossing right to left. They are 1.6 metres ahead, to the left of centre. Located 30.3 degrees to the left of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is moving directly toward the camera. They are 1.6 metres ahead, to the right of centre. Located 25.0 degrees to the right of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. A car at 1.7 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A car at 2.6 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 1.6 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 95% blocked. 4 agents present \u2014 1 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.4 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: car. Minimum depth 1.6 metres. Halt or duck required. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.502,
+        "direction_deg": 37.3,
+        "yaw_rate_dps": -1.76,
+        "lateral_mps": 0.304,
+        "forward_mps": 0.399,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.6,
+        "min_ttc_s": 0.42,
+        "n_critical": 4,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.959,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0056.jpg",
+      "keyframe_id": "011945_kf0056",
+      "time_sec": 9.333,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 3 agents detected. A person is crossing right to left. They are 1.2 metres ahead, to the left of centre. Located 30.3 degrees to the left of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person at 1.5 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 1.5 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 69% blocked. 3 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.186,
+        "direction_deg": 48.1,
+        "yaw_rate_dps": -11.15,
+        "lateral_mps": 0.138,
+        "forward_mps": 0.124,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.02,
+        "min_ttc_s": 0.23,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.697,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/011945/011945_kf0057.jpg",
+      "keyframe_id": "011945_kf0057",
+      "time_sec": 9.5,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 6 agents detected. A person is crossing right to left. They are 1.4 metres ahead, to the left of centre. Located 29.6 degrees to the left of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person at 1.7 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A pizza has just entered the scene at 1.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 1.8 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 68% blocked. 5 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.3 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.152,
+        "direction_deg": 59.6,
+        "yaw_rate_dps": -15.39,
+        "lateral_mps": 0.131,
+        "forward_mps": 0.077,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.97,
+        "min_ttc_s": 0.33,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.028,
+        "torso_blocked_pct": 0.685,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    }
+  ]
+}

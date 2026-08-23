@@ -1,0 +1,1466 @@
+{
+  "video_id": "019085",
+  "fps": 29.97,
+  "n_frames": 41,
+  "instruction": {
+    "text": "Navigate through the dense intersection, sharing space with up to 6 people and 4 vehicles, with others crossing your path. Keep a safe distance from others and move at a pace that suits the conditions.",
+    "evidence": {
+      "n_frames": 41,
+      "location": "intersection",
+      "density": "dense",
+      "peak_people": 6,
+      "peak_vehicles": 4
+    }
+  },
+  "action_space": {
+    "discrete": [
+      "standing_still",
+      "walking_slow",
+      "walking_normal",
+      "walking_fast",
+      "turning_left",
+      "turning_right",
+      "stepping_left",
+      "stepping_right"
+    ],
+    "target": [
+      "velocity_mps",
+      "direction_deg",
+      "yaw_rate_dps"
+    ],
+    "label_map": {
+      "standing_still": {
+        "direction_deg": 0.0,
+        "mode": "stand"
+      },
+      "walking_slow": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_normal": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_fast": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "turning_left": {
+        "direction_deg": -45.0,
+        "mode": "turn"
+      },
+      "turning_right": {
+        "direction_deg": 45.0,
+        "mode": "turn"
+      },
+      "stepping_left": {
+        "direction_deg": -90.0,
+        "mode": "sidestep"
+      },
+      "stepping_right": {
+        "direction_deg": 90.0,
+        "mode": "sidestep"
+      }
+    },
+    "convention": "Grounded ego-motion: forward/lateral/yaw recovered by motion-field solve on agent-masked static pixels, metric-scaled by depth. velocity_mps=measured horizontal speed; yaw_rate_dps=measured angular velocity; (forward,lateral,yaw) = holonomic command. weight<1 = low solve-confidence / artifact frame."
+  },
+  "frames": [
+    {
+      "image": "keyframes/019085/019085_kf0000.jpg",
+      "keyframe_id": "019085_kf0000",
+      "time_sec": 0.0,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A chair has just entered the scene at 5.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 4.6 metres wide, located 11.5 degrees to the right of forward. Corridor extends to 4.9 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.8 metre wide corridor at 4.8 metres depth, located 25.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 4.6 metre wide corridor at 4.9 metres depth, located 11.5 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.0,
+        "lateral_mps": 0.0,
+        "forward_mps": 0.0,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.95,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.023,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.58,
+          "widest_gap_angle_deg": 11.5,
+          "total_free_width_pct": 0.938
+        },
+        "density": "sparse"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf",
+        "solve_failed"
+      ]
+    },
+    {
+      "image": "keyframes/019085/019085_kf0001.jpg",
+      "keyframe_id": "019085_kf0001",
+      "time_sec": 0.167,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 6 agents detected. A chair has just entered the scene at 5.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 6.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 6.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 10% obstructed. Minimum obstacle depth is 3.9 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 18% blocked. 3 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 15.7 degrees to the right of forward. Corridor extends to 5.2 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.0 metre wide corridor at 5.2 metres depth, located 15.7 degrees to the right of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.653,
+        "direction_deg": -47.9,
+        "yaw_rate_dps": -2.2,
+        "lateral_mps": -0.484,
+        "forward_mps": 0.438,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.16,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.105,
+        "torso_blocked_pct": 0.184,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.98,
+          "widest_gap_angle_deg": 15.7,
+          "total_free_width_pct": 0.55
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0002.jpg",
+      "keyframe_id": "019085_kf0002",
+      "time_sec": 0.334,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 6 agents detected. A chair has just entered the scene at 4.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 18% obstructed. Minimum obstacle depth is 3.9 metres. Depth estimation reliability is poor. 4 detected agents in this zone. The mid zone is 12% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 16.4 degrees to the right of forward. Corridor extends to 5.4 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.0 metre wide corridor at 5.4 metres depth, located 16.4 degrees to the right of the forward direction. Net flow of 1.8 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.981,
+        "direction_deg": -49.1,
+        "yaw_rate_dps": -1.86,
+        "lateral_mps": -0.741,
+        "forward_mps": 0.643,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.23,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.181,
+        "torso_blocked_pct": 0.127,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.01,
+          "widest_gap_angle_deg": 16.4,
+          "total_free_width_pct": 0.531
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0003.jpg",
+      "keyframe_id": "019085_kf0003",
+      "time_sec": 0.501,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 6 agents detected. A chair is moving directly toward the camera. They are 4.6 metres ahead, to the left of centre. Located 10.5 degrees to the left of the forward axis. At current speeds, contact will occur in 0.8 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair has just entered the scene at 4.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.1 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.3 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 25% obstructed. Minimum obstacle depth is 4.0 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 4% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 17.0 degrees to the right of forward. Corridor extends to 5.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.0 metre wide corridor at 5.6 metres depth, located 17.0 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_slow",
+        "velocity_mps": 0.485,
+        "direction_deg": -42.8,
+        "yaw_rate_dps": -2.83,
+        "lateral_mps": -0.33,
+        "forward_mps": 0.356,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.28,
+        "min_ttc_s": 0.79,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.258,
+        "torso_blocked_pct": 0.042,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.01,
+          "widest_gap_angle_deg": 17.0,
+          "total_free_width_pct": 0.512
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0004.jpg",
+      "keyframe_id": "019085_kf0004",
+      "time_sec": 0.667,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 7 agents detected. A chair is moving directly toward the camera. They are 4.3 metres ahead, to the left of centre. Located 26.5 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.6 metres ahead, directly ahead in the centre of the frame. Located 9.2 degrees to the left of the forward axis. At current speeds, contact will occur in 0.9 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 5.0 metres ahead, to the left of centre. Located 19.2 degrees to the left of the forward axis. At current speeds, contact will occur in 0.8 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 5.0 metres ahead, to the left of centre. Located 16.9 degrees to the left of the forward axis. At current speeds, contact will occur in 0.8 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 5.6 metres ahead, directly ahead in the centre of the frame. Located 4.5 degrees to the left of the forward axis. At current speeds, contact will occur in 0.8 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 4.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 5.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 30% obstructed. Minimum obstacle depth is 4.2 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 8% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.8 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.2 metres wide, located 17.7 degrees to the right of forward. Corridor extends to 6.0 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.2 metre wide corridor at 6.0 metres depth, located 17.7 degrees to the right of the forward direction. Net flow of 1.5 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.942,
+        "direction_deg": -36.3,
+        "yaw_rate_dps": -2.46,
+        "lateral_mps": -0.558,
+        "forward_mps": 0.759,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.51,
+        "min_ttc_s": 0.69,
+        "n_critical": 5,
+        "n_high": 0,
+        "surface_blocked_pct": 0.309,
+        "torso_blocked_pct": 0.083,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.17,
+          "widest_gap_angle_deg": 17.7,
+          "total_free_width_pct": 0.492
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0005.jpg",
+      "keyframe_id": "019085_kf0005",
+      "time_sec": 0.834,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 8 agents detected. A chair is moving directly toward the camera. They are 4.0 metres ahead, to the left of centre. Located 25.4 degrees to the left of the forward axis. At current speeds, contact will occur in 0.6 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.9 metres ahead, to the left of centre. Located 18.0 degrees to the left of the forward axis. At current speeds, contact will occur in 0.9 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 5.0 metres ahead, to the left of centre. Located 15.1 degrees to the left of the forward axis. At current speeds, contact will occur in 1.0 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 5.5 metres ahead, directly ahead in the centre of the frame. Located 3.5 degrees to the left of the forward axis. At current speeds, contact will occur in 1.0 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.6 metres ahead, directly ahead in the centre of the frame. Located 7.6 degrees to the left of the forward axis. At current speeds, contact will occur in 1.1 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 5.2 metres ahead, directly ahead in the centre of the frame. At current speeds, contact will occur in 1.7 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 4.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.6 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 39% obstructed. Minimum obstacle depth is 4.0 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 6% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 1.0 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.3 metres wide, located 18.6 degrees to the right of forward. Corridor extends to 6.5 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.3 metre wide corridor at 6.5 metres depth, located 18.6 degrees to the right of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.81,
+        "direction_deg": -23.1,
+        "yaw_rate_dps": -3.67,
+        "lateral_mps": -0.318,
+        "forward_mps": 0.745,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.6,
+        "min_ttc_s": 0.6,
+        "n_critical": 4,
+        "n_high": 2,
+        "surface_blocked_pct": 0.395,
+        "torso_blocked_pct": 0.069,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.27,
+          "widest_gap_angle_deg": 18.6,
+          "total_free_width_pct": 0.467
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0006.jpg",
+      "keyframe_id": "019085_kf0006",
+      "time_sec": 1.001,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 8 agents detected. A chair is moving directly toward the camera. They are 3.5 metres ahead, to the left of centre. Located 24.3 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is walking head-on in the same lane toward the camera at 14.7 m/s. They are 4.2 metres ahead, directly ahead in the centre of the frame. Located 5.7 degrees to the left of the forward axis. Contact in 0.3 seconds if neither changes course. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.3 metres ahead, directly ahead in the centre of the frame. Located 5.9 degrees to the left of the forward axis. At current speeds, contact will occur in 0.9 seconds. They occupy the surface zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.5 metres ahead, to the left of centre. Located 16.8 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 4.6 metres ahead, to the left of centre. Located 13.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.8 metres ahead, directly ahead in the centre of the frame. At current speeds, contact will occur in 1.0 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 5.2 metres ahead, directly ahead in the centre of the frame. At current speeds, contact will occur in 0.8 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 5.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 37% obstructed. Minimum obstacle depth is 3.4 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 5% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.8 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.0 metres wide, located 19.5 degrees to the right of forward. Corridor extends to 6.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 4.0 metre wide corridor at 6.4 metres depth, located 19.5 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.633,
+        "direction_deg": -30.0,
+        "yaw_rate_dps": -3.98,
+        "lateral_mps": -0.317,
+        "forward_mps": 0.548,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.34,
+        "min_ttc_s": 0.29,
+        "n_critical": 7,
+        "n_high": 0,
+        "surface_blocked_pct": 0.375,
+        "torso_blocked_pct": 0.057,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.98,
+          "widest_gap_angle_deg": 19.5,
+          "total_free_width_pct": 0.442
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0007.jpg",
+      "keyframe_id": "019085_kf0007",
+      "time_sec": 1.168,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 9 agents detected. A chair is moving directly toward the camera. They are 3.9 metres ahead, directly ahead in the centre of the frame. Located 3.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 3.9 metres ahead, directly ahead in the centre of the frame. Located 3.8 degrees to the left of the forward axis. At current speeds, contact will occur in 0.3 seconds. They occupy the surface zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 4.4 metres ahead, to the left of centre. Located 11.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.4 metres ahead, to the left of centre. Located 14.7 degrees to the left of the forward axis. At current speeds, contact will occur in 0.7 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 4.6 metres ahead, directly ahead in the centre of the frame. Located 3.4 degrees to the right of the forward axis. They will cross the forward path in approximately 1.0 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 4.7 metres ahead, directly ahead in the centre of the frame. At current speeds, contact will occur in 0.6 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.3 metres ahead, to the left of centre. Located 22.7 degrees to the left of the forward axis. At current speeds, contact will occur in 1.3 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 3.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 39% obstructed. Minimum obstacle depth is 3.2 metres. Depth estimation reliability is poor. 7 detected agents in this zone. The mid zone is 5% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.6 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.8 metres wide, located 20.7 degrees to the right of forward. Corridor extends to 6.7 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 3.8 metre wide corridor at 6.7 metres depth, located 20.7 degrees to the right of the forward direction. Net flow of 1.0 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.927,
+        "direction_deg": -55.9,
+        "yaw_rate_dps": -3.03,
+        "lateral_mps": -0.767,
+        "forward_mps": 0.52,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 4.02,
+        "min_ttc_s": 0.28,
+        "n_critical": 6,
+        "n_high": 1,
+        "surface_blocked_pct": 0.395,
+        "torso_blocked_pct": 0.051,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.82,
+          "widest_gap_angle_deg": 20.7,
+          "total_free_width_pct": 0.409
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0008.jpg",
+      "keyframe_id": "019085_kf0008",
+      "time_sec": 1.335,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 8 agents detected. A person at 3.7 metres, directly ahead in the centre of the frame, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 3.8 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.6 seconds. Distance estimate has moderate uncertainty. A chair is crossing left to right. They are 4.3 metres ahead, directly ahead in the centre of the frame. Located 5.8 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.3 metres ahead, to the left of centre. Located 12.7 degrees to the left of the forward axis. At current speeds, contact will occur in 0.8 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 4.8 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is moving directly toward the camera. They are 4.3 metres ahead, to the left of centre. Located 20.8 degrees to the left of the forward axis. At current speeds, contact will occur in 1.4 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 3.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.4 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 30% obstructed. Minimum obstacle depth is 3.1 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 5% blocked. 2 agents present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.8 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.5 metres wide, located 21.9 degrees to the right of forward. Corridor extends to 6.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 9% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.5 metre wide corridor at 6.7 metres depth, located 21.9 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.526,
+        "direction_deg": -63.5,
+        "yaw_rate_dps": -4.81,
+        "lateral_mps": -0.471,
+        "forward_mps": 0.235,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.82,
+        "min_ttc_s": 0.3,
+        "n_critical": 5,
+        "n_high": 1,
+        "surface_blocked_pct": 0.309,
+        "torso_blocked_pct": 0.05,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.49,
+          "widest_gap_angle_deg": 21.9,
+          "total_free_width_pct": 0.375
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0009.jpg",
+      "keyframe_id": "019085_kf0009",
+      "time_sec": 1.502,
+      "observation_text": "A dense intersection scene in daylight conditions. 8 agents detected. A person is walking head-on in the same lane toward the camera at 7.6 m/s. They are 3.2 metres ahead, to the left of centre. Located 32.4 degrees to the left of the forward axis. Contact in 0.4 seconds if neither changes course. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 3.6 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.7 seconds. Distance estimate is reliable. A person is crossing left to right. They are 3.8 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 3.9 metres ahead, directly ahead in the centre of the frame. Located 7.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.5 seconds. They occupy the surface zone. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 4.0 metres ahead, directly ahead in the centre of the frame. Located 10.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A chair is crossing left to right. They are 4.2 metres ahead, directly ahead in the centre of the frame. Located 8.5 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 4.0 metres ahead, to the left of centre. Located 18.4 degrees to the left of the forward axis. They will cross the forward path in approximately 1.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 4.8 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 1.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 32% obstructed. Minimum obstacle depth is 3.1 metres. Depth estimation reliability is poor. 7 detected agents in this zone. The mid zone is 1% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 1.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.5 metres wide, located 23.1 degrees to the right of forward. Corridor extends to 7.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 26% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 0.8 metre wide corridor at 4.6 metres depth, located 26.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 3.5 metre wide corridor at 7.4 metres depth, located 23.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.856,
+        "direction_deg": -61.2,
+        "yaw_rate_dps": -3.35,
+        "lateral_mps": -0.75,
+        "forward_mps": 0.413,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.79,
+        "min_ttc_s": 0.38,
+        "n_critical": 6,
+        "n_high": 2,
+        "surface_blocked_pct": 0.323,
+        "torso_blocked_pct": 0.016,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.54,
+          "widest_gap_angle_deg": 23.1,
+          "total_free_width_pct": 0.467
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0010.jpg",
+      "keyframe_id": "019085_kf0010",
+      "time_sec": 1.668,
+      "observation_text": "A dense intersection scene in daylight conditions. 5 agents detected. A person is crossing left to right. They are 3.1 metres ahead, to the left of centre. Located 31.9 degrees to the left of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 3.6 metres ahead, directly ahead in the centre of the frame. Located 4.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is reliable. A person is crossing left to right. They are 3.7 metres ahead, directly ahead in the centre of the frame. Located 4.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A chair is crossing left to right. They are 3.8 metres ahead, to the right of centre. Located 11.2 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 4.0 metres ahead, directly ahead in the centre of the frame. Located 3.2 degrees to the right of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 16% obstructed. Minimum obstacle depth is 3.0 metres. Depth estimation reliability is poor. 4 detected agents in this zone. The mid zone is 1% blocked. 1 agent present \u2014 0 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.7 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.5 metres wide, located 24.3 degrees to the right of forward. Corridor extends to 8.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.9 metre wide corridor at 4.8 metres depth, located 14.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 3.5 metre wide corridor at 8.1 metres depth, located 24.3 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.765,
+        "direction_deg": -58.1,
+        "yaw_rate_dps": -3.92,
+        "lateral_mps": -0.65,
+        "forward_mps": 0.404,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.75,
+        "min_ttc_s": 0.41,
+        "n_critical": 5,
+        "n_high": 0,
+        "surface_blocked_pct": 0.164,
+        "torso_blocked_pct": 0.013,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.46,
+          "widest_gap_angle_deg": 24.3,
+          "total_free_width_pct": 0.745
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0011.jpg",
+      "keyframe_id": "019085_kf0011",
+      "time_sec": 1.835,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 2.9 metres ahead, to the left of centre. Located 32.0 degrees to the left of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.4 metres ahead, directly ahead in the centre of the frame. Located 6.8 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate has moderate uncertainty. A chair is crossing left to right. They are 3.4 metres ahead, to the right of centre. Located 13.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 3.6 metres ahead, directly ahead in the centre of the frame. Located 4.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.6 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.1 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 23% obstructed. Minimum obstacle depth is 2.8 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.2 metres wide, located 25.5 degrees to the right of forward. Corridor extends to 8.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 18% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.6 metre wide corridor at 4.9 metres depth, located 13.0 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 3.2 metre wide corridor at 8.4 metres depth, located 25.5 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.804,
+        "direction_deg": -52.5,
+        "yaw_rate_dps": -3.2,
+        "lateral_mps": -0.638,
+        "forward_mps": 0.49,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.49,
+        "min_ttc_s": 0.44,
+        "n_critical": 4,
+        "n_high": 0,
+        "surface_blocked_pct": 0.239,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.16,
+          "widest_gap_angle_deg": 25.5,
+          "total_free_width_pct": 0.5
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0012.jpg",
+      "keyframe_id": "019085_kf0012",
+      "time_sec": 2.002,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 2.6 metres ahead, to the left of centre. Located 31.6 degrees to the left of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.0 metres ahead, directly ahead in the centre of the frame. Located 9.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 4.5 metres ahead, directly ahead in the centre of the frame. Located 5.1 degrees to the left of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 3.7 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 3.8 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 5.7 metres ahead, directly ahead in the centre of the frame. Located 6.1 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 26% obstructed. Minimum obstacle depth is 2.5 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.5 metres wide, located 24.2 degrees to the right of forward. Corridor extends to 8.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 36% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.2 metre wide corridor at 5.4 metres depth, located 13.2 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 3.5 metre wide corridor at 8.2 metres depth, located 24.2 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.666,
+        "direction_deg": -46.1,
+        "yaw_rate_dps": -3.75,
+        "lateral_mps": -0.48,
+        "forward_mps": 0.462,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.19,
+        "min_ttc_s": 0.38,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.262,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.53,
+          "widest_gap_angle_deg": 24.2,
+          "total_free_width_pct": 0.471
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0013.jpg",
+      "keyframe_id": "019085_kf0013",
+      "time_sec": 2.169,
+      "observation_text": "A dense intersection scene in daylight conditions. 5 agents detected. A person is crossing left to right. They are 2.4 metres ahead, to the left of centre. Located 31.5 degrees to the left of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is reliable. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 2.7 metres ahead, to the right of centre. Located 12.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 4.0 metres ahead, directly ahead in the centre of the frame. Located 3.1 degrees to the left of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 4.7 metres ahead, directly ahead in the centre of the frame. Located 7.4 degrees to the right of the forward axis. They will cross the forward path in approximately 2.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.4 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 25% obstructed. Minimum obstacle depth is 2.3 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.9 metres wide, located 25.8 degrees to the right of forward. Corridor extends to 7.9 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 6% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.2 metre wide corridor at 5.2 metres depth, located 11.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.9 metre wide corridor at 7.9 metres depth, located 25.8 degrees to the right of the forward direction. Net flow of 1.0 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.69,
+        "direction_deg": -62.1,
+        "yaw_rate_dps": -3.49,
+        "lateral_mps": -0.61,
+        "forward_mps": 0.323,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.85,
+        "min_ttc_s": 0.35,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.257,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.91,
+          "widest_gap_angle_deg": 25.8,
+          "total_free_width_pct": 0.425
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0014.jpg",
+      "keyframe_id": "019085_kf0014",
+      "time_sec": 2.336,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is moving directly toward the camera. They are 2.2 metres ahead, to the left of centre. Located 31.1 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the surface zone. Distance estimate is reliable. A person is crossing left to right. They are 2.7 metres ahead, to the right of centre. Located 15.5 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is reliable. A person is crossing left to right. They are 3.3 metres ahead, to the left of centre. Located 18.9 degrees to the left of the forward axis. They will cross the forward path in approximately 1.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 3.5 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. A person is crossing left to right. They are 4.7 metres ahead, directly ahead in the centre of the frame. Located 8.9 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 30% obstructed. Minimum obstacle depth is 2.1 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.5 metres wide, located 27.3 degrees to the right of forward. Corridor extends to 8.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 88% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.3 metre wide corridor at 5.2 metres depth, located 8.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.5 metre wide corridor at 8.1 metres depth, located 27.3 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.605,
+        "direction_deg": -58.9,
+        "yaw_rate_dps": -2.81,
+        "lateral_mps": -0.518,
+        "forward_mps": 0.313,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.75,
+        "min_ttc_s": 0.44,
+        "n_critical": 2,
+        "n_high": 1,
+        "surface_blocked_pct": 0.306,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.5,
+          "widest_gap_angle_deg": 27.3,
+          "total_free_width_pct": 0.402
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0015.jpg",
+      "keyframe_id": "019085_kf0015",
+      "time_sec": 2.503,
+      "observation_text": "A dense intersection scene in daylight conditions. 5 agents detected. A person is moving directly toward the camera. They are 2.3 metres ahead, to the left of centre. Located 30.5 degrees to the left of the forward axis. At current speeds, contact will occur in 0.6 seconds. They occupy the surface zone. Distance estimate is reliable. A person is crossing left to right. They are 2.5 metres ahead, to the right of centre. Located 19.3 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is reliable. A person is crossing left to right. They are 3.0 metres ahead, to the left of centre. Located 16.5 degrees to the left of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.1 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.6 metres ahead, to the right of centre. Located 10.5 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 27% obstructed. Minimum obstacle depth is 2.2 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.9 metres wide, located 29.2 degrees to the right of forward. Corridor extends to 8.3 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 10% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 0.6 metre wide corridor at 3.8 metres depth, located 24.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.2 metre wide corridor at 5.1 metres depth, located 6.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.9 metre wide corridor at 8.3 metres depth, located 29.2 degrees to the right of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.761,
+        "direction_deg": -75.6,
+        "yaw_rate_dps": -3.41,
+        "lateral_mps": -0.737,
+        "forward_mps": 0.189,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.62,
+        "min_ttc_s": 0.4,
+        "n_critical": 5,
+        "n_high": 0,
+        "surface_blocked_pct": 0.277,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.93,
+          "widest_gap_angle_deg": 29.2,
+          "total_free_width_pct": 0.456
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0016.jpg",
+      "keyframe_id": "019085_kf0016",
+      "time_sec": 2.669,
+      "observation_text": "A dense intersection scene in daylight conditions. 6 agents detected. A person is crossing left to right. They are 2.3 metres ahead, to the left of centre. Located 29.1 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 2.5 metres ahead, to the right of centre. Located 23.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 3.1 metres ahead, to the left of centre. Located 13.9 degrees to the left of the forward axis. They will cross the forward path in approximately 1.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.9 metres ahead, to the right of centre. Located 12.7 degrees to the right of the forward axis. They will cross the forward path in approximately 1.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 4.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 33% obstructed. Minimum obstacle depth is 2.3 metres. Depth estimation reliability is poor. 6 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.4 metres wide, located 3.5 degrees to the left of forward. Corridor extends to 5.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 13% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.4 metre wide corridor at 5.3 metres depth, located 3.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.4 metre wide corridor at 9.3 metres depth, located 31.2 degrees to the right of the forward direction. Net flow of 1.4 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.922,
+        "direction_deg": -58.0,
+        "yaw_rate_dps": -5.82,
+        "lateral_mps": -0.782,
+        "forward_mps": 0.489,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.62,
+        "min_ttc_s": 0.52,
+        "n_critical": 2,
+        "n_high": 2,
+        "surface_blocked_pct": 0.332,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.44,
+          "widest_gap_angle_deg": -3.5,
+          "total_free_width_pct": 0.301
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0017.jpg",
+      "keyframe_id": "019085_kf0017",
+      "time_sec": 2.836,
+      "observation_text": "A dense intersection scene in daylight conditions. 5 agents detected. A person is crossing left to right. They are 2.2 metres ahead, to the left of centre. Located 26.9 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 2.6 metres ahead, to the right of centre. Located 28.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.6 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.9 metres ahead, to the left of centre. Located 13.6 degrees to the left of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.5 metres ahead, to the right of centre. Located 15.0 degrees to the right of the forward axis. They will cross the forward path in approximately 1.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 2.9 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 30% obstructed. Minimum obstacle depth is 2.2 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 4 navigable corridors detected. Widest gap is 1.3 metres wide, located 20.5 degrees to the right of forward. Corridor extends to 9.2 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 0.5 metre wide corridor at 3.7 metres depth, located 20.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.0 metre wide corridor at 4.9 metres depth, located 5.3 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.7 metre wide corridor at 4.8 metres depth, located 9.5 degrees to the right of the forward direction. Net flow of 1.6 \u2014 possible movement inside gap. Confidence 60%. A 1.3 metre wide corridor at 9.2 metres depth, located 20.5 degrees to the right of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.859,
+        "direction_deg": -47.3,
+        "yaw_rate_dps": -6.62,
+        "lateral_mps": -0.631,
+        "forward_mps": 0.583,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.58,
+        "min_ttc_s": 0.6,
+        "n_critical": 3,
+        "n_high": 1,
+        "surface_blocked_pct": 0.301,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.29,
+          "widest_gap_angle_deg": 20.5,
+          "total_free_width_pct": 0.442
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0018.jpg",
+      "keyframe_id": "019085_kf0018",
+      "time_sec": 3.003,
+      "observation_text": "A dense intersection scene in daylight conditions. 5 agents detected. A person is crossing left to right. They are 2.1 metres ahead, to the left of centre. Located 23.6 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 2.5 metres ahead, to the right of centre. Located 31.2 degrees to the right of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.6 metres ahead, to the left of centre. Located 11.2 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.0 metres ahead, to the right of centre. Located 16.1 degrees to the right of the forward axis. They will cross the forward path in approximately 1.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.2 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 31% obstructed. Minimum obstacle depth is 2.1 metres. Depth estimation reliability is poor. 5 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 1.3 metres wide, located 22.8 degrees to the right of forward. Corridor extends to 7.0 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 0.7 metre wide corridor at 4.2 metres depth, located 30.8 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.0 metre wide corridor at 5.1 metres depth, located directly ahead of the forward direction. Net flow of 1.3 \u2014 possible movement inside gap. Confidence 85%. A 1.3 metre wide corridor at 7.0 metres depth, located 22.8 degrees to the right of the forward direction. Net flow of 1.0 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "stepping_left",
+        "velocity_mps": 0.866,
+        "direction_deg": -60.0,
+        "yaw_rate_dps": -6.71,
+        "lateral_mps": -0.75,
+        "forward_mps": 0.433,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.54,
+        "min_ttc_s": 0.72,
+        "n_critical": 3,
+        "n_high": 1,
+        "surface_blocked_pct": 0.314,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.29,
+          "widest_gap_angle_deg": 22.8,
+          "total_free_width_pct": 0.396
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0019.jpg",
+      "keyframe_id": "019085_kf0019",
+      "time_sec": 3.17,
+      "observation_text": "A moderate intersection scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.0 metres ahead, to the left of centre. Located 20.5 degrees to the left of the forward axis. They will cross the forward path in approximately 0.8 seconds. Distance estimate is reliable. A person is crossing left to right. They are 2.6 metres ahead, directly ahead in the centre of the frame. Located 7.7 degrees to the left of the forward axis. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.3 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 23% obstructed. Minimum obstacle depth is 2.0 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.1 metres wide, located 24.1 degrees to the right of forward. Corridor extends to 4.9 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 63% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.1 metre wide corridor at 4.8 metres depth, located 29.6 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.1 metre wide corridor at 5.0 metres depth, located directly ahead of the forward direction. Net flow of 1.6 \u2014 possible movement inside gap. Confidence 60%. A 2.1 metre wide corridor at 4.9 metres depth, located 24.1 degrees to the right of the forward direction. Net flow of 2.4 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.089,
+        "direction_deg": -55.2,
+        "yaw_rate_dps": -7.61,
+        "lateral_mps": -0.894,
+        "forward_mps": 0.622,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.61,
+        "min_ttc_s": 0.67,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.231,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.12,
+          "widest_gap_angle_deg": 24.1,
+          "total_free_width_pct": 0.614
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0020.jpg",
+      "keyframe_id": "019085_kf0020",
+      "time_sec": 3.337,
+      "observation_text": "A sparse intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 1.9 metres ahead, to the left of centre. Located 17.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is reliable. A person is crossing left to right. They are 3.3 metres ahead, to the right of centre. Located 15.0 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is 18% obstructed. Minimum obstacle depth is 1.9 metres. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 3 navigable corridors detected. Widest gap is 2.3 metres wide, located directly ahead. Corridor extends to 4.9 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.6 metre wide corridor at 6.2 metres depth, located 28.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.3 metre wide corridor at 4.9 metres depth, located directly ahead of the forward direction. Net flow of 1.7 \u2014 possible movement inside gap. Confidence 60%. A 1.6 metre wide corridor at 4.8 metres depth, located 26.8 degrees to the right of the forward direction. Net flow of 3.4 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.006,
+        "direction_deg": -56.1,
+        "yaw_rate_dps": -13.69,
+        "lateral_mps": -0.835,
+        "forward_mps": 0.561,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.09,
+        "min_ttc_s": 0.91,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.18,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.34,
+          "widest_gap_angle_deg": -0.5,
+          "total_free_width_pct": 0.768
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0021.jpg",
+      "keyframe_id": "019085_kf0021",
+      "time_sec": 3.504,
+      "observation_text": "A moderate intersection scene in daylight conditions. 4 agents detected. A person is crossing left to right. They are 1.7 metres ahead, to the left of centre. Located 13.2 degrees to the left of the forward axis. They will cross the forward path in approximately 0.9 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.5 metres ahead, directly ahead in the centre of the frame. Located 4.3 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.2 metres ahead, to the right of centre. Located 22.6 degrees to the right of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. A chair has just entered the scene at 3.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 24% obstructed. Minimum obstacle depth is 1.7 metres. Depth estimation reliability is poor. 4 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 4 navigable corridors detected. Widest gap is 1.2 metres wide, located 31.4 degrees to the left of forward. Corridor extends to 8.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 17% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.2 metre wide corridor at 8.0 metres depth, located 31.4 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.7 metre wide corridor at 4.5 metres depth, located directly ahead of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%. A 1.2 metre wide corridor at 4.5 metres depth, located 13.4 degrees to the right of the forward direction. Net flow of 1.9 \u2014 possible movement inside gap. Confidence 60%. A 0.8 metre wide corridor at 4.5 metres depth, located 29.5 degrees to the right of the forward direction. Net flow of 4.3 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.831,
+        "direction_deg": -75.4,
+        "yaw_rate_dps": -19.92,
+        "lateral_mps": -0.804,
+        "forward_mps": 0.209,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.86,
+        "min_ttc_s": 0.19,
+        "n_critical": 3,
+        "n_high": 0,
+        "surface_blocked_pct": 0.241,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.19,
+          "widest_gap_angle_deg": -31.4,
+          "total_free_width_pct": 0.531
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0022.jpg",
+      "keyframe_id": "019085_kf0022",
+      "time_sec": 3.67,
+      "observation_text": "A moderate intersection scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.6 metres ahead, to the right of centre. Located 11.1 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 3.0 metres ahead, directly ahead in the centre of the frame. Located 5.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A chair has just entered the scene at 4.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 13% obstructed. Minimum obstacle depth is 1.7 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.9 metres wide, located 24.3 degrees to the right of forward. Corridor extends to 4.6 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 0.8 metre wide corridor at 3.0 metres depth, located 28.9 degrees to the left of the forward direction. Net flow of 2.4 \u2014 possible movement inside gap. Confidence 60%. A 1.9 metre wide corridor at 4.6 metres depth, located 24.3 degrees to the right of the forward direction. Net flow of 3.4 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.905,
+        "direction_deg": -73.2,
+        "yaw_rate_dps": -20.68,
+        "lateral_mps": -0.866,
+        "forward_mps": 0.262,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.88,
+        "min_ttc_s": 0.29,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.132,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.94,
+          "widest_gap_angle_deg": 24.3,
+          "total_free_width_pct": 0.479
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0023.jpg",
+      "keyframe_id": "019085_kf0023",
+      "time_sec": 3.837,
+      "observation_text": "A moderate pedestrian street scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.5 metres ahead, to the right of centre. Located 22.6 degrees to the right of the forward axis. They will cross the forward path in approximately 1.0 seconds. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A chair has just entered the scene at 3.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 23% obstructed. Minimum obstacle depth is 1.7 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.9 metres wide, located 30.0 degrees to the right of forward. Corridor extends to 4.5 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 0.9 metre wide corridor at 4.5 metres depth, located 30.0 degrees to the right of the forward direction. Net flow of 2.8 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.175,
+        "direction_deg": -87.0,
+        "yaw_rate_dps": -18.41,
+        "lateral_mps": -1.173,
+        "forward_mps": 0.061,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.8,
+        "min_ttc_s": 1.01,
+        "n_critical": 0,
+        "n_high": 1,
+        "surface_blocked_pct": 0.232,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.88,
+          "widest_gap_angle_deg": 30.0,
+          "total_free_width_pct": 0.141
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0024.jpg",
+      "keyframe_id": "019085_kf0024",
+      "time_sec": 4.004,
+      "observation_text": "A sparse intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 1.9 metres ahead, directly ahead in the centre of the frame. Located 8.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is crossing left to right. They are 2.7 metres ahead, to the right of centre. Located 26.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 10% obstructed. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.3 metres wide, located 14.9 degrees to the left of forward. Corridor extends to 5.4 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 17% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 4.3 metre wide corridor at 5.4 metres depth, located 14.9 degrees to the left of the forward direction. Net flow of 2.5 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.14,
+        "direction_deg": -70.6,
+        "yaw_rate_dps": -19.38,
+        "lateral_mps": -1.076,
+        "forward_mps": 0.378,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.72,
+        "min_ttc_s": 0.15,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.1,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.35,
+          "widest_gap_angle_deg": -14.9,
+          "total_free_width_pct": 0.575
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0025.jpg",
+      "keyframe_id": "019085_kf0025",
+      "time_sec": 4.171,
+      "observation_text": "A moderate pedestrian street scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.9 metres ahead, to the right of centre. Located 14.7 degrees to the right of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate has moderate uncertainty. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.8 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 3.7 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 51% obstructed. Minimum obstacle depth is 1.5 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 15% of the frame has unreliable perception due to clean. These regions are treated as blocked.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.298,
+        "direction_deg": -61.6,
+        "yaw_rate_dps": -18.29,
+        "lateral_mps": -1.141,
+        "forward_mps": 0.618,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.57,
+        "min_ttc_s": 0.48,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.51,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0026.jpg",
+      "keyframe_id": "019085_kf0026",
+      "time_sec": 4.338,
+      "observation_text": "A moderate intersection scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.8 metres ahead, directly ahead in the centre of the frame. Located 7.0 degrees to the left of the forward axis. Distance estimate is reliable. A person is crossing left to right. They are 3.4 metres ahead, to the right of centre. Located 31.5 degrees to the right of the forward axis. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 4.9 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 27% obstructed. Minimum obstacle depth is 2.8 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.9 metres wide, located 19.1 degrees to the left of forward. Corridor extends to 9.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 16% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.9 metre wide corridor at 9.6 metres depth, located 19.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.7 metre wide corridor at 4.3 metres depth, located 13.1 degrees to the right of the forward direction. Net flow of 2.6 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.102,
+        "direction_deg": -68.0,
+        "yaw_rate_dps": -20.02,
+        "lateral_mps": -1.022,
+        "forward_mps": 0.412,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.86,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.276,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.89,
+          "widest_gap_angle_deg": -19.1,
+          "total_free_width_pct": 0.664
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0027.jpg",
+      "keyframe_id": "019085_kf0027",
+      "time_sec": 4.505,
+      "observation_text": "A moderate intersection scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 2.5 metres ahead, to the right of centre. Located 30.5 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is reliable. A person is crossing left to right. They are 2.7 metres ahead, directly ahead in the centre of the frame. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.3 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 31% obstructed. Minimum obstacle depth is 2.4 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 3.4 metres wide, located 16.5 degrees to the left of forward. Corridor extends to 8.6 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 22% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 3.4 metre wide corridor at 8.6 metres depth, located 16.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.1 metre wide corridor at 4.1 metres depth, located 15.3 degrees to the right of the forward direction. Net flow of 2.3 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.072,
+        "direction_deg": -54.2,
+        "yaw_rate_dps": -21.85,
+        "lateral_mps": -0.869,
+        "forward_mps": 0.627,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.71,
+        "min_ttc_s": 0.29,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.311,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.35,
+          "widest_gap_angle_deg": -16.5,
+          "total_free_width_pct": 0.635
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0028.jpg",
+      "keyframe_id": "019085_kf0028",
+      "time_sec": 4.671,
+      "observation_text": "A sparse pedestrian street scene in daylight conditions. 2 agents detected. A person is moving away from the camera. They are 3.2 metres ahead, to the left of centre. No collision risk. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 3.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 41% obstructed. Minimum obstacle depth is 2.6 metres. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.0 metres wide, located 15.4 degrees to the right of forward. Corridor extends to 3.8 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 3.0 metre wide corridor at 3.8 metres depth, located 15.4 degrees to the right of the forward direction. Net flow of 3.6 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.066,
+        "direction_deg": -67.7,
+        "yaw_rate_dps": -20.34,
+        "lateral_mps": -0.986,
+        "forward_mps": 0.404,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.6,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.416,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.01,
+          "widest_gap_angle_deg": 15.4,
+          "total_free_width_pct": 0.56
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0029.jpg",
+      "keyframe_id": "019085_kf0029",
+      "time_sec": 4.838,
+      "observation_text": "A moderate pedestrian street scene in daylight conditions. 4 agents detected. A person is moving directly toward the camera. They are 2.9 metres ahead, to the left of centre. Located 18.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the surface zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.4 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is moving away from the camera. They are 3.1 metres ahead, to the left of centre. No collision risk. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 7.1 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is 63% obstructed. Minimum obstacle depth is 2.4 metres. Depth estimation reliability is poor. 3 detected agents in this zone. The mid zone is 2% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 0 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.7 metres wide, located directly ahead. Corridor extends to 8.4 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 45% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.7 metre wide corridor at 8.4 metres depth, located directly ahead of the forward direction. Net flow of 1.1 \u2014 possible movement inside gap. Confidence 85%. A 0.8 metre wide corridor at 4.1 metres depth, located 26.9 degrees to the right of the forward direction. Net flow of 3.4 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.914,
+        "direction_deg": -63.4,
+        "yaw_rate_dps": -17.99,
+        "lateral_mps": -0.817,
+        "forward_mps": 0.41,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.42,
+        "min_ttc_s": 0.4,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.639,
+        "torso_blocked_pct": 0.021,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.68,
+          "widest_gap_angle_deg": 2.8,
+          "total_free_width_pct": 0.278
+        },
+        "density": "moderate"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0030.jpg",
+      "keyframe_id": "019085_kf0030",
+      "time_sec": 5.005,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 3 agents detected. A person is moving directly toward the camera. They are 2.8 metres ahead, to the left of centre. Located 16.9 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 2.1 metres, to the right of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person is moving away from the camera. They are 2.9 metres ahead, to the left of centre. No collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is 36% obstructed. Minimum obstacle depth is 2.1 metres. Depth estimation reliability is poor. 2 detected agents in this zone. The mid zone is 51% blocked. 1 agent present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.4 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.8 metres wide, located 6.6 degrees to the right of forward. Corridor extends to 8.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.8 metre wide corridor at 8.4 metres depth, located 6.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.7 metre wide corridor at 4.2 metres depth, located 30.9 degrees to the right of the forward direction. Net flow of 4.1 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.084,
+        "direction_deg": -78.2,
+        "yaw_rate_dps": -15.07,
+        "lateral_mps": -1.061,
+        "forward_mps": 0.222,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.13,
+        "min_ttc_s": 0.43,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.364,
+        "torso_blocked_pct": 0.517,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.81,
+          "widest_gap_angle_deg": 6.6,
+          "total_free_width_pct": 0.27
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0031.jpg",
+      "keyframe_id": "019085_kf0031",
+      "time_sec": 5.172,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 2 agents detected. A person is walking head-on in the same lane toward the camera at 5.7 m/s. They are 2.8 metres ahead, to the left of centre. Located 15.0 degrees to the left of the forward axis. Contact in 0.5 seconds if neither changes course. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is moving away from the camera. They are 2.8 metres ahead, to the left of centre. No collision risk. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 57% blocked. 2 agents present \u2014 1 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.5 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.5 metres wide, located 14.1 degrees to the right of forward. Corridor extends to 6.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 31% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.5 metre wide corridor at 6.8 metres depth, located 14.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.968,
+        "direction_deg": -33.3,
+        "yaw_rate_dps": -15.6,
+        "lateral_mps": -0.531,
+        "forward_mps": 0.809,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.97,
+        "min_ttc_s": 0.48,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.571,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.47,
+          "widest_gap_angle_deg": 14.1,
+          "total_free_width_pct": 0.261
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0032.jpg",
+      "keyframe_id": "019085_kf0032",
+      "time_sec": 5.339,
+      "observation_text": "A extreme pedestrian street scene in daylight conditions. 3 agents detected. A person is moving directly toward the camera. They are 2.4 metres ahead, to the left of centre. Located 11.4 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person is moving directly toward the camera. They are 2.5 metres ahead, to the left of centre. Located 23.8 degrees to the left of the forward axis. At current speeds, contact will occur in 1.6 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. A person has just entered the scene at 7.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 62% blocked. 3 agents present \u2014 2 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.4 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.4 metres wide, located 20.0 degrees to the right of forward. Corridor extends to 5.7 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 14% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 2.4 metre wide corridor at 5.7 metres depth, located 20.0 degrees to the right of the forward direction. Net flow of 1.6 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.928,
+        "direction_deg": -20.8,
+        "yaw_rate_dps": -13.75,
+        "lateral_mps": -0.33,
+        "forward_mps": 0.867,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.4,
+        "min_ttc_s": 0.38,
+        "n_critical": 1,
+        "n_high": 1,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.62,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.42,
+          "widest_gap_angle_deg": 20.0,
+          "total_free_width_pct": 0.305
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0033.jpg",
+      "keyframe_id": "019085_kf0033",
+      "time_sec": 5.506,
+      "observation_text": "A extreme intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 2.3 metres ahead, to the left of centre. Located 20.9 degrees to the left of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is moving directly toward the camera. They are 2.3 metres ahead, directly ahead in the centre of the frame. Located 6.6 degrees to the left of the forward axis. At current speeds, contact will occur in 0.4 seconds. They occupy the torso zone. Distance estimate is uncertain \u2014 poor depth signal. Track is recent \u2014 motion classification may be uncertain. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 60% blocked. 2 agents present \u2014 1 approaching, 1 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.4 metres wide, located 24.6 degrees to the right of forward. Corridor extends to 5.7 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 22% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 0.8 metre wide corridor at 5.2 metres depth, located 31.5 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 2.4 metre wide corridor at 5.7 metres depth, located 24.6 degrees to the right of the forward direction. Net flow of 1.9 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.09,
+        "direction_deg": -19.3,
+        "yaw_rate_dps": -12.87,
+        "lateral_mps": -0.36,
+        "forward_mps": 1.029,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.3,
+        "min_ttc_s": 0.23,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.6,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.36,
+          "widest_gap_angle_deg": 24.6,
+          "total_free_width_pct": 0.4
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0034.jpg",
+      "keyframe_id": "019085_kf0034",
+      "time_sec": 5.672,
+      "observation_text": "A extreme intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 2.1 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.7 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 2.1 metres ahead, to the left of centre. Located 17.4 degrees to the left of the forward axis. They will cross the forward path in approximately 0.5 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 63% blocked. 2 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.5 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.7 metres wide, located 27.3 degrees to the right of forward. Corridor extends to 5.6 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 21% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.1 metre wide corridor at 5.2 metres depth, located 29.9 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.7 metre wide corridor at 5.6 metres depth, located 27.3 degrees to the right of the forward direction. Net flow of 2.0 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.885,
+        "direction_deg": -18.1,
+        "yaw_rate_dps": -13.08,
+        "lateral_mps": -0.275,
+        "forward_mps": 0.841,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.07,
+        "min_ttc_s": 0.48,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.633,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.72,
+          "widest_gap_angle_deg": 27.3,
+          "total_free_width_pct": 0.367
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0035.jpg",
+      "keyframe_id": "019085_kf0035",
+      "time_sec": 5.839,
+      "observation_text": "A extreme intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 1.8 metres ahead, directly ahead in the centre of the frame. Located 5.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 1.9 metres ahead, to the left of centre. Located 12.7 degrees to the left of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 67% blocked. 2 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.4 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.5 metres wide, located 27.7 degrees to the left of forward. Corridor extends to 5.1 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 27% of the frame has unreliable perception due to clean. These regions are treated as blocked. A 1.5 metre wide corridor at 5.1 metres depth, located 27.7 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 0.9 metre wide corridor at 5.5 metres depth, located 30.9 degrees to the right of the forward direction. Net flow of 1.8 \u2014 possible movement inside gap. Confidence 60%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.928,
+        "direction_deg": -36.2,
+        "yaw_rate_dps": -14.58,
+        "lateral_mps": -0.548,
+        "forward_mps": 0.749,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.83,
+        "min_ttc_s": 0.36,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.674,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.49,
+          "widest_gap_angle_deg": -27.7,
+          "total_free_width_pct": 0.326
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0036.jpg",
+      "keyframe_id": "019085_kf0036",
+      "time_sec": 6.006,
+      "observation_text": "A extreme intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 1.6 metres ahead, to the right of centre. Located 13.9 degrees to the right of the forward axis. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 1.8 metres ahead, directly ahead in the centre of the frame. Located 7.0 degrees to the left of the forward axis. They will cross the forward path in approximately 0.4 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 71% blocked. 2 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.3 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.1 metres wide, located 25.1 degrees to the left of forward. Corridor extends to 5.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 2.1 metre wide corridor at 5.2 metres depth, located 25.1 degrees to the left of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.975,
+        "direction_deg": -32.1,
+        "yaw_rate_dps": -13.96,
+        "lateral_mps": -1.049,
+        "forward_mps": 1.673,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.62,
+        "min_ttc_s": 0.33,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.714,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.07,
+          "widest_gap_angle_deg": -25.1,
+          "total_free_width_pct": 0.284
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0037.jpg",
+      "keyframe_id": "019085_kf0037",
+      "time_sec": 6.173,
+      "observation_text": "A extreme intersection scene in daylight conditions. 2 agents detected. A person is crossing left to right. They are 1.2 metres ahead, to the right of centre. Located 17.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person is crossing left to right. They are 1.5 metres ahead, directly ahead in the centre of the frame. They will cross the forward path in approximately 0.3 seconds. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 63% blocked. 2 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.2 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.4 metres wide, located 22.8 degrees to the left of forward. Corridor extends to 4.9 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 13% of the frame has unreliable perception due to high flow variance. These regions are treated as blocked. A 2.4 metre wide corridor at 4.9 metres depth, located 22.8 degrees to the left of the forward direction. Net flow of -1.5 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.597,
+        "direction_deg": -33.4,
+        "yaw_rate_dps": -10.85,
+        "lateral_mps": -0.878,
+        "forward_mps": 1.334,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.24,
+        "min_ttc_s": 0.21,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.631,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.42,
+          "widest_gap_angle_deg": -22.8,
+          "total_free_width_pct": 0.349
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0038.jpg",
+      "keyframe_id": "019085_kf0038",
+      "time_sec": 6.34,
+      "observation_text": "A extreme intersection scene in daylight conditions. 3 agents detected. A person is crossing left to right. They are 0.9 metres ahead, to the right of centre. Located 20.4 degrees to the right of the forward axis. They will cross the forward path in approximately 0.1 seconds. Distance estimate has moderate uncertainty. A person is crossing left to right. They are 1.2 metres ahead, directly ahead in the centre of the frame. Located 7.0 degrees to the right of the forward axis. They will cross the forward path in approximately 0.2 seconds. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 6.0 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 62% blocked. 3 agents present \u2014 0 approaching, 2 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 1.7 metres wide, located 25.8 degrees to the left of forward. Corridor extends to 4.7 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 12% of the frame has unreliable perception due to high flow variance. These regions are treated as blocked. A 1.7 metre wide corridor at 4.7 metres depth, located 25.8 degrees to the left of the forward direction. Net flow of -3.5 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.298,
+        "direction_deg": -24.2,
+        "yaw_rate_dps": -11.7,
+        "lateral_mps": -0.532,
+        "forward_mps": 1.184,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.94,
+        "min_ttc_s": 0.14,
+        "n_critical": 2,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.629,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.73,
+          "widest_gap_angle_deg": -25.8,
+          "total_free_width_pct": 0.264
+        },
+        "density": "extreme"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0039.jpg",
+      "keyframe_id": "019085_kf0039",
+      "time_sec": 6.507,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 3 agents detected. A person at 0.8 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 5.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.5 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 55% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.9 metres. Halt or duck required. 2 navigable corridors detected. Widest gap is 1.2 metres wide, located 21.6 degrees to the left of forward. Corridor extends to 4.3 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 100% of the frame has unreliable perception due to high depth variance. These regions are treated as blocked. A 1.2 metre wide corridor at 4.3 metres depth, located 21.6 degrees to the left of the forward direction. Net flow of -3.0 \u2014 possible movement inside gap. Confidence 85%. A 0.9 metre wide corridor at 4.5 metres depth, located directly ahead of the forward direction. Net flow of -1.6 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.302,
+        "direction_deg": -18.0,
+        "yaw_rate_dps": -10.95,
+        "lateral_mps": -0.402,
+        "forward_mps": 1.238,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.91,
+        "min_ttc_s": 0.12,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.558,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.24,
+          "widest_gap_angle_deg": -21.6,
+          "total_free_width_pct": 0.353
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/019085/019085_kf0040.jpg",
+      "keyframe_id": "019085_kf0040",
+      "time_sec": 6.673,
+      "observation_text": "A dense pedestrian street scene in daylight conditions. 3 agents detected. A person at 0.8 metres, to the right of centre, is moving unpredictably with frequent direction changes. Highest risk class \u2014 maintain maximum distance. Distance estimate is uncertain \u2014 poor depth signal. A person has just entered the scene at 5.2 metres, to the left of centre. Insufficient track history to classify motion \u2014 treat as approaching. A person has just entered the scene at 5.3 metres, directly ahead in the centre of the frame. Insufficient track history to classify motion \u2014 treat as approaching. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 53% blocked. 2 agents present \u2014 0 approaching, 0 crossing, 0 static. Minimum time to contact in this zone is 0.1 seconds. This is the highest risk zone \u2014 imminent collision threat. OVERHEAD HAZARD detected: person. Minimum depth 0.8 metres. Halt or duck required. 2 navigable corridors detected. Widest gap is 1.3 metres wide, located 19.3 degrees to the left of forward. Corridor extends to 4.4 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 13% of the frame has unreliable perception due to high flow variance. These regions are treated as blocked. A 1.3 metre wide corridor at 4.4 metres depth, located 19.3 degrees to the left of the forward direction. Net flow of -1.1 \u2014 possible movement inside gap. Confidence 85%. A 0.9 metre wide corridor at 4.6 metres depth, located directly ahead of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.349,
+        "direction_deg": -26.9,
+        "yaw_rate_dps": -8.23,
+        "lateral_mps": -0.611,
+        "forward_mps": 1.203,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.76,
+        "min_ttc_s": 0.13,
+        "n_critical": 1,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.531,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.32,
+          "widest_gap_angle_deg": -19.3,
+          "total_free_width_pct": 0.351
+        },
+        "density": "dense"
+      },
+      "weight": 1.0,
+      "flags": []
+    }
+  ]
+}

@@ -1,38 +1,49 @@
-import { facets, placeholderTags } from "@/data/densewalk-taxonomy";
-import type {
-  DistributionRow,
-  FeedClip,
-  FeedData,
-  FeedFrame,
-  FeedTrack,
-  FrameRisk,
-  NarrativeLine,
-  RawClip,
-  RawFrame,
-} from "@/types/densewalk-feed";
+import { FACET_DEFS } from "@/data/densewalk-taxonomy";
+import type { ClipFacts, FeedClip, FeedData, FeedTrack, FrameRisk, RawClip, TaxonomyFacet } from "@/types/densewalk-feed";
 
-import sample from "./003105_uni.json";
+import { RISK_ORDER, distributionOf, framesOf, narrativeOf, reasonsOf, titleCase } from "./adapt";
+import { rawClips } from "./clips";
 
 /**
- * Adapter for the DenseWalk instruction feed.
+ * Build-time adapter for the DenseWalk instruction feed.
  *
- * One real annotation file ships today (003105_uni.json). Every number the feed
- * shows is derived from it — nothing is invented — so when the rest of the
- * exports land, dropping their JSON in this folder and extending SOURCES is the
- * whole change.
+ * Every clip on the page is a real annotation export from the public dataset
+ * (https://huggingface.co/datasets/s-alam/densewalk-public): the JSON under
+ * ./clips is `json_openvla/` verbatim, and each mosaic render is streamed from
+ * the same repo by URL.
  *
- * The extra cards are explicit re-orderings of that clip, labelled as such in
- * the UI. A feed seeded with one clip repeated verbatim would make the filters
- * and the timeline look broken, and fabricating annotations would put numbers
- * on screen that no pipeline produced. A re-ordering moves real frames and
- * nothing else.
+ * This module runs at build time only — it pulls in all 250 exports, 38 MB of
+ * JSON, and must never be imported from a client component. What it emits is
+ * the *summary* of each clip: everything the grid, the filters and the taxonomy
+ * rail need, and nothing per-frame. Cards fetch their own frames from the CDN
+ * (src/lib/densewalk-frames.ts) using the same adapters in ./adapt, so the two
+ * paths cannot drift.
+ *
+ * Refresh the corpus with `npm run sync:densewalk`.
  */
 
-/** Real annotation exports. Add an entry per clip as they arrive. */
-const SOURCES: readonly RawClip[] = [sample as RawClip];
+/** Real annotation exports, one per file in the dataset's `json_openvla/`. */
+const SOURCES: readonly RawClip[] = rawClips;
 
-/** Re-orderings generated per real clip while only one export exists. Set to 0 once enough ship. */
-const REORDERINGS_PER_SOURCE = 11;
+const REPO_BASE = "https://huggingface.co/datasets/s-alam/densewalk-public/resolve/main";
+
+/**
+ * Mosaic renders, served straight from the dataset's CDN.
+ *
+ * `/resolve/` answers a cross-origin request with a redirect to a signed CDN
+ * URL that honours Range requests, so the player can seek without the video
+ * ever being copied into this repo or onto the web host. The file name is a
+ * pure function of the clip id — the dataset pairs every `NNNNNN_uni.json`
+ * with exactly one `NNNNNN_mosaic.mp4`.
+ */
+const VIDEO_BASE = `${REPO_BASE}/mosaic_videos`;
+
+/** Per-clip frame exports, fetched by the card that needs them. */
+const FRAMES_BASE = `${REPO_BASE}/json_openvla`;
+
+function videoFor(clipId: string): string {
+  return `${VIDEO_BASE}/${clipId}_mosaic.mp4`;
+}
 
 /**
  * The feed's tabs.
@@ -54,21 +65,21 @@ const TRACKS: readonly FeedTrack[] = [
     key: "hindi",
     label: "Hindi",
     kind: "language",
-    note: "Clip-level instructions are shown in Hindi. Frame observations are still served from the English source until the multilingual pass runs.",
+    note: "One clip carries a hand-written Hindi stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "bangla",
     label: "Bangla",
     kind: "language",
-    note: "Clip-level instructions are shown in Bangla. Frame observations are still served from the English source until the multilingual pass runs.",
+    note: "One clip carries a hand-written Bangla stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "telegu",
     label: "Telegu",
     kind: "language",
-    note: "Clip-level instructions are shown in Telegu. Frame observations are still served from the English source until the multilingual pass runs.",
+    note: "One clip carries a hand-written Telegu stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
@@ -104,160 +115,22 @@ function instructionsFor(sourceId: string, english: string): Readonly<Record<str
 }
 
 /**
- * Clip id → mp4 under public/. Empty for now, so every stage renders the
- * placeholder tile. Drop the render in public/densewalk/ and uncomment its
- * line to attach it; ids not listed stay placeholders.
+ * Distinct words across a clip's frame observations.
+ *
+ * The full text is 26 M characters over the corpus and cannot ship. Reducing
+ * each clip to its vocabulary keeps the search box working on the words people
+ * actually type — actions, objects, densities — for 14 KB gzipped in total.
  */
-const VIDEOS: Readonly<Record<string, string>> = {
-  // "003105": "/densewalk/003105_mosaic.mp4",
-};
-
-function videoFor(clipId: string): string | null {
-  return VIDEOS[clipId] ?? null;
-}
-
-function titleCase(snake: string): string {
-  return snake
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
-const RISK_ORDER: readonly FrameRisk[] = ["Low", "Medium", "High"];
-
-function riskOf(raw: RawFrame): FrameRisk {
-  const nav = raw.navigability;
-  if (nav.n_critical > 0) return "High";
-  if (nav.min_ttc_s !== null && nav.min_ttc_s < 1.5) return "High";
-  if (nav.n_high > 0 || !nav.free_corridor.exists || nav.surface_blocked_pct > 0.5) return "Medium";
-  return "Low";
-}
-
-function navSummary(raw: RawFrame): string {
-  const corridor = raw.navigability.free_corridor;
-  if (!corridor.exists) return "No free corridor";
-  const bearing = corridor.widest_gap_angle_deg === 0 ? "ahead" : `${corridor.widest_gap_angle_deg}°`;
-  return `${corridor.widest_gap_m.toFixed(1)} m gap ${bearing}`;
-}
-
-/**
- * `timeSec` is passed in rather than read off `raw`, because a re-ordered clip
- * takes its timeline from the slot a frame lands in, not from the frame's
- * original timestamp — otherwise the axis would run backwards mid-clip.
- */
-function toFrame(raw: RawFrame, index: number, timeSec: number): FeedFrame {
-  const nav = raw.navigability;
-  return {
-    index,
-    keyframeId: raw.keyframe_id,
-    timeSec,
-    time: `${timeSec.toFixed(1)}s`,
-    action: raw.action.label,
-    actionLabel: titleCase(raw.action.label),
-    mode: raw.action.mode,
-    isStop: raw.action.is_stop,
-    velocity: raw.action.velocity_mps,
-    direction: raw.action.direction_deg,
-    yawRate: raw.action.yaw_rate_dps,
-    confidence: Math.round(raw.weight * 100),
-    density: nav.density,
-    nearestObstacle: nav.nearest_obstacle_m,
-    minTtc: nav.min_ttc_s,
-    corridorExists: nav.free_corridor.exists,
-    widestGap: nav.free_corridor.widest_gap_m,
-    gapAngle: nav.free_corridor.widest_gap_angle_deg,
-    // The raw fields are 0..1 fractions despite their `_pct` suffix.
-    surfaceBlocked: Math.round(nav.surface_blocked_pct * 100),
-    torsoBlocked: Math.round(nav.torso_blocked_pct * 100),
-    nav: navSummary(raw),
-    risk: riskOf(raw),
-    flags: raw.flags,
-    observation: raw.observation_text,
-    image: raw.image,
-  };
-}
-
-function distributionOf(frames: readonly FeedFrame[]): readonly DistributionRow[] {
-  const counts = new Map<string, number>();
-  for (const frame of frames) counts.set(frame.action, (counts.get(frame.action) ?? 0) + 1);
-
-  return [...counts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .map(([action, count]) => ({
-      action,
-      label: titleCase(action),
-      count,
-      share: Math.round((count / frames.length) * 100),
-    }));
-}
-
-/** Splits the clip into four spans and describes what each one actually contains. */
-function narrativeOf(frames: readonly FeedFrame[]): readonly NarrativeLine[] {
-  const SPANS = 4;
-  const size = Math.ceil(frames.length / SPANS);
-  const lines: NarrativeLine[] = [];
-
-  for (let start = 0; start < frames.length; start += size) {
-    const span = frames.slice(start, start + size);
-    const dominant = distributionOf(span)[0];
-    const blocked = span.filter((f) => !f.corridorExists).length;
-    const stopped = span.filter((f) => f.isStop).length;
-
-    const corridor =
-      blocked === 0
-        ? "a free corridor holds throughout"
-        : blocked === span.length
-          ? "no free corridor is found"
-          : `the corridor closes on ${blocked} of ${span.length} frames`;
-
-    lines.push({
-      time: `${span[0].timeSec.toFixed(1)}–${span[span.length - 1].timeSec.toFixed(1)}s`,
-      text:
-        `${dominant.label} leads on ${dominant.count} of ${span.length} frames and ${corridor}` +
-        (stopped > 0 ? `, with ${stopped} full stop${stopped === 1 ? "" : "s"}.` : "."),
-    });
+function observationVocabulary(raw: RawClip): string {
+  const words = new Set<string>();
+  for (const frame of raw.frames) {
+    for (const word of frame.observation_text.toLowerCase().match(/[a-z0-9]+/g) ?? []) words.add(word);
   }
-
-  return lines;
+  return [...words].sort().join(" ");
 }
 
-function reasonsOf(frames: readonly FeedFrame[]): readonly string[] {
-  const open = frames.filter((f) => f.corridorExists).length;
-  const widest = Math.max(...frames.map((f) => f.widestGap));
-  const ranges = frames.map((f) => f.nearestObstacle).filter((m): m is number => m !== null);
-  const flagged = frames.filter((f) => f.flags.length > 0).length;
-
-  const modes = new Map<string, number>();
-  for (const frame of frames) modes.set(frame.mode, (modes.get(frame.mode) ?? 0) + 1);
-  const [topMode, topModeCount] = [...modes.entries()].sort((a, b) => b[1] - a[1])[0];
-
-  return [
-    `Free corridor on ${open} of ${frames.length} frames`,
-    `Widest measured gap ${widest.toFixed(1)} m`,
-    ranges.length > 0 ? `Nearest obstacle ${Math.min(...ranges).toFixed(2)} m` : "No obstacle range recovered",
-    flagged > 0
-      ? `${flagged} frame${flagged === 1 ? "" : "s"} flagged low-confidence`
-      : `Dominant mode ${topMode} on ${topModeCount} frames`,
-  ];
-}
-
-function rotate(frames: readonly RawFrame[], offset: number): readonly RawFrame[] {
-  const shift = ((offset % frames.length) + frames.length) % frames.length;
-  return [...frames.slice(shift), ...frames.slice(0, shift)];
-}
-
-function toClip(
-  raw: RawClip,
-  id: string,
-  source: FeedClip["source"],
-  offset: number,
-  tags: Readonly<Record<string, string>>,
-): FeedClip {
-  const ordered = offset === 0 ? raw.frames : rotate(raw.frames, offset);
-  // Keyframes are sampled sparsely, so the span comes from the timestamps —
-  // frames / fps would describe the source video, not this clip.
-  const timeline = raw.frames.map((f) => f.time_sec);
-  const frames = ordered.map((frame, i) => toFrame(frame, i, timeline[i]));
+function toClip(raw: RawClip): FeedClip {
+  const frames = framesOf(raw);
 
   const distribution = distributionOf(frames);
   const evidence = raw.instruction.evidence;
@@ -266,55 +139,85 @@ function toClip(
     "Low",
   );
 
-  return {
-    id,
-    source,
-    video: videoFor(id),
-    fps: raw.fps,
+  // Modes are counted over frames rather than taken from the dominant action,
+  // so a clip split across two walk actions still reads as "Walk" overall.
+  const modeCounts = new Map<string, number>();
+  for (const frame of frames) modeCounts.set(frame.mode, (modeCounts.get(frame.mode) ?? 0) + 1);
+  const dominantMode = [...modeCounts.entries()].sort((a, b) => b[1] - a[1])[0][0];
+
+  const facts: ClipFacts = {
     keyframes: frames.length,
-    duration: `${Math.max(...timeline).toFixed(1)}s`,
-    location: evidence.location,
     locationLabel: titleCase(evidence.location),
-    density: evidence.density,
     densityLabel: titleCase(evidence.density),
+    dominantMode: titleCase(dominantMode),
+    risk: worstRisk,
     peakPeople: evidence.peak_people,
     peakVehicles: evidence.peak_vehicles,
+    corridorFrames: frames.filter((f) => f.corridorExists).length,
+    stopFrames: frames.filter((f) => f.isStop).length,
+  };
+
+  const actions = [...new Set(frames.map((f) => f.action))].sort();
+  const modes = [...modeCounts.keys()].sort();
+
+  return {
+    ...facts,
+    id: raw.video_id,
+    video: videoFor(raw.video_id),
+    fps: raw.fps,
+    // Keyframes are sampled sparsely, so the span comes from the timestamps —
+    // frames / fps would describe the source video, not the sampled clip.
+    duration: `${Math.max(...frames.map((f) => f.timeSec)).toFixed(1)}s`,
+    location: evidence.location,
+    density: evidence.density,
     instruction: raw.instruction.text,
     instructions: instructionsFor(raw.video_id, raw.instruction.text),
-    tags,
+    tags: Object.fromEntries(FACET_DEFS.map((facet) => [facet.key, facet.of(facts)])),
     dominantAction: distribution[0].action,
     dominantLabel: distribution[0].label,
     avgConfidence: Math.round((frames.reduce((sum, f) => sum + f.confidence, 0) / frames.length) * 10) / 10,
-    risk: worstRisk,
     distribution,
     narrative: narrativeOf(frames),
     reasons: reasonsOf(frames),
-    frames,
+    actions,
+    modes,
+    search: [raw.video_id, evidence.location, evidence.density, raw.instruction.text, ...actions, ...modes]
+      .join(" ")
+      .toLowerCase()
+      .concat(" ", observationVocabulary(raw)),
   };
 }
 
-function buildFeed(): FeedData {
-  const clips: FeedClip[] = [];
+/**
+ * Facet rows, restricted to values the corpus actually contains.
+ *
+ * A declared-but-absent value would render a permanently-zero row that filters
+ * the feed to nothing when clicked, so the vocabulary is read back out of the
+ * tagged clips and only ordered by the definition.
+ */
+function facetsOf(clips: readonly FeedClip[]): readonly TaxonomyFacet[] {
+  return FACET_DEFS.map((def) => {
+    const present = new Set(clips.map((clip) => clip.tags[def.key]));
+    return {
+      key: def.key,
+      name: def.name,
+      values: def.order.filter((value) => present.has(value)),
+    };
+  }).filter((facet) => facet.values.length > 1);
+}
 
-  for (const raw of SOURCES) {
-    // The real export carries no taxonomy fields, so the sample stays untagged
-    // rather than being given values no tagger assigned.
-    clips.push(toClip(raw, raw.video_id, "sample", 0, {}));
-    for (let n = 1; n <= REORDERINGS_PER_SOURCE; n += 1) {
-      // A prime step keeps successive re-orderings from landing on similar sequences.
-      const offset = (n * 7) % raw.frames.length;
-      clips.push(toClip(raw, `${raw.video_id}-R${String(n).padStart(2, "0")}`, "placeholder", offset, placeholderTags(n)));
-    }
-  }
+function buildFeed(): FeedData {
+  const clips = SOURCES.map(toClip).sort((a, b) => a.id.localeCompare(b.id));
 
   return {
     clips,
+    framesBase: FRAMES_BASE,
     actions: [...new Set(SOURCES.flatMap((s) => s.action_space.discrete))],
-    modes: [...new Set(clips.flatMap((c) => c.frames.map((f) => f.mode)))].sort(),
-    facets,
+    modes: [...new Set(clips.flatMap((c) => c.modes))].sort(),
+    facets: facetsOf(clips),
     tracks: TRACKS,
     convention: SOURCES[0].action_space.convention,
-    totalFrames: clips.reduce((sum, c) => sum + c.frames.length, 0),
+    totalFrames: clips.reduce((sum, c) => sum + c.keyframes, 0),
   };
 }
 

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:densewalk": "node scripts/sync-densewalk.mjs",
+    "fix:mosaics": "node scripts/reencode-mosaics.mjs"
   },
   "dependencies": {
     "next": "16.3.1",

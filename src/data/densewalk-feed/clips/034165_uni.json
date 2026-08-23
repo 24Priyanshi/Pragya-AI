@@ -1,0 +1,1296 @@
+{
+  "video_id": "034165",
+  "fps": 30.0,
+  "n_frames": 36,
+  "instruction": {
+    "text": "Navigate through the empty mixed street, sharing space with up to 1 person and 1 vehicle, where the way ahead is frequently obstructed. Keep a safe distance from others and move at a pace that suits the conditions.",
+    "evidence": {
+      "n_frames": 36,
+      "location": "mixed_street",
+      "density": "empty",
+      "peak_people": 1,
+      "peak_vehicles": 1
+    }
+  },
+  "action_space": {
+    "discrete": [
+      "standing_still",
+      "walking_slow",
+      "walking_normal",
+      "walking_fast",
+      "turning_left",
+      "turning_right",
+      "stepping_left",
+      "stepping_right"
+    ],
+    "target": [
+      "velocity_mps",
+      "direction_deg",
+      "yaw_rate_dps"
+    ],
+    "label_map": {
+      "standing_still": {
+        "direction_deg": 0.0,
+        "mode": "stand"
+      },
+      "walking_slow": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_normal": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "walking_fast": {
+        "direction_deg": 0.0,
+        "mode": "walk"
+      },
+      "turning_left": {
+        "direction_deg": -45.0,
+        "mode": "turn"
+      },
+      "turning_right": {
+        "direction_deg": 45.0,
+        "mode": "turn"
+      },
+      "stepping_left": {
+        "direction_deg": -90.0,
+        "mode": "sidestep"
+      },
+      "stepping_right": {
+        "direction_deg": 90.0,
+        "mode": "sidestep"
+      }
+    },
+    "convention": "Grounded ego-motion: forward/lateral/yaw recovered by motion-field solve on agent-masked static pixels, metric-scaled by depth. velocity_mps=measured horizontal speed; yaw_rate_dps=measured angular velocity; (forward,lateral,yaw) = holonomic command. weight<1 = low solve-confidence / artifact frame."
+  },
+  "frames": [
+    {
+      "image": "keyframes/034165/034165_kf0000.jpg",
+      "keyframe_id": "034165_kf0000",
+      "time_sec": 0.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "standing_still",
+        "velocity_mps": 0.0,
+        "direction_deg": 0.0,
+        "yaw_rate_dps": 0.0,
+        "lateral_mps": 0.0,
+        "forward_mps": 0.0,
+        "mode": "stand",
+        "mode_id": 0,
+        "is_stop": true
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.81,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 0.25,
+      "flags": [
+        "low_motion_conf",
+        "solve_failed"
+      ]
+    },
+    {
+      "image": "keyframes/034165/034165_kf0001.jpg",
+      "keyframe_id": "034165_kf0001",
+      "time_sec": 0.167,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_right",
+        "velocity_mps": 0.754,
+        "direction_deg": 74.8,
+        "yaw_rate_dps": -2.66,
+        "lateral_mps": 0.728,
+        "forward_mps": 0.198,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.84,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 0.5,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0002.jpg",
+      "keyframe_id": "034165_kf0002",
+      "time_sec": 0.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.83,
+        "direction_deg": 86.5,
+        "yaw_rate_dps": -10.42,
+        "lateral_mps": 0.828,
+        "forward_mps": 0.05,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.18,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0003.jpg",
+      "keyframe_id": "034165_kf0003",
+      "time_sec": 0.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_right",
+        "velocity_mps": 0.797,
+        "direction_deg": 86.4,
+        "yaw_rate_dps": -6.79,
+        "lateral_mps": 0.795,
+        "forward_mps": 0.05,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.3,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0004.jpg",
+      "keyframe_id": "034165_kf0004",
+      "time_sec": 0.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is good. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 0.627,
+        "direction_deg": 73.9,
+        "yaw_rate_dps": -10.35,
+        "lateral_mps": 0.602,
+        "forward_mps": 0.174,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.94,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0005.jpg",
+      "keyframe_id": "034165_kf0005",
+      "time_sec": 0.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is good. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_right",
+        "velocity_mps": 0.573,
+        "direction_deg": 70.7,
+        "yaw_rate_dps": -6.7,
+        "lateral_mps": 0.541,
+        "forward_mps": 0.189,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.79,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0006.jpg",
+      "keyframe_id": "034165_kf0006",
+      "time_sec": 1.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to high flow variance. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_left",
+        "velocity_mps": 1.49,
+        "direction_deg": 90.0,
+        "yaw_rate_dps": -10.33,
+        "lateral_mps": 1.49,
+        "forward_mps": -0.017,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.26,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 0.5,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0007.jpg",
+      "keyframe_id": "034165_kf0007",
+      "time_sec": 1.167,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "stepping_right",
+        "velocity_mps": 1.134,
+        "direction_deg": 81.6,
+        "yaw_rate_dps": 1.02,
+        "lateral_mps": 1.122,
+        "forward_mps": 0.165,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.45,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0008.jpg",
+      "keyframe_id": "034165_kf0008",
+      "time_sec": 1.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 1.6 metres wide, located 19.1 degrees to the right of forward. Corridor extends to 2.5 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 75%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.6 metre wide corridor at 2.5 metres depth, located 19.1 degrees to the right of the forward direction. Net flow of 5.7 \u2014 possible movement inside gap. Confidence 75%.",
+      "action": {
+        "label": "stepping_right",
+        "velocity_mps": 1.821,
+        "direction_deg": 82.6,
+        "yaw_rate_dps": 3.36,
+        "lateral_mps": 1.806,
+        "forward_mps": 0.233,
+        "mode": "sidestep",
+        "mode_id": 3,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.97,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.58,
+          "widest_gap_angle_deg": 19.1,
+          "total_free_width_pct": 0.454
+        },
+        "density": "empty"
+      },
+      "weight": 0.5,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0009.jpg",
+      "keyframe_id": "034165_kf0009",
+      "time_sec": 1.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.642,
+        "direction_deg": 69.7,
+        "yaw_rate_dps": 29.02,
+        "lateral_mps": 1.54,
+        "forward_mps": 0.571,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.59,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 0.5,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0010.jpg",
+      "keyframe_id": "034165_kf0010",
+      "time_sec": 1.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.21,
+        "direction_deg": 69.3,
+        "yaw_rate_dps": 33.49,
+        "lateral_mps": 1.132,
+        "forward_mps": 0.428,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.54,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0011.jpg",
+      "keyframe_id": "034165_kf0011",
+      "time_sec": 1.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.512,
+        "direction_deg": 48.5,
+        "yaw_rate_dps": 42.62,
+        "lateral_mps": 1.133,
+        "forward_mps": 1.001,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.88,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 0.5,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0012.jpg",
+      "keyframe_id": "034165_kf0012",
+      "time_sec": 2.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is moderate. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.945,
+        "direction_deg": 66.1,
+        "yaw_rate_dps": 41.59,
+        "lateral_mps": 0.864,
+        "forward_mps": 0.383,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.41,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0013.jpg",
+      "keyframe_id": "034165_kf0013",
+      "time_sec": 2.167,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.292,
+        "direction_deg": 64.4,
+        "yaw_rate_dps": 23.24,
+        "lateral_mps": 1.165,
+        "forward_mps": 0.559,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.51,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0014.jpg",
+      "keyframe_id": "034165_kf0014",
+      "time_sec": 2.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.802,
+        "direction_deg": 56.5,
+        "yaw_rate_dps": 18.0,
+        "lateral_mps": 0.669,
+        "forward_mps": 0.443,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.25,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0015.jpg",
+      "keyframe_id": "034165_kf0015",
+      "time_sec": 2.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.035,
+        "direction_deg": 35.4,
+        "yaw_rate_dps": 37.76,
+        "lateral_mps": 0.599,
+        "forward_mps": 0.844,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.83,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0016.jpg",
+      "keyframe_id": "034165_kf0016",
+      "time_sec": 2.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.863,
+        "direction_deg": 26.2,
+        "yaw_rate_dps": 41.66,
+        "lateral_mps": 0.381,
+        "forward_mps": 0.774,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.44,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0017.jpg",
+      "keyframe_id": "034165_kf0017",
+      "time_sec": 2.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 1.1 metres wide, located 23.6 degrees to the left of forward. Corridor extends to 2.7 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 60%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.1 metre wide corridor at 2.7 metres depth, located 23.6 degrees to the left of the forward direction. Net flow of 3.0 \u2014 possible movement inside gap. Confidence 60%. A 0.6 metre wide corridor at 3.3 metres depth, located 30.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.937,
+        "direction_deg": 31.1,
+        "yaw_rate_dps": 34.5,
+        "lateral_mps": 0.484,
+        "forward_mps": 0.802,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.12,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.12,
+          "widest_gap_angle_deg": -23.6,
+          "total_free_width_pct": 0.436
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0018.jpg",
+      "keyframe_id": "034165_kf0018",
+      "time_sec": 3.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.7 metres wide, located 29.3 degrees to the right of forward. Corridor extends to 3.1 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.7 metre wide corridor at 3.1 metres depth, located 29.3 degrees to the right of the forward direction. Net flow of -1.4 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.67,
+        "direction_deg": 34.4,
+        "yaw_rate_dps": 5.3,
+        "lateral_mps": 0.378,
+        "forward_mps": 0.553,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.65,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.7,
+          "widest_gap_angle_deg": 29.3,
+          "total_free_width_pct": 0.162
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0019.jpg",
+      "keyframe_id": "034165_kf0019",
+      "time_sec": 3.167,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 1.3 metres wide, located 25.0 degrees to the right of forward. Corridor extends to 3.2 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.3 metre wide corridor at 3.2 metres depth, located 25.0 degrees to the right of the forward direction. Net flow of -1.4 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.934,
+        "direction_deg": 33.3,
+        "yaw_rate_dps": 7.58,
+        "lateral_mps": 0.513,
+        "forward_mps": 0.78,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.49,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.29,
+          "widest_gap_angle_deg": 25.0,
+          "total_free_width_pct": 0.284
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0020.jpg",
+      "keyframe_id": "034165_kf0020",
+      "time_sec": 3.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 0.9 metres wide, located 27.2 degrees to the right of forward. Corridor extends to 3.0 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 0.9 metre wide corridor at 3.0 metres depth, located 27.2 degrees to the right of the forward direction. Net flow of -1.8 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.835,
+        "direction_deg": 17.6,
+        "yaw_rate_dps": 0.24,
+        "lateral_mps": 0.253,
+        "forward_mps": 0.796,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.09,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 0.95,
+          "widest_gap_angle_deg": 27.2,
+          "total_free_width_pct": 0.224
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0021.jpg",
+      "keyframe_id": "034165_kf0021",
+      "time_sec": 3.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. No navigable corridor detected. All forward paths are blocked. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.617,
+        "direction_deg": 35.2,
+        "yaw_rate_dps": 6.14,
+        "lateral_mps": 0.356,
+        "forward_mps": 0.504,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 0.94,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": false,
+          "widest_gap_m": 0.0,
+          "widest_gap_angle_deg": 0.0,
+          "total_free_width_pct": 0.0
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0022.jpg",
+      "keyframe_id": "034165_kf0022",
+      "time_sec": 3.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 1.6 metres wide, located 23.6 degrees to the right of forward. Corridor extends to 3.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 1.6 metre wide corridor at 3.5 metres depth, located 23.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.838,
+        "direction_deg": 26.4,
+        "yaw_rate_dps": 10.02,
+        "lateral_mps": 0.373,
+        "forward_mps": 0.75,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.09,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 1.58,
+          "widest_gap_angle_deg": 23.6,
+          "total_free_width_pct": 0.322
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0023.jpg",
+      "keyframe_id": "034165_kf0023",
+      "time_sec": 3.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.2 metres wide, located 21.6 degrees to the right of forward. Corridor extends to 4.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.2 metre wide corridor at 4.2 metres depth, located 21.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.628,
+        "direction_deg": 20.7,
+        "yaw_rate_dps": 16.65,
+        "lateral_mps": 0.222,
+        "forward_mps": 0.587,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.06,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.23,
+          "widest_gap_angle_deg": 21.6,
+          "total_free_width_pct": 0.38
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0024.jpg",
+      "keyframe_id": "034165_kf0024",
+      "time_sec": 4.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 2.8 metres wide, located 18.8 degrees to the right of forward. Corridor extends to 4.3 metres depth. Flow is active in corridor \u2014 possible moving obstacle inside. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.8 metre wide corridor at 4.3 metres depth, located 18.8 degrees to the right of the forward direction. Net flow of -1.5 \u2014 possible movement inside gap. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.127,
+        "direction_deg": 29.6,
+        "yaw_rate_dps": 18.38,
+        "lateral_mps": 0.557,
+        "forward_mps": 0.98,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.71,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.81,
+          "widest_gap_angle_deg": 18.8,
+          "total_free_width_pct": 0.463
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0025.jpg",
+      "keyframe_id": "034165_kf0025",
+      "time_sec": 4.167,
+      "observation_text": "A sparse mixed street scene in daylight conditions. 1 agents detected. A bear is stationary at 1.2 metres, to the left of centre. Located 12.0 degrees to the left of the forward axis. They are a fixed obstacle in the surface zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. 1 detected agent in this zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 3.7 metres wide, located 16.4 degrees to the right of forward. Corridor extends to 5.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 3.7 metre wide corridor at 5.0 metres depth, located 16.4 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.029,
+        "direction_deg": 16.0,
+        "yaw_rate_dps": 8.92,
+        "lateral_mps": 0.284,
+        "forward_mps": 0.989,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.28,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.095,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 3.72,
+          "widest_gap_angle_deg": 16.4,
+          "total_free_width_pct": 0.531
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0026.jpg",
+      "keyframe_id": "034165_kf0026",
+      "time_sec": 4.333,
+      "observation_text": "A sparse pedestrian street scene in daylight conditions. 1 agents detected. A person is stationary at 9.8 metres, to the right of centre. Located 23.2 degrees to the right of the forward axis. They are a fixed obstacle in the torso zone. Distance estimate is uncertain \u2014 poor depth signal. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 2% blocked. 1 agent present \u2014 0 approaching, 0 crossing, 1 static. Agents present but no imminent threat. The overhead zone is clear. No head-height hazards detected. 2 navigable corridors detected. Widest gap is 2.4 metres wide, located 8.8 degrees to the right of forward. Corridor extends to 4.7 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 2.4 metre wide corridor at 4.7 metres depth, located 8.8 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%. A 1.3 metre wide corridor at 6.2 metres depth, located 29.9 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.185,
+        "direction_deg": 26.5,
+        "yaw_rate_dps": 14.39,
+        "lateral_mps": 0.528,
+        "forward_mps": 1.061,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.87,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.022,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 2.39,
+          "widest_gap_angle_deg": 8.8,
+          "total_free_width_pct": 0.512
+        },
+        "density": "sparse"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0027.jpg",
+      "keyframe_id": "034165_kf0027",
+      "time_sec": 4.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.3 metres wide, located 14.6 degrees to the right of forward. Corridor extends to 5.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 4.3 metre wide corridor at 5.3 metres depth, located 14.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.304,
+        "direction_deg": 18.0,
+        "yaw_rate_dps": 8.98,
+        "lateral_mps": 0.403,
+        "forward_mps": 1.24,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.49,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.3,
+          "widest_gap_angle_deg": 14.6,
+          "total_free_width_pct": 0.583
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0028.jpg",
+      "keyframe_id": "034165_kf0028",
+      "time_sec": 4.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 5.8 metres wide, located 10.5 degrees to the right of forward. Corridor extends to 6.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 5.8 metre wide corridor at 6.0 metres depth, located 10.5 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.18,
+        "direction_deg": 3.2,
+        "yaw_rate_dps": 15.65,
+        "lateral_mps": 0.065,
+        "forward_mps": 1.178,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.78,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 5.84,
+          "widest_gap_angle_deg": 10.5,
+          "total_free_width_pct": 0.697
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0029.jpg",
+      "keyframe_id": "034165_kf0029",
+      "time_sec": 4.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 5.5 metres wide, located 11.6 degrees to the right of forward. Corridor extends to 5.8 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 5.5 metre wide corridor at 5.8 metres depth, located 11.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.068,
+        "direction_deg": 6.2,
+        "yaw_rate_dps": 12.5,
+        "lateral_mps": 0.115,
+        "forward_mps": 1.062,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.55,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 5.47,
+          "widest_gap_angle_deg": 11.6,
+          "total_free_width_pct": 0.668
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0030.jpg",
+      "keyframe_id": "034165_kf0030",
+      "time_sec": 5.0,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 6.2 metres wide, located 9.7 degrees to the right of forward. Corridor extends to 6.2 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 6.2 metre wide corridor at 6.2 metres depth, located 9.7 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.299,
+        "direction_deg": 11.0,
+        "yaw_rate_dps": 14.64,
+        "lateral_mps": 0.248,
+        "forward_mps": 1.275,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.61,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 6.24,
+          "widest_gap_angle_deg": 9.7,
+          "total_free_width_pct": 0.72
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0031.jpg",
+      "keyframe_id": "034165_kf0031",
+      "time_sec": 5.167,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 6.9 metres wide, located 8.1 degrees to the right of forward. Corridor extends to 6.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 6.9 metre wide corridor at 6.4 metres depth, located 8.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.217,
+        "direction_deg": 9.4,
+        "yaw_rate_dps": 12.2,
+        "lateral_mps": 0.199,
+        "forward_mps": 1.201,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.75,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 6.88,
+          "widest_gap_angle_deg": 8.1,
+          "total_free_width_pct": 0.768
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0032.jpg",
+      "keyframe_id": "034165_kf0032",
+      "time_sec": 5.333,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 7.0 metres wide, located 7.8 degrees to the right of forward. Corridor extends to 6.5 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 1% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 7.0 metre wide corridor at 6.5 metres depth, located 7.8 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "walking_normal",
+        "velocity_mps": 0.922,
+        "direction_deg": 1.9,
+        "yaw_rate_dps": 4.01,
+        "lateral_mps": 0.03,
+        "forward_mps": 0.922,
+        "mode": "walk",
+        "mode_id": 1,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 3.43,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 7.03,
+          "widest_gap_angle_deg": 7.8,
+          "total_free_width_pct": 0.776
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0033.jpg",
+      "keyframe_id": "034165_kf0033",
+      "time_sec": 5.5,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 6.7 metres wide, located 8.1 degrees to the right of forward. Corridor extends to 6.3 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 6.7 metre wide corridor at 6.3 metres depth, located 8.1 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.957,
+        "direction_deg": 7.9,
+        "yaw_rate_dps": 7.85,
+        "lateral_mps": 0.131,
+        "forward_mps": 0.948,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.96,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 6.72,
+          "widest_gap_angle_deg": 8.1,
+          "total_free_width_pct": 0.766
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0034.jpg",
+      "keyframe_id": "034165_kf0034",
+      "time_sec": 5.667,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 5.1 metres wide, located 9.6 degrees to the right of forward. Corridor extends to 5.0 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 5.1 metre wide corridor at 5.0 metres depth, located 9.6 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 1.071,
+        "direction_deg": 6.4,
+        "yaw_rate_dps": 14.25,
+        "lateral_mps": 0.119,
+        "forward_mps": 1.064,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 2.71,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 5.11,
+          "widest_gap_angle_deg": 9.6,
+          "total_free_width_pct": 0.724
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    },
+    {
+      "image": "keyframes/034165/034165_kf0035.jpg",
+      "keyframe_id": "034165_kf0035",
+      "time_sec": 5.833,
+      "observation_text": "A empty mixed street scene in daylight conditions. 0 agents detected. The ground zone is clear. Depth estimation reliability is poor. No agents detected in the ground zone. The mid zone is 0% blocked. 0 agents present \u2014 0 approaching, 0 crossing, 0 static. Low risk. The overhead zone is clear. No head-height hazards detected. 1 navigable corridor detected. Widest gap is 4.6 metres wide, located 8.8 degrees to the right of forward. Corridor extends to 4.4 metres depth. Flow in corridor is static after ego-motion removal \u2014 safe. Detection confidence is 85%. 0% of the frame has unreliable perception due to clean. Low impact on overall assessment. A 4.6 metre wide corridor at 4.4 metres depth, located 8.8 degrees to the right of the forward direction. Flow is static after ego removal \u2014 obstacle-free. Confidence 85%.",
+      "action": {
+        "label": "turning_right",
+        "velocity_mps": 0.637,
+        "direction_deg": 2.9,
+        "yaw_rate_dps": 12.36,
+        "lateral_mps": 0.032,
+        "forward_mps": 0.636,
+        "mode": "turn",
+        "mode_id": 2,
+        "is_stop": false
+      },
+      "navigability": {
+        "nearest_obstacle_m": 1.95,
+        "min_ttc_s": null,
+        "n_critical": 0,
+        "n_high": 0,
+        "surface_blocked_pct": 0.0,
+        "torso_blocked_pct": 0.0,
+        "free_corridor": {
+          "exists": true,
+          "widest_gap_m": 4.6,
+          "widest_gap_angle_deg": 8.8,
+          "total_free_width_pct": 0.747
+        },
+        "density": "empty"
+      },
+      "weight": 1.0,
+      "flags": []
+    }
+  ]
+}
