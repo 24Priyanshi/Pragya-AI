@@ -151,11 +151,11 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
  */
 export const navLinks: readonly NavLink[] = [
   { label: "DENSEWORLD", href: "/denseworld", key: "/denseworld" },
-  { label: "PragyaVLA", href: "/pragyavla", key: "/pragyavla" },
   { label: "DENSEWALK", href: "/densewalk", key: "/densewalk" },
+  { label: "PragyaVLA", href: "/pragyavla", key: "/pragyavla" },
+  { label: "PragyaDex", href: "/pragyadex", key: "/pragyadex" },
   { label: "KalariSena", href: "/kalarisena", key: "/kalarisena" },
   { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
-  { label: "PragyaDex", href: "/pragyadex", key: "/pragyadex" },
 ] as const;
 
 /**
