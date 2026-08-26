@@ -56,6 +56,12 @@ export const proseBlocks: readonly ProseBlockData[] = [
   },
 ] as const;
 
+/** Lab talks & demo playlist, embedded below the narrative blocks. */
+export const videoPlaylist = {
+  embedSrc: "https://www.youtube.com/embed/videoseries?list=PLaE3N7Ax00P_fC4DX9vWXhYKJEinSbEtz",
+  title: "DenseWalk video demonstrations",
+} as const;
+
 export const lineChart: LineChartSpec = {
   path: "M0,130 Q100,122 200,84 T400,24",
   circles: [

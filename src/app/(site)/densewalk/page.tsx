@@ -7,7 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
 import { SectionRule } from "@/components/SectionRule";
 import { StatStrip } from "@/components/StatStrip";
-import { barChart, hero, lineChart, proseBlocks, stats } from "@/data/densewalk";
+import { barChart, hero, lineChart, proseBlocks, stats, videoPlaylist } from "@/data/densewalk";
 import { feedData } from "@/data/densewalk-feed";
 
 export const metadata: Metadata = {
@@ -44,6 +44,19 @@ export default function DenseWalkPage() {
             ))}
           </div>
         ))}
+
+        <div className="bg-surface-container-lowest border border-outline-variant/10 p-8 md:p-12">
+          <SectionRule label="04. Video Demonstrations" margin="mb-8" />
+          <div className="aspect-video w-full max-w-4xl">
+            <iframe
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full"
+              src={videoPlaylist.embedSrc}
+              title={videoPlaylist.title}
+            />
+          </div>
+        </div>
       </section>
 
       <AnalysisPair bar={barChart} line={lineChart} />

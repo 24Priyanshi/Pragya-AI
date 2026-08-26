@@ -122,6 +122,24 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       image: "/kalarisena_new.png",
     },
   },
+  "/pragyadex": {
+    title: "PragyaDex",
+    columns: { apis: QUESTION_ITEMS },
+    answers: {
+      "What is it?":
+        "A paired human-hand-to-robot-hand dexterity skill gallery — 400 examples across 8 everyday domains, each annotated with primitive sequences, objects, materials, and a robot transfer goal.",
+      "What's the necessity?":
+        "Because dexterous manipulation policies need dense, richly annotated human-to-robot retargeting examples across everyday domains like cooking and object handling, not just isolated single-task demonstrations.",
+      "What's the Leap?":
+        "From isolated demo clips to a structured, browsable gallery pairing real human-hand video with retargeted dexterous robot execution, annotated end-to-end for skill transfer.",
+    },
+    featuredCard: {
+      title: "PragyaDex",
+      description: "Dexterity skill gallery",
+      href: "/pragyadex",
+      image: "/pragya_dex.png",
+    },
+  },
 } as const;
 
 /**
@@ -137,6 +155,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "DENSEWALK", href: "/densewalk", key: "/densewalk" },
   { label: "KalariSena", href: "/kalarisena", key: "/kalarisena" },
   { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
+  { label: "PragyaDex", href: "/pragyadex", key: "/pragyadex" },
 ] as const;
 
 /**
