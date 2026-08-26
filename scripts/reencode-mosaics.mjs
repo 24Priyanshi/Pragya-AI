@@ -174,6 +174,17 @@ async function transcode(ffmpeg, name, expected) {
   const out = join(OUT, name);
   if (await verify(out, ffmpeg)) return "skipped";
   const src = await download(name, expected);
+
+  // Sources that are already H.264 are remuxed, not re-encoded. Some of the
+  // repo's renders have been fixed already, and putting those through libx264
+  // a second time would spend a whole generation of quality to produce a file
+  // that is byte-for-byte no better. `-c copy` only rewrites the container.
+  if (await verify(src, ffmpeg)) {
+    await run(ffmpeg, ["-hide_banner", "-loglevel", "error", "-y", "-i", src, "-c", "copy", "-movflags", "+faststart", out]);
+    if (!(await verify(out, ffmpeg))) throw new Error(`${name}: remux failed verification`);
+    return "remuxed";
+  }
+
   // -crf 20 keeps the mosaics visually lossless enough for a dataset preview;
   // +faststart is the half that makes them seekable over HTTP.
   await run(ffmpeg, [
