@@ -9,15 +9,18 @@ import type { BarChartSpec, HeroSpec, LineChartSpec, StatCard } from "@/types/pa
  */
 
 export const hero: HeroSpec = {
-  src: "/denseworld_hero_nowheel.png",
-  alt: "Dense World hero visualization",
+  src: "/denseworld_bg.png",
+  alt: "",
   mode: "fill",
-  spin: {
-    src: "/denseworld_spiral.png",
-    alt: "Rotating wheel of dense mixed-traffic icons — autos, bikes, carts, and vehicles",
-    bottomVw: 19,
-    heightVw: 26,
+  centerpiece: {
+    spinSrc: "/denseworld_spiral.png",
+    spinAlt: "Rotating wheel of dense mixed-traffic icons — autos, bikes, carts, and vehicles",
+    spinWidthVw: 25,
     durationS: 36,
+    titleSrc: "/denseworld_title.png",
+    titleAlt: "DenseWorld — World Models for Populous, Crowded, and Chaotic Global South",
+    titleWidthVw: 34,
+    gapVw: 2,
   },
 };
 

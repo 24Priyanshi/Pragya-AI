@@ -31,10 +31,7 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt={hero.alt}
-        className={cn(
-          isFill ? "h-full w-full object-cover" : "block w-full h-auto object-contain object-center",
-          isFill && (hero.spin ? "object-bottom" : "object-center"),
-        )}
+        className={cn(isFill ? "h-full w-full object-cover object-center" : "block w-full h-auto object-contain object-center")}
         src={hero.src}
       />
 
@@ -42,19 +39,20 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
         <div aria-hidden="true" className="absolute inset-0 bg-surface/55 backdrop-blur-[1px]" />
       ) : null}
 
-      {hero.spin ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          alt={hero.spin.alt}
-          className="hero-spin-img absolute left-1/2 w-auto"
-          src={hero.spin.src}
-          style={{
-            bottom: `${hero.spin.bottomVw}vw`,
-            height: `${hero.spin.heightVw}vw`,
-            transform: "translateX(-50%)",
-            animation: `hero-spin ${hero.spin.durationS}s linear infinite`,
-          }}
-        />
+      {hero.centerpiece ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ gap: `${hero.centerpiece.gapVw}vw` }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt={hero.centerpiece.spinAlt}
+            src={hero.centerpiece.spinSrc}
+            style={{
+              width: `${hero.centerpiece.spinWidthVw}vw`,
+              animation: `hero-spin ${hero.centerpiece.durationS}s linear infinite`,
+            }}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img alt={hero.centerpiece.titleAlt} src={hero.centerpiece.titleSrc} style={{ width: `${hero.centerpiece.titleWidthVw}vw` }} />
+        </div>
       ) : null}
 
       {actions.length > 0 ? (

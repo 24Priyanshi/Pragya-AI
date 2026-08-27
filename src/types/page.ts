@@ -82,30 +82,27 @@ export interface HeroAction {
 }
 
 /**
- * A looping rotation overlaid on a "fill" hero image, above whatever the
- * image's own content (e.g. a title) sits near its bottom edge.
- *
- * The hero's `<img>` is rendered with `object-bottom` whenever `spin` is set
- * (see PageHero), so the image's bottom edge always coincides with the
- * container's bottom edge — any object-cover cropping eats into the *top* of
- * the image instead, which is safe because the important content (title
- * text) lives near the bottom. On typical wide viewports the crop is
- * width-bound, meaning the image is scaled by `containerWidth / imageWidth`
- * — exactly the same factor as `vw` units — so `bottomVw`/`heightVw` (both
- * measured against the hero image's own pixel dimensions, converted to vw)
- * keep the overlay positioned relative to the bottom-anchored image
- * consistently across desktop widths. It is not exact on viewports where the
- * crop is height-bound instead (narrow/tall mobile).
+ * A rotating wheel image stacked above a title lockup, both centered as one
+ * group in the middle of the hero — independent of `hero.src`, which for
+ * pages using this is just a flat backdrop colour. Centering a small,
+ * fixed-aspect group like this needs no object-cover crop math at all (unlike
+ * the earlier approach of overlaying on a specific spot in a large cropped
+ * background image), so it stays correctly centered and fully visible on any
+ * viewport shape.
  */
-export interface HeroSpin {
-  readonly src: string;
-  readonly alt: string;
-  /** Distance from the hero's bottom edge to the overlay's bottom edge, in vw. */
-  readonly bottomVw: number;
-  /** Overlay height, in vw; width follows the image's own aspect ratio. */
-  readonly heightVw: number;
+export interface HeroCenterpiece {
+  readonly spinSrc: string;
+  readonly spinAlt: string;
+  /** Wheel width, in vw; height follows the image's own aspect ratio. */
+  readonly spinWidthVw: number;
   /** Full-rotation duration in seconds. */
   readonly durationS: number;
+  readonly titleSrc: string;
+  readonly titleAlt: string;
+  /** Title-lockup width, in vw; height follows the image's own aspect ratio. */
+  readonly titleWidthVw: number;
+  /** Gap between the wheel and the title, in vw. */
+  readonly gapVw: number;
 }
 
 export interface HeroSpec {
@@ -120,6 +117,6 @@ export interface HeroSpec {
   readonly overlay?: boolean;
   /** CTAs rendered centred on top of the image. */
   readonly actions?: readonly HeroAction[];
-  /** A rotating image overlaid on the hero, matching a static element already in it. */
-  readonly spin?: HeroSpin;
+  /** A rotating wheel + title lockup, centered as a group in the hero. */
+  readonly centerpiece?: HeroCenterpiece;
 }
