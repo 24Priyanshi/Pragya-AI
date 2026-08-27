@@ -29,7 +29,7 @@ import { Submenu } from "./Submenu";
 export function Navbar() {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
-  const { activeKey, isHidden, containerRef, toggle, close } = useSubmenu();
+  const { activeKey, isHidden, containerRef, toggle, close, hoverOpen, scheduleHoverClose, cancelHoverClose } = useSubmenu();
 
   useNavHeight(navRef);
   useScrolled(navRef);
@@ -60,7 +60,13 @@ export function Navbar() {
             <img alt={siteConfig.logoAlt} className="h-9 md:h-10 w-auto object-contain" src={siteConfig.logo} />
           </Link>
 
-          <NavLinks activePath={pathname} onToggle={toggle} openKey={activeKey} />
+          <NavLinks
+            activePath={pathname}
+            onHoverLeave={scheduleHoverClose}
+            onHoverOpen={hoverOpen}
+            onToggle={toggle}
+            openKey={activeKey}
+          />
 
           <div className="flex items-center gap-6">
             <a
@@ -82,7 +88,13 @@ export function Navbar() {
         style={{ background: "transparent" }}
       />
 
-      <div className={cn("fixed top-24 left-0 right-0 z-40 px-12", isHidden && "hidden")} id="submenu-container" ref={containerRef}>
+      <div
+        className={cn("fixed top-24 left-0 right-0 z-40 px-12", isHidden && "hidden")}
+        id="submenu-container"
+        onMouseEnter={cancelHoverClose}
+        onMouseLeave={scheduleHoverClose}
+        ref={containerRef}
+      >
         <div className="max-w-screen-2xl mx-auto bg-surface-container-lowest/90 backdrop-blur-xl rounded-lg border border-surface-container-high shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-1" id="submenu-content">
             {openConfig ? <Submenu config={openConfig} /> : null}

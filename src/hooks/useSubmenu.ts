@@ -5,6 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 /** Matches the 300ms used by both the JS transition and the close timeout in js/navbar.js. */
 const TRANSITION_MS = 300;
 
+/** Grace period between leaving a nav item/panel and the submenu actually closing, so moving the cursor from the tab down into the panel doesn't flicker it shut. */
+const HOVER_CLOSE_DELAY_MS = 200;
+
 export interface SubmenuController {
   /** Which nav key is open, or null. Drives what gets rendered. */
   readonly activeKey: string | null;
@@ -13,6 +16,12 @@ export interface SubmenuController {
   readonly containerRef: React.RefObject<HTMLDivElement | null>;
   readonly toggle: (key: string) => void;
   readonly close: () => void;
+  /** Opens on hover; cancels any pending hover-close. */
+  readonly hoverOpen: (key: string) => void;
+  /** Schedules a close after `HOVER_CLOSE_DELAY_MS`, cancelled by a subsequent `hoverOpen`/`cancelHoverClose`. */
+  readonly scheduleHoverClose: () => void;
+  /** Cancels a pending hover-close, e.g. when the cursor enters the panel itself. */
+  readonly cancelHoverClose: () => void;
 }
 
 /**
@@ -24,6 +33,12 @@ export interface SubmenuController {
  *  - close: transition "all 300ms ease-out" → opacity:0 / translateY(-10px)
  *           → setTimeout(300) → add `hidden`
  *  - clicking the already-open item closes it (toggle)
+ *
+ * `hoverOpen` / `scheduleHoverClose` / `cancelHoverClose` are a deliberate
+ * addition on top of the original, on request (2026-08-27): the submenu now
+ * also opens on hover and auto-closes `HOVER_CLOSE_DELAY_MS` after the cursor
+ * leaves both the nav item and the panel, instead of requiring an explicit
+ * outside click. `toggle`/`close` (click-based) are left in place too.
  */
 export function useSubmenu(): SubmenuController {
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -32,6 +47,7 @@ export function useSubmenu(): SubmenuController {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafId = useRef<number | null>(null);
+  const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearTimers = useCallback(() => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -76,6 +92,32 @@ export function useSubmenu(): SubmenuController {
     [activeKey, close, clearTimers],
   );
 
+  const cancelHoverClose = useCallback(() => {
+    if (hoverCloseTimer.current) {
+      clearTimeout(hoverCloseTimer.current);
+      hoverCloseTimer.current = null;
+    }
+  }, []);
+
+  const hoverOpen = useCallback(
+    (key: string) => {
+      cancelHoverClose();
+      if (activeKey === key) return;
+      clearTimers();
+      setActiveKey(key);
+      setIsHidden(false);
+    },
+    [activeKey, clearTimers, cancelHoverClose],
+  );
+
+  const scheduleHoverClose = useCallback(() => {
+    cancelHoverClose();
+    hoverCloseTimer.current = setTimeout(() => {
+      hoverCloseTimer.current = null;
+      close();
+    }, HOVER_CLOSE_DELAY_MS);
+  }, [close, cancelHoverClose]);
+
   // The open animation, run after the new content has been committed —
   // mirroring the original's renderSubmenu() → unhide → setTimeout(0) order.
   useEffect(() => {
@@ -109,7 +151,12 @@ export function useSubmenu(): SubmenuController {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [activeKey, close]);
 
-  useEffect(() => clearTimers, [clearTimers]);
+  useEffect(() => {
+    return () => {
+      clearTimers();
+      cancelHoverClose();
+    };
+  }, [clearTimers, cancelHoverClose]);
 
-  return { activeKey, isHidden, containerRef, toggle, close };
+  return { activeKey, isHidden, containerRef, toggle, close, hoverOpen, scheduleHoverClose, cancelHoverClose };
 }
