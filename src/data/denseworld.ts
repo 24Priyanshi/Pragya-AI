@@ -15,8 +15,8 @@ export const hero: HeroSpec = {
   spin: {
     src: "/denseworld_spiral.png",
     alt: "Rotating wheel of dense mixed-traffic icons — autos, bikes, carts, and vehicles",
-    topPct: 41,
-    heightPct: 47,
+    bottomVw: 19,
+    heightVw: 26,
     durationS: 36,
   },
 };

@@ -31,7 +31,10 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt={hero.alt}
-        className={cn(isFill ? "h-full w-full object-cover object-center" : "block w-full h-auto object-contain object-center")}
+        className={cn(
+          isFill ? "h-full w-full object-cover" : "block w-full h-auto object-contain object-center",
+          isFill && (hero.spin ? "object-bottom" : "object-center"),
+        )}
         src={hero.src}
       />
 
@@ -43,12 +46,12 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           alt={hero.spin.alt}
-          className="block absolute left-1/2 w-auto"
+          className="hero-spin-img absolute left-1/2 w-auto"
           src={hero.spin.src}
           style={{
-            top: `${hero.spin.topPct}%`,
-            height: `${hero.spin.heightPct}%`,
-            transform: "translate(-50%, -50%)",
+            bottom: `${hero.spin.bottomVw}vw`,
+            height: `${hero.spin.heightVw}vw`,
+            transform: "translateX(-50%)",
             animation: `hero-spin ${hero.spin.durationS}s linear infinite`,
           }}
         />

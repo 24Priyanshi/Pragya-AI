@@ -15,9 +15,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Used by HeroSpec.spin (PageHero) — duration is set per-page via inline animationDuration. */
+/* Used by HeroSpec.spin (PageHero) — duration is set per-page via inline animation shorthand. */
 @keyframes hero-spin {
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+/*
+ * .hero-spin-img is positioned in vw units, which only track the hero
+ * background's actual scale when object-cover is width-bound (viewport
+ * wider, relative to its height, than the hero image itself). Below this
+ * aspect ratio the crop becomes height-bound and the vw math no longer
+ * matches, so the overlay is hidden rather than shown overlapping the title.
+ */
+@media (max-aspect-ratio: 5/4) {
+  .hero-spin-img {
+    display: none;
   }
 }

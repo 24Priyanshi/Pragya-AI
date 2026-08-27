@@ -82,22 +82,28 @@ export interface HeroAction {
 }
 
 /**
- * A looping rotation overlaid on top of a "fill" hero image, positioned to sit
- * exactly over a matching static element already baked into that image (e.g.
- * DenseWorld's ring logo). Since the hero is height-locked and object-cover,
- * `topPct`/`heightPct` are percentages of the hero's own height — the
- * dimension object-cover actually scales against on wide viewports — so the
- * overlay tracks the background image's scale reasonably well across desktop
- * widths. It is not exact on viewports where the crop is width-bound (e.g.
- * narrow/tall mobile), so it's hidden below `md`.
+ * A looping rotation overlaid on a "fill" hero image, above whatever the
+ * image's own content (e.g. a title) sits near its bottom edge.
+ *
+ * The hero's `<img>` is rendered with `object-bottom` whenever `spin` is set
+ * (see PageHero), so the image's bottom edge always coincides with the
+ * container's bottom edge — any object-cover cropping eats into the *top* of
+ * the image instead, which is safe because the important content (title
+ * text) lives near the bottom. On typical wide viewports the crop is
+ * width-bound, meaning the image is scaled by `containerWidth / imageWidth`
+ * — exactly the same factor as `vw` units — so `bottomVw`/`heightVw` (both
+ * measured against the hero image's own pixel dimensions, converted to vw)
+ * keep the overlay positioned relative to the bottom-anchored image
+ * consistently across desktop widths. It is not exact on viewports where the
+ * crop is height-bound instead (narrow/tall mobile).
  */
 export interface HeroSpin {
   readonly src: string;
   readonly alt: string;
-  /** Vertical center of the overlay, as a percentage of hero height. */
-  readonly topPct: number;
-  /** Overlay height, as a percentage of hero height; width follows the image's own aspect ratio. */
-  readonly heightPct: number;
+  /** Distance from the hero's bottom edge to the overlay's bottom edge, in vw. */
+  readonly bottomVw: number;
+  /** Overlay height, in vw; width follows the image's own aspect ratio. */
+  readonly heightVw: number;
   /** Full-rotation duration in seconds. */
   readonly durationS: number;
 }
