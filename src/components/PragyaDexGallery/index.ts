@@ -1,0 +1,1 @@
+export { PragyaDexGallery } from "./PragyaDexGallery";

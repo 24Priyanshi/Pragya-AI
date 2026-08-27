@@ -20,7 +20,7 @@ export const hero: HeroSpec = {
   alt: "PragyaDex skill gallery preview",
   mode: "auto",
   overlay: true,
-  actions: [{ label: "Open Skill Gallery", href: "https://pragya-dex.vercel.app/" }],
+  actions: [{ label: "View Standalone Tool", href: "https://pragya-dex.vercel.app/" }],
 };
 
 export const stats: readonly StatCard[] = [

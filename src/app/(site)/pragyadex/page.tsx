@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import { Contributors } from "@/components/Contributors";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
+import { PragyaDexGallery } from "@/components/PragyaDexGallery";
 import { SectionRule } from "@/components/SectionRule";
 import { StatStrip } from "@/components/StatStrip";
+import { galleryDomains } from "@/data/pragyadexGallery";
 import { hero, proseBlocks, stats } from "@/data/pragyadex";
 
 export const metadata: Metadata = {
@@ -35,6 +37,11 @@ export default function PragyaDexPage() {
             ))}
           </div>
         ))}
+      </section>
+
+      <section className="mb-32">
+        <SectionRule label="04. Skill Gallery" margin="mb-8" />
+        <PragyaDexGallery domains={galleryDomains} />
       </section>
 
       <Contributors />
