@@ -39,6 +39,21 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
         <div aria-hidden="true" className="absolute inset-0 bg-surface/55 backdrop-blur-[1px]" />
       ) : null}
 
+      {hero.spin ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          alt={hero.spin.alt}
+          className="block absolute left-1/2 w-auto"
+          src={hero.spin.src}
+          style={{
+            top: `${hero.spin.topPct}%`,
+            height: `${hero.spin.heightPct}%`,
+            transform: "translate(-50%, -50%)",
+            animation: `hero-spin ${hero.spin.durationS}s linear infinite`,
+          }}
+        />
+      ) : null}
+
       {actions.length > 0 ? (
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="flex flex-col sm:flex-row items-center gap-6">

@@ -9,9 +9,16 @@ import type { BarChartSpec, HeroSpec, LineChartSpec, StatCard } from "@/types/pa
  */
 
 export const hero: HeroSpec = {
-  src: "/denseworld_hero.png",
+  src: "/denseworld_hero_nowheel.png",
   alt: "Dense World hero visualization",
   mode: "fill",
+  spin: {
+    src: "/denseworld_spiral.png",
+    alt: "Rotating wheel of dense mixed-traffic icons — autos, bikes, carts, and vehicles",
+    topPct: 41,
+    heightPct: 47,
+    durationS: 36,
+  },
 };
 
 export const stats: readonly StatCard[] = [

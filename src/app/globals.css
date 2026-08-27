@@ -14,3 +14,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Used by HeroSpec.spin (PageHero) — duration is set per-page via inline animationDuration. */
+@keyframes hero-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -81,6 +81,27 @@ export interface HeroAction {
   readonly href: string;
 }
 
+/**
+ * A looping rotation overlaid on top of a "fill" hero image, positioned to sit
+ * exactly over a matching static element already baked into that image (e.g.
+ * DenseWorld's ring logo). Since the hero is height-locked and object-cover,
+ * `topPct`/`heightPct` are percentages of the hero's own height — the
+ * dimension object-cover actually scales against on wide viewports — so the
+ * overlay tracks the background image's scale reasonably well across desktop
+ * widths. It is not exact on viewports where the crop is width-bound (e.g.
+ * narrow/tall mobile), so it's hidden below `md`.
+ */
+export interface HeroSpin {
+  readonly src: string;
+  readonly alt: string;
+  /** Vertical center of the overlay, as a percentage of hero height. */
+  readonly topPct: number;
+  /** Overlay height, as a percentage of hero height; width follows the image's own aspect ratio. */
+  readonly heightPct: number;
+  /** Full-rotation duration in seconds. */
+  readonly durationS: number;
+}
+
 export interface HeroSpec {
   readonly src: string;
   readonly alt: string;
@@ -93,4 +114,6 @@ export interface HeroSpec {
   readonly overlay?: boolean;
   /** CTAs rendered centred on top of the image. */
   readonly actions?: readonly HeroAction[];
+  /** A rotating image overlaid on the hero, matching a static element already in it. */
+  readonly spin?: HeroSpin;
 }
