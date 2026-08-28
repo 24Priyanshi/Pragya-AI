@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 
-import { AnalysisPair } from "@/components/AnalysisCharts";
 import { Contributors } from "@/components/Contributors";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { ProcessedResults } from "@/components/ProcessedResults";
-import { RawInputGrid } from "@/components/RawInputGrid";
-import { StatStrip } from "@/components/StatStrip";
-import { barChart, hero, lineChart, processed, rawInputs, stats } from "@/data/pragyavla";
+import { PragyaVlaTabs } from "@/components/PragyaVlaTabs";
+import { barChart, hero, lineChart, problemBlocks, processed, rawInputs, stats } from "@/data/pragyavla";
 
 /**
  * The original <title> here is "PragyaVLA | The Spatial Academic", the only
@@ -25,14 +22,16 @@ export default function PragyaVlaPage() {
   return (
     <PageShell>
       <PageHero hero={hero} />
-      <StatStrip stats={stats} />
 
-      <section className="space-y-32">
-        <RawInputGrid tiles={rawInputs} />
-        <ProcessedResults cards={processed} />
-      </section>
+      <PragyaVlaTabs
+        barChart={barChart}
+        lineChart={lineChart}
+        problemBlocks={problemBlocks}
+        processed={processed}
+        rawInputs={rawInputs}
+        stats={stats}
+      />
 
-      <AnalysisPair bar={barChart} line={lineChart} />
       <Contributors />
     </PageShell>
   );

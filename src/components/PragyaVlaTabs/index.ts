@@ -1,0 +1,1 @@
+export { PragyaVlaTabs } from "./PragyaVlaTabs";

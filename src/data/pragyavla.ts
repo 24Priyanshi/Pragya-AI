@@ -8,10 +8,37 @@ import type { BarChartSpec, HeroSpec, LineChartSpec, ProcessedCard, RawInputTile
  */
 
 export const hero: HeroSpec = {
-  src: "/pragyavla_hero.png",
-  alt: "PragyaVLA hero visualization",
+  src: "/pragyavla_hero_v2.png",
+  alt: "PragyaVLA — India's first multilingual Vision-Language-Action model. See, understand, act.",
   mode: "fill",
 };
+
+export interface ProseBlockData {
+  readonly label: string;
+  readonly paragraphs: readonly string[];
+}
+
+/** "The Problem" tab — same copy as the navbar's PragyaVLA submenu Q&A. */
+export const problemBlocks: readonly ProseBlockData[] = [
+  {
+    label: "What is it?",
+    paragraphs: [
+      "India's first sovereign VLA model for robot navigation—an instruction-finetuned framework that unifies multilingual grounding, locomotion-aware reasoning, and safety-conditioned control.",
+    ],
+  },
+  {
+    label: "What's the necessity?",
+    paragraphs: [
+      "Because current VLA systems are still optimized largely for manipulation-centric, clean indoor benchmarks, leaving locomotion feasibility, partial observability, terrain uncertainty, and safety-aware abstention under-modeled.",
+    ],
+  },
+  {
+    label: "What's the Leap?",
+    paragraphs: [
+      "From direct instruction-to-action policies to structured embodied deliberation, where traversability, body-feasibility, hidden-state inference, and risk-aware abstention become explicit components of navigation control.",
+    ],
+  },
+] as const;
 
 export const stats: readonly StatCard[] = [
   { label: "Model Scale", value: "12.4B", caption: "Dense Parameters" },
