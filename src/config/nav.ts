@@ -157,6 +157,21 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       href: "/pragyaspace",
     },
   },
+  "/contributors": {
+    title: "Contributors",
+    columns: { apis: QUESTION_ITEMS },
+    answers: {
+      "What is it?": "The people behind PragyaAI — researchers and engineers building every project in the lab.",
+      "What's the necessity?":
+        "Because none of this work happens in isolation; it's the product of a small team working across models, data, and deployment.",
+      "What's the Leap?": "From individual expertise to a shared lab, working together across every PragyaAI project.",
+    },
+    featuredCard: {
+      title: "Contributors",
+      description: "The team behind PragyaAI",
+      href: "/contributors",
+    },
+  },
 } as const;
 
 /**
@@ -174,6 +189,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "KalariSena", href: "/kalarisena", key: "/kalarisena" },
   { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
   { label: "PragyaSpace", href: "/pragyaspace", key: "/pragyaspace" },
+  { label: "Contributors", href: "/contributors", key: "/contributors" },
 ] as const;
 
 /**

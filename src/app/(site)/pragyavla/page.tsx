@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
 import { PragyaVlaTabs } from "@/components/PragyaVlaTabs";
-import { hero, problemBlocks, problemQuote } from "@/data/pragyavla";
+import { hero, problemQuote } from "@/data/pragyavla";
 
 /**
  * The original <title> here is "PragyaVLA | The Spatial Academic", the only
@@ -22,7 +22,7 @@ export default function PragyaVlaPage() {
     <PageShell>
       <PageHero hero={hero} />
 
-      <PragyaVlaTabs problemBlocks={problemBlocks} problemQuote={problemQuote} />
+      <PragyaVlaTabs problemQuote={problemQuote} />
     </PageShell>
   );
 }
