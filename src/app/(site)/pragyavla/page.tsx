@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
-import { Contributors } from "@/components/Contributors";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
 import { PragyaVlaTabs } from "@/components/PragyaVlaTabs";
-import { barChart, hero, lineChart, problemBlocks, processed, rawInputs, stats } from "@/data/pragyavla";
+import { hero, problemBlocks, problemQuote } from "@/data/pragyavla";
 
 /**
  * The original <title> here is "PragyaVLA | The Spatial Academic", the only
@@ -23,16 +22,7 @@ export default function PragyaVlaPage() {
     <PageShell>
       <PageHero hero={hero} />
 
-      <PragyaVlaTabs
-        barChart={barChart}
-        lineChart={lineChart}
-        problemBlocks={problemBlocks}
-        processed={processed}
-        rawInputs={rawInputs}
-        stats={stats}
-      />
-
-      <Contributors />
+      <PragyaVlaTabs problemBlocks={problemBlocks} problemQuote={problemQuote} />
     </PageShell>
   );
 }

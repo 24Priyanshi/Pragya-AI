@@ -2,104 +2,106 @@
 
 import { useState } from "react";
 
-import { GalleryVideo } from "@/components/PragyaDexGallery/GalleryVideo";
 import { MOTIONLANG_VIDEO_BASE, motionLangCats, motionLangDataset, motionLangLangs } from "@/data/motionlang";
 
-const PAGE_SIZE = 10;
+import { MotionLangVideo } from "./MotionLangVideo";
+import "./motionlang.css";
 
 export function MotionLangGallery() {
   const [lang, setLang] = useState(motionLangLangs[0]?.code ?? "en");
-  const [catId, setCatId] = useState(motionLangCats[0]?.id ?? "");
-  const [page, setPage] = useState(0);
-
-  const activeCat = motionLangCats.find((c) => c.id === catId) ?? motionLangCats[0];
-  const records = (activeCat && motionLangDataset[lang]?.[activeCat.id]) ?? [];
-  const pageCount = Math.ceil(records.length / PAGE_SIZE);
-  const visible = records.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
-
-  if (!activeCat) return null;
+  const activeLang = motionLangLangs.find((l) => l.code === lang) ?? motionLangLangs[0];
 
   return (
-    <div>
-      <div className="mb-4 flex flex-wrap gap-1" role="tablist">
-        {motionLangLangs.map((l) => {
-          const active = l.code === lang;
-          return (
+    <div className="ml-root">
+      <section className="ml-hero">
+        <div>
+          <h1>Language-Centric Motion Annotation</h1>
+          <p className="ml-subtitle">
+            Each language page holds its own unique balanced set — 200 distinct motions (10 categories × 20), 1000 unique
+            instruction–motion pairs in total. Switch language to see an entirely different set, captioned in that language.
+          </p>
+          <div className="ml-summary">
+            <span className="ml-pill blue">{activeLang?.name} Page</span>
+            <span className="ml-pill">10 categories</span>
+            <span className="ml-pill">20 videos / category</span>
+            <span className="ml-pill">1000 unique instruction–motion pairs</span>
+            <span className="ml-pill">5 languages</span>
+          </div>
+        </div>
+        <div className="ml-lang-tabs">
+          {motionLangLangs.map((l) => (
             <button
-              aria-selected={active}
-              className={`inter text-xs px-3.5 py-2 transition-colors duration-200 ${
-                active
-                  ? "bg-on-surface text-inverse-on-surface"
-                  : "bg-surface-container-lowest text-on-surface-variant border border-outline-variant/10 hover:border-outline-variant/30"
-              }`}
+              className={`ml-lang-tab ${l.code === lang ? "active" : ""}`}
               key={l.code}
-              onClick={() => {
-                setLang(l.code);
-                setPage(0);
-              }}
-              role="tab"
+              onClick={() => setLang(l.code)}
               type="button"
             >
               {l.name}
             </button>
-          );
-        })}
-      </div>
-
-      <div className="mb-8 flex flex-wrap gap-1" role="tablist">
-        {motionLangCats.map((cat) => {
-          const active = cat.id === activeCat.id;
-          return (
-            <button
-              aria-selected={active}
-              className={`inter text-xs md:text-sm px-4 py-2.5 transition-colors duration-200 ${
-                active
-                  ? "bg-primary text-on-primary"
-                  : "bg-surface-container-lowest text-on-surface-variant border border-outline-variant/10 hover:border-outline-variant/30"
-              }`}
-              key={cat.id}
-              onClick={() => {
-                setCatId(cat.id);
-                setPage(0);
-              }}
-              role="tab"
-              type="button"
-            >
-              <span className="mr-1.5">{cat.icon}</span>
-              {cat.title} <span className="opacity-60">20</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {visible.map((r, i) => (
-          <div className="bg-surface-container-lowest border border-outline-variant/10 p-4" key={`${lang}-${activeCat.id}-${i}`}>
-            <GalleryVideo label={activeCat.title.split(" / ")[0] ?? activeCat.title} src={`${MOTIONLANG_VIDEO_BASE}${encodeURIComponent(r.v)}.mp4`} />
-            <p className="inter text-xs text-on-surface-variant leading-relaxed mt-3">{r.c}</p>
-          </div>
-        ))}
-      </div>
-
-      {pageCount > 1 ? (
-        <div className="flex items-center justify-center gap-2">
-          {Array.from({ length: pageCount }, (_, i) => (
-            <button
-              aria-current={i === page}
-              className={`inter text-xs w-8 h-8 transition-colors duration-200 ${
-                i === page
-                  ? "bg-primary text-on-primary"
-                  : "bg-surface-container-lowest text-on-surface-variant border border-outline-variant/10 hover:border-outline-variant/30"
-              }`}
-              key={i}
-              onClick={() => setPage(i)}
-              type="button"
-            >
-              {i + 1}
-            </button>
           ))}
         </div>
-      ) : null}
+      </section>
+
+      <section className="ml-dashboard">
+        <aside className="ml-sidebar">
+          <div className="ml-side-title">Categories</div>
+          {motionLangCats.map((cat) => (
+            <a className="ml-side-link" href={`#ml-${cat.id}`} key={cat.id}>
+              <span>{cat.title.split(" / ")[0]}</span>
+              <span className="ml-count">20</span>
+            </a>
+          ))}
+          <div className="ml-progress-card">
+            <div className="ml-progress-row">
+              <span>{activeLang?.name} set</span>
+              <span>200 / 200</span>
+            </div>
+            <div className="ml-bar">
+              <span />
+            </div>
+            <div style={{ marginTop: 8, color: "var(--ml-muted)", fontSize: 12, fontWeight: 800 }}>
+              Unique motions, fully captioned
+            </div>
+          </div>
+        </aside>
+
+        <section className="ml-content">
+          {motionLangCats.map((cat) => {
+            const records = motionLangDataset[lang]?.[cat.id] ?? [];
+            return (
+              <div className="ml-category" id={`ml-${cat.id}`} key={cat.id}>
+                <div className="ml-category-header">
+                  <div className="ml-category-title">
+                    <div className="ml-cat-icon">{cat.icon}</div>
+                    <div>
+                      <h2>{cat.title}</h2>
+                      <div className="ml-cat-meta">
+                        20 unique motions · captioned in {activeLang?.name}
+                      </div>
+                    </div>
+                  </div>
+                  <span className="ml-status">20 clips</span>
+                </div>
+                <div className="ml-video-grid">
+                  {records.map((r, i) => (
+                    <div className="ml-video-card" key={`${lang}-${cat.id}-${i}`}>
+                      <div className="ml-thumb">
+                        <MotionLangVideo src={`${MOTIONLANG_VIDEO_BASE}${encodeURIComponent(r.v)}.mp4`} />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img alt="" className="ml-watermark" src="/motionlang_watermark.png" />
+                      </div>
+                      <div className="ml-video-info">
+                        <div className="ml-video-title">{r.c.length > 44 ? `${r.c.slice(0, 44)}…` : r.c}</div>
+                        <div className="ml-video-sub">{cat.title}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </section>
+      </section>
     </div>
   );
 }

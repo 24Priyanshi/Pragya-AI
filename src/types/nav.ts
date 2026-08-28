@@ -16,7 +16,8 @@ export interface SubmenuFeaturedCard {
   /** Defined in the original config but never rendered — see BUG-13. */
   readonly description: string;
   readonly href: string;
-  readonly image: string;
+  /** Falls back to a plain black card (see SubmenuFeaturedCard) when omitted. */
+  readonly image?: string;
 }
 
 export interface SubmenuConfig {

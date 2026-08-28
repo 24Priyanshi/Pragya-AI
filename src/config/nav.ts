@@ -140,6 +140,23 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       image: "/pragya_dex.png",
     },
   },
+  "/pragyaspace": {
+    title: "PragyaSpace",
+    columns: { apis: QUESTION_ITEMS },
+    answers: {
+      "What is it?":
+        "A shared spatial workspace where PragyaAI's embodied-AI projects — world models, navigation, manipulation, and dialogue — come together around a common map of the physical environment.",
+      "What's the necessity?":
+        "Because a robot that perceives, walks, talks, and manipulates through separate, disconnected systems can't reason about one consistent physical space — its models of the world drift apart from each other.",
+      "What's the Leap?":
+        "From siloed models to a unified spatial substrate, where every PragyaAI capability reads from and writes to the same live representation of the world.",
+    },
+    featuredCard: {
+      title: "PragyaSpace",
+      description: "Unified spatial workspace",
+      href: "/pragyaspace",
+    },
+  },
 } as const;
 
 /**
@@ -156,6 +173,7 @@ export const navLinks: readonly NavLink[] = [
   { label: "PragyaDex", href: "/pragyadex", key: "/pragyadex" },
   { label: "KalariSena", href: "/kalarisena", key: "/kalarisena" },
   { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
+  { label: "PragyaSpace", href: "/pragyaspace", key: "/pragyaspace" },
 ] as const;
 
 /**

@@ -40,6 +40,9 @@ export const problemBlocks: readonly ProseBlockData[] = [
   },
 ] as const;
 
+export const problemQuote =
+  "We cannot interact with humanoid through text. To share a physical world, we must bridge intent through the warmth of spoken voice, the richness of native tongues, and the living cadence of natural conversation.";
+
 export const stats: readonly StatCard[] = [
   { label: "Model Scale", value: "12.4B", caption: "Dense Parameters" },
   { label: "CoT Reliability", value: "94.2%", caption: "Success on Complex Tasks" },

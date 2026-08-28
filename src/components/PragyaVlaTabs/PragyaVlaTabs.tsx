@@ -2,29 +2,21 @@
 
 import { useState } from "react";
 
-import { AnalysisPair } from "@/components/AnalysisCharts";
+import { Contributors } from "@/components/Contributors";
 import { MotionLangGallery } from "@/components/MotionLangGallery";
-import { ProcessedResults } from "@/components/ProcessedResults";
-import { RawInputGrid } from "@/components/RawInputGrid";
 import { SectionRule } from "@/components/SectionRule";
-import { StatStrip } from "@/components/StatStrip";
-import type { BarChartSpec, LineChartSpec, ProcessedCard, RawInputTile, StatCard } from "@/types/page";
 
 import type { ProseBlockData } from "@/data/pragyavla";
 
-const TABS = ["The Problem", "Dataset", "Research", "Examples", "Live Demo"] as const;
+const TABS = ["The Problem", "Dataset", "Contributors"] as const;
 type Tab = (typeof TABS)[number];
 
 interface PragyaVlaTabsProps {
   problemBlocks: readonly ProseBlockData[];
-  stats: readonly StatCard[];
-  rawInputs: readonly RawInputTile[];
-  processed: readonly ProcessedCard[];
-  barChart: BarChartSpec;
-  lineChart: LineChartSpec;
+  problemQuote: string;
 }
 
-export function PragyaVlaTabs({ problemBlocks, stats, rawInputs, processed, barChart, lineChart }: PragyaVlaTabsProps) {
+export function PragyaVlaTabs({ problemBlocks, problemQuote }: PragyaVlaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
   return (
@@ -58,37 +50,38 @@ export function PragyaVlaTabs({ problemBlocks, stats, rawInputs, processed, barC
               ))}
             </div>
           ))}
-        </div>
-      ) : null}
 
-      {tab === "Dataset" ? (
-        <div>
-          <p className="inter text-sm text-on-surface-variant leading-relaxed max-w-4xl mb-8">
-            MotionLang: 5 languages × 10 categories × 20 clips — 1000 unique instruction-motion pairs, streamed from the public
-            HuggingFace dataset.
-          </p>
-          <MotionLangGallery />
-        </div>
-      ) : null}
-
-      {tab === "Research" ? (
-        <div className="space-y-32">
-          <ProcessedResults cards={processed} />
-          <AnalysisPair bar={barChart} line={lineChart} />
-        </div>
-      ) : null}
-
-      {tab === "Examples" ? <RawInputGrid tiles={rawInputs} /> : null}
-
-      {tab === "Live Demo" ? (
-        <div>
-          <StatStrip stats={stats} />
-          <div className="bg-surface-container-lowest border border-outline-variant/10 p-8 md:p-12 text-center">
-            <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed">
-              An interactive live demo is coming soon. In the meantime, the benchmarks above reflect PragyaVLA&apos;s current
-              performance.
+          <div className="bg-primary p-8 md:p-12">
+            <p className="plus-jakarta-sans text-xl md:text-2xl font-light italic leading-relaxed text-on-primary max-w-4xl">
+              &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
+        </div>
+      ) : null}
+
+      {tab === "Dataset" ? <MotionLangGallery /> : null}
+
+      {tab === "Contributors" ? (
+        <div>
+          <div className="bg-surface-container-lowest border border-outline-variant/10 p-8 md:p-12 mb-32">
+            <SectionRule label="Contact Us" margin="mb-8" />
+            <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed">
+              <a className="text-primary hover:opacity-80 transition-opacity" href="mailto:pragya@bits">
+                pragya@bits
+              </a>
+              {" · "}
+              <a
+                className="text-primary hover:opacity-80 transition-opacity"
+                href="https://www.bits-pilani.ac.in/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                bits-pilani.ac.in
+              </a>
+            </p>
+          </div>
+
+          <Contributors />
         </div>
       ) : null}
     </div>
