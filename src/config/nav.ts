@@ -84,7 +84,7 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       title: "PragyaVLA",
       description: "Embodied AI for Robotics",
       href: "/pragyavla",
-      image: "/pragyaVla_new.png",
+      image: "/pragyavla_hero_v2.png",
     },
   },
   "/kalamprotocol": {
@@ -137,7 +137,7 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       title: "PragyaDex",
       description: "Dexterity skill gallery",
       href: "/pragyadex",
-      image: "/pragya_dex.png",
+      image: "/pragyadex_hero_v2.png",
     },
   },
   "/pragyaspace": {

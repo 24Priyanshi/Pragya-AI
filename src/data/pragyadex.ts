@@ -3,25 +3,20 @@ import type { HeroSpec, StatCard } from "@/types/page";
 /**
  * PragyaDex — the paired dexterity skill gallery at https://pragya-dex.vercel.app/.
  *
- * Stats and the description below are taken directly from the live tool
- * (checked 2026-08-26): it pairs real human-hand video with retargeted
- * dexterous robot-hand execution across everyday domains (kitchen, etc.),
- * each annotated with primitive sequences, objects/materials, dexterity
- * signals, and a robot transfer goal. This page is a static summary — the
- * hero CTA and the landing page's "Pragya-Dex" protocol row link out to the
- * live gallery itself.
- *
- * `/pragya_dex.png` is referenced (same path landing.ts already points at)
- * but not yet present in public/ — needs a real screenshot of the gallery.
+ * Page structure mirrors PragyaVLA's (2026-08-28): a plain full-bleed hero,
+ * then "The Problem" (pull-quote only) and "Dataset" (the gallery) as
+ * always-visible sections, no tabs, no bottom Contributors (that lives on its
+ * own /contributors page now).
  */
 
 export const hero: HeroSpec = {
-  src: "/pragya_dex.png",
-  alt: "PragyaDex skill gallery preview",
-  mode: "auto",
-  overlay: true,
-  actions: [{ label: "View Standalone Tool", href: "https://pragya-dex.vercel.app/" }],
+  src: "/pragyadex_hero_v2.png",
+  alt: "PragyaDex — India's first culturally grounded, language-instructed dexterous model. Understand, touch, manipulate.",
+  mode: "fill",
 };
+
+export const problemQuote =
+  "Dexterous manipulation policies need dense, richly annotated human-to-robot retargeting examples across everyday domains — not just isolated single-task demonstrations.";
 
 export const stats: readonly StatCard[] = [
   { label: "Domains", value: "8", caption: "Everyday skill categories, e.g. Kitchen" },
