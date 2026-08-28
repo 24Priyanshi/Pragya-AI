@@ -251,11 +251,111 @@
   border-radius: 14px;
   overflow: hidden;
   transition: 0.18s ease;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  font-family: inherit;
 }
 .ml-video-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(33, 31, 31, 0.09);
   border-color: #bfc8d9;
+}
+
+.ml-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.38);
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+.ml-overlay.ml-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.ml-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: min(560px, 96vw);
+  background: #fff;
+  z-index: 61;
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18);
+  transform: translateX(105%);
+  transition: transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  color: var(--ml-ink);
+}
+.ml-drawer.ml-open {
+  transform: translateX(0);
+}
+.ml-drawer-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--ml-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.ml-drawer-header strong {
+  font-size: 15px;
+}
+.ml-drawer-meta {
+  color: var(--ml-muted);
+  font-size: 13px;
+  margin-top: 3px;
+}
+.ml-drawer-close {
+  border: 1px solid var(--ml-line);
+  background: #fff;
+  border-radius: 11px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 900;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+.ml-drawer-body {
+  overflow: auto;
+  padding: 20px;
+}
+.ml-drawer-video {
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #111827, #334155);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.ml-drawer-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+.ml-drawer-video .ml-watermark {
+  top: 10px;
+  right: 10px;
+  width: 46px;
+}
+.ml-drawer-caption-label {
+  font-size: 13px;
+  color: var(--ml-muted);
+  font-weight: 900;
+  margin: 0 0 7px;
+}
+.ml-drawer-caption {
+  border: 1px solid var(--ml-line);
+  border-radius: 12px;
+  padding: 12px 13px;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #fbfaf8;
 }
 .ml-thumb {
   aspect-ratio: 16 / 9;

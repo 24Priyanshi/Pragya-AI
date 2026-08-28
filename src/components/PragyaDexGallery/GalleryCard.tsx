@@ -32,8 +32,7 @@ export function GalleryCard({ example }: { example: GalleryExample }) {
         <span className="inter shrink-0 text-[10px] text-outline tracking-widest">{example.index}</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 mb-4">
-        <GalleryVideo label="Human" src={`${GALLERY_VIDEO_BASE}${example.humanVideo}`} />
+      <div className="mb-4">
         <GalleryVideo label="Robot" src={`${GALLERY_VIDEO_BASE}${example.robotVideo}`} />
       </div>
 

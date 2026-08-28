@@ -50,7 +50,7 @@ export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[
 
       <p className="inter text-sm text-on-surface-variant leading-relaxed max-w-4xl mb-8">{activeDomain.desc}</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {visibleExamples.map((example) => (
           <GalleryCard example={example} key={`${activeDomain.id}-${example.index}`} />
         ))}
