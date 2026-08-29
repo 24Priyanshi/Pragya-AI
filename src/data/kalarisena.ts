@@ -14,6 +14,9 @@ export const hero: HeroSpec = {
   mode: "auto",
 };
 
+export const problemQuote =
+  "India-facing deployment demands humanoids that can move and respond in crowded public spaces, disaster zones, industrial corridors, high-footfall transit hubs, and security-sensitive environments.";
+
 export const stats: readonly StatCard[] = [
   { label: "Dynamic Stability", value: "94.2%", caption: "Success Rate in High-G Rotations" },
   { label: "Unique Samples", value: "12k+", caption: "Annotated Martial Motion Paths" },

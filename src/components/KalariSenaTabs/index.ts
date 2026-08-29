@@ -1,0 +1,1 @@
+export { KalariSenaTabs } from "./KalariSenaTabs";

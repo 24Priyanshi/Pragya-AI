@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 
-import { AnalysisPair } from "@/components/AnalysisCharts";
+import { KalariSenaTabs } from "@/components/KalariSenaTabs";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { ProcessedResults } from "@/components/ProcessedResults";
-import { RawInputGrid } from "@/components/RawInputGrid";
-import { StatStrip } from "@/components/StatStrip";
-import { barChart, hero, lineChart, processed, rawInputs, stats } from "@/data/kalarisena";
+import { hero, problemQuote } from "@/data/kalarisena";
 
 export const metadata: Metadata = {
   title: "KalariSena",
@@ -14,18 +11,15 @@ export const metadata: Metadata = {
     "A movement-intelligence framework for humanoid robots, inspired by Kalaripayattu and grounded in strategic embodied response.",
 };
 
+/**
+ * Page structure mirrors PragyaVLA/PragyaDex's (2026-08-30): a plain hero,
+ * then "The Problem" / "Dataset" tabs, no bottom Contributors.
+ */
 export default function KalariSenaPage() {
   return (
     <PageShell>
       <PageHero hero={hero} />
-      <StatStrip stats={stats} />
-
-      <section className="space-y-32">
-        <RawInputGrid tiles={rawInputs} />
-        <ProcessedResults cards={processed} />
-      </section>
-
-      <AnalysisPair bar={barChart} line={lineChart} />
+      <KalariSenaTabs problemQuote={problemQuote} />
     </PageShell>
   );
 }
