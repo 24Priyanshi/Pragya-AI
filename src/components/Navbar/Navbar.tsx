@@ -53,7 +53,7 @@ export function Navbar() {
     <>
       <nav className="fixed top-0 w-full z-50 bg-surface-container-lowest/70 backdrop-blur-md" data-nav ref={navRef}>
         <div className="flex justify-between items-center px-12 py-6 max-w-screen-2xl mx-auto">
-          <Link aria-label="Pragya AI Home" className="inline-flex items-center" href="/">
+          <Link aria-label="Pragya AI Home" className="inline-flex shrink-0 items-center" href="/">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt={siteConfig.logoAlt} className="h-9 md:h-10 w-auto object-contain" src={siteConfig.logo} />
           </Link>
@@ -66,7 +66,7 @@ export function Navbar() {
             openKey={activeKey}
           />
 
-          <div className="flex items-center gap-6">
+          <div className="flex shrink-0 items-center gap-6">
             <a
               className="bg-on-surface text-inverse-on-surface px-5 py-2.5 text-[10px] tracking-widest hover:opacity-80 transition-all active:scale-95 duration-200 uppercase font-medium"
               href="https://www.bits-pilani.ac.in/goa/"
