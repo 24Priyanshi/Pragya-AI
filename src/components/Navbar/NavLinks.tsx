@@ -38,7 +38,7 @@ export function NavLinks({ activePath, openKey, onToggle, onHoverOpen, onHoverLe
         aria-controls={hasSubmenu ? "submenu-container" : undefined}
         aria-expanded={hasSubmenu ? openKey === link.key : undefined}
         className={cn(
-          "relative flex items-center gap-1.5",
+          "relative flex items-center gap-1",
           hasSubmenu && "cursor-pointer group",
           variant === "contributors"
             ? cn(
@@ -68,7 +68,7 @@ export function NavLinks({ activePath, openKey, onToggle, onHoverOpen, onHoverLe
         type="button"
       >
         {variant === "project" && navIcons[link.key] ? (
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-current/25 text-[11px]">
+          <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-current/25 text-[9px]">
             <MaterialIcon name={navIcons[link.key]} />
           </span>
         ) : null}
@@ -78,7 +78,7 @@ export function NavLinks({ activePath, openKey, onToggle, onHoverOpen, onHoverLe
   }
 
   return (
-    <div className="hidden md:flex items-center gap-6 font-['Plus_Jakarta_Sans'] font-light tracking-tight text-base">
+    <div className="hidden md:flex items-center gap-5 font-['Plus_Jakarta_Sans'] font-light tracking-tight text-sm">
       {navLinks.map((link) => renderItem(link, "project"))}
       {renderItem(contributorsLink, "contributors")}
     </div>

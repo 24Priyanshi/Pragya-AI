@@ -261,11 +261,11 @@ export interface OrbitNode {
 }
 
 /**
- * The seven-project "capability orbit" below the landing hero, on request
- * (2026-08-28) — one node per project, positioned evenly around an ellipse,
- * each tagged with a one-word capability, opening a drawer with that
- * project's own submenu summary and hero/preview image on click. Order
- * matches the navbar's.
+ * The seven-project "capability orbit" below the landing hero. Positions
+ * (2026-08-29) match the reference mockup's own layout — three nodes down
+ * each side, one at bottom-center — rather than an even ellipse. Each node
+ * is tagged with a one-word capability and opens a drawer with that
+ * project's own submenu summary and hero/preview image on click.
  */
 export const orbitNodes: readonly OrbitNode[] = [
   {
@@ -274,8 +274,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "DenseWorld",
     capability: "Perceive",
     href: "/denseworld",
-    left: 50.0,
-    top: 10.0,
+    left: 8,
+    top: 15,
     previewImage: "/denseWorld_new.png",
     summary: "World Models for Populous, Crowded, and Chaotic Global South",
   },
@@ -285,8 +285,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "DenseWalk",
     capability: "Navigate",
     href: "/densewalk",
-    left: 83.6,
-    top: 25.1,
+    left: 8,
+    top: 80,
     previewImage: "/denseWalk_new.png",
     summary:
       "A data-and-benchmark pipeline for short-horizon humanoid navigation in populous, crowded, and chaotic Global South urban environments.",
@@ -297,8 +297,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "PragyaVLA",
     capability: "Understand",
     href: "/pragyavla",
-    left: 91.9,
-    top: 58.9,
+    left: 8,
+    top: 47,
     previewImage: "/pragyavla_hero_v2.png",
     summary:
       "India's first sovereign VLA model for robot navigation—an instruction-finetuned framework that unifies multilingual grounding, locomotion-aware reasoning, and safety-conditioned control.",
@@ -309,8 +309,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "PragyaDex",
     capability: "Manipulate",
     href: "/pragyadex",
-    left: 68.7,
-    top: 86.0,
+    left: 92,
+    top: 80,
     previewImage: "/pragyadex_hero_v2.png",
     summary:
       "A paired human-hand-to-robot-hand dexterity skill gallery — 400 examples across 8 everyday domains, each annotated with primitive sequences, objects, materials, and a robot transfer goal.",
@@ -321,8 +321,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "KalariSena",
     capability: "Embody",
     href: "/kalarisena",
-    left: 31.3,
-    top: 86.0,
+    left: 92,
+    top: 47,
     previewImage: "/kalarisena_new.png",
     summary: "A movement-intelligence framework for humanoid robots, inspired by Kalaripayattu and grounded in strategic embodied response.",
   },
@@ -332,8 +332,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "PragyaSpace",
     capability: "Extend",
     href: "/pragyaspace",
-    left: 8.1,
-    top: 58.9,
+    left: 92,
+    top: 15,
     previewImage: "/pragyaspace_hero.png",
     summary:
       "A shared spatial workspace where PragyaAI's embodied-AI projects — world models, navigation, manipulation, and dialogue — come together around a common map of the physical environment.",
@@ -344,8 +344,8 @@ export const orbitNodes: readonly OrbitNode[] = [
     title: "Kalam Protocol",
     capability: "Safeguard",
     href: "/kalamprotocol",
-    left: 16.4,
-    top: 25.1,
+    left: 50,
+    top: 95,
     previewImage: "/kalamProtocol_new.png",
     summary: "A safety, alignment, and governance protocol for robots operating in real-world environments.",
   },
