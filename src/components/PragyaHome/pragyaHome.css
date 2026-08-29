@@ -1,8 +1,10 @@
 /*
  * Verbatim port of the landing page's own CSS from
- * https://pragyalab-ai.dramitavadas.chatgpt.site/ (2026-08-29), on request —
- * this replaces the site's shared Navbar/Footer chrome for "/" only (see
- * SiteShell's `chrome` prop and the (landing) layout). Custom properties are
+ * https://pragyalab-ai.dramitavadas.chatgpt.site/ (2026-08-29) — the hero
+ * constellation, detail sheet, and this page's own footer. The top-nav rules
+ * that used to live here moved to `TopNav/topNav.css` (2026-08-29) once the
+ * nav became shared across every page rather than landing-only; see
+ * SiteShell's `footer` prop and the (landing) layout. Custom properties are
  * scoped under .pragya-home instead of :root so they don't leak into the
  * rest of the site.
  */
@@ -38,131 +40,6 @@
 }
 .pragya-home .skip-link:focus {
   top: 16px;
-}
-
-/* Top nav */
-.pragya-home .top-nav {
-  z-index: 70;
-  background: var(--beige);
-  border-bottom: 1px solid #c894328c;
-  align-items: center;
-  gap: clamp(18px, 2vw, 30px);
-  height: 76px;
-  padding: 0 clamp(22px, 3vw, 48px);
-  display: flex;
-  position: fixed;
-  inset: 0 0 auto;
-}
-.pragya-home .nav-mark {
-  flex: none;
-  width: clamp(112px, 8.6vw, 145px);
-  height: 44px;
-  display: block;
-}
-.pragya-home .brand-logo {
-  background: var(--purple);
-  width: 100%;
-  height: 100%;
-  display: block;
-  -webkit-mask: url(/pragya/pragya-logo.png) 0/contain no-repeat;
-  mask: url(/pragya/pragya-logo.png) 0/contain no-repeat;
-}
-.pragya-home .nav-programmes {
-  flex: 1;
-  justify-content: flex-start;
-  align-items: center;
-  gap: clamp(10px, 1.15vw, 22px);
-  min-width: 0;
-  height: 100%;
-  display: flex;
-}
-.pragya-home .nav-programmes a {
-  color: #5c4a5e;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  align-items: center;
-  gap: 6px;
-  height: 100%;
-  font-size: clamp(8px, 0.67vw, 11px);
-  font-weight: 550;
-  text-decoration: none;
-  transition: color 0.18s;
-  display: flex;
-  position: relative;
-}
-.pragya-home .nav-programmes a:after {
-  content: "";
-  background: var(--gold);
-  width: 0;
-  height: 1px;
-  transition: width 0.2s;
-  position: absolute;
-  bottom: 11px;
-  left: 50%;
-  transform: translate(-50%);
-}
-.pragya-home .nav-programmes a:hover,
-.pragya-home .nav-programmes a:focus-visible {
-  color: var(--purple);
-}
-.pragya-home .nav-programmes a:hover:after,
-.pragya-home .nav-programmes a:focus-visible:after {
-  width: 100%;
-}
-.pragya-home .nav-programmes a:focus-visible {
-  outline: 1px solid var(--gold);
-  outline-offset: 5px;
-}
-.pragya-home .nav-emblem {
-  width: 27px;
-  height: 27px;
-  color: var(--purple);
-  border: 1px solid #3c104e61;
-  border-radius: 50%;
-  flex: 0 0 27px;
-  place-items: center;
-  transition: border-color 0.18s, color 0.18s;
-  display: grid;
-}
-.pragya-home .nav-emblem svg {
-  width: 20px;
-  height: 20px;
-}
-.pragya-home .nav-emblem .emblem-gold {
-  stroke: var(--gold);
-  fill: none;
-}
-.pragya-home .nav-programmes a:hover .nav-emblem,
-.pragya-home .nav-programmes a:focus-visible .nav-emblem {
-  color: var(--purple);
-  border-color: var(--gold);
-}
-.pragya-home .bits-button {
-  border: 1px solid var(--gold);
-  background: var(--purple);
-  min-width: 112px;
-  height: 40px;
-  color: var(--beige);
-  white-space: nowrap;
-  border-radius: 5px;
-  flex: none;
-  place-items: center;
-  padding: 0 15px;
-  font-family: Georgia, serif;
-  font-size: 14px;
-  text-decoration: none;
-  transition: color 0.18s, border-color 0.18s, background 0.18s;
-  display: grid;
-}
-.pragya-home .bits-button:hover,
-.pragya-home .bits-button:focus-visible {
-  color: var(--gold-soft);
-  border-color: var(--gold-soft);
-  background: #2b0b3a;
-}
-.pragya-home .bits-button:focus-visible {
-  outline-offset: 3px;
-  outline: 2px solid #c8943259;
 }
 
 /* Hero / constellation */
@@ -763,40 +640,6 @@
 }
 
 @media (width <= 1180px) {
-  .pragya-home .top-nav {
-    gap: 24px;
-    padding-inline: 22px;
-  }
-  .pragya-home .nav-mark {
-    width: 105px;
-  }
-  .pragya-home .nav-programmes {
-    scrollbar-width: none;
-    justify-content: flex-start;
-    gap: 12px;
-    overflow-x: auto;
-  }
-  .pragya-home .nav-programmes::-webkit-scrollbar {
-    display: none;
-  }
-  .pragya-home .nav-programmes a {
-    flex: none;
-    font-size: 9px;
-  }
-  .pragya-home .nav-emblem {
-    flex-basis: 24px;
-    width: 24px;
-    height: 24px;
-  }
-  .pragya-home .nav-emblem svg {
-    width: 18px;
-    height: 18px;
-  }
-  .pragya-home .bits-button {
-    min-width: 100px;
-    height: 36px;
-    font-size: 12px;
-  }
   .pragya-home .programme-node {
     width: 125px;
   }
@@ -821,36 +664,6 @@
 }
 
 @media (width <= 760px) {
-  .pragya-home .top-nav {
-    gap: 18px;
-    height: 64px;
-    padding-inline: 14px;
-  }
-  .pragya-home .nav-mark {
-    width: 82px;
-    height: 34px;
-  }
-  .pragya-home .nav-programmes a {
-    font-size: 8px;
-  }
-  .pragya-home .nav-programmes a:after {
-    bottom: 8px;
-  }
-  .pragya-home .nav-emblem {
-    flex-basis: 22px;
-    width: 22px;
-    height: 22px;
-  }
-  .pragya-home .nav-emblem svg {
-    width: 16px;
-    height: 16px;
-  }
-  .pragya-home .bits-button {
-    min-width: 86px;
-    height: 34px;
-    padding-inline: 9px;
-    font-size: 11px;
-  }
   .pragya-home .ecosystem-stage {
     height: 100svh;
     min-height: 650px;

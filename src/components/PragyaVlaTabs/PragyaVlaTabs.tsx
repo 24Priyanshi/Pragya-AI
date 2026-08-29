@@ -28,10 +28,18 @@ interface PragyaVlaTabsProps {
  * as DenseWalk's video iframe. It's a custom JS visualization baked into
  * that page, not a standalone widget, so embedding the page itself (anchored
  * at #search) is the only way to show it without reimplementing it. The
- * Mechanism tab shows just this iframe, full width, nothing else; the
  * page's own "More Info" link lives separately as its own button next to
  * "Mechanism" in the tab row.
+ *
+ * Further request (2026-08-29): show only the step-toolbar + tree diagram,
+ * not the formalization/cardinality boxes or log-likelihood bar that sit
+ * above them in that section. The iframe has no way to start scrolled past
+ * those, so it's cropped with an overflow:hidden wrapper shorter than the
+ * iframe itself, shifted up by a measured pixel offset (the toolbar's own
+ * on-screen position right after the #search anchor scroll, at this
+ * fixed iframe width) — a negative-margin crop, not a redesign of the tool.
  */
+const MECHANISM_CROP_OFFSET = 420;
 export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
@@ -74,8 +82,14 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
       {tab === "Dataset" ? <MotionLangGallery /> : null}
 
       {tab === "Mechanism" ? (
-        <div className="border border-outline-variant/10 bg-surface">
-          <iframe className="w-full" height={900} src={MOTION_TOKEN_TOOL_URL} title="PragyaVLA motion-token search" />
+        <div className="border border-outline-variant/10 bg-surface overflow-hidden h-[620px]">
+          {/* Tailwind can't see dynamic arbitrary-value classes, so the crop uses inline styles. */}
+          <iframe
+            className="w-full"
+            src={MOTION_TOKEN_TOOL_URL}
+            style={{ height: 900 + MECHANISM_CROP_OFFSET, marginTop: -MECHANISM_CROP_OFFSET }}
+            title="PragyaVLA motion-token search"
+          />
         </div>
       ) : null}
     </div>

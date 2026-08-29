@@ -8,15 +8,13 @@ import { EcosystemStage } from "./EcosystemStage";
 import { PragyaFooter } from "./PragyaFooter";
 import "./pragyaHome.css";
 import { ProgrammeSheet } from "./ProgrammeSheet";
-import { TopNav } from "./TopNav";
 
 /**
  * Exact port of the landing page at
- * https://pragyalab-ai.dramitavadas.chatgpt.site/ (2026-08-29) — its own
- * nav, hero constellation, and footer replace the site's shared Navbar/
- * Footer for "/" only (see SiteShell's `chrome` prop). Content, copy, layout
- * and interaction (hover tooltip + click-to-open detail sheet) are copied
- * from that page's own markup, CSS and compiled JS, not re-derived.
+ * https://pragyalab-ai.dramitavadas.chatgpt.site/ (2026-08-29) — hero
+ * constellation and footer, copied from that page's own markup, CSS and
+ * compiled JS, not re-derived. The nav is rendered by SiteShell (TopNav is
+ * now shared across every page, not just this one — see its own file).
  */
 export function PragyaHome() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -27,7 +25,6 @@ export function PragyaHome() {
       <a className="skip-link" href="#programmes">
         Skip to programmes
       </a>
-      <TopNav />
       <EcosystemStage
         hoveredId={hoveredId}
         onHover={setHoveredId}

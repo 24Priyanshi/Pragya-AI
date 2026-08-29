@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
+import { ProgrammeIcon } from "@/components/TopNav/icons";
+import { programmeRoute } from "@/components/TopNav/routes";
 import type { Programme } from "@/data/pragyaProgrammes";
-
-import { ProgrammeIcon } from "./icons";
-import { programmeRoute } from "./routes";
 
 interface ProgrammeSheetProps {
   programmes: readonly Programme[];

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Footer, type FooterVariant } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
+import { TopNav } from "@/components/TopNav";
 
 import "@/styles/fonts.css";
 import "@/app/globals.css";
@@ -33,15 +33,17 @@ const BODY_CLASS: Record<FooterVariant, string> = {
 interface SiteShellProps {
   variant: FooterVariant;
   /**
-   * Set to false to omit the shared Navbar/Footer, for a page that brings its
-   * own complete nav+footer chrome (the landing page's exact port of the
-   * external reference design, 2026-08-29). Defaults to true.
+   * Set to false to omit the shared Footer, for a page that brings its own
+   * (the landing page's own footer, from its exact port of the external
+   * reference design, 2026-08-29). Defaults to true. TopNav itself is no
+   * longer optional — it's shared by every page (2026-08-29), replacing the
+   * original mega-menu Navbar everywhere.
    */
-  chrome?: boolean;
+  footer?: boolean;
   children: ReactNode;
 }
 
-export function SiteShell({ variant, chrome = true, children }: SiteShellProps) {
+export function SiteShell({ variant, footer = true, children }: SiteShellProps) {
   return (
     // data-scroll-behavior: design-system.css sets `html { scroll-behavior: smooth }`.
     // This attribute tells Next to force instant scrolling during route
@@ -53,9 +55,9 @@ export function SiteShell({ variant, chrome = true, children }: SiteShellProps) 
           <body> before React hydrates. Scoped to this element's own
           attributes; mismatches in children still surface. */}
       <body className={BODY_CLASS[variant]} data-mode="connect" suppressHydrationWarning>
-        {chrome ? <Navbar /> : null}
+        <TopNav />
         {children}
-        {chrome ? <Footer variant={variant} /> : null}
+        {footer ? <Footer variant={variant} /> : null}
       </body>
     </html>
   );

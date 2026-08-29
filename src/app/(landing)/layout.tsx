@@ -11,10 +11,10 @@ import { siteConfig } from "@/config/site";
  * exists because the original's <body> class differs between landing and the
  * six sub-pages — see SiteShell for the details.
  *
- * chrome={false} on request (2026-08-29): the landing page is now an exact
- * port of an external reference design (https://pragyalab-ai.dramitavadas.chatgpt.site/)
- * with its own complete top-nav and footer, so the shared Navbar/Footer are
- * omitted here to avoid doubling up.
+ * footer={false} on request (2026-08-29): the landing page is an exact port
+ * of an external reference design (https://pragyalab-ai.dramitavadas.chatgpt.site/)
+ * with its own footer, so the shared Footer is omitted here to avoid
+ * doubling up. Its nav is now the same shared TopNav every page uses.
  */
 
 export const metadata: Metadata = {
@@ -47,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function LandingRootLayout({ children }: { children: ReactNode }) {
   return (
-    <SiteShell chrome={false} variant="landing">
+    <SiteShell footer={false} variant="landing">
       {children}
     </SiteShell>
   );

@@ -1,6 +1,5 @@
+import { ProgrammeIcon } from "@/components/TopNav/icons";
 import type { Programme } from "@/data/pragyaProgrammes";
-
-import { ProgrammeIcon } from "./icons";
 
 interface EcosystemStageProps {
   programmes: readonly Programme[];
