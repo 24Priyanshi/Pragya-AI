@@ -1,3 +1,11 @@
+import type { HeroSpec } from "@/types/page";
+
+export const hero: HeroSpec = {
+  src: "/pragyaspace_hero.png",
+  alt: "PragyaSpace — India's sovereign embodied AI for space. Robots working on the Moon, Mars, the ISS, and a data center.",
+  mode: "fill",
+};
+
 export interface ProseBlockData {
   readonly label: string;
   readonly paragraphs: readonly string[];

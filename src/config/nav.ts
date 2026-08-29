@@ -1,4 +1,4 @@
-import type { NavLink, SubmenuConfig, SubmenuItem } from "@/types/nav";
+import type { MaterialIconName, NavLink, SubmenuConfig, SubmenuItem } from "@/types/nav";
 
 /**
  * Verbatim port of the `submenuConfig` and `links` objects in js/navbar.js.
@@ -155,6 +155,7 @@ export const submenuConfig: Readonly<Record<string, SubmenuConfig>> = {
       title: "PragyaSpace",
       description: "Unified spatial workspace",
       href: "/pragyaspace",
+      image: "/pragyaspace_hero.png",
     },
   },
   "/contributors": {
@@ -193,6 +194,17 @@ export const navLinks: readonly NavLink[] = [
 
 /** Styled distinctly from the project tabs — see NavLinks. */
 export const contributorsLink: NavLink = { label: "Contributors", href: "/contributors", key: "/contributors" };
+
+/** One icon per project tab, on request (2026-08-29) — same set used for the landing page's capability orbit. */
+export const navIcons: Readonly<Record<string, MaterialIconName>> = {
+  "/denseworld": "visibility",
+  "/densewalk": "directions_walk",
+  "/pragyavla": "forum",
+  "/pragyadex": "front_hand",
+  "/kalarisena": "sports_martial_arts",
+  "/pragyaspace": "hub",
+  "/kalamprotocol": "shield",
+};
 
 /**
  * Hidden from the navbar for now — "keep FactorJEPA silent, we may present it

@@ -1,6 +1,7 @@
 "use client";
 
-import { contributorsLink, NAV_LINK_ACTIVE_CLASS, NAV_LINK_INACTIVE_CLASS, navLinks, submenuConfig } from "@/config/nav";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { contributorsLink, NAV_LINK_ACTIVE_CLASS, NAV_LINK_INACTIVE_CLASS, navIcons, navLinks, submenuConfig } from "@/config/nav";
 import { cn } from "@/lib/cn";
 import type { NavLink } from "@/types/nav";
 
@@ -37,7 +38,7 @@ export function NavLinks({ activePath, openKey, onToggle, onHoverOpen, onHoverLe
         aria-controls={hasSubmenu ? "submenu-container" : undefined}
         aria-expanded={hasSubmenu ? openKey === link.key : undefined}
         className={cn(
-          "relative",
+          "relative flex items-center gap-2",
           hasSubmenu && "cursor-pointer group",
           variant === "contributors"
             ? cn(
@@ -66,6 +67,11 @@ export function NavLinks({ activePath, openKey, onToggle, onHoverOpen, onHoverLe
         style={hasSubmenu ? { cursor: "pointer" } : undefined}
         type="button"
       >
+        {variant === "project" && navIcons[link.key] ? (
+          <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current/25 text-[13px]">
+            <MaterialIcon name={navIcons[link.key]} />
+          </span>
+        ) : null}
         {link.label}
       </button>
     );
