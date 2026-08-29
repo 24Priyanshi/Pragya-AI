@@ -47,8 +47,6 @@ export function Navbar() {
     return () => document.removeEventListener("click", onDocumentClick);
   }, [activeKey, close]);
 
-  const isHomePage = pathname === "/";
-  const contactHref = isHomePage ? siteConfig.contactAnchor : `/${siteConfig.contactAnchor}`;
   const openConfig = activeKey ? submenuConfig[activeKey] : undefined;
 
   return (
@@ -71,7 +69,9 @@ export function Navbar() {
           <div className="flex items-center gap-6">
             <a
               className="bg-on-surface text-inverse-on-surface px-5 py-2.5 text-[10px] tracking-widest hover:opacity-80 transition-all active:scale-95 duration-200 uppercase font-medium"
-              href={contactHref}
+              href="https://www.bits-pilani.ac.in/goa/"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               Pragya@BITS
             </a>
