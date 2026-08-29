@@ -1,4 +1,5 @@
 import type { EvidenceTile, HeroSegment, ProtocolRow } from "@/types/content";
+import type { MaterialIconName } from "@/types/nav";
 
 /**
  * Content of pages/landing.html, transcribed verbatim.
@@ -243,4 +244,30 @@ export const evidenceTiles: readonly EvidenceTile[] = [
     heading: "Lab Talks & Video Demonstrations",
     caption: "Watch our comprehensive video playlist covering project walkthroughs, model evaluations, and embodied AI demos.",
   },
+] as const;
+
+export interface OrbitNode {
+  readonly index: string;
+  readonly icon: MaterialIconName;
+  readonly title: string;
+  readonly capability: string;
+  readonly href: string;
+  /** Position of the node's center, as a percentage of the orbit container. */
+  readonly left: number;
+  readonly top: number;
+}
+
+/**
+ * The seven-project "capability orbit" below the landing hero, on request
+ * (2026-08-28) — one node per project, positioned evenly around an ellipse,
+ * each tagged with a one-word capability. Order matches the navbar's.
+ */
+export const orbitNodes: readonly OrbitNode[] = [
+  { index: "01", icon: "visibility", title: "DenseWorld", capability: "Perceive", href: "/denseworld", left: 50.0, top: 10.0 },
+  { index: "02", icon: "directions_walk", title: "DenseWalk", capability: "Navigate", href: "/densewalk", left: 83.6, top: 25.1 },
+  { index: "03", icon: "forum", title: "PragyaVLA", capability: "Understand", href: "/pragyavla", left: 91.9, top: 58.9 },
+  { index: "04", icon: "front_hand", title: "PragyaDex", capability: "Manipulate", href: "/pragyadex", left: 68.7, top: 86.0 },
+  { index: "05", icon: "sports_martial_arts", title: "KalariSena", capability: "Embody", href: "/kalarisena", left: 31.3, top: 86.0 },
+  { index: "06", icon: "hub", title: "PragyaSpace", capability: "Extend", href: "/pragyaspace", left: 8.1, top: 58.9 },
+  { index: "07", icon: "shield", title: "Kalam Protocol", capability: "Safeguard", href: "/kalamprotocol", left: 16.4, top: 25.1 },
 ] as const;

@@ -1,5 +1,16 @@
-/** Material Symbols ligature names used by the submenu. */
-export type MaterialIconName = "info" | "insights" | "rocket_launch" | "arrow_outward";
+/** Material Symbols ligature names used across the site. */
+export type MaterialIconName =
+  | "info"
+  | "insights"
+  | "rocket_launch"
+  | "arrow_outward"
+  | "visibility"
+  | "directions_walk"
+  | "forum"
+  | "front_hand"
+  | "sports_martial_arts"
+  | "hub"
+  | "shield";
 
 /** One question row in a submenu column. */
 export interface SubmenuItem {
