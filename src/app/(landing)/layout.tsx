@@ -10,6 +10,11 @@ import { siteConfig } from "@/config/site";
  * This is one of two root layouts (see src/app/(site)/layout.tsx). The split
  * exists because the original's <body> class differs between landing and the
  * six sub-pages — see SiteShell for the details.
+ *
+ * chrome={false} on request (2026-08-29): the landing page is now an exact
+ * port of an external reference design (https://pragyalab-ai.dramitavadas.chatgpt.site/)
+ * with its own complete top-nav and footer, so the shared Navbar/Footer are
+ * omitted here to avoid doubling up.
  */
 
 export const metadata: Metadata = {
@@ -41,5 +46,9 @@ export const viewport: Viewport = {
 };
 
 export default function LandingRootLayout({ children }: { children: ReactNode }) {
-  return <SiteShell variant="landing">{children}</SiteShell>;
+  return (
+    <SiteShell chrome={false} variant="landing">
+      {children}
+    </SiteShell>
+  );
 }

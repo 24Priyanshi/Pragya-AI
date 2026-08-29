@@ -32,10 +32,16 @@ const BODY_CLASS: Record<FooterVariant, string> = {
 
 interface SiteShellProps {
   variant: FooterVariant;
+  /**
+   * Set to false to omit the shared Navbar/Footer, for a page that brings its
+   * own complete nav+footer chrome (the landing page's exact port of the
+   * external reference design, 2026-08-29). Defaults to true.
+   */
+  chrome?: boolean;
   children: ReactNode;
 }
 
-export function SiteShell({ variant, children }: SiteShellProps) {
+export function SiteShell({ variant, chrome = true, children }: SiteShellProps) {
   return (
     // data-scroll-behavior: design-system.css sets `html { scroll-behavior: smooth }`.
     // This attribute tells Next to force instant scrolling during route
@@ -47,9 +53,9 @@ export function SiteShell({ variant, children }: SiteShellProps) {
           <body> before React hydrates. Scoped to this element's own
           attributes; mismatches in children still surface. */}
       <body className={BODY_CLASS[variant]} data-mode="connect" suppressHydrationWarning>
-        <Navbar />
+        {chrome ? <Navbar /> : null}
         {children}
-        <Footer variant={variant} />
+        {chrome ? <Footer variant={variant} /> : null}
       </body>
     </html>
   );

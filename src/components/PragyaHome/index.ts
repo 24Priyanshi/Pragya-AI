@@ -1,0 +1,1 @@
+export { PragyaHome } from "./PragyaHome";

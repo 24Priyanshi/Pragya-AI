@@ -1,21 +1,13 @@
-import { CapabilityOrbit } from "@/components/CapabilityOrbit";
-import { LandingHero } from "@/components/LandingHero";
+import { PragyaHome } from "@/components/PragyaHome";
 
 /**
- * The landing page — pages/landing.html.
+ * The landing page.
  *
- * The original's index.html was a pure redirect to this page, so "/" is it.
- * Footer is supplied by the root layout (landing variant).
- *
- * The protocol-row list and evidence grid that used to fill the rest of the
- * page were replaced on request (2026-08-28) with CapabilityOrbit — see that
- * component for the source of the new content.
+ * Replaced on request (2026-08-29) with an exact port of
+ * https://pragyalab-ai.dramitavadas.chatgpt.site/ — see PragyaHome. This
+ * page now supplies its own complete nav+footer (see SiteShell's `chrome`
+ * prop), so the root layout no longer injects the shared ones here.
  */
 export default function LandingPage() {
-  return (
-    <>
-      <LandingHero />
-      <CapabilityOrbit />
-    </>
-  );
+  return <PragyaHome />;
 }
