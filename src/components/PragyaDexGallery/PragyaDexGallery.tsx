@@ -1,80 +1,155 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import type { GalleryDomain } from "@/types/gallery";
+import { GALLERY_VIDEO_BASE } from "@/data/pragyadexGallery";
+import type { GalleryDomain, GalleryExample } from "@/types/gallery";
 
 import { GalleryCard } from "./GalleryCard";
+import "./pragyadexGallery.css";
 
-const PAGE_SIZE = 12;
+const DOMAIN_ICONS: Readonly<Record<string, string>> = {
+  Kitchen: "🍳",
+  Street_Food: "🍢",
+  Tailoring__Textile: "🧵",
+  Repair__Maintenance: "🔧",
+  Handicrafts: "🎨",
+  Agriculture: "🌾",
+  Religious__Cultural: "🪔",
+  Small_Manufacturing: "🏭",
+};
+
+interface SelectedExample {
+  readonly example: GalleryExample;
+  readonly domainLabel: string;
+}
 
 export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[] }) {
-  const [activeId, setActiveId] = useState(domains[0]?.id ?? "");
-  const [page, setPage] = useState(0);
+  const [selected, setSelected] = useState<SelectedExample | null>(null);
 
-  const activeDomain = domains.find((d) => d.id === activeId) ?? domains[0];
-  const pageCount = activeDomain ? Math.ceil(activeDomain.examples.length / PAGE_SIZE) : 0;
-  const visibleExamples = useMemo(
-    () => activeDomain?.examples.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE) ?? [],
-    [activeDomain, page],
-  );
+  const totalExamples = useMemo(() => domains.reduce((sum, d) => sum + d.examples.length, 0), [domains]);
 
-  if (!activeDomain) return null;
+  // Escape closes the drawer, matching MotionLangGallery's own behavior.
+  useEffect(() => {
+    if (!selected) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [selected]);
 
   return (
-    <div>
-      <div className="mb-8 flex flex-wrap gap-1" role="tablist">
-        {domains.map((domain) => {
-          const active = domain.id === activeDomain.id;
-          return (
-            <button
-              aria-selected={active}
-              className={`inter text-xs md:text-sm px-4 py-2.5 transition-colors duration-200 ${
-                active
-                  ? "bg-primary text-on-primary"
-                  : "bg-surface-container-lowest text-on-surface-variant border border-outline-variant/10 hover:border-outline-variant/30"
-              }`}
-              key={domain.id}
-              onClick={() => {
-                setActiveId(domain.id);
-                setPage(0);
-              }}
-              role="tab"
-              type="button"
-            >
-              {domain.label} <span className="opacity-60">{domain.examples.length}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <p className="inter text-sm text-on-surface-variant leading-relaxed max-w-4xl mb-8">{activeDomain.desc}</p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {visibleExamples.map((example) => (
-          <GalleryCard example={example} key={`${activeDomain.id}-${example.index}`} />
-        ))}
-      </div>
-
-      {pageCount > 1 ? (
-        <div className="flex items-center justify-center gap-2">
-          {Array.from({ length: pageCount }, (_, i) => (
-            <button
-              aria-current={i === page}
-              className={`inter text-xs w-8 h-8 transition-colors duration-200 ${
-                i === page
-                  ? "bg-primary text-on-primary"
-                  : "bg-surface-container-lowest text-on-surface-variant border border-outline-variant/10 hover:border-outline-variant/30"
-              }`}
-              key={i}
-              onClick={() => setPage(i)}
-              type="button"
-            >
-              {i + 1}
-            </button>
-          ))}
+    <div className="pd-root">
+      <section className="pd-hero">
+        <h1>PragyaDex Skill Gallery</h1>
+        <p className="pd-subtitle">
+          Paired human-hand-to-robot-hand dexterity examples across everyday domains — each annotated with a primitive
+          sequence, objects, materials, and a robot transfer goal.
+        </p>
+        <div className="pd-summary">
+          <span className="pd-pill blue">{domains.length} domains</span>
+          <span className="pd-pill">{totalExamples} paired examples</span>
+          <span className="pd-pill">Human → Robot retargeting</span>
         </div>
-      ) : null}
+      </section>
+
+      <section className="pd-dashboard">
+        <aside className="pd-sidebar">
+          <div className="pd-side-title">Domains</div>
+          {domains.map((domain) => (
+            <a className="pd-side-link" href={`#pd-${domain.id}`} key={domain.id}>
+              <span>{domain.label}</span>
+              <span className="pd-count">{domain.examples.length}</span>
+            </a>
+          ))}
+        </aside>
+
+        <section className="pd-content">
+          {domains.map((domain) => (
+            <div className="pd-category" id={`pd-${domain.id}`} key={domain.id}>
+              <div className="pd-category-header">
+                <div className="pd-category-title">
+                  <div className="pd-cat-icon">{DOMAIN_ICONS[domain.id] ?? "🤖"}</div>
+                  <div>
+                    <h2>{domain.label}</h2>
+                    <p className="pd-cat-desc">{domain.desc}</p>
+                  </div>
+                </div>
+                <span className="pd-status">{domain.examples.length} examples</span>
+              </div>
+              <div className="pd-video-grid">
+                {domain.examples.map((example, i) => (
+                  <GalleryCard
+                    domainLabel={domain.label}
+                    example={example}
+                    key={`${domain.id}-${i}`}
+                    onSelect={() => setSelected({ example, domainLabel: domain.label })}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      </section>
+
+      <div className={`pd-overlay ${selected ? "pd-open" : ""}`} onClick={() => setSelected(null)} />
+      <aside className={`pd-drawer ${selected ? "pd-open" : ""}`}>
+        <div className="pd-drawer-header">
+          <div>
+            <strong>{selected?.example.title ?? "—"}</strong>
+            <div className="pd-drawer-meta">{selected?.domainLabel}</div>
+          </div>
+          <button className="pd-drawer-close" onClick={() => setSelected(null)} type="button">
+            Close
+          </button>
+        </div>
+        <div className="pd-drawer-body">
+          <div className="pd-drawer-video">
+            {selected ? (
+              <video controls key={selected.example.robotVideo} playsInline preload="metadata" src={`${GALLERY_VIDEO_BASE}${selected.example.robotVideo}`} />
+            ) : null}
+          </div>
+
+          {selected ? (
+            <>
+              <p className="pd-drawer-desc">{selected.example.desc}</p>
+
+              <div className="pd-drawer-goal">
+                <b>Robot transfer goal</b>
+                {selected.example.transferGoal}
+              </div>
+
+              <div className="pd-detail-grid">
+                <div className="pd-info">
+                  <b>Primitive sequence</b>
+                  {selected.example.primitiveSequence}
+                </div>
+                <div className="pd-info">
+                  <b>Objects / materials</b>
+                  {selected.example.objects}
+                </div>
+                <div className="pd-info">
+                  <b>Dexterity signals</b>
+                  {selected.example.dexteritySignals}
+                </div>
+                <div className="pd-info">
+                  <b>Difficulty</b>
+                  {selected.example.difficulty}
+                </div>
+              </div>
+
+              <div className="pd-tags">
+                {selected.example.tags.map((tag) => (
+                  <span className={`pd-tag ${tag === selected.example.difficulty ? "pd-diff" : ""}`} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </>
+          ) : null}
+        </div>
+      </aside>
     </div>
   );
 }
