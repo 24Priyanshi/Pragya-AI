@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 
 import type { Programme } from "@/data/pragyaProgrammes";
 
 import { ProgrammeIcon } from "./icons";
+import { programmeRoute } from "./routes";
 
 interface ProgrammeSheetProps {
   programmes: readonly Programme[];
@@ -106,6 +108,10 @@ export function ProgrammeSheet({ programmes, openId, onClose, onSwitch }: Progra
                 <span aria-hidden="true">✦</span>
                 {active.proof}
               </div>
+
+              <Link className="programme-cta" href={programmeRoute(active.id)}>
+                Explore {active.name} <span>→</span>
+              </Link>
 
               <div className="panel-actions">
                 <button onClick={() => prev && onSwitch(prev.id)} type="button">

@@ -690,6 +690,37 @@
   color: var(--gold-soft);
   font-size: 16px;
 }
+.pragya-home .programme-cta {
+  color: var(--beige);
+  background: var(--purple);
+  border: 1px solid var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 38px 0;
+  padding: 14px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  display: flex;
+}
+.pragya-home .programme-cta:hover,
+.pragya-home .programme-cta:focus-visible {
+  color: var(--gold-soft);
+  border-color: var(--gold-soft);
+  background: #2b0b3a;
+}
+.pragya-home .programme-cta span {
+  transition: transform 0.18s;
+}
+.pragya-home .programme-cta:hover span {
+  transform: translateX(3px);
+}
+
 .pragya-home .panel-actions {
   border-top: 1px solid #c8943266;
   grid-template-columns: 1fr 1px 1fr;
@@ -942,6 +973,7 @@
   .pragya-home .panel-section,
   .pragya-home .capability-grid,
   .pragya-home .proof-strip,
+  .pragya-home .programme-cta,
   .pragya-home .panel-actions {
     margin-left: 22px;
     margin-right: 22px;
