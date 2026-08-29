@@ -1,0 +1,1 @@
+export { PragyaDexTabs } from "./PragyaDexTabs";

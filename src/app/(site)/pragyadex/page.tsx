@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { PragyaDexGallery } from "@/components/PragyaDexGallery";
-import { SectionRule } from "@/components/SectionRule";
+import { PragyaDexTabs } from "@/components/PragyaDexTabs";
 import { galleryDomains } from "@/data/pragyadexGallery";
 import { hero, problemQuote } from "@/data/pragyadex";
 
@@ -18,21 +17,7 @@ export default function PragyaDexPage() {
     <PageShell>
       <PageHero hero={hero} />
 
-      <div className="space-y-32">
-        <section>
-          <SectionRule label="The Problem" margin="mb-8" />
-          <div className="bg-primary px-8 py-16 md:py-24 text-center">
-            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
-              &ldquo;{problemQuote}&rdquo;
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <SectionRule label="Dataset" margin="mb-8" />
-          <PragyaDexGallery domains={galleryDomains} />
-        </section>
-      </div>
+      <PragyaDexTabs domains={galleryDomains} problemQuote={problemQuote} />
     </PageShell>
   );
 }
