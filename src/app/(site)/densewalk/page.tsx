@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { AnalysisPair } from "@/components/AnalysisCharts";
-import { Contributors } from "@/components/Contributors";
 import { InstructionFeed } from "@/components/InstructionFeed";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
@@ -60,7 +59,6 @@ export default function DenseWalkPage() {
       </section>
 
       <AnalysisPair bar={barChart} line={lineChart} />
-      <Contributors />
     </PageShell>
   );
 }

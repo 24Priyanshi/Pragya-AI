@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { AnalysisPair } from "@/components/AnalysisCharts";
-import { Contributors } from "@/components/Contributors";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
 import { ProcessedResults } from "@/components/ProcessedResults";
@@ -27,7 +26,6 @@ export default function KalariSenaPage() {
       </section>
 
       <AnalysisPair bar={barChart} line={lineChart} />
-      <Contributors />
     </PageShell>
   );
 }

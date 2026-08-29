@@ -187,10 +187,12 @@ export const navLinks: readonly NavLink[] = [
   { label: "PragyaVLA", href: "/pragyavla", key: "/pragyavla" },
   { label: "PragyaDex", href: "/pragyadex", key: "/pragyadex" },
   { label: "KalariSena", href: "/kalarisena", key: "/kalarisena" },
-  { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
   { label: "PragyaSpace", href: "/pragyaspace", key: "/pragyaspace" },
-  { label: "Contributors", href: "/contributors", key: "/contributors" },
+  { label: "KalamProtocol", href: "/kalamprotocol", key: "/kalamprotocol" },
 ] as const;
+
+/** Styled distinctly from the project tabs — see NavLinks. */
+export const contributorsLink: NavLink = { label: "Contributors", href: "/contributors", key: "/contributors" };
 
 /**
  * Hidden from the navbar for now — "keep FactorJEPA silent, we may present it

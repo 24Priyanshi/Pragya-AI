@@ -73,7 +73,7 @@ export function Navbar() {
               className="bg-on-surface text-inverse-on-surface px-5 py-2.5 text-[10px] tracking-widest hover:opacity-80 transition-all active:scale-95 duration-200 uppercase font-medium"
               href={contactHref}
             >
-              Get in Touch
+              Pragya@BITS
             </a>
           </div>
         </div>

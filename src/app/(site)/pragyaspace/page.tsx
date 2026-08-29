@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Contributors } from "@/components/Contributors";
 import { PageShell } from "@/components/PageShell";
 import { SectionRule } from "@/components/SectionRule";
 import { proseBlocks } from "@/data/pragyaspace";
@@ -32,8 +31,6 @@ export default function PragyaSpacePage() {
           </div>
         ))}
       </section>
-
-      <Contributors />
     </PageShell>
   );
 }
