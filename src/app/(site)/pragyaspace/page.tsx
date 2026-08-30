@@ -5,6 +5,8 @@ import { PageShell } from "@/components/PageShell";
 import { SectionRule } from "@/components/SectionRule";
 import { hero, proseBlocks } from "@/data/pragyaspace";
 
+const SIMULATION_URL = "https://multigravity.vercel.app";
+
 export const metadata: Metadata = {
   title: "PragyaSpace",
   description: "A unified spatial workspace where PragyaAI's embodied-AI projects share one live map of the physical world.",
@@ -26,6 +28,15 @@ export default function PragyaSpacePage() {
             ))}
           </div>
         ))}
+      </section>
+
+      <section className="mb-32">
+        {/* Live multi-gravity lab scene, deployed from a separate repo (github.com/prajak002/Multi-gravity-lab-scene)
+            to Vercel — embedded via iframe the same way as PragyaVLA's, KalariSena's, and DenseWorld's live tools. */}
+        <SectionRule label="Live Simulation" margin="mb-8" />
+        <div className="border border-outline-variant/10 bg-surface">
+          <iframe className="w-full h-[720px]" src={SIMULATION_URL} title="PragyaSpace multi-gravity lab simulation" />
+        </div>
       </section>
     </PageShell>
   );
