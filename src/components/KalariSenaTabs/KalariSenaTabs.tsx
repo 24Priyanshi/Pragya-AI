@@ -6,6 +6,7 @@ const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
 const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
+const PROBLEM_VIDEO_URL = "https://drive.google.com/file/d/1SmnFbQIKrHxm1J7kzYwXCz71vL-XmdXq/preview";
 
 interface KalariSenaTabsProps {
   problemQuote: string;
@@ -43,10 +44,15 @@ export function KalariSenaTabs({ problemQuote }: KalariSenaTabsProps) {
       </div>
 
       {tab === "The Problem" ? (
-        <div className="bg-primary px-8 py-16 md:py-24 text-center">
-          <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
-            &ldquo;{problemQuote}&rdquo;
-          </p>
+        <div>
+          <div className="bg-primary px-8 py-16 md:py-24 text-center">
+            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+              &ldquo;{problemQuote}&rdquo;
+            </p>
+          </div>
+          <div className="border border-outline-variant/10 bg-surface">
+            <iframe allow="autoplay" className="w-full aspect-video" src={PROBLEM_VIDEO_URL} title="KalariSena problem overview" />
+          </div>
         </div>
       ) : null}
 
