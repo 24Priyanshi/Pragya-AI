@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { AnalysisPair } from "@/components/AnalysisCharts";
 import { CityGrid, TaxonomyGrid } from "@/components/DenseWorldGrid";
-import { SectionRule } from "@/components/SectionRule/SectionRule";
 import { StatStrip } from "@/components/StatStrip";
 import type { BarChartSpec, LineChartSpec, StatCard } from "@/types/page";
 
@@ -25,8 +24,12 @@ interface DenseWorldTabsProps {
 /**
  * Mirrors KalariSenaTabs'/PragyaDexTabs' shape (2026-08-30): "The Problem"
  * (pull-quote) and "Dataset". Everything the page showed before this split
- * — stats, city grids, taxonomy, the live explorer, and the analysis
- * charts — now lives under "Dataset" rather than always being visible.
+ * — stats, city grids, taxonomy, and the analysis charts — now lives under
+ * "Dataset" rather than always being visible.
+ *
+ * The live explorer sits directly under the purple quote in "The Problem"
+ * (on request, 2026-08-31), matching how KalariSena's video and PragyaVLA's
+ * simulation sit under their own purple boxes, rather than under "Dataset".
  */
 export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, barChart, lineChart }: DenseWorldTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
@@ -51,10 +54,17 @@ export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, 
       </div>
 
       {tab === "The Problem" ? (
-        <div className="bg-primary px-8 py-16 md:py-24 text-center">
-          <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
-            &ldquo;{problemQuote}&rdquo;
-          </p>
+        <div>
+          <div className="bg-primary px-8 py-16 md:py-24 text-center">
+            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+              &ldquo;{problemQuote}&rdquo;
+            </p>
+          </div>
+          {/* Live 3D city explorer, deployed from a separate repo to Vercel — embedded via
+              iframe the same way as PragyaVLA's and KalariSena's live tools. */}
+          <div className="border border-outline-variant/10 bg-surface">
+            <iframe className="w-full h-[720px]" src={EXPLORER_URL} title="DenseWorld live 3D explorer" />
+          </div>
         </div>
       ) : null}
 
@@ -66,15 +76,6 @@ export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, 
             <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ clips" />
             <CityGrid cities={tier2Cities} heading="Tier 2 Cities" subheading="- 15 cities, 40k+ clips" />
             <TaxonomyGrid />
-
-            <div>
-              {/* Live 3D city explorer, deployed from a separate repo to Vercel — embedded via
-                  iframe the same way as PragyaVLA's and KalariSena's live tools (2026-08-30). */}
-              <SectionRule label="Live Explorer" />
-              <div className="border border-outline-variant/10 bg-surface">
-                <iframe className="w-full h-[720px]" src={EXPLORER_URL} title="DenseWorld live 3D explorer" />
-              </div>
-            </div>
           </section>
 
           <AnalysisPair bar={barChart} line={lineChart} />
