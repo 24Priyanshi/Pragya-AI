@@ -9,6 +9,7 @@ const TABS = ["The Problem", "Dataset", "Mechanism"] as const;
 type Tab = (typeof TABS)[number];
 
 const MOTION_TOKEN_TOOL_URL = "https://pragyaai.github.io/vla/PragyaVLA_motion_token.html#search";
+const GITHUB_REPO_URL = "https://github.com/prajak002/PragyaVLA";
 
 interface PragyaVlaTabsProps {
   problemQuote: string;
@@ -72,10 +73,22 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
       </div>
 
       {tab === "The Problem" ? (
-        <div className="bg-primary px-8 py-16 md:py-24 text-center">
-          <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
-            &ldquo;{problemQuote}&rdquo;
-          </p>
+        <div>
+          <div className="bg-primary px-8 py-16 md:py-24 text-center">
+            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+              &ldquo;{problemQuote}&rdquo;
+            </p>
+          </div>
+          {/* GitHub blocks framing its pages (X-Frame-Options: deny), so this links out instead of embedding. */}
+          <a
+            className="flex items-center justify-center gap-2 border border-outline-variant/10 bg-surface px-8 py-6 text-sm font-medium text-on-surface transition-colors duration-200 hover:text-primary"
+            href={GITHUB_REPO_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            View the PragyaVLA repository on GitHub
+            <MaterialIcon className="text-sm" name="arrow_outward" />
+          </a>
         </div>
       ) : null}
 
