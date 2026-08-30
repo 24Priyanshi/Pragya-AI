@@ -2,7 +2,7 @@
  * Shapes for the DenseWalk instruction feed.
  *
  * `Raw*` mirrors the on-disk annotation JSON exactly (snake_case, as emitted by
- * the pipeline — see src/data/densewalk-feed/003105_uni.json). The `Feed*`
+ * the pipeline — see src/data/densewalk-feed/clips/001405_uni.json). The `Feed*`
  * shapes are the flattened, display-ready view model the components consume.
  * Keeping the two apart means a schema change in the pipeline is absorbed in
  * one adapter (src/data/densewalk-feed/index.ts) instead of across the UI.
@@ -198,14 +198,21 @@ export interface FeedClip extends ClipFacts {
   readonly narrative: readonly NarrativeLine[];
   readonly reasons: readonly string[];
   /**
-   * Distinct action labels and motion modes over the clip's frames.
+   * Action label → share of the clip's frames, and motion mode → the same,
+   * both as whole percentages.
    *
-   * Precomputed because the feed's action and mode filters ask "does any frame
-   * do this?", and the frames themselves are no longer in the page — see the
-   * note on `FeedData`.
+   * Shares rather than the distinct-label sets these used to be. A ~55-frame
+   * walk-through touches nearly every action at least once, so "does any frame
+   * do this?" matched almost the whole corpus on almost every value — mode
+   * `stand` matched all 220 clips, which read as a filter that did nothing. The
+   * feed's action and mode filters ask how much of the clip an action accounts
+   * for instead; see `PROMINENCE_PCT` in the feed component.
+   *
+   * Precomputed because the frames themselves are no longer in the page — see
+   * the note on `FeedData`.
    */
-  readonly actions: readonly string[];
-  readonly modes: readonly string[];
+  readonly actionShares: Readonly<Record<string, number>>;
+  readonly modeShares: Readonly<Record<string, number>>;
   /**
    * Lowercased free-text index for this clip: its id, location, density and
    * instruction, plus the distinct words across all of its frame observations.
@@ -221,7 +228,7 @@ export interface FeedClip extends ClipFacts {
 /**
  * The feed as the page ships it.
  *
- * Clips carry their summary only. All 250 exports total 38 MB — a 35.6 MB
+ * Clips carry their summary only. All 220 exports total 33 MB — a ~31 MB
  * prerendered page — so each card fetches its own frames from the dataset CDN
  * when it scrolls into view (see `useClipFrames`), which brings the page to
  * 26 KB gzipped. `videoBase` and `framesBase` are the two URL prefixes that

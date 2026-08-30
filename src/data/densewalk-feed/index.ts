@@ -12,7 +12,7 @@ import { rawClips } from "./clips";
  * ./clips is `json_openvla/` verbatim, and each mosaic render is streamed from
  * the same repo by URL.
  *
- * This module runs at build time only — it pulls in all 250 exports, 38 MB of
+ * This module runs at build time only — it pulls in all 220 exports, 33 MB of
  * JSON, and must never be imported from a client component. What it emits is
  * the *summary* of each clip: everything the grid, the filters and the taxonomy
  * rail need, and nothing per-frame. Cards fetch their own frames from the CDN
@@ -65,21 +65,21 @@ const TRACKS: readonly FeedTrack[] = [
     key: "hindi",
     label: "Hindi",
     kind: "language",
-    note: "One clip carries a hand-written Hindi stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One clip carries a hand-written Hindi stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "bangla",
     label: "Bangla",
     kind: "language",
-    note: "One clip carries a hand-written Bangla stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One clip carries a hand-written Bangla stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "telegu",
     label: "Telegu",
     kind: "language",
-    note: "One clip carries a hand-written Telegu stand-in; the other 49 fall back to the English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One clip carries a hand-written Telegu stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
@@ -99,16 +99,15 @@ const TRACKS: readonly FeedTrack[] = [
  * the real export carries that language, and the tab picks the real string up.
  */
 const INSTRUCTION_TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, string>>>> = {
-  "003105": {
+  "001405": {
     hindi:
-      "खाली मिश्रित सड़क से होकर आगे बढ़ें, जहाँ आस-पास कोई व्यक्ति या वाहन नहीं मिला, और आगे का रास्ता बार-बार बाधित है। दूसरों से सुरक्षित दूरी बनाए रखें और परिस्थितियों के अनुरूप गति से चलें।",
+      "मिश्रित सड़क से होकर आगे बढ़ें, जहाँ रास्ता 1 व्यक्ति और 7 वाहनों के साथ साझा करना है। दूसरों से सुरक्षित दूरी बनाए रखें और परिस्थितियों के अनुरूप गति से चलें।",
     bangla:
-      "খালি মিশ্র রাস্তা ধরে এগিয়ে যান, যেখানে কাছাকাছি কোনো মানুষ বা যানবাহন শনাক্ত হয়নি, এবং সামনের পথ বারবার বাধাগ্রস্ত। অন্যদের থেকে নিরাপদ দূরত্ব বজায় রাখুন এবং পরিস্থিতি অনুযায়ী গতিতে চলুন।",
+      "মিশ্র রাস্তা ধরে এগিয়ে যান, যেখানে সর্বোচ্চ ১ জন মানুষ ও ৭টি যানবাহনের সঙ্গে জায়গা ভাগ করে নিতে হবে। অন্যদের থেকে নিরাপদ দূরত্ব বজায় রাখুন এবং পরিস্থিতি অনুযায়ী গতিতে চলুন।",
     telegu:
-      "ఖాళీగా ఉన్న మిశ్రమ వీధి గుండా ముందుకు సాగండి, సమీపంలో ఎవరూ కానీ వాహనాలు కానీ గుర్తించబడలేదు, ముందున్న దారి తరచుగా అడ్డుపడుతోంది. ఇతరుల నుండి సురక్షితమైన దూరం ఉంచండి, పరిస్థితులకు తగిన వేగంతో కదలండి.",
+      "మిశ్రమ వీధి గుండా ముందుకు సాగండి, అక్కడ 1 వ్యక్తి మరియు 7 వాహనాలతో దారిని పంచుకోవాలి. ఇతరుల నుండి సురక్షితమైన దూరం ఉంచండి, పరిస్థితులకు తగిన వేగంతో కదలండి.",
   },
 };
-
 /** English from the export, plus whatever translations exist for that source clip. */
 function instructionsFor(sourceId: string, english: string): Readonly<Record<string, string>> {
   return { english, ...(INSTRUCTION_TRANSLATIONS[sourceId] ?? {}) };
@@ -117,7 +116,7 @@ function instructionsFor(sourceId: string, english: string): Readonly<Record<str
 /**
  * Distinct words across a clip's frame observations.
  *
- * The full text is 26 M characters over the corpus and cannot ship. Reducing
+ * The full text is 24 M characters over the corpus and cannot ship. Reducing
  * each clip to its vocabulary keeps the search box working on the words people
  * actually type — actions, objects, densities — for 14 KB gzipped in total.
  */
@@ -157,8 +156,11 @@ function toClip(raw: RawClip): FeedClip {
     stopFrames: frames.filter((f) => f.isStop).length,
   };
 
-  const actions = [...new Set(frames.map((f) => f.action))].sort();
-  const modes = [...modeCounts.keys()].sort();
+  // Shares, not distinct labels: see the note on `actionShares` in the types.
+  const actionShares = Object.fromEntries(distribution.map((row) => [row.action, row.share]));
+  const modeShares = Object.fromEntries(
+    [...modeCounts].map(([mode, count]) => [mode, Math.round((count / frames.length) * 100)]),
+  );
 
   return {
     ...facts,
@@ -179,9 +181,16 @@ function toClip(raw: RawClip): FeedClip {
     distribution,
     narrative: narrativeOf(frames),
     reasons: reasonsOf(frames),
-    actions,
-    modes,
-    search: [raw.video_id, evidence.location, evidence.density, raw.instruction.text, ...actions, ...modes]
+    actionShares,
+    modeShares,
+    search: [
+      raw.video_id,
+      evidence.location,
+      evidence.density,
+      raw.instruction.text,
+      ...Object.keys(actionShares),
+      ...Object.keys(modeShares),
+    ]
       .join(" ")
       .toLowerCase()
       .concat(" ", observationVocabulary(raw)),
@@ -213,7 +222,7 @@ function buildFeed(): FeedData {
     clips,
     framesBase: FRAMES_BASE,
     actions: [...new Set(SOURCES.flatMap((s) => s.action_space.discrete))],
-    modes: [...new Set(clips.flatMap((c) => c.modes))].sort(),
+    modes: [...new Set(clips.flatMap((c) => Object.keys(c.modeShares)))].sort(),
     facets: facetsOf(clips),
     tracks: TRACKS,
     convention: SOURCES[0].action_space.convention,

@@ -139,8 +139,8 @@ export function TaxonomySidebar({ facets, clips, selection, onSelect, onClear }:
       </div>
 
       <p className="inter border-t border-outline-variant/10 px-5 py-4 text-xs leading-relaxed text-outline">
-        The annotation export carries no taxonomy fields yet, so only the placeholder clips are tagged. Counts and filtering
-        become real as the tagging pass lands.
+        Every facet is derived from the annotation export itself — location and density straight off the evidence block, the
+        rest computed over the clip&rsquo;s frames — so each count is a real number of clips.
       </p>
     </aside>
   );

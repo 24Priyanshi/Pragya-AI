@@ -21,10 +21,45 @@ import { TrackTabs } from "./TrackTabs";
  */
 
 const RISKS: readonly FrameRisk[] = ["Low", "Medium", "High"];
-const PAGE_SIZES = [6, 12, 0] as const; // 0 = show everything
+
+/**
+ * How many cards the feed opens with, and how many each "Show more" adds.
+ *
+ * The corpus is 220 clips and every card mounts a video element plus its own
+ * frame fetch, so the feed pages in rather than rendering the whole match set.
+ */
+const PAGE_STEP = 5;
 
 /** Cards at the top of a page fetch their frames immediately rather than on scroll. */
 const EAGER_CARDS = 3;
+
+/**
+ * Headline totals for the full DenseWalk corpus.
+ *
+ * Stated rather than counted, because they describe the whole dataset while the
+ * feed below is served from the public release — currently a 220-clip sample of
+ * it. Anything derived from `data` would report the sample and understate the
+ * corpus, so these two are held here and updated by hand as it grows.
+ */
+const CORPUS_CLIPS = "5k+";
+const CORPUS_FRAMES = "260k+";
+
+/**
+ * How much of a clip an action or mode must account for to match its filter.
+ *
+ * These filters used to ask "does any frame do this?". Over a ~55-frame
+ * walk-through that is true of nearly everything: mode `stand` matched all 220
+ * clips and `walk` matched 212, so choosing one changed nothing on screen. A
+ * share floor asks the question people mean — "is this clip actually about
+ * this?" — and splits the corpus (at 15%: sidestep 41, stand 28, turn 91).
+ */
+const PROMINENCE_PCT = 15;
+
+/** Whole-percentage shares, so a value absent from the clip reads as zero. */
+function prominent(shares: Readonly<Record<string, number>>, key: string): boolean {
+  return (shares[key] ?? 0) >= PROMINENCE_PCT;
+}
+
 
 const CONTROL_CLASS =
   "inter w-full border border-outline-variant/20 bg-surface-container-lowest px-4 py-3.5 text-sm text-on-surface " +
@@ -35,7 +70,6 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   const [action, setAction] = useState("");
   const [mode, setMode] = useState("");
   const [risk, setRisk] = useState("");
-  const [limit, setLimit] = useState<number>(PAGE_SIZES[0]);
   const [selection, setSelection] = useState<FacetSelection>({});
   const [track, setTrack] = useState(data.tracks[0].key);
 
@@ -81,26 +115,45 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return trackClips.filter((clip) => {
-      // `search` and the action/mode sets are precomputed per clip: the frames
-      // they used to be derived from no longer live in the page.
+      // `search` and the share maps are precomputed per clip: the frames they
+      // were derived from no longer live in the page.
       if (q && !clip.search.includes(q)) return false;
-      if (action && !clip.actions.includes(action)) return false;
-      if (mode && !clip.modes.includes(mode)) return false;
+      if (action && !prominent(clip.actionShares, action)) return false;
+      if (mode && !prominent(clip.modeShares, mode)) return false;
       if (risk && clip.risk !== risk) return false;
       return Object.entries(selection).every(([key, value]) => clip.tags[key] === value);
     });
   }, [trackClips, query, action, mode, risk, selection]);
 
-  const visible = limit === 0 ? filtered : filtered.slice(0, limit);
+  /**
+   * Cards paged in `PAGE_STEP` at a time, reset whenever the match set changes.
+   *
+   * Adjusted during render rather than in an effect: a filter change that left
+   * `shown` stale for one commit would flash the previous page's worth of cards
+   * — each of which mounts a video and fires a frame fetch — before collapsing
+   * back to the first page.
+   */
+  const filterKey = JSON.stringify([track, query, action, mode, risk, selection]);
+  const [shown, setShown] = useState(PAGE_STEP);
+  const [shownFor, setShownFor] = useState(filterKey);
+  if (shownFor !== filterKey) {
+    setShownFor(filterKey);
+    setShown(PAGE_STEP);
+  }
+
+  const visible = filtered.slice(0, shown);
+  const remaining = filtered.length - visible.length;
   const kpis = [
-    { value: String(data.clips.length), label: "annotated clips" },
-    { value: String(data.totalFrames), label: "frame instructions" },
+    { value: CORPUS_CLIPS, label: "annotated clips" },
+    { value: CORPUS_FRAMES, label: "frame instructions" },
+    // These two stay measured: they describe the vocabulary the exports below
+    // actually use, which is the same whatever the corpus size.
     { value: String(data.actions.length), label: "discrete actions" },
     { value: String(new Set(data.clips.map((c) => c.location)).size), label: "scene types" },
   ];
 
   return (
-    <section className="mb-48">
+    <section>
       <SectionRule label="Instruction Feed" />
 
       <div className="mb-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
@@ -145,7 +198,7 @@ export function InstructionFeed({ data }: { data: FeedData }) {
           />
 
           <div>
-            <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem_11rem]">
+            <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem]">
               <input
                 aria-label="Search clips, actions and frame instructions"
                 className={CONTROL_CLASS}
@@ -193,18 +246,6 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                   </option>
                 ))}
               </select>
-              <select
-                aria-label="Number of clips to show"
-                className={CONTROL_CLASS}
-                onChange={(e) => setLimit(Number(e.target.value))}
-                value={limit}
-              >
-                {PAGE_SIZES.map((size) => (
-                  <option key={size} value={size}>
-                    {size === 0 ? "Show all" : `Show ${size}`}
-                  </option>
-                ))}
-              </select>
             </div>
 
             <div className="mb-8 space-y-2">
@@ -239,19 +280,34 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                 <p className="inter text-base text-on-surface-variant">No clip matches those filters.</p>
               </div>
             ) : (
-              <div className="grid gap-6">
-                {visible.map((clip, i) => (
-                  <ClipCard
-                    clip={clip}
-                    eager={i < EAGER_CARDS}
-                    framesBase={data.framesBase}
-                    key={clip.id}
-                    ordinal={i + 1}
-                    trackLabel={activeTrack.key === "english" ? null : activeTrack.label}
-                    translated={clip.translated}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="grid gap-6">
+                  {visible.map((clip, i) => (
+                    <ClipCard
+                      clip={clip}
+                      eager={i < EAGER_CARDS}
+                      framesBase={data.framesBase}
+                      key={clip.id}
+                      ordinal={i + 1}
+                      trackLabel={activeTrack.key === "english" ? null : activeTrack.label}
+                      translated={clip.translated}
+                    />
+                  ))}
+                </div>
+
+                {remaining > 0 ? (
+                  <div className="mt-8 flex flex-col items-center gap-3">
+                    <button
+                      className="inter w-full border border-outline-variant/20 bg-surface-container-lowest px-8 py-4 text-[11px] font-medium uppercase tracking-widest text-on-surface transition-colors duration-200 hover:bg-surface-container-low sm:w-auto"
+                      onClick={() => setShown((n) => n + PAGE_STEP)}
+                      type="button"
+                    >
+                      Show {Math.min(PAGE_STEP, remaining)} more
+                    </button>
+                    <FieldLabel>{remaining} more matching clips</FieldLabel>
+                  </div>
+                ) : null}
+              </>
             )}
           </div>
         </div>

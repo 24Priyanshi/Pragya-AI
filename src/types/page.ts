@@ -76,11 +76,6 @@ export interface Contributor {
   readonly bio: string;
 }
 
-export interface HeroAction {
-  readonly label: string;
-  readonly href: string;
-}
-
 /**
  * A rotating wheel image stacked above a title lockup, both centered as one
  * group in the middle of the hero — independent of `hero.src`, which for
@@ -113,10 +108,6 @@ export interface HeroSpec {
    * "auto" — intrinsic-height hero, `object-contain` (factorjepa, kalamprotocol, kalarisena).
    */
   readonly mode: "fill" | "auto";
-  /** Whitish scrim over the image, so overlaid content stays readable. */
-  readonly overlay?: boolean;
-  /** CTAs rendered centred on top of the image. */
-  readonly actions?: readonly HeroAction[];
   /** A rotating wheel + title lockup, centered as a group in the hero. */
   readonly centerpiece?: HeroCenterpiece;
 }

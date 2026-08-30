@@ -25,10 +25,10 @@ import { Chip, FieldLabel, actionClass, riskTone } from "./primitives";
  * position while you scan down the feed, and selecting a frame seeks this
  * card's player to that frame's timestamp.
  *
- * `preload="metadata"` rather than the default: fifty cards each pulling a
- * multi-megabyte mosaic on mount would be ~194 MB of dataset CDN traffic for a
- * page most visitors scroll past. Metadata alone is enough to make the player
- * seekable, and the body streams on first play or first seek.
+ * `preload="metadata"` rather than the default: every card pulling a
+ * multi-megabyte mosaic on mount would be hundreds of megabytes of dataset CDN
+ * traffic for a page most visitors scroll past. Metadata alone is enough to
+ * make the player seekable, and the body streams on first play or first seek.
  */
 
 /**
@@ -130,10 +130,10 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLElement>(null);
 
-  // Gated on proximity, not mount: "show all" puts 250 cards on the page, and
-  // fetching every export up front is the 38 MB the summary split avoids. The
-  // first cards of a page are exempt — they are certain to be read, so making
-  // them wait for an intersection callback is latency for nothing.
+  // Gated on proximity, not mount: paging through all 220 clips would otherwise
+  // fetch every export up front — the 33 MB the summary split avoids. The first
+  // cards of a page are exempt — they are certain to be read, so making them
+  // wait for an intersection callback is latency for nothing.
   const near = useNearViewport(cardRef);
   const { status, frames, error } = useClipFrames(framesBase, clip.id, eager || near);
   const frame = frames?.[selected] ?? frames?.[0] ?? null;
@@ -297,7 +297,17 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
                 {trackLabel ? <Chip tone="muted">English source</Chip> : null}
               </div>
 
-              <p className="inter max-w-5xl text-base leading-relaxed text-on-surface-variant">{frame.observation}</p>
+              {/* Collapsed like the full list below it. <details> keeps its own open
+                  state in the DOM and this element is never remounted, so once it
+                  is open it stays open as you click through the keyframe strip. */}
+              <details>
+                <summary className="inter cursor-pointer text-xs font-medium uppercase tracking-widest text-primary">
+                  Open this frame&rsquo;s instruction
+                </summary>
+                <p className="inter mt-3 max-w-5xl text-base leading-relaxed text-on-surface-variant">
+                  {frame.observation}
+                </p>
+              </details>
 
               <details className="mt-5">
                 <summary className="inter cursor-pointer text-xs font-medium uppercase tracking-widest text-primary">

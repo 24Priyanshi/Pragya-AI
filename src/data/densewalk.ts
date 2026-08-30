@@ -13,10 +13,32 @@ export const hero: HeroSpec = {
   src: "/denseWalk_hero.png",
   alt: "DenseWalk humanoid navigation visualization",
   mode: "fill",
-  overlay: true,
-  actions: [
-    { label: "Paper Arxiv", href: "#" },
-    { label: "Dataset", href: "https://huggingface.co/datasets/s-alam/densewalk-public" },
+};
+
+export interface ChallengeClip {
+  /** The question posed above the clip; the hook, so it carries the section. */
+  readonly question: string;
+  /** Under public/. The files land here once the captures come back from the lab. */
+  readonly src: string;
+}
+
+export interface ChallengeSpec {
+  readonly label: string;
+  readonly clips: readonly ChallengeClip[];
+}
+
+/**
+ * The attract section directly below the hero.
+ *
+ * Two walk-throughs a person would clear without thinking, each posed as a
+ * question. It is the first thing a visitor reads on the page, so it states the
+ * problem DenseWalk exists for before any of the dataset machinery appears.
+ */
+export const challenge: ChallengeSpec = {
+  label: "The DenseWalk Question",
+  clips: [
+    { question: "If humans can cross it effortlessly, can a humanoid?", src: "/videos/denseWalk/densewalk_02.mp4" },
+    { question: "A human can navigate easily, can a humanoid?", src: "/videos/denseWalk/densewalk_01.mov" },
   ],
 };
 

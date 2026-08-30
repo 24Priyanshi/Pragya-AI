@@ -1,4 +1,3 @@
-import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { cn } from "@/lib/cn";
 import type { HeroSpec } from "@/types/page";
 
@@ -13,13 +12,10 @@ import type { HeroSpec } from "@/types/page";
  * `h-[calc(100vh - var(--nav-height))]`, a runtime value next/image cannot be
  * given at build time, and the "auto" variant depends on the file's intrinsic
  * aspect ratio.
- *
- * `hero.overlay` / `hero.actions` are opt-in per page (currently densewalk):
- * a whitish scrim plus centred CTAs layered over the image.
+
  */
 export function PageHero({ hero }: { hero: HeroSpec }) {
   const isFill = hero.mode === "fill";
-  const actions = hero.actions ?? [];
 
   return (
     <header
@@ -35,10 +31,6 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
         src={hero.src}
       />
 
-      {hero.overlay ? (
-        <div aria-hidden="true" className="absolute inset-0 bg-surface/55 backdrop-blur-[1px]" />
-      ) : null}
-
       {hero.centerpiece ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ gap: `${hero.centerpiece.gapVw}vw` }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -52,29 +44,6 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img alt={hero.centerpiece.titleAlt} src={hero.centerpiece.titleSrc} style={{ width: `${hero.centerpiece.titleWidthVw}vw` }} />
-        </div>
-      ) : null}
-
-      {actions.length > 0 ? (
-        <div className="absolute inset-0 flex items-center justify-center px-6">
-          <div className="flex flex-col sm:flex-row items-center gap-6">
-            {actions.map((action, i) => (
-              <a
-                className={cn(
-                  "inline-flex items-center gap-2 px-7 py-3.5 text-[10px] tracking-widest uppercase font-medium",
-                  "transition-all duration-200 hover:opacity-80 active:scale-95",
-                  i === 0
-                    ? "bg-on-surface text-inverse-on-surface"
-                    : "bg-surface-container-lowest/90 text-on-surface border border-on-surface/20 backdrop-blur-sm",
-                )}
-                href={action.href}
-                key={action.label}
-              >
-                {action.label}
-                <MaterialIcon className="text-sm" name="arrow_outward" />
-              </a>
-            ))}
-          </div>
         </div>
       ) : null}
     </header>
