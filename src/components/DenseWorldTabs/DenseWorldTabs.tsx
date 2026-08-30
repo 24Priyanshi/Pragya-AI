@@ -1,0 +1,85 @@
+"use client";
+
+import { useState } from "react";
+
+import { AnalysisPair } from "@/components/AnalysisCharts";
+import { CityGrid, TaxonomyGrid } from "@/components/DenseWorldGrid";
+import { SectionRule } from "@/components/SectionRule/SectionRule";
+import { StatStrip } from "@/components/StatStrip";
+import type { BarChartSpec, LineChartSpec, StatCard } from "@/types/page";
+
+const TABS = ["The Problem", "Dataset"] as const;
+type Tab = (typeof TABS)[number];
+
+const EXPLORER_URL = "https://denseworld.vercel.app/";
+
+interface DenseWorldTabsProps {
+  problemQuote: string;
+  stats: readonly StatCard[];
+  tier1Cities: readonly string[];
+  tier2Cities: readonly string[];
+  barChart: BarChartSpec;
+  lineChart: LineChartSpec;
+}
+
+/**
+ * Mirrors KalariSenaTabs'/PragyaDexTabs' shape (2026-08-30): "The Problem"
+ * (pull-quote) and "Dataset". Everything the page showed before this split
+ * — stats, city grids, taxonomy, the live explorer, and the analysis
+ * charts — now lives under "Dataset" rather than always being visible.
+ */
+export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, barChart, lineChart }: DenseWorldTabsProps) {
+  const [tab, setTab] = useState<Tab>("The Problem");
+
+  return (
+    <div>
+      <div className="mb-12 flex flex-wrap gap-1 border-b border-outline-variant/10" role="tablist">
+        {TABS.map((t) => (
+          <button
+            aria-selected={tab === t}
+            className={`inter text-sm px-6 py-4 -mb-px border-b-2 transition-colors duration-200 ${
+              tab === t ? "border-primary text-on-surface font-medium" : "border-transparent text-on-surface-variant hover:text-on-surface"
+            }`}
+            key={t}
+            onClick={() => setTab(t)}
+            role="tab"
+            type="button"
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      {tab === "The Problem" ? (
+        <div className="bg-primary px-8 py-16 md:py-24 text-center">
+          <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+            &ldquo;{problemQuote}&rdquo;
+          </p>
+        </div>
+      ) : null}
+
+      {tab === "Dataset" ? (
+        <div>
+          <StatStrip stats={stats} />
+
+          <section className="space-y-24 mt-24">
+            <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ clips" />
+            <CityGrid cities={tier2Cities} heading="Tier 2 Cities" subheading="- 15 cities, 40k+ clips" />
+            <TaxonomyGrid />
+
+            <div>
+              {/* Live 3D city explorer, deployed from a separate repo to Vercel — embedded via
+                  iframe the same way as PragyaVLA's and KalariSena's live tools (2026-08-30). */}
+              <SectionRule label="Live Explorer" />
+              <div className="border border-outline-variant/10 bg-surface">
+                <iframe className="w-full h-[720px]" src={EXPLORER_URL} title="DenseWorld live 3D explorer" />
+              </div>
+            </div>
+          </section>
+
+          <AnalysisPair bar={barChart} line={lineChart} />
+        </div>
+      ) : null}
+    </div>
+  );
+}

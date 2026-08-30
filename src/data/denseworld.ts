@@ -24,6 +24,10 @@ export const hero: HeroSpec = {
   },
 };
 
+/** Same copy as the navbar's DenseWorld submenu "What's the necessity?" answer. */
+export const problemQuote =
+  "Current “world model” progress is largely validated on clean, structured, low-density Western environments, and it often breaks down for the chaotic Global South scenes—where dense occlusion, mixed traffic, informal right-of-way negotiation, extreme lighting and weather, and long-tail objects and signage dominate.";
+
 export const stats: readonly StatCard[] = [
   { label: "Total Clips", value: "115k+", caption: "From 714 source videos" },
   { label: "City Scenes", value: "22", caption: "Coverage across India" },

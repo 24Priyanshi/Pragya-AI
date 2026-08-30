@@ -1,0 +1,1 @@
+export { DenseWorldTabs } from "./DenseWorldTabs";
