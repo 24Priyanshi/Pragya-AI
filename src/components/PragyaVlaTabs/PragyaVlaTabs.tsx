@@ -79,10 +79,19 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
-          {/* Live G1-troupe simulation, deployed from the repo (github.com/prajak002/PragyaVLA) to Vercel — embedded the same way as KalariSena's problem video. */}
-          <div className="border border-outline-variant/10 bg-surface">
-            <iframe className="w-full h-[720px]" src={SIMULATION_URL} title="PragyaVLA humanoid simulation" />
-          </div>
+          {/* Live G1-troupe simulation, deployed from the repo (github.com/prajak002/PragyaVLA) to Vercel.
+              Renders 200 fully-rigged humanoids — too heavy to share GPU/memory with the rest of this
+              page inside an iframe (it crashed the tab in testing), so this links out to its own tab
+              instead of embedding it, same as the earlier GitHub-repo link. */}
+          <a
+            className="flex items-center justify-center gap-2 border border-outline-variant/10 bg-surface px-8 py-6 text-sm font-medium text-on-surface transition-colors duration-200 hover:text-primary"
+            href={SIMULATION_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Launch the live humanoid simulation
+            <MaterialIcon className="text-sm" name="arrow_outward" />
+          </a>
         </div>
       ) : null}
 
