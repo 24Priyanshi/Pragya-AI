@@ -9,7 +9,7 @@ const TABS = ["The Problem", "Dataset", "Mechanism"] as const;
 type Tab = (typeof TABS)[number];
 
 const MOTION_TOKEN_TOOL_URL = "https://pragyaai.github.io/vla/PragyaVLA_motion_token.html#search";
-const GITHUB_REPO_URL = "https://github.com/prajak002/PragyaVLA";
+const SIMULATION_URL = "https://pragyavla.vercel.app";
 
 interface PragyaVlaTabsProps {
   problemQuote: string;
@@ -79,16 +79,10 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
-          {/* GitHub blocks framing its pages (X-Frame-Options: deny), so this links out instead of embedding. */}
-          <a
-            className="flex items-center justify-center gap-2 border border-outline-variant/10 bg-surface px-8 py-6 text-sm font-medium text-on-surface transition-colors duration-200 hover:text-primary"
-            href={GITHUB_REPO_URL}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View the PragyaVLA repository on GitHub
-            <MaterialIcon className="text-sm" name="arrow_outward" />
-          </a>
+          {/* Live G1-troupe simulation, deployed from the repo (github.com/prajak002/PragyaVLA) to Vercel — embedded the same way as KalariSena's problem video. */}
+          <div className="border border-outline-variant/10 bg-surface">
+            <iframe className="w-full h-[720px]" src={SIMULATION_URL} title="PragyaVLA humanoid simulation" />
+          </div>
         </div>
       ) : null}
 
