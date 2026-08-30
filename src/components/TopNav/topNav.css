@@ -21,6 +21,12 @@
   position: fixed;
   inset: 0 0 auto;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transform: translateY(0);
+  transition: transform 0.25s ease;
+}
+/* Added on request (2026-08-30): slides the nav off-screen on scroll-down. */
+.top-nav.top-nav--hidden {
+  transform: translateY(-100%);
 }
 .top-nav .nav-mark {
   flex: none;
