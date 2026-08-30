@@ -6,11 +6,10 @@ const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
 const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
-// Google Drive's /preview iframe shows Drive's own player chrome (toolbar, "open in Drive"
-// button). This instead routes through this site's own /api proxy (see that route for why —
-// Drive's CDN blocks direct cross-origin <video> playback), so it plays as a plain native
-// video with no Drive branding at all (on request, 2026-08-30).
-const PROBLEM_VIDEO_URL = "/api/kalarisena-problem-video";
+// Switched from a self-hosted 101MB file (proxied off Google Drive) to a YouTube embed on
+// request (2026-08-30) — the raw file was heavy enough to make the page stutter; YouTube
+// handles adaptive streaming instead of shipping the whole file to every visitor.
+const PROBLEM_VIDEO_URL = "https://www.youtube.com/embed/9B7wuifzrss";
 
 interface KalariSenaTabsProps {
   problemQuote: string;
@@ -55,7 +54,13 @@ export function KalariSenaTabs({ problemQuote }: KalariSenaTabsProps) {
             </p>
           </div>
           <div className="border border-outline-variant/10 bg-surface">
-            <video className="w-full aspect-video" controls src={PROBLEM_VIDEO_URL} />
+            <iframe
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full aspect-video"
+              src={PROBLEM_VIDEO_URL}
+              title="KalariSena problem overview"
+            />
           </div>
         </div>
       ) : null}
