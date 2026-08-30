@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useRef } from "react";
 
 import { programmes } from "@/data/pragyaProgrammes";
-import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 import { useNavHeight } from "@/hooks/useNavHeight";
 
 import { ProgrammeIcon } from "./icons";
@@ -27,10 +26,9 @@ export function TopNav() {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   useNavHeight(navRef);
-  const hidden = useHideOnScroll();
 
   return (
-    <nav aria-label="Pragya programmes" className={`top-nav${hidden ? " top-nav--hidden" : ""}`} ref={navRef}>
+    <nav aria-label="Pragya programmes" className="top-nav" ref={navRef}>
       <Link aria-label="Pragya home" className="nav-mark" href="/">
         <span aria-hidden="true" className="brand-logo" />
       </Link>
