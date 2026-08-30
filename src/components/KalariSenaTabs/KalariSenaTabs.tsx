@@ -6,7 +6,11 @@ const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
 const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
-const PROBLEM_VIDEO_URL = "https://drive.google.com/file/d/1SmnFbQIKrHxm1J7kzYwXCz71vL-XmdXq/preview";
+// Google Drive's /preview iframe shows Drive's own player chrome (toolbar, "open in Drive"
+// button). This instead routes through this site's own /api proxy (see that route for why —
+// Drive's CDN blocks direct cross-origin <video> playback), so it plays as a plain native
+// video with no Drive branding at all (on request, 2026-08-30).
+const PROBLEM_VIDEO_URL = "/api/kalarisena-problem-video";
 
 interface KalariSenaTabsProps {
   problemQuote: string;
@@ -51,7 +55,7 @@ export function KalariSenaTabs({ problemQuote }: KalariSenaTabsProps) {
             </p>
           </div>
           <div className="border border-outline-variant/10 bg-surface">
-            <iframe allow="autoplay" className="w-full aspect-video" src={PROBLEM_VIDEO_URL} title="KalariSena problem overview" />
+            <video className="w-full aspect-video" controls src={PROBLEM_VIDEO_URL} />
           </div>
         </div>
       ) : null}
