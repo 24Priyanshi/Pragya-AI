@@ -44,9 +44,6 @@ export function TopNav() {
             </Link>
           );
         })}
-        <Link className={`nav-contributors${pathname === "/contributors" ? " active" : ""}`} href="/contributors">
-          Contributors
-        </Link>
       </div>
       <a className="bits-button" href="https://www.bits-pilani.ac.in/goa/" rel="noreferrer" target="_blank">
         Pragya@BITS
