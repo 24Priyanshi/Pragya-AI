@@ -201,10 +201,10 @@ export interface FeedClip extends ClipFacts {
    * Action label → share of the clip's frames, and motion mode → the same,
    * both as whole percentages.
    *
-   * Shares rather than the distinct-label sets these used to be. A ~55-frame
+   * Shares rather than the distinct-label sets these used to be. A ~50-frame
    * walk-through touches nearly every action at least once, so "does any frame
    * do this?" matched almost the whole corpus on almost every value — mode
-   * `stand` matched all 220 clips, which read as a filter that did nothing. The
+   * `stand` matched every clip in it, which read as a filter that did nothing. The
    * feed's action and mode filters ask how much of the clip an action accounts
    * for instead; see `PROMINENCE_PCT` in the feed component.
    *
@@ -217,7 +217,7 @@ export interface FeedClip extends ClipFacts {
    * Lowercased free-text index for this clip: its id, location, density and
    * instruction, plus the distinct words across all of its frame observations.
    *
-   * Shipping the observation text itself would put 26 M characters in the page.
+   * Shipping the observation text itself would put 18 M characters in the page.
    * The distinct-word reduction costs 14 KB gzipped for the whole corpus and
    * still answers the searches this box is used for; what it cannot do is match
    * a phrase spanning two words.
@@ -228,7 +228,7 @@ export interface FeedClip extends ClipFacts {
 /**
  * The feed as the page ships it.
  *
- * Clips carry their summary only. All 220 exports total 33 MB — a ~31 MB
+ * Clips carry their summary only. All 138 exports total 22 MB — a ~21 MB
  * prerendered page — so each card fetches its own frames from the dataset CDN
  * when it scrolls into view (see `useClipFrames`), which brings the page to
  * 26 KB gzipped. `videoBase` and `framesBase` are the two URL prefixes that

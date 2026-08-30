@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useCallback, useRef, useState } from "react";
+import { type RefObject, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 import { useNearViewport } from "@/hooks/useNearViewport";
 import { useClipFrames } from "@/lib/densewalk-frames";
@@ -28,7 +28,8 @@ import { Chip, FieldLabel, actionClass, riskTone } from "./primitives";
  * `preload="metadata"` rather than the default: every card pulling a
  * multi-megabyte mosaic on mount would be hundreds of megabytes of dataset CDN
  * traffic for a page most visitors scroll past. Metadata alone is enough to
- * make the player seekable, and the body streams on first play or first seek.
+ * make the player seekable, and the body streams on first play or first seek —
+ * which `usePlayWhenVisible` triggers as a scene scrolls into view.
  */
 
 /**
@@ -37,8 +38,72 @@ import { Chip, FieldLabel, actionClass, riskTone } from "./primitives";
  * page rather than a broken file. It also covers the ordinary case of the
  * dataset CDN being unreachable.
  */
+/**
+ * Play a scene while its player is on screen; pause it when it leaves.
+ *
+ * Deliberately not the `autoPlay` attribute. That starts every mounted card at
+ * once, and "Show more" can put dozens on the page — the multi-megabyte mosaic
+ * each one would then pull is exactly the CDN traffic `preload="metadata"`
+ * exists to avoid. Gating on intersection keeps at most the players in view
+ * streaming, which is the same rule PragyaDexGallery follows.
+ *
+ * A pause that arrives while the player is on screen came from the person
+ * watching, so scrolling past and back must not override it. Our own pause on
+ * exit is not mistaken for theirs: `visible` is already false by then.
+ */
+function usePlayWhenVisible(ref: RefObject<HTMLVideoElement | null>) {
+  useEffect(() => {
+    const video = ref.current;
+    if (!video || typeof IntersectionObserver === "undefined") return;
+
+    let visible = false;
+    let userPaused = false;
+
+    const onPause = () => {
+      if (visible) userPaused = true;
+    };
+    const onPlay = () => {
+      userPaused = false;
+    };
+    video.addEventListener("pause", onPause);
+    video.addEventListener("play", onPlay);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (!visible) video.pause();
+        // A rejected play() is the browser's autoplay policy, not a fault worth
+        // surfacing — the controls are right there, so the scene stays startable.
+        else if (!userPaused) void video.play().catch(() => {});
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("pause", onPause);
+      video.removeEventListener("play", onPlay);
+    };
+  }, [ref]);
+}
+
 const VideoStage = forwardRef<HTMLVideoElement, { clip: FeedClip }>(function VideoStage({ clip }, ref) {
   const [failed, setFailed] = useState(false);
+
+  // The parent seeks this element from the frame strip, so its ref has to be
+  // forwarded on; the observer needs the same node locally.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const attach = useCallback(
+    (node: HTMLVideoElement | null) => {
+      videoRef.current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
+
+  usePlayWhenVisible(videoRef);
 
   return (
     <div className="relative aspect-video overflow-hidden bg-on-surface">
@@ -50,7 +115,7 @@ const VideoStage = forwardRef<HTMLVideoElement, { clip: FeedClip }>(function Vid
         onError={() => setFailed(true)}
         playsInline
         preload="metadata"
-        ref={ref}
+        ref={attach}
         src={clip.video}
       />
       {failed ? (
@@ -130,8 +195,8 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLElement>(null);
 
-  // Gated on proximity, not mount: paging through all 220 clips would otherwise
-  // fetch every export up front — the 33 MB the summary split avoids. The first
+  // Gated on proximity, not mount: paging through all 138 clips would otherwise
+  // fetch every export up front — the 22 MB the summary split avoids. The first
   // cards of a page are exempt — they are certain to be read, so making them
   // wait for an intersection callback is latency for nothing.
   const near = useNearViewport(cardRef);
@@ -171,7 +236,7 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
             {String(ordinal).padStart(3, "0")}
           </span>
           <div>
-            <h3 className="plus-jakarta-sans text-3xl font-light tracking-tighter text-on-surface">Clip {clip.id}</h3>
+            <h3 className="plus-jakarta-sans text-3xl font-light tracking-tighter text-on-surface">Scene {clip.id}</h3>
             <small className="inter mt-1 block text-sm text-on-surface-variant">
               {clip.keyframes} keyframes over {clip.duration} · {clip.fps} fps source · frame-level navigation instructions
             </small>
@@ -217,7 +282,7 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
 
         <div className="border-l-2 border-primary bg-surface-container-low p-6">
           <div className="flex flex-wrap items-center gap-3">
-            <FieldLabel>Clip-level instruction{trackLabel ? ` · ${trackLabel}` : ""}</FieldLabel>
+            <FieldLabel>Scene-level instruction{trackLabel ? ` · ${trackLabel}` : ""}</FieldLabel>
             {trackLabel && !translated ? <Chip tone="muted">English fallback</Chip> : null}
           </div>
           <p className="inter mt-3 max-w-5xl text-base leading-relaxed text-on-surface">{clip.instruction}</p>

@@ -12,7 +12,7 @@ import { rawClips } from "./clips";
  * ./clips is `json_openvla/` verbatim, and each mosaic render is streamed from
  * the same repo by URL.
  *
- * This module runs at build time only — it pulls in all 220 exports, 33 MB of
+ * This module runs at build time only — it pulls in all 138 exports, 22 MB of
  * JSON, and must never be imported from a client component. What it emits is
  * the *summary* of each clip: everything the grid, the filters and the taxonomy
  * rail need, and nothing per-frame. Cards fetch their own frames from the CDN
@@ -65,21 +65,21 @@ const TRACKS: readonly FeedTrack[] = [
     key: "hindi",
     label: "Hindi",
     kind: "language",
-    note: "One clip carries a hand-written Hindi stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One scene carries a hand-written Hindi stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "bangla",
     label: "Bangla",
     kind: "language",
-    note: "One clip carries a hand-written Bangla stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One scene carries a hand-written Bangla stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
     key: "telegu",
     label: "Telegu",
     kind: "language",
-    note: "One clip carries a hand-written Telegu stand-in; every other clip falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
+    note: "One scene carries a hand-written Telegu stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
     observationsTranslated: false,
   },
   {
@@ -116,7 +116,7 @@ function instructionsFor(sourceId: string, english: string): Readonly<Record<str
 /**
  * Distinct words across a clip's frame observations.
  *
- * The full text is 24 M characters over the corpus and cannot ship. Reducing
+ * The full text is 18 M characters over the corpus and cannot ship. Reducing
  * each clip to its vocabulary keeps the search box working on the words people
  * actually type — actions, objects, densities — for 14 KB gzipped in total.
  */

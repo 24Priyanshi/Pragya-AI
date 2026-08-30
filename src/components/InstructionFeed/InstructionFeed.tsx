@@ -25,7 +25,7 @@ const RISKS: readonly FrameRisk[] = ["Low", "Medium", "High"];
 /**
  * How many cards the feed opens with, and how many each "Show more" adds.
  *
- * The corpus is 220 clips and every card mounts a video element plus its own
+ * The corpus is 138 clips and every card mounts a video element plus its own
  * frame fetch, so the feed pages in rather than rendering the whole match set.
  */
 const PAGE_STEP = 5;
@@ -37,7 +37,7 @@ const EAGER_CARDS = 3;
  * Headline totals for the full DenseWalk corpus.
  *
  * Stated rather than counted, because they describe the whole dataset while the
- * feed below is served from the public release — currently a 220-clip sample of
+ * feed below is served from the public release — currently a 138-clip sample of
  * it. Anything derived from `data` would report the sample and understate the
  * corpus, so these two are held here and updated by hand as it grows.
  */
@@ -47,11 +47,12 @@ const CORPUS_FRAMES = "260k+";
 /**
  * How much of a clip an action or mode must account for to match its filter.
  *
- * These filters used to ask "does any frame do this?". Over a ~55-frame
- * walk-through that is true of nearly everything: mode `stand` matched all 220
- * clips and `walk` matched 212, so choosing one changed nothing on screen. A
- * share floor asks the question people mean — "is this clip actually about
- * this?" — and splits the corpus (at 15%: sidestep 41, stand 28, turn 91).
+ * These filters used to ask "does any frame do this?". Over a ~50-frame
+ * walk-through that is true of nearly everything: mode `stand` matched every
+ * clip in the corpus and `walk` nearly as many, so choosing one changed nothing
+ * on screen. A share floor asks the question people mean — "is this clip
+ * actually about this?" — and splits the corpus (at 15%, over the 138-clip
+ * release: stand 18, sidestep 25, turn 51, walk 123).
  */
 const PROMINENCE_PCT = 15;
 
@@ -144,7 +145,7 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   const visible = filtered.slice(0, shown);
   const remaining = filtered.length - visible.length;
   const kpis = [
-    { value: CORPUS_CLIPS, label: "annotated clips" },
+    { value: CORPUS_CLIPS, label: "annotated scenes" },
     { value: CORPUS_FRAMES, label: "frame instructions" },
     // These two stay measured: they describe the vocabulary the exports below
     // actually use, which is the same whatever the corpus size.
@@ -162,9 +163,9 @@ export function InstructionFeed({ data }: { data: FeedData }) {
             Frame-level instruction explorer
           </h2>
           <p className="inter mt-6 max-w-3xl text-base leading-relaxed text-on-surface-variant">
-            Each card is one walk-through clip: the mosaic render on the left, the full instruction reasoning on the right. The
-            strip beneath every player is that clip&rsquo;s keyframe timeline — click a frame to scrub the render to its
-            timestamp and read the observation the pipeline grounded its instruction in, and the playhead tracks the clip as
+            Each card is one walk-through scene: the mosaic render on the left, the full instruction reasoning on the right.
+            The strip beneath every player is that scene&rsquo;s keyframe timeline — click a frame to scrub the render to its
+            timestamp and read the observation the pipeline grounded its instruction in, and the playhead tracks the scene as
             it plays.
           </p>
         </div>
@@ -200,10 +201,10 @@ export function InstructionFeed({ data }: { data: FeedData }) {
           <div>
             <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem]">
               <input
-                aria-label="Search clips, actions and frame instructions"
+                aria-label="Search scenes, actions and frame instructions"
                 className={CONTROL_CLASS}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search clip id, instruction, action, keyframe…"
+                placeholder="Search scene id, instruction, action, keyframe…"
                 type="search"
                 value={query}
               />
@@ -271,13 +272,13 @@ export function InstructionFeed({ data }: { data: FeedData }) {
 
             <div className="mb-6">
               <FieldLabel>
-                Showing {visible.length} of {filtered.length} matching clips
+                Showing {visible.length} of {filtered.length} matching scenes
               </FieldLabel>
             </div>
 
             {visible.length === 0 ? (
               <div className="border border-outline-variant/10 bg-surface-container-lowest px-6 py-20 text-center">
-                <p className="inter text-base text-on-surface-variant">No clip matches those filters.</p>
+                <p className="inter text-base text-on-surface-variant">No scene matches those filters.</p>
               </div>
             ) : (
               <>
@@ -304,7 +305,7 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                     >
                       Show {Math.min(PAGE_STEP, remaining)} more
                     </button>
-                    <FieldLabel>{remaining} more matching clips</FieldLabel>
+                    <FieldLabel>{remaining} more matching scenes</FieldLabel>
                   </div>
                 ) : null}
               </>

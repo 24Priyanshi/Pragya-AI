@@ -10,30 +10,12 @@ import type { RawClip } from "@/types/densewalk-feed";
 
 import c000645 from "./000645_uni.json";
 import c000705 from "./000705_uni.json";
-import c001125 from "./001125_uni.json";
 import c001405 from "./001405_uni.json";
-import c001965 from "./001965_uni.json";
-import c002265 from "./002265_uni.json";
-import c002285 from "./002285_uni.json";
 import c003405 from "./003405_uni.json";
 import c003945 from "./003945_uni.json";
-import c004565 from "./004565_uni.json";
 import c004725 from "./004725_uni.json";
-import c005705 from "./005705_uni.json";
-import c005785 from "./005785_uni.json";
 import c006305 from "./006305_uni.json";
 import c006325 from "./006325_uni.json";
-import c006525 from "./006525_uni.json";
-import c007985 from "./007985_uni.json";
-import c008165 from "./008165_uni.json";
-import c008185 from "./008185_uni.json";
-import c008325 from "./008325_uni.json";
-import c008345 from "./008345_uni.json";
-import c008785 from "./008785_uni.json";
-import c009205 from "./009205_uni.json";
-import c009505 from "./009505_uni.json";
-import c009705 from "./009705_uni.json";
-import c009785 from "./009785_uni.json";
 import c009845 from "./009845_uni.json";
 import c009925 from "./009925_uni.json";
 import c010025 from "./010025_uni.json";
@@ -48,17 +30,8 @@ import c012305 from "./012305_uni.json";
 import c012545 from "./012545_uni.json";
 import c012565 from "./012565_uni.json";
 import c012665 from "./012665_uni.json";
-import c012905 from "./012905_uni.json";
-import c013125 from "./013125_uni.json";
-import c013265 from "./013265_uni.json";
-import c013685 from "./013685_uni.json";
-import c013945 from "./013945_uni.json";
-import c014345 from "./014345_uni.json";
-import c014505 from "./014505_uni.json";
 import c014765 from "./014765_uni.json";
-import c014865 from "./014865_uni.json";
 import c015145 from "./015145_uni.json";
-import c015505 from "./015505_uni.json";
 import c015825 from "./015825_uni.json";
 import c015965 from "./015965_uni.json";
 import c016065 from "./016065_uni.json";
@@ -69,11 +42,9 @@ import c016585 from "./016585_uni.json";
 import c016705 from "./016705_uni.json";
 import c016725 from "./016725_uni.json";
 import c017405 from "./017405_uni.json";
-import c017865 from "./017865_uni.json";
 import c017925 from "./017925_uni.json";
 import c018345 from "./018345_uni.json";
 import c018545 from "./018545_uni.json";
-import c018605 from "./018605_uni.json";
 import c018725 from "./018725_uni.json";
 import c018785 from "./018785_uni.json";
 import c018885 from "./018885_uni.json";
@@ -84,31 +55,12 @@ import c019085 from "./019085_uni.json";
 import c019145 from "./019145_uni.json";
 import c019245 from "./019245_uni.json";
 import c019425 from "./019425_uni.json";
-import c019525 from "./019525_uni.json";
 import c019605 from "./019605_uni.json";
 import c020525 from "./020525_uni.json";
 import c020545 from "./020545_uni.json";
 import c020625 from "./020625_uni.json";
 import c020785 from "./020785_uni.json";
 import c020845 from "./020845_uni.json";
-import c021605 from "./021605_uni.json";
-import c021665 from "./021665_uni.json";
-import c021805 from "./021805_uni.json";
-import c022545 from "./022545_uni.json";
-import c022965 from "./022965_uni.json";
-import c023005 from "./023005_uni.json";
-import c023525 from "./023525_uni.json";
-import c023845 from "./023845_uni.json";
-import c024065 from "./024065_uni.json";
-import c024425 from "./024425_uni.json";
-import c024585 from "./024585_uni.json";
-import c024605 from "./024605_uni.json";
-import c024665 from "./024665_uni.json";
-import c024845 from "./024845_uni.json";
-import c025005 from "./025005_uni.json";
-import c025105 from "./025105_uni.json";
-import c025225 from "./025225_uni.json";
-import c025705 from "./025705_uni.json";
 import c025765 from "./025765_uni.json";
 import c025865 from "./025865_uni.json";
 import c026005 from "./026005_uni.json";
@@ -161,41 +113,10 @@ import c031345 from "./031345_uni.json";
 import c031445 from "./031445_uni.json";
 import c031525 from "./031525_uni.json";
 import c031625 from "./031625_uni.json";
-import c031685 from "./031685_uni.json";
-import c031805 from "./031805_uni.json";
-import c031845 from "./031845_uni.json";
-import c031865 from "./031865_uni.json";
-import c031985 from "./031985_uni.json";
-import c033165 from "./033165_uni.json";
-import c033405 from "./033405_uni.json";
-import c033565 from "./033565_uni.json";
-import c033705 from "./033705_uni.json";
-import c034905 from "./034905_uni.json";
-import c034945 from "./034945_uni.json";
 import c034985 from "./034985_uni.json";
 import c035905 from "./035905_uni.json";
 import c036445 from "./036445_uni.json";
 import c036465 from "./036465_uni.json";
-import c036925 from "./036925_uni.json";
-import c037265 from "./037265_uni.json";
-import c037405 from "./037405_uni.json";
-import c037645 from "./037645_uni.json";
-import c037885 from "./037885_uni.json";
-import c037965 from "./037965_uni.json";
-import c039045 from "./039045_uni.json";
-import c039065 from "./039065_uni.json";
-import c039225 from "./039225_uni.json";
-import c039625 from "./039625_uni.json";
-import c039765 from "./039765_uni.json";
-import c040665 from "./040665_uni.json";
-import c040965 from "./040965_uni.json";
-import c041065 from "./041065_uni.json";
-import c041325 from "./041325_uni.json";
-import c041625 from "./041625_uni.json";
-import c042125 from "./042125_uni.json";
-import c042365 from "./042365_uni.json";
-import c042465 from "./042465_uni.json";
-import c042805 from "./042805_uni.json";
 import c043725 from "./043725_uni.json";
 import c043865 from "./043865_uni.json";
 import c045145 from "./045145_uni.json";
@@ -207,8 +128,6 @@ import c047045 from "./047045_uni.json";
 import c047325 from "./047325_uni.json";
 import c047605 from "./047605_uni.json";
 import c048625 from "./048625_uni.json";
-import c049065 from "./049065_uni.json";
-import c049325 from "./049325_uni.json";
 import c050385 from "./050385_uni.json";
 import c050425 from "./050425_uni.json";
 import c051345 from "./051345_uni.json";
@@ -227,35 +146,16 @@ import c055985 from "./055985_uni.json";
 import c056005 from "./056005_uni.json";
 import c056685 from "./056685_uni.json";
 import c059405 from "./059405_uni.json";
-import c059865 from "./059865_uni.json";
 
 export const rawClips: readonly RawClip[] = [
   c000645 as RawClip,
   c000705 as RawClip,
-  c001125 as RawClip,
   c001405 as RawClip,
-  c001965 as RawClip,
-  c002265 as RawClip,
-  c002285 as RawClip,
   c003405 as RawClip,
   c003945 as RawClip,
-  c004565 as RawClip,
   c004725 as RawClip,
-  c005705 as RawClip,
-  c005785 as RawClip,
   c006305 as RawClip,
   c006325 as RawClip,
-  c006525 as RawClip,
-  c007985 as RawClip,
-  c008165 as RawClip,
-  c008185 as RawClip,
-  c008325 as RawClip,
-  c008345 as RawClip,
-  c008785 as RawClip,
-  c009205 as RawClip,
-  c009505 as RawClip,
-  c009705 as RawClip,
-  c009785 as RawClip,
   c009845 as RawClip,
   c009925 as RawClip,
   c010025 as RawClip,
@@ -270,17 +170,8 @@ export const rawClips: readonly RawClip[] = [
   c012545 as RawClip,
   c012565 as RawClip,
   c012665 as RawClip,
-  c012905 as RawClip,
-  c013125 as RawClip,
-  c013265 as RawClip,
-  c013685 as RawClip,
-  c013945 as RawClip,
-  c014345 as RawClip,
-  c014505 as RawClip,
   c014765 as RawClip,
-  c014865 as RawClip,
   c015145 as RawClip,
-  c015505 as RawClip,
   c015825 as RawClip,
   c015965 as RawClip,
   c016065 as RawClip,
@@ -291,11 +182,9 @@ export const rawClips: readonly RawClip[] = [
   c016705 as RawClip,
   c016725 as RawClip,
   c017405 as RawClip,
-  c017865 as RawClip,
   c017925 as RawClip,
   c018345 as RawClip,
   c018545 as RawClip,
-  c018605 as RawClip,
   c018725 as RawClip,
   c018785 as RawClip,
   c018885 as RawClip,
@@ -306,31 +195,12 @@ export const rawClips: readonly RawClip[] = [
   c019145 as RawClip,
   c019245 as RawClip,
   c019425 as RawClip,
-  c019525 as RawClip,
   c019605 as RawClip,
   c020525 as RawClip,
   c020545 as RawClip,
   c020625 as RawClip,
   c020785 as RawClip,
   c020845 as RawClip,
-  c021605 as RawClip,
-  c021665 as RawClip,
-  c021805 as RawClip,
-  c022545 as RawClip,
-  c022965 as RawClip,
-  c023005 as RawClip,
-  c023525 as RawClip,
-  c023845 as RawClip,
-  c024065 as RawClip,
-  c024425 as RawClip,
-  c024585 as RawClip,
-  c024605 as RawClip,
-  c024665 as RawClip,
-  c024845 as RawClip,
-  c025005 as RawClip,
-  c025105 as RawClip,
-  c025225 as RawClip,
-  c025705 as RawClip,
   c025765 as RawClip,
   c025865 as RawClip,
   c026005 as RawClip,
@@ -383,41 +253,10 @@ export const rawClips: readonly RawClip[] = [
   c031445 as RawClip,
   c031525 as RawClip,
   c031625 as RawClip,
-  c031685 as RawClip,
-  c031805 as RawClip,
-  c031845 as RawClip,
-  c031865 as RawClip,
-  c031985 as RawClip,
-  c033165 as RawClip,
-  c033405 as RawClip,
-  c033565 as RawClip,
-  c033705 as RawClip,
-  c034905 as RawClip,
-  c034945 as RawClip,
   c034985 as RawClip,
   c035905 as RawClip,
   c036445 as RawClip,
   c036465 as RawClip,
-  c036925 as RawClip,
-  c037265 as RawClip,
-  c037405 as RawClip,
-  c037645 as RawClip,
-  c037885 as RawClip,
-  c037965 as RawClip,
-  c039045 as RawClip,
-  c039065 as RawClip,
-  c039225 as RawClip,
-  c039625 as RawClip,
-  c039765 as RawClip,
-  c040665 as RawClip,
-  c040965 as RawClip,
-  c041065 as RawClip,
-  c041325 as RawClip,
-  c041625 as RawClip,
-  c042125 as RawClip,
-  c042365 as RawClip,
-  c042465 as RawClip,
-  c042805 as RawClip,
   c043725 as RawClip,
   c043865 as RawClip,
   c045145 as RawClip,
@@ -429,8 +268,6 @@ export const rawClips: readonly RawClip[] = [
   c047325 as RawClip,
   c047605 as RawClip,
   c048625 as RawClip,
-  c049065 as RawClip,
-  c049325 as RawClip,
   c050385 as RawClip,
   c050425 as RawClip,
   c051345 as RawClip,
@@ -449,5 +286,4 @@ export const rawClips: readonly RawClip[] = [
   c056005 as RawClip,
   c056685 as RawClip,
   c059405 as RawClip,
-  c059865 as RawClip,
 ];

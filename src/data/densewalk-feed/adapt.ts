@@ -6,7 +6,7 @@ import type { DistributionRow, FeedFrame, FrameRisk, NarrativeLine, RawClip, Raw
  * These run in two places: at build time, to derive each clip's summary from
  * its export, and in the browser, to turn a lazily-fetched export into the
  * frames a card renders. Nothing here may import the clip JSON or touch the
- * DOM — the barrel in ./clips is 33 MB and must never reach a client bundle.
+ * DOM — the barrel in ./clips is 22 MB and must never reach a client bundle.
  */
 
 export function titleCase(snake: string): string {

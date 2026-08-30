@@ -50,7 +50,7 @@ export const FACET_DEFS: readonly FacetDef[] = [
   },
   {
     key: "clip-risk",
-    name: "Clip Risk",
+    name: "Scene Risk",
     order: ["Low", "Medium", "High"],
     of: (clip) => clip.risk,
   },
