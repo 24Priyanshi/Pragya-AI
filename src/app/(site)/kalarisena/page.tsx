@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { KalariSenaTabs } from "@/components/KalariSenaTabs";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { hero, problemQuote } from "@/data/kalarisena";
+import { hero, intro, problemQuote } from "@/data/kalarisena";
 
 export const metadata: Metadata = {
   title: "KalariSena",
@@ -19,7 +19,7 @@ export default function KalariSenaPage() {
   return (
     <PageShell>
       <PageHero hero={hero} />
-      <KalariSenaTabs problemQuote={problemQuote} />
+      <KalariSenaTabs intro={intro} problemQuote={problemQuote} />
     </PageShell>
   );
 }

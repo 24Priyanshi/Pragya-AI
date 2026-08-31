@@ -14,6 +14,9 @@ export const hero: HeroSpec = {
   mode: "auto",
 };
 
+export const intro =
+  "KalariSena is a movement-intelligence framework for humanoid robots, inspired by Kalaripayattu and grounded in strategic embodied response.";
+
 export const problemQuote =
   "India-facing deployment demands humanoids that can move and respond in crowded public spaces, disaster zones, industrial corridors, high-footfall transit hubs, and security-sensitive environments.";
 

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { SectionRule } from "@/components/SectionRule";
+
 const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
@@ -12,6 +14,7 @@ const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
 const PROBLEM_VIDEO_URL = "https://www.youtube.com/embed/9B7wuifzrss";
 
 interface KalariSenaTabsProps {
+  intro: string;
   problemQuote: string;
 }
 
@@ -24,7 +27,7 @@ interface KalariSenaTabsProps {
  * overlay, rating/export controls over 69 paired motions), not a
  * standalone widget that could be reimplemented natively.
  */
-export function KalariSenaTabs({ problemQuote }: KalariSenaTabsProps) {
+export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
   return (
@@ -48,12 +51,18 @@ export function KalariSenaTabs({ problemQuote }: KalariSenaTabsProps) {
 
       {tab === "The Problem" ? (
         <div>
-          <div className="bg-primary px-8 py-16 md:py-24 text-center">
-            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+          <div className="mb-8">
+            <SectionRule label="What is KalariSena?" margin="mb-8" />
+            <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-4xl">{intro}</p>
+          </div>
+
+          <div className="bg-primary rounded-2xl shadow-lg px-8 py-16 md:py-24">
+            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
-          <div className="border border-outline-variant/10 bg-surface">
+
+          <div className="mt-10 border border-outline-variant/10 bg-surface">
             <iframe
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
