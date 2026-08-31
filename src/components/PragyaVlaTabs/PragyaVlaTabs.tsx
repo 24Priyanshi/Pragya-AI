@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { MotionLangGallery } from "@/components/MotionLangGallery";
-import { MaterialIcon } from "@/components/ui/MaterialIcon";
 
 const TABS = ["The Problem", "Dataset", "Mechanism"] as const;
 type Tab = (typeof TABS)[number];
@@ -28,9 +27,9 @@ interface PragyaVlaTabsProps {
  * section (the interactive beam-search tree) live via iframe — same pattern
  * as DenseWalk's video iframe. It's a custom JS visualization baked into
  * that page, not a standalone widget, so embedding the page itself (anchored
- * at #search) is the only way to show it without reimplementing it. The
- * page's own "More Info" link lives separately as its own button next to
- * "Mechanism" in the tab row.
+ * at #search) is the only way to show it without reimplementing it. (The
+ * page's own "More Info" link that used to sit next to "Mechanism" in the
+ * tab row was removed on request, 2026-08-31.)
  *
  * Further request (2026-08-29): show only the step-toolbar + tree diagram,
  * not the formalization/cardinality boxes or log-likelihood bar that sit
@@ -61,15 +60,6 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
             {t}
           </button>
         ))}
-        <a
-          className="inline-flex shrink-0 items-center gap-2 ml-2 px-6 py-3 text-[10px] tracking-widest uppercase font-medium bg-on-surface text-inverse-on-surface transition-all duration-200 hover:opacity-80 active:scale-95"
-          href={MOTION_TOKEN_TOOL_URL}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          More Info
-          <MaterialIcon className="text-sm" name="arrow_outward" />
-        </a>
       </div>
 
       {tab === "The Problem" ? (

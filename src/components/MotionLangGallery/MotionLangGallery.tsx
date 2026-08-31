@@ -11,7 +11,6 @@ interface SelectedClip {
   readonly src: string;
   readonly caption: string;
   readonly categoryTitle: string;
-  readonly langName: string;
 }
 
 export function MotionLangGallery() {
@@ -33,11 +32,7 @@ export function MotionLangGallery() {
     <div className="ml-root">
       <section className="ml-hero">
         <div>
-          <h1>Language-Centric Motion Annotation</h1>
-          <p className="ml-subtitle">
-            Each language page holds its own unique balanced set — 200 distinct motions (10 categories × 20), 1000 unique
-            instruction–motion pairs in total. Switch language to see an entirely different set, captioned in that language.
-          </p>
+          <h1>Language Instruction-Driven Robot Motion</h1>
           <div className="ml-summary">
             <span className="ml-pill blue">{activeLang?.name} Page</span>
             <span className="ml-pill">10 categories</span>
@@ -93,9 +88,7 @@ export function MotionLangGallery() {
                     <div className="ml-cat-icon">{cat.icon}</div>
                     <div>
                       <h2>{cat.title}</h2>
-                      <div className="ml-cat-meta">
-                        20 unique motions · captioned in {activeLang?.name}
-                      </div>
+                      <div className="ml-cat-meta">20 unique motions · {activeLang?.name}</div>
                     </div>
                   </div>
                   <span className="ml-status">20 clips</span>
@@ -108,7 +101,7 @@ export function MotionLangGallery() {
                         className="ml-video-card"
                         key={`${lang}-${cat.id}-${i}`}
                         onClick={() =>
-                          setSelected({ src, caption: r.c, categoryTitle: cat.title, langName: activeLang?.name ?? "" })
+                          setSelected({ src, caption: r.c, categoryTitle: cat.title })
                         }
                         type="button"
                       >
@@ -151,7 +144,7 @@ export function MotionLangGallery() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" className="ml-watermark" src="/motionlang_watermark.png" />
           </div>
-          <p className="ml-drawer-caption-label">{selected?.langName} Caption</p>
+          <p className="ml-drawer-caption-label">Instructions</p>
           <div className="ml-drawer-caption">{selected?.caption}</div>
         </div>
       </aside>
