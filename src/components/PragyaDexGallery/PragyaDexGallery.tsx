@@ -42,7 +42,7 @@ export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[
   return (
     <div className="pd-root">
       <section className="pd-hero">
-        <h1>PragyaDex Skill Gallery</h1>
+        <h1>PragyaDex</h1>
         <p className="pd-subtitle">
           Paired human-hand-to-robot-hand dexterity examples across everyday domains — each annotated with a primitive
           sequence, objects, materials, and a robot transfer goal.
@@ -50,7 +50,6 @@ export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[
         <div className="pd-summary">
           <span className="pd-pill blue">{domains.length} domains</span>
           <span className="pd-pill">{totalExamples} paired examples</span>
-          <span className="pd-pill">Human → Robot retargeting</span>
         </div>
       </section>
 
@@ -114,11 +113,6 @@ export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[
           {selected ? (
             <>
               <p className="pd-drawer-desc">{selected.example.desc}</p>
-
-              <div className="pd-drawer-goal">
-                <b>Robot transfer goal</b>
-                {selected.example.transferGoal}
-              </div>
 
               <div className="pd-detail-grid">
                 <div className="pd-info">
