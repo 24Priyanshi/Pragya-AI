@@ -5,7 +5,7 @@ import { PageShell } from "@/components/PageShell";
 import { SectionRule } from "@/components/SectionRule";
 import { hero, proseBlocks } from "@/data/pragyaspace";
 
-const SIMULATION_URL = "https://multigravity.vercel.app";
+const SIMULATION_URL = "https://multigravity.vercel.app/arena.html";
 
 export const metadata: Metadata = {
   title: "PragyaSpace",
