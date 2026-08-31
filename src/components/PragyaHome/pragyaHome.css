@@ -206,7 +206,11 @@
   width: min(520px, 42vw);
   transition: all 0.22s;
   position: absolute;
-  top: 25%;
+  /* Changed on request (2026-08-31): was top: 25%, which sat on top of the
+     hero image's own baked-in "PRAGYA / INDIA'S SOVEREIGN EMBODIED AI"
+     title, making the two overlap and become unreadable together. That
+     title block runs roughly 14%-34% down the hero, so this clears it. */
+  top: 46%;
   left: 50%;
   transform: translate(-50%) translateY(8px);
 }
@@ -722,7 +726,8 @@
   }
   .pragya-home .hover-statement {
     width: calc(100% - 40px);
-    top: 18%;
+    /* Changed on request (2026-08-31), same reason as the desktop rule above. */
+    top: 46%;
   }
   .pragya-home .hover-statement p {
     font-size: 18px;
