@@ -112,7 +112,10 @@ export function PragyaDexGallery({ domains }: { domains: readonly GalleryDomain[
 
           {selected ? (
             <>
-              <p className="pd-drawer-desc">{selected.example.desc}</p>
+              <div className="pd-drawer-goal">
+                <b>Text instruction</b>
+                {selected.example.desc}
+              </div>
 
               <div className="pd-detail-grid">
                 <div className="pd-info">
