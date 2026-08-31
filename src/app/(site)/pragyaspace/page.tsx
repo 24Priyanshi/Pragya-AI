@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { SectionRule } from "@/components/SectionRule";
-import { hero, proseBlocks } from "@/data/pragyaspace";
+import { hero } from "@/data/pragyaspace";
 
 const SIMULATION_URL = "https://multigravity.vercel.app/arena.html";
 
@@ -17,23 +16,10 @@ export default function PragyaSpacePage() {
     <PageShell>
       <PageHero hero={hero} />
 
-      <section className="space-y-8 mb-32">
-        {proseBlocks.map((block) => (
-          <div className="bg-surface-container-lowest border border-outline-variant/10 p-8 md:p-12" key={block.label}>
-            <SectionRule label={block.label} margin="mb-8" />
-            {block.paragraphs.map((p) => (
-              <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-6xl" key={p.slice(0, 40)}>
-                {p}
-              </p>
-            ))}
-          </div>
-        ))}
-      </section>
-
       <section className="mb-32">
         {/* Live multi-gravity lab scene, deployed from a separate repo (github.com/prajak002/Multi-gravity-lab-scene)
-            to Vercel — embedded via iframe the same way as PragyaVLA's, KalariSena's, and DenseWorld's live tools. */}
-        <SectionRule label="Live Simulation" margin="mb-8" />
+            to Vercel — embedded via iframe the same way as PragyaVLA's, KalariSena's, and DenseWorld's live tools.
+            No heading (removed on request, 2026-08-31) — the prose blocks above it were removed too. */}
         <div className="border border-outline-variant/10 bg-surface">
           <iframe className="w-full h-[720px]" src={SIMULATION_URL} title="PragyaSpace multi-gravity lab simulation" />
         </div>
