@@ -56,8 +56,8 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
             <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-4xl">{intro}</p>
           </div>
 
-          <div className="bg-primary rounded-2xl shadow-lg px-8 py-16 md:py-24">
-            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
+          <div className="bg-primary rounded-2xl shadow-lg px-8 py-10 md:py-14">
+            <p className="plus-jakarta-sans text-xl md:text-3xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>

@@ -74,8 +74,8 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
 
       {tab === "The Problem" ? (
         <div>
-          <div className="bg-primary px-8 py-16 md:py-24 text-center">
-            <p className="plus-jakarta-sans text-2xl md:text-4xl font-light italic leading-snug text-on-primary max-w-4xl mx-auto text-balance">
+          <div className="bg-primary px-8 py-10 md:py-14">
+            <p className="plus-jakarta-sans text-xl md:text-3xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
