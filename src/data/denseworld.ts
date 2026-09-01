@@ -25,7 +25,7 @@ export const hero: HeroSpec = {
 
 /** Same copy as the navbar's DenseWorld submenu "What's the necessity?" answer. */
 export const problemQuote =
-  "Current “world model” progress is largely validated on clean, structured, low-density Western environments, and it often breaks down for the chaotic Global South scenes—where dense occlusion, mixed traffic, informal right-of-way negotiation, extreme lighting and weather, and long-tail objects and signage dominate.";
+  "Current world model progress is largely validated on clean, structured, low-density Western environments, and it often breaks down for the chaotic Global South scenes—where dense occlusion, mixed traffic, informal right-of-way negotiation, extreme lighting and weather, and long-tail objects and signage dominate.";
 
 /**
  * The Problem tab's narrative copy and density comparison, ported verbatim
