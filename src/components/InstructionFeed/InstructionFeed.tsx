@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { SectionRule } from "@/components/SectionRule";
-import type { FeedData, FrameRisk } from "@/types/densewalk-feed";
+import type { FeedData } from "@/types/densewalk-feed";
 
 import { ClipCard } from "./ClipCard";
 import { FieldLabel } from "./primitives";
@@ -13,14 +13,12 @@ import { TrackTabs } from "./TrackTabs";
 /**
  * "Instruction Feed" — the dataset explorer that follows the DenseWalk hero.
  *
- * Structure follows temp/densewalk_instruction_feed_varied.html: headline
- * metrics, a filter row, then one two-pane card per clip. The mock's synthetic
- * `status`/`priority` filters are replaced by fields the annotation JSON
- * actually carries — action, motion mode and derived risk — because a control
- * that filters on data the pipeline never emits can only ever be decorative.
+ * Structure follows temp/densewalk_instruction_feed_varied.html: one two-pane
+ * card per clip under the language tabs, with the taxonomy rail as the only
+ * filter. Slimmed on request (2026-09-01): the headline metrics, intro
+ * paragraph, search/action/mode/risk filter row and the provenance note were
+ * removed; the title shortened to "Frame-level CoT".
  */
-
-const RISKS: readonly FrameRisk[] = ["Low", "Medium", "High"];
 
 /**
  * How many cards the feed opens with, and how many each "Show more" adds.
@@ -33,44 +31,7 @@ const PAGE_STEP = 5;
 /** Cards at the top of a page fetch their frames immediately rather than on scroll. */
 const EAGER_CARDS = 3;
 
-/**
- * Headline totals for the full DenseWalk corpus.
- *
- * Stated rather than counted, because they describe the whole dataset while the
- * feed below is served from the public release — currently a 138-clip sample of
- * it. Anything derived from `data` would report the sample and understate the
- * corpus, so these two are held here and updated by hand as it grows.
- */
-const CORPUS_CLIPS = "5k+";
-const CORPUS_FRAMES = "260k+";
-
-/**
- * How much of a clip an action or mode must account for to match its filter.
- *
- * These filters used to ask "does any frame do this?". Over a ~50-frame
- * walk-through that is true of nearly everything: mode `stand` matched every
- * clip in the corpus and `walk` nearly as many, so choosing one changed nothing
- * on screen. A share floor asks the question people mean — "is this clip
- * actually about this?" — and splits the corpus (at 15%, over the 138-clip
- * release: stand 18, sidestep 25, turn 51, walk 123).
- */
-const PROMINENCE_PCT = 15;
-
-/** Whole-percentage shares, so a value absent from the clip reads as zero. */
-function prominent(shares: Readonly<Record<string, number>>, key: string): boolean {
-  return (shares[key] ?? 0) >= PROMINENCE_PCT;
-}
-
-
-const CONTROL_CLASS =
-  "inter w-full border border-outline-variant/20 bg-surface-container-lowest px-4 py-3.5 text-sm text-on-surface " +
-  "placeholder:text-outline focus:border-primary focus:outline-none focus:ring-0";
-
 export function InstructionFeed({ data }: { data: FeedData }) {
-  const [query, setQuery] = useState("");
-  const [action, setAction] = useState("");
-  const [mode, setMode] = useState("");
-  const [risk, setRisk] = useState("");
   const [selection, setSelection] = useState<FacetSelection>({});
   const [track, setTrack] = useState(data.tracks[0].key);
 
@@ -114,17 +75,10 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   }
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return trackClips.filter((clip) => {
-      // `search` and the share maps are precomputed per clip: the frames they
-      // were derived from no longer live in the page.
-      if (q && !clip.search.includes(q)) return false;
-      if (action && !prominent(clip.actionShares, action)) return false;
-      if (mode && !prominent(clip.modeShares, mode)) return false;
-      if (risk && clip.risk !== risk) return false;
-      return Object.entries(selection).every(([key, value]) => clip.tags[key] === value);
-    });
-  }, [trackClips, query, action, mode, risk, selection]);
+    return trackClips.filter((clip) =>
+      Object.entries(selection).every(([key, value]) => clip.tags[key] === value),
+    );
+  }, [trackClips, selection]);
 
   /**
    * Cards paged in `PAGE_STEP` at a time, reset whenever the match set changes.
@@ -134,7 +88,7 @@ export function InstructionFeed({ data }: { data: FeedData }) {
    * — each of which mounts a video and fires a frame fetch — before collapsing
    * back to the first page.
    */
-  const filterKey = JSON.stringify([track, query, action, mode, risk, selection]);
+  const filterKey = JSON.stringify([track, selection]);
   const [shown, setShown] = useState(PAGE_STEP);
   const [shownFor, setShownFor] = useState(filterKey);
   if (shownFor !== filterKey) {
@@ -144,39 +98,15 @@ export function InstructionFeed({ data }: { data: FeedData }) {
 
   const visible = filtered.slice(0, shown);
   const remaining = filtered.length - visible.length;
-  const kpis = [
-    { value: CORPUS_CLIPS, label: "annotated scenes" },
-    { value: CORPUS_FRAMES, label: "frame instructions" },
-    // These two stay measured: they describe the vocabulary the exports below
-    // actually use, which is the same whatever the corpus size.
-    { value: String(data.actions.length), label: "discrete actions" },
-    { value: String(new Set(data.clips.map((c) => c.location)).size), label: "scene types" },
-  ];
 
   return (
     <section>
       <SectionRule label="Instruction Feed" />
 
-      <div className="mb-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-        <div>
-          <h2 className="plus-jakarta-sans text-5xl font-extralight tracking-tighter text-on-surface md:text-6xl">
-            Frame-level instruction explorer
-          </h2>
-          <p className="inter mt-6 max-w-3xl text-base leading-relaxed text-on-surface-variant">
-            Each card is one walk-through scene: the mosaic render on the left, the full instruction reasoning on the right.
-            The strip beneath every player is that scene&rsquo;s keyframe timeline — click a frame to scrub the render to its
-            timestamp and read the observation the pipeline grounded its instruction in, and the playhead tracks the scene as
-            it plays.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {kpis.map((kpi) => (
-            <div className="border-l-2 border-primary bg-surface-container-lowest px-5 py-4" key={kpi.label}>
-              <b className="plus-jakarta-sans block text-3xl font-light tracking-tighter text-on-surface">{kpi.value}</b>
-              <FieldLabel>{kpi.label}</FieldLabel>
-            </div>
-          ))}
-        </div>
+      <div className="mb-10">
+        <h2 className="plus-jakarta-sans text-5xl font-extralight tracking-tighter text-on-surface md:text-6xl">
+          Frame-level CoT
+        </h2>
       </div>
 
       <TrackTabs active={track} counts={trackCounts} onSelect={setTrack} tracks={data.tracks} />
@@ -199,76 +129,11 @@ export function InstructionFeed({ data }: { data: FeedData }) {
           />
 
           <div>
-            <div className="mb-6 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_11rem_11rem_11rem]">
-              <input
-                aria-label="Search scenes, actions and frame instructions"
-                className={CONTROL_CLASS}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search scene id, instruction, action, keyframe…"
-                type="search"
-                value={query}
-              />
-              <select
-                aria-label="Filter by action"
-                className={CONTROL_CLASS}
-                onChange={(e) => setAction(e.target.value)}
-                value={action}
-              >
-                <option value="">All actions</option>
-                {data.actions.map((a) => (
-                  <option key={a} value={a}>
-                    {a.replaceAll("_", " ")}
-                  </option>
-                ))}
-              </select>
-              <select
-                aria-label="Filter by motion mode"
-                className={CONTROL_CLASS}
-                onChange={(e) => setMode(e.target.value)}
-                value={mode}
-              >
-                <option value="">All modes</option>
-                {data.modes.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <select
-                aria-label="Filter by risk"
-                className={CONTROL_CLASS}
-                onChange={(e) => setRisk(e.target.value)}
-                value={risk}
-              >
-                <option value="">All risk levels</option>
-                {RISKS.map((r) => (
-                  <option key={r} value={r}>
-                    {r} risk
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-8 space-y-2">
-              {activeTrack.key !== "english" ? (
-                <p className="inter border-l-2 border-primary bg-surface-container-low px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
-                  <span className="text-on-surface">{activeTrack.label} track.</span> {activeTrack.note}
-                </p>
-              ) : null}
-              <p className="inter border border-outline-variant/10 bg-surface-container-lowest px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
-                All {data.clips.length} cards are annotation exports from the{" "}
-                <a
-                  className="text-primary underline underline-offset-4 hover:opacity-70"
-                  href="https://huggingface.co/datasets/s-alam/densewalk-public"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  public DenseWalk release
-                </a>
-                . Every measurement on screen is read from that export, and both the mosaic renders and the per-frame
-                detail stream from the same dataset as you scroll — nothing here is reconstructed.
+            {activeTrack.key !== "english" ? (
+              <p className="inter mb-8 border-l-2 border-primary bg-surface-container-low px-6 py-5 text-sm leading-relaxed text-on-surface-variant">
+                <span className="text-on-surface">{activeTrack.label} track.</span> {activeTrack.note}
               </p>
-            </div>
+            ) : null}
 
             <div className="mb-6">
               <FieldLabel>
