@@ -3,7 +3,7 @@
 export interface StatCard {
   readonly label: string;
   readonly value: string;
-  readonly caption: string;
+  readonly caption?: string;
 }
 
 export interface RawInputTile {

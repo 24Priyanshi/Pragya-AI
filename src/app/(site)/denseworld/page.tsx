@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { DenseWorldTabs } from "@/components/DenseWorldTabs";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { barChart, hero, lineChart, problemQuote, stats, tier1Cities, tier2Cities } from "@/data/denseworld";
+import { hero, problemQuote, stats, tier1Cities, tier2Cities } from "@/data/denseworld";
 
 export const metadata: Metadata = {
   title: "Dense World",
@@ -20,14 +20,7 @@ export default function DenseWorldPage() {
   return (
     <PageShell>
       <PageHero hero={hero} />
-      <DenseWorldTabs
-        barChart={barChart}
-        lineChart={lineChart}
-        problemQuote={problemQuote}
-        stats={stats}
-        tier1Cities={tier1Cities}
-        tier2Cities={tier2Cities}
-      />
+      <DenseWorldTabs problemQuote={problemQuote} stats={stats} tier1Cities={tier1Cities} tier2Cities={tier2Cities} />
     </PageShell>
   );
 }

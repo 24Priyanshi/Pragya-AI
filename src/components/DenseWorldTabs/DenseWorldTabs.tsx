@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 
-import { AnalysisPair } from "@/components/AnalysisCharts";
-import { CityGrid, TaxonomyGrid } from "@/components/DenseWorldGrid";
+import { CityGrid } from "@/components/DenseWorldGrid";
 import { StatStrip } from "@/components/StatStrip";
-import type { BarChartSpec, LineChartSpec, StatCard } from "@/types/page";
+import type { StatCard } from "@/types/page";
 
 const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
@@ -17,21 +16,22 @@ interface DenseWorldTabsProps {
   stats: readonly StatCard[];
   tier1Cities: readonly string[];
   tier2Cities: readonly string[];
-  barChart: BarChartSpec;
-  lineChart: LineChartSpec;
 }
 
 /**
  * Mirrors KalariSenaTabs'/PragyaDexTabs' shape (2026-08-30): "The Problem"
- * (pull-quote) and "Dataset". Everything the page showed before this split
- * — stats, city grids, taxonomy, and the analysis charts — now lives under
- * "Dataset" rather than always being visible.
+ * (pull-quote) and "Dataset". Stats and city grids now live under "Dataset"
+ * rather than always being visible.
  *
  * The live explorer sits directly under the purple quote in "The Problem"
  * (on request, 2026-08-31), matching how KalariSena's video and PragyaVLA's
  * simulation sit under their own purple boxes, rather than under "Dataset".
+ *
+ * Further request (2026-08-31): the taxonomy grid and analysis charts were
+ * dropped from "Dataset" entirely, and the stat strip switched to its
+ * `compact` size.
  */
-export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, barChart, lineChart }: DenseWorldTabsProps) {
+export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities }: DenseWorldTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
   return (
@@ -62,7 +62,7 @@ export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, 
           </div>
           {/* Live 3D city explorer, deployed from a separate repo to Vercel — embedded via
               iframe the same way as PragyaVLA's and KalariSena's live tools. */}
-          <div className="border border-outline-variant/10 bg-surface">
+          <div className="mt-10 border border-outline-variant/10 bg-surface">
             <iframe className="w-full h-[720px]" src={EXPLORER_URL} title="DenseWorld live 3D explorer" />
           </div>
         </div>
@@ -70,15 +70,12 @@ export function DenseWorldTabs({ problemQuote, stats, tier1Cities, tier2Cities, 
 
       {tab === "Dataset" ? (
         <div>
-          <StatStrip stats={stats} />
+          <StatStrip compact stats={stats} />
 
           <section className="space-y-24 mt-24">
             <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ clips" />
             <CityGrid cities={tier2Cities} heading="Tier 2 Cities" subheading="- 15 cities, 40k+ clips" />
-            <TaxonomyGrid />
           </section>
-
-          <AnalysisPair bar={barChart} line={lineChart} />
         </div>
       ) : null}
     </div>
