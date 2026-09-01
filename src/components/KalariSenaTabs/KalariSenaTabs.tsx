@@ -14,15 +14,16 @@ const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
 const PROBLEM_VIDEO_URL = "https://www.youtube.com/embed/9B7wuifzrss";
 
 // Two specific moves' clips, streamed directly from the review tool's own deployment
-// (on request, 2026-09-01) — its DATA array's `human` and `mjc` fields for
-// kt_warrior_pose and iv_squat_salute_l, resolved against the review tool's own
-// origin since that's how the tool itself references them (relative <video src>).
+// (on request, 2026-09-01) — its DATA array's `human` and `mjc` fields, resolved
+// against the review tool's own origin since that's how the tool itself references
+// them (relative <video src>). Swapped on request (2026-09-02) from Warrior Stance
+// Sequence / Squat Salutation to these two moves.
 const REVIEW_TOOL_ORIGIN = "https://kalarisena-review.vercel.app";
 const MOVE_CLIPS = [
-  { label: "Warrior Stance Sequence — Original", src: `${REVIEW_TOOL_ORIGIN}/human/kt_warrior_pose.mp4` },
-  { label: "Warrior Stance Sequence — Pragya Physics Corrected", src: `${REVIEW_TOOL_ORIGIN}/mjc_kt_warrior_pose.mp4` },
-  { label: "Squat Salutation — Original", src: `${REVIEW_TOOL_ORIGIN}/human/iv_squat_salute_l.mp4` },
-  { label: "Squat Salutation — Pragya Physics Corrected", src: `${REVIEW_TOOL_ORIGIN}/mjc_iv_squat_salute_l.mp4` },
+  { label: "Warrior Lunge Into One-Leg Hold — Original", src: `${REVIEW_TOOL_ORIGIN}/human/pk_warrior_oneleg.mp4` },
+  { label: "Warrior Lunge Into One-Leg Hold — Pragya Physics Corrected", src: `${REVIEW_TOOL_ORIGIN}/mjc_pk_warrior_oneleg.mp4` },
+  { label: "Pakarchakaal Stance Transitions — Original", src: `${REVIEW_TOOL_ORIGIN}/human/pk_stance_transitions.mp4` },
+  { label: "Pakarchakaal Stance Transitions — Pragya Physics Corrected", src: `${REVIEW_TOOL_ORIGIN}/mjc_pk_stance_transitions.mp4` },
 ] as const;
 
 interface KalariSenaTabsProps {
