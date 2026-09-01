@@ -6,10 +6,11 @@ import type { FeedTrack } from "@/types/densewalk-feed";
 /**
  * The language / modality tabs above the feed.
  *
- * Empty tracks stay clickable rather than disabled: the point of showing Hindi,
- * Bangla, Telegu and Simulation before they are populated is to say what is
- * coming, and a tab you cannot open communicates less than one that opens onto
- * an explanation. The count beside each label is how many clips it holds now.
+ * Empty tracks stay clickable rather than disabled: the point of showing
+ * Simulation before it is populated is to say what is coming, and a tab you
+ * cannot open communicates less than one that opens onto an explanation. The
+ * five language tracks are all populated as of the multilingual pass
+ * (2026-09-01). The count beside each label is how many clips it holds now.
  */
 interface TrackTabsProps {
   tracks: readonly FeedTrack[];

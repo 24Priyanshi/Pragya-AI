@@ -2,6 +2,7 @@
 
 import { type RefObject, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
+import type { LanguageKey } from "@/data/densewalk-feed/adapt";
 import { useNearViewport } from "@/hooks/useNearViewport";
 import { useClipFrames } from "@/lib/densewalk-frames";
 
@@ -186,11 +187,21 @@ interface ClipCardProps {
   ordinal: number;
   /** Language tab this card is being read under; null on the English tab. */
   trackLabel?: string | null;
+  /** Language the frame observations are read in — a field of the same export. */
+  language?: LanguageKey;
   /** False when this clip has no text for the open track and falls back to English. */
   translated?: boolean;
 }
 
-export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel = null, translated = true }: ClipCardProps) {
+export function ClipCard({
+  clip,
+  framesBase,
+  eager = false,
+  ordinal,
+  trackLabel = null,
+  language = "english",
+  translated = true,
+}: ClipCardProps) {
   const [selected, setSelected] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLElement>(null);
@@ -200,7 +211,7 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
   // cards of a page are exempt — they are certain to be read, so making them
   // wait for an intersection callback is latency for nothing.
   const near = useNearViewport(cardRef);
-  const { status, frames, error } = useClipFrames(framesBase, clip.id, eager || near);
+  const { status, frames, error } = useClipFrames(framesBase, clip.id, eager || near, language);
   const frame = frames?.[selected] ?? frames?.[0] ?? null;
 
   /**
@@ -358,8 +369,10 @@ export function ClipCard({ clip, framesBase, eager = false, ordinal, trackLabel 
                     {flag.replaceAll("_", " ")}
                   </Chip>
                 ))}
-                {/* Observations have no translation yet, so say which source this text came from. */}
-                {trackLabel ? <Chip tone="muted">English source</Chip> : null}
+                {/* Frame observations are translated in the export as of the
+                    multilingual pass (2026-09-01), so this reads as the track's
+                    own text — the "English source" chip that used to sit here is
+                    gone. */}
               </div>
 
               {/* Collapsed like the full list below it. <details> keeps its own open

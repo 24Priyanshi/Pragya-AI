@@ -9,6 +9,37 @@ import type { DistributionRow, FeedFrame, FrameRisk, NarrativeLine, RawClip, Raw
  * DOM — the barrel in ./clips is 22 MB and must never reach a client bundle.
  */
 
+/**
+ * Track key → the suffix that track's text carries in the export.
+ *
+ * The exports hold every language in one file — `text`/`text_bn`/`text_hi`/… on
+ * the instruction, `observation_text`/`observation_text_bn`/… on each frame —
+ * so a language tab is a field selection, not a second corpus. English is the
+ * empty suffix because it is the unsuffixed field, which also makes it the
+ * fallback for an export written before the multilingual pass (2026-09-01).
+ *
+ * Keys match `FeedTrack.key` for the language tracks; `TRACKS` in ./index.ts is
+ * the list the tabs render.
+ */
+export const LANGUAGE_SUFFIX = {
+  english: "",
+  bangla: "_bn",
+  hindi: "_hi",
+  tamil: "_ta",
+  telegu: "_te",
+} as const;
+
+export type LanguageKey = keyof typeof LANGUAGE_SUFFIX;
+
+export function isLanguageKey(key: string): key is LanguageKey {
+  return key in LANGUAGE_SUFFIX;
+}
+
+/** One frame's observation in `language`, falling back to the English field. */
+export function observationOf(raw: RawFrame, language: LanguageKey): string {
+  return raw[`observation_text${LANGUAGE_SUFFIX[language]}`] ?? raw.observation_text;
+}
+
 export function titleCase(snake: string): string {
   return snake
     .split("_")
@@ -38,7 +69,7 @@ function navSummary(raw: RawFrame): string {
  * mosaic render, which is what a strip click seeks the player to. Rounding it
  * for display must not round it for seeking, so both forms are kept.
  */
-export function toFrame(raw: RawFrame, index: number): FeedFrame {
+export function toFrame(raw: RawFrame, index: number, language: LanguageKey = "english"): FeedFrame {
   const nav = raw.navigability;
   return {
     index,
@@ -65,13 +96,20 @@ export function toFrame(raw: RawFrame, index: number): FeedFrame {
     nav: navSummary(raw),
     risk: riskOf(raw),
     flags: raw.flags,
-    observation: raw.observation_text,
+    observation: observationOf(raw, language),
     image: raw.image,
   };
 }
 
-export function framesOf(raw: RawClip): readonly FeedFrame[] {
-  return raw.frames.map(toFrame);
+/**
+ * A clip's frames, with every observation read in `language`.
+ *
+ * Only the observation text varies by language: geometry, timing, actions and
+ * risk are properties of the walk, so the same call serves every tab and the
+ * derived summaries below never need re-deriving per language.
+ */
+export function framesOf(raw: RawClip, language: LanguageKey = "english"): readonly FeedFrame[] {
+  return raw.frames.map((frame, index) => toFrame(frame, index, language));
 }
 
 export function distributionOf(frames: readonly FeedFrame[]): readonly DistributionRow[] {

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { SectionRule } from "@/components/SectionRule";
+import { isLanguageKey, type LanguageKey } from "@/data/densewalk-feed/adapt";
 import type { FeedData } from "@/types/densewalk-feed";
 
 import { ClipCard } from "./ClipCard";
@@ -41,6 +42,16 @@ export function InstructionFeed({ data }: { data: FeedData }) {
 
   const activeTrack = data.tracks.find((t) => t.key === track) ?? data.tracks[0];
 
+  /**
+   * Which language the cards read their text in.
+   *
+   * Every language track's key is a `LANGUAGE_SUFFIX` key, so the tab selection
+   * doubles as the field selector the frame adapter needs; the simulation track
+   * has no text of its own and never reaches a card, so it falls back to English
+   * rather than widening the type.
+   */
+  const language: LanguageKey = isLanguageKey(activeTrack.key) ? activeTrack.key : "english";
+
   const trackCounts = useMemo(
     () =>
       Object.fromEntries(data.tracks.map((t) => [t.key, t.kind === "language" ? data.clips.length : 0])) as Record<
@@ -53,12 +64,15 @@ export function InstructionFeed({ data }: { data: FeedData }) {
   /**
    * Every language tab renders the same clips over the same measurements — the
    * geometry and timing of a walk do not change with the language describing
-   * it — so the instruction text is swapped per track rather than a separate
-   * clip set being shipped for each.
+   * it — so the text is swapped per track rather than a separate clip set being
+   * shipped for each. The scene instruction is swapped here from the summary;
+   * the frame observations are swapped inside the card, which reads the same
+   * language out of the export it already fetched.
    *
-   * `translated` is tracked per clip rather than per track: only one export
-   * carries non-English text today, so a track-wide flag would badge 49 cards
-   * of plain English as a stand-in translation.
+   * `translated` is tracked per clip rather than per track: the whole corpus
+   * carries all five languages today, but an export that lands without the
+   * multilingual pass having run over it falls back to English, and only a
+   * per-clip flag can badge that card without badging the other 137.
    */
   const trackClips = useMemo(() => {
     if (activeTrack.kind !== "language") return [];
@@ -156,6 +170,7 @@ export function InstructionFeed({ data }: { data: FeedData }) {
                       framesBase={data.framesBase}
                       key={clip.id}
                       ordinal={i + 1}
+                      language={language}
                       trackLabel={activeTrack.key === "english" ? null : activeTrack.label}
                       translated={clip.translated}
                     />

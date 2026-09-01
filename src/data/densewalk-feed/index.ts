@@ -1,7 +1,16 @@
 import { FACET_DEFS } from "@/data/densewalk-taxonomy";
 import type { ClipFacts, FeedClip, FeedData, FeedTrack, FrameRisk, RawClip, TaxonomyFacet } from "@/types/densewalk-feed";
 
-import { RISK_ORDER, distributionOf, framesOf, narrativeOf, reasonsOf, titleCase } from "./adapt";
+import {
+  LANGUAGE_SUFFIX,
+  RISK_ORDER,
+  distributionOf,
+  framesOf,
+  narrativeOf,
+  reasonsOf,
+  titleCase,
+  type LanguageKey,
+} from "./adapt";
 import { rawClips } from "./clips";
 
 /**
@@ -48,69 +57,58 @@ function videoFor(clipId: string): string {
 /**
  * The feed's tabs.
  *
- * The four language tracks describe the same captures, so they share one clip
- * set and swap only the instruction text — geometry, timing, actions and
- * taxonomy are properties of the walk, not of the language describing it.
+ * The five language tracks describe the same captures, so they share one clip
+ * set and swap only the text — geometry, timing, actions and taxonomy are
+ * properties of the walk, not of the language describing it. Every one of them
+ * is real annotation output since the multilingual pass (2026-09-01): each
+ * export carries its instruction and all of its frame observations in all five
+ * languages, so the hand-written Hindi/Bangla/Telegu stand-ins that used to
+ * live here are gone and Tamil joined the set. Order follows `LANGUAGE_SUFFIX`.
+ *
  * Simulation is a separate corpus and holds no clips yet.
  */
+const LANGUAGES = Object.keys(LANGUAGE_SUFFIX) as readonly LanguageKey[];
+
+const LANGUAGE_LABELS: Readonly<Record<LanguageKey, string>> = {
+  english: "English",
+  bangla: "Bangla",
+  hindi: "Hindi",
+  tamil: "Tamil",
+  telegu: "Telegu",
+};
+
 const TRACKS: readonly FeedTrack[] = [
-  {
-    key: "english",
-    label: "English",
-    kind: "language",
-    note: "Instructions as they appear in the annotation exports.",
-    observationsTranslated: true,
-  },
-  {
-    key: "hindi",
-    label: "Hindi",
-    kind: "language",
-    note: "One scene carries a hand-written Hindi stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
-    observationsTranslated: false,
-  },
-  {
-    key: "bangla",
-    label: "Bangla",
-    kind: "language",
-    note: "One scene carries a hand-written Bangla stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
-    observationsTranslated: false,
-  },
-  {
-    key: "telegu",
-    label: "Telegu",
-    kind: "language",
-    note: "One scene carries a hand-written Telegu stand-in; every other scene falls back to its English export. Frame observations are English throughout until the multilingual pass runs.",
-    observationsTranslated: false,
-  },
+  ...LANGUAGES.map((key) => ({
+    key,
+    label: LANGUAGE_LABELS[key],
+    kind: "language" as const,
+    note:
+      key === "english"
+        ? "Instructions and frame observations as they appear in the annotation exports."
+        : `Scene instructions and every frame observation in ${LANGUAGE_LABELS[key]}, read from the same annotation exports as the English track.`,
+  })),
   {
     key: "simulation",
     label: "Simulation",
     kind: "simulation",
     note: "Isaac Sim rollouts are exported separately from the walk-through captures and have not landed yet.",
-    observationsTranslated: false,
   },
 ];
 
 /**
- * Clip id → track key → clip-level instruction.
+ * Clip-level instruction per track, straight out of the export.
  *
- * Stand-ins so each language tab reads in its own script; they are NOT
- * annotation output, and the UI badges them as such. Delete an entry the moment
- * the real export carries that language, and the tab picks the real string up.
+ * A language the export does not carry is left out rather than filled with the
+ * English string: the feed already falls back to English for a missing key, and
+ * badges that card as a fallback — a filled-in entry would silently pass English
+ * off as a translation. English itself is always present, since it is the
+ * unsuffixed `text` the schema requires.
  */
-const INSTRUCTION_TRANSLATIONS: Readonly<Record<string, Readonly<Record<string, string>>>> = {
-  "001405": {
-    hindi:
-      "मिश्रित सड़क से होकर आगे बढ़ें, जहाँ रास्ता 1 व्यक्ति और 7 वाहनों के साथ साझा करना है। दूसरों से सुरक्षित दूरी बनाए रखें और परिस्थितियों के अनुरूप गति से चलें।",
-    bangla:
-      "মিশ্র রাস্তা ধরে এগিয়ে যান, যেখানে সর্বোচ্চ ১ জন মানুষ ও ৭টি যানবাহনের সঙ্গে জায়গা ভাগ করে নিতে হবে। অন্যদের থেকে নিরাপদ দূরত্ব বজায় রাখুন এবং পরিস্থিতি অনুযায়ী গতিতে চলুন।",
-    telegu:
-      "మిశ్రమ వీధి గుండా ముందుకు సాగండి, అక్కడ 1 వ్యక్తి మరియు 7 వాహనాలతో దారిని పంచుకోవాలి. ఇతరుల నుండి సురక్షితమైన దూరం ఉంచండి, పరిస్థితులకు తగిన వేగంతో కదలండి.",
-  },
-};
-/** English from the export, plus whatever translations exist for that source clip. */
-function instructionsFor(sourceId: string, english: string): Readonly<Record<string, string>> {
-  return { english, ...(INSTRUCTION_TRANSLATIONS[sourceId] ?? {}) };
+function instructionsFor(raw: RawClip): Readonly<Record<string, string>> {
+  const carried = LANGUAGES.map((key) => [key, raw.instruction[`text${LANGUAGE_SUFFIX[key]}`]] as const).filter(
+    (entry): entry is readonly [LanguageKey, string] => Boolean(entry[1]),
+  );
+  return Object.fromEntries(carried);
 }
 
 /**
@@ -173,7 +171,7 @@ function toClip(raw: RawClip): FeedClip {
     location: evidence.location,
     density: evidence.density,
     instruction: raw.instruction.text,
-    instructions: instructionsFor(raw.video_id, raw.instruction.text),
+    instructions: instructionsFor(raw),
     tags: Object.fromEntries(FACET_DEFS.map((facet) => [facet.key, facet.of(facts)])),
     dominantAction: distribution[0].action,
     dominantLabel: distribution[0].label,

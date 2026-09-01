@@ -49,6 +49,16 @@ export interface RawFrame {
   readonly keyframe_id: string;
   readonly time_sec: number;
   readonly observation_text: string;
+  /**
+   * Per-language frame observations, added by the multilingual pass
+   * (2026-09-01). Optional because an export written before that pass carries
+   * `observation_text` alone; the adapter falls back to it — see
+   * `LANGUAGE_SUFFIX` in src/data/densewalk-feed/adapt.ts.
+   */
+  readonly observation_text_bn?: string;
+  readonly observation_text_hi?: string;
+  readonly observation_text_ta?: string;
+  readonly observation_text_te?: string;
   readonly action: RawAction;
   readonly navigability: RawNavigability;
   /** Motion-solve confidence in 0..1; < 1 means a low-confidence or artifact frame. */
@@ -70,6 +80,11 @@ export interface RawClip {
       readonly peak_people: number;
       readonly peak_vehicles: number;
     };
+    /** Same multilingual pass as `RawFrame`'s, and optional for the same reason. */
+    readonly text_bn?: string;
+    readonly text_hi?: string;
+    readonly text_ta?: string;
+    readonly text_te?: string;
   };
   readonly action_space: {
     readonly discrete: readonly string[];
@@ -112,6 +127,7 @@ export interface FeedFrame {
   readonly nav: string;
   readonly risk: FrameRisk;
   readonly flags: readonly string[];
+  /** In the language of the track this frame was adapted for; English otherwise. */
   readonly observation: string;
   readonly image: string;
 }
@@ -130,11 +146,12 @@ export interface NarrativeLine {
 }
  
 /**
- * A tab in the feed: the four instruction languages plus the Isaac Sim track.
+ * A tab in the feed: the five instruction languages plus the Isaac Sim track.
  *
  * The language tracks all describe the same captures, so they render the same
- * cards over the same measurements — only the instruction text changes. The
- * simulation track is a different corpus entirely and carries no clips yet.
+ * cards over the same measurements — only the instruction and frame-observation
+ * text changes. The simulation track is a different corpus entirely and carries
+ * no clips yet.
  */
 export interface FeedTrack {
   readonly key: string;
@@ -142,8 +159,6 @@ export interface FeedTrack {
   readonly kind: "language" | "simulation";
   /** Shown above the feed for this track, and as the body of an empty track. */
   readonly note: string;
-  /** False while frame observations are still served from the English source. */
-  readonly observationsTranslated: boolean;
 }
 
 export interface TaxonomyFacet {

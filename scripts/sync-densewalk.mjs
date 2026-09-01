@@ -10,12 +10,18 @@
  * streamed from the dataset CDN by URL (see VIDEO_BASE in ../index.ts).
  *
  * Usage: npm run sync:densewalk
+ *
+ * The dataset is public, so the listing and the downloads work unauthenticated;
+ * HF_TOKEN is picked up when present only to lift the anonymous rate limit,
+ * which 139 back-to-back downloads sit close to. Put it in `.env` or the
+ * environment — see ./hf-token.mjs.
  */
 
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { HF_AUTH, HF_TOKEN } from "./hf-token.mjs";
 import { listFolder } from "./hf-tree.mjs";
 
 const REPO = "s-alam/densewalk-public";
@@ -26,7 +32,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "data", "
 const REQUIRED = ["video_id", "fps", "n_frames", "instruction", "action_space", "frames"];
 
 async function fetchClip(path) {
-  const res = await fetch(`https://huggingface.co/datasets/${REPO}/resolve/main/${path}`);
+  const res = await fetch(`https://huggingface.co/datasets/${REPO}/resolve/main/${path}`, { headers: HF_AUTH });
   if (!res.ok) throw new Error(`${path}: ${res.status} ${res.statusText}`);
   const text = await res.text();
   const clip = JSON.parse(text); // throws on a truncated download rather than committing it
@@ -35,7 +41,7 @@ async function fetchClip(path) {
   return { name: path.split("/").pop(), text, clip };
 }
 
-const entries = (await listFolder(REPO, FOLDER)).filter((e) => e.path.endsWith(".json"));
+const entries = (await listFolder(REPO, FOLDER, { token: HF_TOKEN })).filter((e) => e.path.endsWith(".json"));
 console.log(`${entries.length} exports in ${REPO}/${FOLDER}`);
 
 const clips = [];
