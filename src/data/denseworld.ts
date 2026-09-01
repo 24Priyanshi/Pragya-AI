@@ -38,8 +38,16 @@ export const problemNarrative = [
   "**On the left** are the **clean, structured urban streets** that dominate today's **world model training data**. **On the right** are the **dense, heterogeneous, and socially negotiated streets** that **DENSEWORLD** was built for. *Same planet. Fundamentally different worlds.*",
 ] as const;
 
-/** 4 placeholder slots inside a purple box (2026-09-01, was 8 west/dense pairs in a plain grid). */
-export const contrastLabels = Array.from({ length: 4 }, (_, i) => `Street ${i + 1}`);
+export interface ContrastItem {
+  readonly label: string;
+  readonly src: string;
+}
+
+/** 4 real clips inside a purple box (2026-09-01), replacing the earlier "coming soon" placeholders. */
+export const contrastItems: readonly ContrastItem[] = Array.from({ length: 4 }, (_, i) => ({
+  label: `Street ${i + 1}`,
+  src: `/denseworld_contrast/street${i + 1}.mp4`,
+}));
 
 export interface DensityChartRow {
   readonly label: string;
