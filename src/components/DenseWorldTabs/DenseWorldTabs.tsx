@@ -11,6 +11,7 @@ import {
   ExampleCard,
   ResearchSectionCard,
 } from "@/components/DenseWorldResearch";
+import { RichText } from "@/components/RichText";
 import { SectionRule } from "@/components/SectionRule";
 import { StatStrip } from "@/components/StatStrip";
 import type { DensityChart } from "@/data/denseworld";
@@ -122,10 +123,10 @@ export function DenseWorldTabs({
 
           <section className="mt-16">
             <SectionRule label="The Problem" margin="mb-8" />
-            <div className="space-y-6 max-w-4xl">
+            <div className="space-y-6 max-w-4xl mx-auto">
               {problemNarrative.map((p) => (
-                <p className="inter text-sm md:text-base leading-relaxed text-on-surface-variant" key={p.slice(0, 40)}>
-                  {p}
+                <p className="inter text-sm md:text-base leading-relaxed text-justify text-on-surface-variant" key={p.slice(0, 40)}>
+                  <RichText text={p} />
                 </p>
               ))}
             </div>
@@ -136,8 +137,10 @@ export function DenseWorldTabs({
 
           <section className="mt-16">
             <SectionRule label={densityEyebrow} margin="mb-8" />
-            <h3 className="plus-jakarta-sans text-3xl md:text-4xl font-light tracking-tight text-on-surface">{densityHeading}</h3>
-            <p className="inter mt-4 max-w-4xl text-sm md:text-base leading-relaxed text-on-surface-variant">{densityLede}</p>
+            <h3 className="plus-jakarta-sans text-3xl md:text-4xl font-light tracking-tight text-on-surface text-center">{densityHeading}</h3>
+            <p className="inter mt-4 max-w-4xl mx-auto text-sm md:text-base leading-relaxed text-justify text-on-surface-variant">
+              <RichText text={densityLede} />
+            </p>
             <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
               {densityCharts.map((chart) => (
                 <DensityChartCard chart={chart} key={chart.title} />
@@ -155,7 +158,9 @@ export function DenseWorldTabs({
 
       {tab === "Dataset" ? (
         <div>
-          <p className="inter max-w-4xl text-sm md:text-base leading-relaxed text-on-surface-variant">{datasetOpening}</p>
+          <p className="inter max-w-4xl mx-auto text-sm md:text-base leading-relaxed text-justify text-on-surface-variant">
+            <RichText text={datasetOpening} />
+          </p>
 
           <div className="mt-12">
             <StatStrip compact stats={stats} />
@@ -186,8 +191,10 @@ export function DenseWorldTabs({
 
       {tab === "Research" ? (
         <div>
-          <h3 className="plus-jakarta-sans text-3xl md:text-4xl font-light tracking-tight text-on-surface">{researchIntro.heading}</h3>
-          <p className="inter mt-4 max-w-4xl text-sm md:text-base leading-relaxed text-on-surface-variant">{researchIntro.lede}</p>
+          <h3 className="plus-jakarta-sans text-3xl md:text-4xl font-light tracking-tight text-on-surface text-center">{researchIntro.heading}</h3>
+          <p className="inter mt-4 max-w-4xl mx-auto text-sm md:text-base leading-relaxed text-justify text-on-surface-variant">
+            <RichText text={researchIntro.lede} />
+          </p>
 
           <div className="mt-10 space-y-9">
             {researchSections.map((section) => (
@@ -195,8 +202,8 @@ export function DenseWorldTabs({
             ))}
           </div>
 
-          <p className="inter mt-10 max-w-5xl border-t border-outline-variant/10 pt-6 text-xs leading-relaxed text-on-surface-variant">
-            {researchFootnote}
+          <p className="inter mt-10 max-w-5xl mx-auto border-t border-outline-variant/10 pt-6 text-xs leading-relaxed text-justify text-on-surface-variant">
+            <RichText text={researchFootnote} />
           </p>
         </div>
       ) : null}

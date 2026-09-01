@@ -34,11 +34,10 @@ export const problemQuote =
  * team's own existing copy for this same project, not written fresh here.
  */
 export const problemNarrative = [
-  "World models have rapidly emerged as a key paradigm for enabling intelligent systems to understand, predict, and reason about the physical world. However, existing models are overwhelmingly developed and evaluated on clean, low-density, and highly structured Western environments, overlooking the complexity of urban scenes across the Global South. These environments are characterized by dense and heterogeneous agents—pedestrians, vehicles, two-wheelers, rickshaws, carts, vendors, and animals—together with soft spatial boundaries, persistent occlusions, and continuous social negotiation, posing fundamentally different challenges for perception, prediction, and decision making. To bridge this gap, we introduce DENSEWORLD V1, the first world model specifically designed for the complex urban environments of the Global South.",
-  "On the left are the clean, structured urban streets that dominate today's world model training data. On the right are the dense, heterogeneous, and socially negotiated streets that DENSEWORLD was built for. Same planet. Fundamentally different worlds.",
+  "**World models** have rapidly emerged as a key paradigm for enabling intelligent systems to **understand, predict, and reason about the physical world**. However, existing models are overwhelmingly developed and evaluated on **clean, low-density, and highly structured Western environments**, overlooking the complexity of urban scenes across the **Global South**. These environments are characterized by *dense and heterogeneous agents*—pedestrians, vehicles, two-wheelers, rickshaws, carts, vendors, and animals—together with *soft spatial boundaries*, *persistent occlusions*, and *continuous social negotiation*, posing fundamentally different challenges for **perception, prediction, and decision making**. **To bridge this gap, we introduce DENSEWORLD V1, the first world model specifically designed for the complex urban environments of the Global South.**",
+  "**On the left** are the **clean, structured urban streets** that dominate today's **world model training data**. **On the right** are the **dense, heterogeneous, and socially negotiated streets** that **DENSEWORLD** was built for. *Same planet. Fundamentally different worlds.*",
 ] as const;
 
-/** The Space's contrast section pairs a "low-density" (West) clip against a "dense" (Global South) clip, 4 times over — real footage TBD, so these render as labelled placeholders for now. */
 /** 4 placeholder slots inside a purple box (2026-09-01, was 8 west/dense pairs in a plain grid). */
 export const contrastLabels = Array.from({ length: 4 }, (_, i) => `Street ${i + 1}`);
 
@@ -61,7 +60,7 @@ export interface DensityChart {
 export const densityEyebrow = "Measured, not asserted";
 export const densityHeading = "How much denser is the Global South?";
 export const densityLede =
-  "DENSEWORLD asks a simple question: Do the streets of the Global South represent a fundamentally different operating regime for world models? We answer this by quantifying every scene along five complementary dimensions—agent density, agent occupancy, occlusion pressure, interaction pressure, and agent heterogeneity—capturing the complexity, congestion, visibility, interactions, and diversity of real-world urban environments.";
+  "DENSEWORLD asks a simple question: *Do the streets of the Global South represent a fundamentally different operating regime for world models?* We answer this by quantifying every scene along **five complementary dimensions—agent density, agent occupancy, occlusion pressure, interaction pressure, and agent heterogeneity**—capturing the **complexity, congestion, visibility, interactions, and diversity** of real-world urban environments.";
 
 export const densityCharts: readonly DensityChart[] = [
   {

@@ -1,3 +1,4 @@
+import { RichText } from "@/components/RichText";
 import { cn } from "@/lib/cn";
 import type { ResearchMetric } from "@/data/denseworld-research";
 
@@ -20,11 +21,11 @@ export function ResearchMetricRow({ metric }: { metric: ResearchMetric }) {
         <code className="inter mb-3 block w-fit rounded border border-outline-variant/10 bg-surface-container-lowest px-3 py-2 text-xs text-on-surface">
           {metric.formula}
         </code>
-        <p className="inter mb-3 text-sm leading-relaxed text-on-surface-variant">{metric.definition}</p>
+        <p className="inter mb-3 text-sm leading-relaxed text-justify text-on-surface-variant">{metric.definition}</p>
         <ul className="mb-3 list-disc space-y-1.5 pl-5 marker:text-primary">
           {metric.bullets.map((bullet) => (
-            <li className="inter text-[13px] leading-relaxed text-on-surface-variant" key={bullet.slice(0, 40)}>
-              {bullet}
+            <li className="inter text-[13px] leading-relaxed text-justify text-on-surface-variant" key={bullet.slice(0, 40)}>
+              <RichText text={bullet} />
             </li>
           ))}
         </ul>

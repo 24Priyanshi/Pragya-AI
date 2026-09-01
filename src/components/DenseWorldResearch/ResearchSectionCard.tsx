@@ -1,3 +1,4 @@
+import { RichText } from "@/components/RichText";
 import { cn } from "@/lib/cn";
 import type { ResearchSection } from "@/data/denseworld-research";
 
@@ -23,13 +24,13 @@ export function ResearchSectionCard({ section }: { section: ResearchSection }) {
 
       <div
         className={cn(
-          "inter mt-3 text-sm leading-relaxed",
+          "inter mt-3 text-sm leading-relaxed text-justify",
           section.pinned
             ? "border border-dashed border-outline-variant/30 bg-surface-container-lowest px-4 py-3 text-on-surface"
             : "text-on-surface-variant",
         )}
       >
-        {section.tldr}
+        <RichText text={section.tldr} />
         {section.tldrStat ? (
           <span className="inter ml-2 inline-block rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
             {section.tldrStat}
@@ -42,8 +43,8 @@ export function ResearchSectionCard({ section }: { section: ResearchSection }) {
       ))}
 
       {section.takeaway ? (
-        <div className="inter mt-6 border-t border-outline-variant/10 pt-4 text-sm text-on-surface-variant">
-          <b className="text-primary">{section.takeawayLabel}</b> — {section.takeaway}
+        <div className="inter mt-6 border-t border-outline-variant/10 pt-4 text-sm text-justify text-on-surface-variant">
+          <b className="text-primary">{section.takeawayLabel}</b> — <RichText text={section.takeaway} />
         </div>
       ) : null}
     </div>

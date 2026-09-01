@@ -44,11 +44,11 @@ export interface ResearchSection {
 
 export const researchIntro = {
   heading: "Measured against V-JEPA, metric by metric",
-  lede: "DenseWorld is evaluated head-to-head against the Frozen V-JEPA foundation model and a full sweep of adaptation baselines — Full Fine-tuning, LoRA, DoRA, and AutoPEFT — across three capability buckets: scene categorization, future prediction, and scene understanding. Every plot below is reported on the held-out test set with bootstrap confidence intervals.",
+  lede: "**DenseWorld** is evaluated head-to-head against the **Frozen V-JEPA** foundation model and a full sweep of adaptation baselines — **Full Fine-tuning, LoRA, DoRA, and AutoPEFT** — across three capability buckets: **scene categorization**, **future prediction**, and **scene understanding**. Every plot below is reported on the held-out test set with bootstrap confidence intervals.",
 };
 
 export const researchFootnote =
-  "Unless otherwise stated, all results are reported on the held-out test set with 95% bias-corrected and accelerated (BCa) bootstrap confidence intervals. DenseWorld denotes our released factor-tuned ViT-G model, while Frozen V-JEPA denotes the original pretrained ViT-G foundation model. Abbreviations: F1, harmonic mean of precision and recall; MSE, mean squared error; L1, mean absolute error; PEFT, parameter-efficient fine-tuning.";
+  "Unless otherwise stated, all results are reported on the held-out test set with 95% bias-corrected and accelerated (BCa) bootstrap confidence intervals. **DenseWorld** denotes our released factor-tuned ViT-G model, while **Frozen V-JEPA** denotes the original pretrained ViT-G foundation model. Abbreviations: F1, harmonic mean of precision and recall; MSE, mean squared error; L1, mean absolute error; PEFT, parameter-efficient fine-tuning.";
 
 export const researchSections: readonly ResearchSection[] = [
   {
@@ -76,11 +76,11 @@ export const researchSections: readonly ResearchSection[] = [
         definition:
           "A single 0–1 metric that balances precision and recall, measuring how accurately the model assigns videos to their correct scene categories while minimizing missed detections.",
         bullets: [
-          "Built on the DENSEWORLD taxonomy comprising 15 semantic dimensions, 65+ attribute values, and 3 structured tags.",
-          "Scene types: markets, residential, commercial, promenades, transit, highways, heritage sites, junctions, flyovers, beaches, ghats, bazaars, and skylines.",
-          "Environmental context: time of day, weather, lighting, vegetation, and video quality.",
-          "Traffic & interaction: crowd density, traffic density, traffic composition, pedestrian–vehicle separation, encroachment, and locally characteristic objects such as auto-rickshaws, cycle rickshaws, street vendors, and animals.",
-          "The improvement is intentionally modest: V-JEPA is already a strong scene recognizer, and DenseWorld preserves and slightly improves this capability while adapting to substantially more complex urban environments.",
+          "Built on the **DENSEWORLD taxonomy** comprising **15 semantic dimensions, 65+ attribute values, and 3 structured tags**.",
+          "**Scene types:** markets, residential, commercial, promenades, transit, highways, heritage sites, junctions, flyovers, beaches, ghats, bazaars, and skylines.",
+          "**Environmental context:** time of day, weather, lighting, vegetation, and video quality.",
+          "**Traffic & interaction:** crowd density, traffic density, traffic composition, pedestrian–vehicle separation, encroachment, and locally characteristic objects such as auto-rickshaws, cycle rickshaws, street vendors, and animals.",
+          "The improvement is **intentionally modest**: V-JEPA is already a strong scene recognizer, and DenseWorld preserves and slightly improves this capability while adapting to substantially more complex urban environments.",
         ],
         citation: "Metric definition and taxonomy probing follow V-JEPA 2.1 (Mur-Labadia et al., 2026).",
       },
@@ -89,7 +89,7 @@ export const researchSections: readonly ResearchSection[] = [
   {
     number: "02 · Future Prediction · Core Capability",
     heading: "Predicting What Happens Next",
-    tldr: "Future prediction is the defining capability of a world model. Across all baselines — including Full Fine-tuning, LoRA, DoRA, AutoPEFT, and Frozen V-JEPA — DenseWorld achieves the most accurate next-frame prediction.",
+    tldr: "Future prediction is the defining capability of a world model. Across all baselines — including Full Fine-tuning, LoRA, DoRA, AutoPEFT, and Frozen V-JEPA — **DenseWorld achieves the most accurate next-frame prediction.**",
     pinned: true,
     hero: true,
     metrics: [
@@ -112,9 +112,9 @@ export const researchSections: readonly ResearchSection[] = [
         definition:
           "Measures the average squared difference between the predicted future frame and the ground-truth future frame. Lower values indicate more accurate predictions, while larger errors are penalized more heavily.",
         bullets: [
-          "DenseWorld achieves the lowest prediction error among all evaluated methods.",
-          "Reduces MSE by 0.059 compared with the Frozen V-JEPA baseline.",
-          "MSE emphasizes large prediction failures, making it particularly sensitive to catastrophic forecasting errors.",
+          "DenseWorld achieves the **lowest prediction error** among all evaluated methods.",
+          "Reduces MSE by **0.059** compared with the Frozen V-JEPA baseline.",
+          "MSE emphasizes large prediction failures, making it particularly sensitive to **catastrophic forecasting errors**.",
         ],
         citation: "Evaluation protocol follows V-JEPA 2.1 (Assran et al., 2025; Mur-Labadia et al., 2026).",
       },
@@ -137,9 +137,9 @@ export const researchSections: readonly ResearchSection[] = [
         definition:
           "Measures the average absolute difference between predicted and ground-truth future frames. Unlike MSE, each prediction error contributes proportionally, providing a complementary view of prediction quality.",
         bullets: [
-          "Causal evaluation restricts the model to past observations only, preventing access to future information during prediction.",
-          "DenseWorld achieves the lowest L1 error, improving upon the Frozen V-JEPA baseline by 0.053.",
-          "Reporting both MSE and L1 demonstrates consistent improvements across complementary prediction metrics.",
+          "Causal evaluation restricts the model to **past observations only**, preventing access to future information during prediction.",
+          "DenseWorld achieves the **lowest L1 error**, improving upon the Frozen V-JEPA baseline by **0.053**.",
+          "Reporting both MSE and L1 demonstrates **consistent improvements across complementary prediction metrics**.",
         ],
         citation: "Causal prediction protocol follows V-JEPA 2.1.",
         flip: true,
@@ -152,7 +152,7 @@ export const researchSections: readonly ResearchSection[] = [
   {
     number: "03 · Scene Understanding",
     heading: "Understanding the Scene Under Occlusion",
-    tldr: "Real-world streets are rarely fully visible. DenseWorld preserves reliable scene understanding under heavy occlusion while improving recognition of complex motion patterns.",
+    tldr: "Real-world streets are rarely fully visible. **DenseWorld preserves reliable scene understanding under heavy occlusion** while improving recognition of complex motion patterns.",
     pinned: true,
     metrics: [
       {
@@ -174,9 +174,9 @@ export const researchSections: readonly ResearchSection[] = [
         definition:
           "Measures how rapidly prediction quality deteriorates as progressively larger portions of the scene are hidden. Lower slopes indicate greater robustness to occlusion.",
         bullets: [
-          "DenseWorld degrades more gracefully as visibility decreases.",
-          "Lower slopes indicate stronger resilience to crowded, partially visible environments.",
-          "Particularly important for dense urban scenes where frequent occlusion is unavoidable.",
+          "DenseWorld **degrades more gracefully** as visibility decreases.",
+          "Lower slopes indicate **stronger resilience** to crowded, partially visible environments.",
+          "Particularly important for dense urban scenes where **frequent occlusion is unavoidable**.",
         ],
         citation: "Masking-robustness evaluation follows the dense-feature probing protocol introduced in V-JEPA 2.1.",
       },
@@ -199,9 +199,9 @@ export const researchSections: readonly ResearchSection[] = [
         definition:
           "Measures how often the model correctly identifies the dominant motion occurring in a scene using only its highest-confidence prediction.",
         bullets: [
-          "Evaluated across 11 motion categories.",
-          "DenseWorld improves motion recognition by 4.9 percentage points over the Frozen V-JEPA baseline.",
-          "Represents the largest relative improvement among the scene-understanding evaluations.",
+          "Evaluated across **11 motion categories**.",
+          "DenseWorld improves motion recognition by **4.9 percentage points** over the Frozen V-JEPA baseline.",
+          "Represents the **largest relative improvement** among the scene-understanding evaluations.",
         ],
         citation: "Motion-understanding evaluation follows the Something-Something V2 protocol adopted by V-JEPA 2.",
         flip: true,
