@@ -33,6 +33,11 @@ export function PageHero({ hero }: { hero: HeroSpec }) {
 
       {hero.centerpiece ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ gap: `${hero.centerpiece.gapVw}vw` }}>
+          {hero.centerpiece.kicker ? (
+            <p className="plus-jakarta-sans text-center text-white font-bold tracking-[0.05em] text-sm md:text-base">
+              {hero.centerpiece.kicker}
+            </p>
+          ) : null}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt={hero.centerpiece.spinAlt}

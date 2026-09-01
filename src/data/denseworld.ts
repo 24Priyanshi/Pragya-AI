@@ -19,6 +19,7 @@ export const hero: HeroSpec = {
     titleAlt: "DenseWorld — World Models for Populous, Crowded, and Chaotic Global South",
     titleWidthVw: 34,
     gapVw: 2,
+    kicker: "India's First World Model",
   },
 };
 

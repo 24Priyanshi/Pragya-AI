@@ -98,6 +98,8 @@ export interface HeroCenterpiece {
   readonly titleWidthVw: number;
   /** Gap between the wheel and the title, in vw. */
   readonly gapVw: number;
+  /** Optional line of text rendered above the wheel, e.g. a tagline. */
+  readonly kicker?: string;
 }
 
 export interface HeroSpec {
