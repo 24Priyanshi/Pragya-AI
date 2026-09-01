@@ -28,7 +28,7 @@ const EXPLORER_URL = "https://denseworld.vercel.app/";
 interface DenseWorldTabsProps {
   problemQuote: string;
   problemNarrative: readonly string[];
-  contrastItems: readonly { label: string; src: string }[];
+  contrastColumns: readonly { heading: string; clips: readonly string[] }[];
   densityEyebrow: string;
   densityHeading: string;
   densityLede: string;
@@ -69,7 +69,7 @@ interface DenseWorldTabsProps {
 export function DenseWorldTabs({
   problemQuote,
   problemNarrative,
-  contrastItems,
+  contrastColumns,
   densityEyebrow,
   densityHeading,
   densityLede,
@@ -131,7 +131,7 @@ export function DenseWorldTabs({
               ))}
             </div>
             <div className="mt-8">
-              <ContrastGrid items={contrastItems} />
+              <ContrastGrid columns={contrastColumns} />
             </div>
           </section>
 

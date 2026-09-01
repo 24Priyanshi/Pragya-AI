@@ -38,16 +38,26 @@ export const problemNarrative = [
   "**On the left** are the **clean, structured urban streets** that dominate today's **world model training data**. **On the right** are the **dense, heterogeneous, and socially negotiated streets** that **DENSEWORLD** was built for. *Same planet. Fundamentally different worlds.*",
 ] as const;
 
-export interface ContrastItem {
-  readonly label: string;
-  readonly src: string;
+export interface ContrastColumn {
+  readonly heading: string;
+  readonly clips: readonly string[];
 }
 
-/** 4 real clips inside a purple box (2026-09-01), replacing the earlier "coming soon" placeholders. */
-export const contrastItems: readonly ContrastItem[] = Array.from({ length: 4 }, (_, i) => ({
-  label: `Street ${i + 1}`,
-  src: `/denseworld_contrast/street${i + 1}.mp4`,
-}));
+/**
+ * Two labeled columns inside a purple box (2026-09-01) — was a flat 2x2 grid
+ * of generically-labeled clips. street1/street2 are foreign-city footage,
+ * street3/street4 are Indian-city footage, per the user's own clips.
+ */
+export const contrastColumns: readonly ContrastColumn[] = [
+  {
+    heading: "Street view of foreign cities",
+    clips: ["/denseworld_contrast/street1.mp4", "/denseworld_contrast/street2.mp4"],
+  },
+  {
+    heading: "Street view of Indian cities",
+    clips: ["/denseworld_contrast/street3.mp4", "/denseworld_contrast/street4.mp4"],
+  },
+];
 
 export interface DensityChartRow {
   readonly label: string;

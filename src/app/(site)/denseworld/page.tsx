@@ -4,7 +4,7 @@ import { DenseWorldTabs } from "@/components/DenseWorldTabs";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
 import {
-  contrastItems,
+  contrastColumns,
   densityCharts,
   densityEyebrow,
   densityHeading,
@@ -47,7 +47,7 @@ export default function DenseWorldPage() {
         agentIcons={agentIcons}
         agentsHeading={agentsHeading}
         cityVideoCharts={cityVideoCharts}
-        contrastItems={contrastItems}
+        contrastColumns={contrastColumns}
         crowdIcons={crowdIcons}
         crowdLabel={crowdLabel}
         datasetOpening={datasetOpening}
