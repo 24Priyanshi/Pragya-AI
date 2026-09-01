@@ -206,11 +206,20 @@ export const tier2Cities = [
   "Mysuru",
 ] as const;
 
-/** Each city row has exactly 6 slots; "#" renders an empty placeholder (only Chandigarh, which has 5 source clips). */
-export const cityVideos: Readonly<Record<string, readonly string[]>> = Object.fromEntries(
+/** Each city row has exactly 6 slots; "#" renders an empty placeholder. */
+const BASE_CITY_VIDEOS: Readonly<Record<string, readonly string[]>> = Object.fromEntries(
   Object.entries(CITY_CLIP_FOLDERS).map(([city, folder]) => {
     const files = CITY_CLIP_FILES[folder] ?? [];
     const slots = Array.from({ length: 6 }, (_, i) => (files[i] ? `${DENSEWORLD_VIDEO_BASE}${folder}/${files[i]}` : "#"));
     return [city, slots];
   }),
 );
+
+/**
+ * Chandigarh only had 5 source clips upstream, leaving slot 6 empty — filled
+ * in (2026-09-02) with a locally-uploaded 6th clip.
+ */
+export const cityVideos: Readonly<Record<string, readonly string[]>> = {
+  ...BASE_CITY_VIDEOS,
+  Chandigarh: [...BASE_CITY_VIDEOS.Chandigarh.slice(0, 5), "/denseworld_contrast/chandigarh6.mp4"],
+};
