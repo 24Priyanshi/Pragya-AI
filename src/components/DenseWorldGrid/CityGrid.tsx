@@ -1,5 +1,7 @@
 import { cityVideos } from "@/data/denseworld";
 
+import { CityGridVideo } from "./CityGridVideo";
+
 interface CityGridProps {
   heading: string;
   subheading: string;
@@ -10,13 +12,13 @@ interface CityGridProps {
  * Port of `createCityRows` in js/denseworld-grid.js.
  *
  * Six slots per city. A "#" slot renders an empty bordered box; a real source
- * renders an autoplaying, looping, muted video. Only Delhi has footage today,
- * so nearly every box is a placeholder — that is the original's state, not an
- * omission here.
+ * renders a looping, muted video that plays once it scrolls into view (see
+ * CityGridVideo) — every city now has real clips (2026-09-01), sourced from
+ * github.com/prajak002/denseworld, so eager-autoplaying all of them at once
+ * is no longer an option.
  *
- * <video> needs no "use client": autoplay/loop/muted/playsinline are declarative
- * HTML attributes with no event handlers attached, so this stays a Server
- * Component. `muted` must be set for autoplay to be allowed by browsers.
+ * <video> needs "use client" for the lazy-play behavior, so that lives in
+ * CityGridVideo; this component itself stays a Server Component.
  */
 export function CityGrid({ heading, subheading, cities }: CityGridProps) {
   return (
@@ -45,7 +47,7 @@ export function CityGrid({ heading, subheading, cities }: CityGridProps) {
                     className="aspect-video overflow-hidden rounded-[2px] border border-outline-variant/20 bg-surface-container-low"
                     key={i}
                   >
-                    <video autoPlay className="h-full w-full object-cover" loop muted playsInline preload="auto" src={src} />
+                    <CityGridVideo src={src} />
                   </div>
                 );
               })}
