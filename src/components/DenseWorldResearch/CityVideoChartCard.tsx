@@ -17,10 +17,10 @@ export function CityVideoChartCard({ chart }: { chart: CityVideoChart }) {
           <span className="h-2.5 w-2.5 rounded-sm bg-primary" /> Drive
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-sm bg-secondary" /> Walk
+          <span className="h-2.5 w-2.5 rounded-sm bg-[#c89432]" /> Walk
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-sm bg-tertiary" /> Drone
+          <span className="h-2.5 w-2.5 rounded-sm bg-[#1f9e9e]" /> Drone
         </span>
       </div>
 
@@ -32,8 +32,8 @@ export function CityVideoChartCard({ chart }: { chart: CityVideoChart }) {
               <div className="inter truncate text-xs font-medium text-on-surface">{row.city}</div>
               <div className="flex h-3.5 w-full overflow-hidden rounded-sm bg-surface-container-lowest">
                 {row.drive ? <div className="h-full bg-primary" style={{ width: `${(row.drive / max) * 100}%` }} /> : null}
-                {row.walk ? <div className="h-full bg-secondary" style={{ width: `${(row.walk / max) * 100}%` }} /> : null}
-                {row.drone ? <div className="h-full bg-tertiary" style={{ width: `${(row.drone / max) * 100}%` }} /> : null}
+                {row.walk ? <div className="h-full bg-[#c89432]" style={{ width: `${(row.walk / max) * 100}%` }} /> : null}
+                {row.drone ? <div className="h-full bg-[#1f9e9e]" style={{ width: `${(row.drone / max) * 100}%` }} /> : null}
               </div>
               <div className="inter text-right text-xs font-semibold text-on-surface">{total.toLocaleString()}</div>
             </div>

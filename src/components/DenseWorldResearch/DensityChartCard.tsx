@@ -9,7 +9,7 @@ export function DensityChartCard({ chart }: { chart: DensityChart }) {
 
       <div className="mb-5 flex flex-wrap items-center gap-4 text-xs font-medium text-on-surface-variant">
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-sm bg-outline-variant" /> Representative West
+          <span className="h-2.5 w-2.5 rounded-sm bg-[#c89432]" /> Representative West
         </span>
         <span className="flex items-center gap-1.5">
           <span className="h-2.5 w-2.5 rounded-sm bg-primary" /> DenseWorld
@@ -25,7 +25,7 @@ export function DensityChartCard({ chart }: { chart: DensityChart }) {
             <div className="inter text-xs font-medium text-on-surface">{row.label}</div>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <div className="h-2 rounded-sm bg-outline-variant/50" style={{ width: `${row.westWidthPct}%` }} />
+                <div className="h-2 rounded-sm bg-[#c89432]" style={{ width: `${row.westWidthPct}%` }} />
                 <span className="inter text-[11px] text-on-surface-variant">{row.westValue}</span>
               </div>
               <div className="flex items-center gap-2">

@@ -27,7 +27,7 @@ const EXPLORER_URL = "https://denseworld.vercel.app/";
 interface DenseWorldTabsProps {
   problemQuote: string;
   problemNarrative: readonly string[];
-  contrastPairs: readonly { west: string; dense: string }[];
+  contrastLabels: readonly string[];
   densityEyebrow: string;
   densityHeading: string;
   densityLede: string;
@@ -68,7 +68,7 @@ interface DenseWorldTabsProps {
 export function DenseWorldTabs({
   problemQuote,
   problemNarrative,
-  contrastPairs,
+  contrastLabels,
   densityEyebrow,
   densityHeading,
   densityLede,
@@ -130,7 +130,7 @@ export function DenseWorldTabs({
               ))}
             </div>
             <div className="mt-8">
-              <ContrastGrid pairs={contrastPairs} />
+              <ContrastGrid labels={contrastLabels} />
             </div>
           </section>
 
@@ -157,7 +157,9 @@ export function DenseWorldTabs({
         <div>
           <p className="inter max-w-4xl text-sm md:text-base leading-relaxed text-on-surface-variant">{datasetOpening}</p>
 
-          <StatStrip compact stats={stats} />
+          <div className="mt-12">
+            <StatStrip compact stats={stats} />
+          </div>
 
           <section className="space-y-24">
             <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ videos" />

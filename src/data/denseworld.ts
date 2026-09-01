@@ -39,10 +39,8 @@ export const problemNarrative = [
 ] as const;
 
 /** The Space's contrast section pairs a "low-density" (West) clip against a "dense" (Global South) clip, 4 times over — real footage TBD, so these render as labelled placeholders for now. */
-export const contrastPairs = Array.from({ length: 4 }, (_, i) => ({
-  west: `low-density street ${i + 1}`,
-  dense: `dense street ${i + 1}`,
-}));
+/** 4 placeholder slots inside a purple box (2026-09-01, was 8 west/dense pairs in a plain grid). */
+export const contrastLabels = Array.from({ length: 4 }, (_, i) => `Street ${i + 1}`);
 
 export interface DensityChartRow {
   readonly label: string;

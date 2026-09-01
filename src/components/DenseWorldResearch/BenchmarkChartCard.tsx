@@ -20,7 +20,7 @@ export function BenchmarkChartCard({ chart }: { chart: BenchmarkChart }) {
               ) : null}
             </div>
             <div
-              className={cn("h-3.5 min-w-[3%] rounded-sm", row.isOurs ? "bg-primary" : "bg-outline-variant/50")}
+              className={cn("h-3.5 min-w-[3%] rounded-sm", row.isOurs ? "bg-primary" : "bg-[#c89432]")}
               style={{ width: `${row.widthPct}%` }}
             />
             <div className="inter text-right text-xs font-semibold text-on-surface">{row.value}</div>
