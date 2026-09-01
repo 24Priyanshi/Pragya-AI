@@ -46,8 +46,10 @@ export interface ContrastColumn {
 /**
  * Two labeled columns inside a purple box (2026-09-01) — was a flat 2x2 grid
  * of generically-labeled clips. street1/street3 are West-city footage,
- * street2/street4 are Indian-city footage, per the user's own clips
- * (relabeled "foreign" -> "West" and street2/street3 swapped, 2026-09-02).
+ * street4 is Indian-city footage, per the user's own clips (relabeled
+ * "foreign" -> "West" and street2/street3 swapped, 2026-09-02). street2 was
+ * swapped out (2026-09-02) for Delhi's 4th Dataset-tab clip, reusing
+ * `cityVideos.Delhi[3]` rather than a separately uploaded file.
  */
 export const contrastColumns: readonly ContrastColumn[] = [
   {
@@ -56,7 +58,10 @@ export const contrastColumns: readonly ContrastColumn[] = [
   },
   {
     heading: "Street view of Indian cities",
-    clips: ["/denseworld_contrast/street2.mp4", "/denseworld_contrast/street4.mp4"],
+    clips: [
+      "https://raw.githubusercontent.com/prajak002/denseworld/main/public/clips/delhi/JBT_Lff7hN0.mp4",
+      "/denseworld_contrast/street4.mp4",
+    ],
   },
 ];
 
