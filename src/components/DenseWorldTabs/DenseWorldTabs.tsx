@@ -3,15 +3,23 @@
 import { useState } from "react";
 
 import { CityGrid } from "@/components/DenseWorldGrid";
-import { AgentIconGrid, CityVideoChartCard, ContrastGrid, DensityChartCard, ResearchSectionCard } from "@/components/DenseWorldResearch";
+import {
+  AgentIconGrid,
+  CityVideoChartCard,
+  ContrastGrid,
+  DensityChartCard,
+  ExampleCard,
+  ResearchSectionCard,
+} from "@/components/DenseWorldResearch";
 import { SectionRule } from "@/components/SectionRule";
 import { StatStrip } from "@/components/StatStrip";
 import type { DensityChart } from "@/data/denseworld";
 import type { AgentIcon, CityVideoChart } from "@/data/denseworld-dataset";
+import type { ExampleOutput } from "@/data/denseworld-examples";
 import type { ResearchSection } from "@/data/denseworld-research";
 import type { StatCard } from "@/types/page";
 
-const TABS = ["The Problem", "Dataset", "Research"] as const;
+const TABS = ["The Problem", "Dataset", "Research", "Examples"] as const;
 type Tab = (typeof TABS)[number];
 
 const EXPLORER_URL = "https://denseworld.vercel.app/";
@@ -37,6 +45,10 @@ interface DenseWorldTabsProps {
   researchIntro: { heading: string; lede: string };
   researchSections: readonly ResearchSection[];
   researchFootnote: string;
+  examplesIntro: string;
+  exampleCount: number;
+  defaultExampleTitle: string;
+  exampleOutputs: readonly ExampleOutput[];
 }
 
 /**
@@ -74,6 +86,10 @@ export function DenseWorldTabs({
   researchIntro,
   researchSections,
   researchFootnote,
+  examplesIntro,
+  exampleCount,
+  defaultExampleTitle,
+  exampleOutputs,
 }: DenseWorldTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
@@ -144,8 +160,8 @@ export function DenseWorldTabs({
           <StatStrip compact stats={stats} />
 
           <section className="space-y-24">
-            <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ clips" />
-            <CityGrid cities={tier2Cities} heading="Tier 2 Cities" subheading="- 15 cities, 40k+ clips" />
+            <CityGrid cities={tier1Cities} heading="Tier 1 Cities" subheading="- 6 metros, 68k+ videos" />
+            <CityGrid cities={tier2Cities} heading="Tier 2 Cities" subheading="- 15 cities, 40k+ videos" />
           </section>
 
           <section className="mt-24">
@@ -180,6 +196,18 @@ export function DenseWorldTabs({
           <p className="inter mt-10 max-w-5xl border-t border-outline-variant/10 pt-6 text-xs leading-relaxed text-on-surface-variant">
             {researchFootnote}
           </p>
+        </div>
+      ) : null}
+
+      {tab === "Examples" ? (
+        <div>
+          <p className="inter max-w-4xl text-sm md:text-base leading-relaxed text-on-surface-variant">{examplesIntro}</p>
+
+          <div className="mt-10 space-y-6">
+            {Array.from({ length: exampleCount }, (_, i) => (
+              <ExampleCard key={i} ordinal={i + 1} outputs={exampleOutputs} title={defaultExampleTitle} />
+            ))}
+          </div>
         </div>
       ) : null}
     </div>

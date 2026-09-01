@@ -91,7 +91,7 @@ export function MotionLangGallery() {
                       <div className="ml-cat-meta">20 unique motions · {activeLang?.name}</div>
                     </div>
                   </div>
-                  <span className="ml-status">20 clips</span>
+                  <span className="ml-status">20 videos</span>
                 </div>
                 <div className="ml-video-grid">
                   {records.map((r, i) => {

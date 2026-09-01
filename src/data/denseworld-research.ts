@@ -74,7 +74,7 @@ export const researchSections: readonly ResearchSection[] = [
         name: "Scene Taxonomy · F1 Score",
         formula: "F1 = 2 · (Precision · Recall) / (Precision + Recall)",
         definition:
-          "A single 0–1 metric that balances precision and recall, measuring how accurately the model assigns clips to their correct scene categories while minimizing missed detections.",
+          "A single 0–1 metric that balances precision and recall, measuring how accurately the model assigns videos to their correct scene categories while minimizing missed detections.",
         bullets: [
           "Built on the DENSEWORLD taxonomy comprising 15 semantic dimensions, 65+ attribute values, and 3 structured tags.",
           "Scene types: markets, residential, commercial, promenades, transit, highways, heritage sites, junctions, flyovers, beaches, ghats, bazaars, and skylines.",
@@ -195,7 +195,7 @@ export const researchSections: readonly ResearchSection[] = [
           ],
         },
         name: "Motion Classification · Top-1 Accuracy",
-        formula: "Top-1 Accuracy = Correct Predictions / Total Clips",
+        formula: "Top-1 Accuracy = Correct Predictions / Total Videos",
         definition:
           "Measures how often the model correctly identifies the dominant motion occurring in a scene using only its highest-confidence prediction.",
         bullets: [

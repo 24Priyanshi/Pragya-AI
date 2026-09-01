@@ -25,6 +25,7 @@ import {
   datasetOpening,
   videosPerCityHeading,
 } from "@/data/denseworld-dataset";
+import { defaultExampleTitle, exampleCount, exampleOutputs, examplesIntro } from "@/data/denseworld-examples";
 import { researchFootnote, researchIntro, researchSections } from "@/data/denseworld-research";
 
 export const metadata: Metadata = {
@@ -54,6 +55,10 @@ export default function DenseWorldPage() {
         densityEyebrow={densityEyebrow}
         densityHeading={densityHeading}
         densityLede={densityLede}
+        defaultExampleTitle={defaultExampleTitle}
+        exampleCount={exampleCount}
+        exampleOutputs={exampleOutputs}
+        examplesIntro={examplesIntro}
         problemNarrative={problemNarrative}
         problemQuote={problemQuote}
         researchFootnote={researchFootnote}
