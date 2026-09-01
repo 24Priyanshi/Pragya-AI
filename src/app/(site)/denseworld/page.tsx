@@ -3,7 +3,29 @@ import type { Metadata } from "next";
 import { DenseWorldTabs } from "@/components/DenseWorldTabs";
 import { PageHero } from "@/components/PageHero";
 import { PageShell } from "@/components/PageShell";
-import { hero, problemQuote, stats, tier1Cities, tier2Cities } from "@/data/denseworld";
+import {
+  contrastPairs,
+  densityCharts,
+  densityEyebrow,
+  densityHeading,
+  densityLede,
+  hero,
+  problemNarrative,
+  problemQuote,
+  stats,
+  tier1Cities,
+  tier2Cities,
+} from "@/data/denseworld";
+import {
+  agentIcons,
+  agentsHeading,
+  cityVideoCharts,
+  crowdIcons,
+  crowdLabel,
+  datasetOpening,
+  videosPerCityHeading,
+} from "@/data/denseworld-dataset";
+import { researchFootnote, researchIntro, researchSections } from "@/data/denseworld-research";
 
 export const metadata: Metadata = {
   title: "Dense World",
@@ -20,7 +42,28 @@ export default function DenseWorldPage() {
   return (
     <PageShell>
       <PageHero hero={hero} />
-      <DenseWorldTabs problemQuote={problemQuote} stats={stats} tier1Cities={tier1Cities} tier2Cities={tier2Cities} />
+      <DenseWorldTabs
+        agentIcons={agentIcons}
+        agentsHeading={agentsHeading}
+        cityVideoCharts={cityVideoCharts}
+        contrastPairs={contrastPairs}
+        crowdIcons={crowdIcons}
+        crowdLabel={crowdLabel}
+        datasetOpening={datasetOpening}
+        densityCharts={densityCharts}
+        densityEyebrow={densityEyebrow}
+        densityHeading={densityHeading}
+        densityLede={densityLede}
+        problemNarrative={problemNarrative}
+        problemQuote={problemQuote}
+        researchFootnote={researchFootnote}
+        researchIntro={researchIntro}
+        researchSections={researchSections}
+        stats={stats}
+        tier1Cities={tier1Cities}
+        tier2Cities={tier2Cities}
+        videosPerCityHeading={videosPerCityHeading}
+      />
     </PageShell>
   );
 }

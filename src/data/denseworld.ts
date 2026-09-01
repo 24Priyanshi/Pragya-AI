@@ -26,6 +26,75 @@ export const hero: HeroSpec = {
 export const problemQuote =
   "Current “world model” progress is largely validated on clean, structured, low-density Western environments, and it often breaks down for the chaotic Global South scenes—where dense occlusion, mixed traffic, informal right-of-way negotiation, extreme lighting and weather, and long-tail objects and signage dominate.";
 
+/**
+ * The Problem tab's narrative copy and density comparison, ported verbatim
+ * (2026-09-01) from the "The Problem" tab of the project's own Gradio Space
+ * (huggingface.co/spaces/Pragya-AI/denseworld, tab1_problem.html) — the
+ * team's own existing copy for this same project, not written fresh here.
+ */
+export const problemNarrative = [
+  "World models have rapidly emerged as a key paradigm for enabling intelligent systems to understand, predict, and reason about the physical world. However, existing models are overwhelmingly developed and evaluated on clean, low-density, and highly structured Western environments, overlooking the complexity of urban scenes across the Global South. These environments are characterized by dense and heterogeneous agents—pedestrians, vehicles, two-wheelers, rickshaws, carts, vendors, and animals—together with soft spatial boundaries, persistent occlusions, and continuous social negotiation, posing fundamentally different challenges for perception, prediction, and decision making. To bridge this gap, we introduce DENSEWORLD V1, the first world model specifically designed for the complex urban environments of the Global South.",
+  "On the left are the clean, structured urban streets that dominate today's world model training data. On the right are the dense, heterogeneous, and socially negotiated streets that DENSEWORLD was built for. Same planet. Fundamentally different worlds.",
+] as const;
+
+/** The Space's contrast section pairs a "low-density" (West) clip against a "dense" (Global South) clip, 4 times over — real footage TBD, so these render as labelled placeholders for now. */
+export const contrastPairs = Array.from({ length: 4 }, (_, i) => ({
+  west: `low-density street ${i + 1}`,
+  dense: `dense street ${i + 1}`,
+}));
+
+export interface DensityChartRow {
+  readonly label: string;
+  readonly westValue: string;
+  readonly westWidthPct: number;
+  readonly dwValue: string;
+  readonly dwWidthPct: number;
+  readonly multiplier: string;
+}
+
+export interface DensityChart {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly rows: readonly DensityChartRow[];
+  readonly caption: string;
+}
+
+export const densityEyebrow = "Measured, not asserted";
+export const densityHeading = "How much denser is the Global South?";
+export const densityLede =
+  "DENSEWORLD asks a simple question: Do the streets of the Global South represent a fundamentally different operating regime for world models? We answer this by quantifying every scene along five complementary dimensions—agent density, agent occupancy, occlusion pressure, interaction pressure, and agent heterogeneity—capturing the complexity, congestion, visibility, interactions, and diversity of real-world urban environments.";
+
+export const densityCharts: readonly DensityChart[] = [
+  {
+    title: "Count density",
+    subtitle: "Mean moving agents per scene",
+    rows: [
+      { label: "Residential lane", westValue: "1.8", westWidthPct: 14.4, dwValue: "3.2", dwWidthPct: 25.6, multiplier: "1.8×" },
+      { label: "Promenade", westValue: "1.4", westWidthPct: 11.2, dwValue: "2.5", dwWidthPct: 20.0, multiplier: "1.8×" },
+      { label: "Market", westValue: "4.6", westWidthPct: 36.8, dwValue: "12.5", dwWidthPct: 100.0, multiplier: "2.7×" },
+      { label: "Heritage / tourist", westValue: "1.7", westWidthPct: 13.6, dwValue: "3", dwWidthPct: 24.0, multiplier: "1.8×" },
+      { label: "Flyover / underpass", westValue: "2.6", westWidthPct: 20.8, dwValue: "5", dwWidthPct: 40.0, multiplier: "1.9×" },
+      { label: "Commercial", westValue: "4.1", westWidthPct: 32.8, dwValue: "11", dwWidthPct: 88.0, multiplier: "2.7×" },
+    ],
+    caption:
+      "Mean moving agents per scene. In markets and commercial streets, our footage holds roughly 3× the agents of representative western footage.",
+  },
+  {
+    title: "Agent occupancy",
+    subtitle: "Share of each frame covered by moving agents",
+    rows: [
+      { label: "Residential lane", westValue: "1.9%", westWidthPct: 9.1, dwValue: "3.4%", dwWidthPct: 16.3, multiplier: "1.8×" },
+      { label: "Promenade", westValue: "1.5%", westWidthPct: 7.2, dwValue: "2.7%", dwWidthPct: 12.9, multiplier: "1.8×" },
+      { label: "Market", westValue: "4.2%", westWidthPct: 20.1, dwValue: "11.1%", dwWidthPct: 53.1, multiplier: "2.6×" },
+      { label: "Heritage / tourist", westValue: "0.8%", westWidthPct: 3.8, dwValue: "1.4%", dwWidthPct: 6.7, multiplier: "1.7×" },
+      { label: "Flyover / underpass", westValue: "8.7%", westWidthPct: 41.6, dwValue: "20.9%", dwWidthPct: 100.0, multiplier: "2.4×" },
+      { label: "Commercial", westValue: "3.8%", westWidthPct: 18.2, dwValue: "9%", dwWidthPct: 43.1, multiplier: "2.4×" },
+    ],
+    caption:
+      "How much of each frame is covered by moving agents. Under flyovers and in markets, agents fill 2–3× more of the image — there is simply more world in motion.",
+  },
+];
+
 export const stats: readonly StatCard[] = [
   { label: "Total Videos", value: "115k+" },
   { label: "Cities", value: "22", caption: "Coverage across India" },
