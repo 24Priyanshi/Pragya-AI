@@ -30,7 +30,6 @@ export const stats: readonly StatCard[] = [
   { label: "Total Videos", value: "115k+" },
   { label: "Cities", value: "22", caption: "Coverage across India" },
   { label: "Dataset Scale", value: "1,000 hr+" },
-  { label: "Taxonomy Coverage", value: "15 Fields", caption: "65+ values, v3 structured tags" },
 ] as const;
 
 /** Each city row has exactly 6 slots; "#" renders an empty placeholder. */
