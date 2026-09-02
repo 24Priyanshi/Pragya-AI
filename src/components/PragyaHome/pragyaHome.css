@@ -242,7 +242,13 @@
   font-size: 8px;
   display: flex;
   position: absolute;
-  bottom: 8px;
+  /* Raised clear of .node-kalam (2026-09-02) — both were bottom-anchored and
+     horizontally centered in the same container, so this prompt's text sat
+     directly on top of that node's "SAFEGUARD" label at every desktop
+     viewport. The mobile breakpoint below already clears it (bottom: 152px)
+     since its nodes use a different flex layout; this just gives the
+     desktop constellation the same clearance. */
+  bottom: 118px;
   left: 50%;
   transform: translate(-50%);
 }
