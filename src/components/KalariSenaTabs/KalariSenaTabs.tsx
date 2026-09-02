@@ -28,13 +28,16 @@ interface KalariSenaTabsProps {
 }
 
 /**
- * Mirrors PragyaDexTabs' shape (2026-08-30): "The Problem" (pull-quote) and
- * "Dataset". There's no separate browsable gallery here, so "Dataset"
- * embeds the project's own human-vs-G1 retarget review tool live via
- * iframe — same pattern as PragyaVLA's Mechanism tab — since it's a
- * custom interactive dashboard (synced 4-video playback, physics-correction
- * overlay, rating/export controls over 69 paired motions), not a
- * standalone widget that could be reimplemented natively.
+ * Mirrors PragyaDexTabs' shape (2026-08-30): "The Problem" (pull-quote,
+ * move clips, and intro copy — no video) and "Dataset". There's no separate
+ * browsable gallery here, so "Dataset" embeds the project's own human-vs-G1
+ * retarget review tool live via iframe — same pattern as PragyaVLA's
+ * Mechanism tab — since it's a custom interactive dashboard (synced 4-video
+ * playback, physics-correction overlay, rating/export controls over 69
+ * paired motions), not a standalone widget that could be reimplemented
+ * natively. Dropped the "Problem" tab's own copy of that same embed on
+ * request (2026-09-02) — the tab should just introduce KalariSena, not
+ * duplicate the Dataset tab's tool.
  */
 export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
@@ -82,12 +85,6 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
           <div className="mt-10 mb-8">
             <SectionRule label="What is KalariSena?" margin="mb-8" />
             <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-4xl">{intro}</p>
-          </div>
-
-          {/* Swapped the YouTube problem-overview video for the live review tool itself,
-              embedded the same way as the Dataset tab below (on request, 2026-09-02). */}
-          <div className="border border-outline-variant/10 bg-surface">
-            <iframe className="w-full" height={1400} src={REVIEW_TOOL_URL} title="KalariSena human vs G1 retarget review" />
           </div>
         </div>
       ) : null}
