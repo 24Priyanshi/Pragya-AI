@@ -23,12 +23,13 @@ export default function KalamProtocolPage() {
         <img alt="Kalam Protocol overview poster" className="w-full max-w-2xl h-auto" src="/kalamprotocol_poster.png" />
       </section>
 
-      {/* Demo GIF, added under the poster on request (2026-09-02). */}
-      <section className="mb-32 flex justify-center">
+      {/* Demo GIF, added under the poster on request (2026-09-02); sized to the page's full content
+          width (not capped like the poster) on request (2026-09-02). */}
+      <section className="mb-32">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="Kalam Protocol demonstration"
-          className="w-full max-w-3xl h-auto border border-outline-variant/10"
+          className="w-full h-auto border border-outline-variant/10"
           src="/kalamprotocol_demo.gif"
         />
       </section>
