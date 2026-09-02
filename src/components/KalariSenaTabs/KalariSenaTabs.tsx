@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { LazyVideo } from "@/components/LazyVideo";
 import { SectionRule } from "@/components/SectionRule";
 
 const TABS = ["The Problem", "Dataset"] as const;
@@ -76,7 +77,7 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
               {MOVE_CLIPS.map((clip) => (
                 <div className="space-y-2" key={clip.src}>
                   <div className="aspect-video overflow-hidden border border-on-primary/20 bg-on-primary/10">
-                    <video autoPlay className="h-full w-full object-cover" loop muted playsInline preload="auto" src={clip.src} />
+                    <LazyVideo className="h-full w-full object-cover" src={clip.src} />
                   </div>
                   <p className="inter text-xs font-medium text-on-primary">{clip.label}</p>
                 </div>

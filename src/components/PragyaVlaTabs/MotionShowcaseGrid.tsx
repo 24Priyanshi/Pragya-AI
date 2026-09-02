@@ -1,3 +1,4 @@
+import { LazyVideo } from "@/components/LazyVideo";
 import { MOTIONLANG_VIDEO_BASE } from "@/data/motionlang";
 import type { MotionShowcaseClip, MotionShowcaseRow } from "@/data/pragyavla";
 
@@ -6,7 +7,7 @@ function MotionClip({ clip }: { clip: MotionShowcaseClip }) {
   return (
     <div>
       <div className="aspect-video overflow-hidden border border-on-primary/20 bg-on-primary/10">
-        <video autoPlay className="h-full w-full object-cover" loop muted playsInline preload="auto" src={src} />
+        <LazyVideo className="h-full w-full object-cover" src={src} />
       </div>
       <p className="inter mt-2 text-xs leading-snug text-on-primary/80">{clip.caption}</p>
     </div>
@@ -19,6 +20,10 @@ function MotionClip({ clip }: { clip: MotionShowcaseClip }) {
  * tiles) but organized by language row rather than by column, per the
  * language-instruction framing of the MotionLang dataset it draws from.
  * Added 2026-09-02, sitting between the pull-quote and the live simulation.
+ * Clips load lazily via LazyVideo (2026-09-02 fix) rather than eagerly with
+ * `autoPlay preload="auto"` — with 9 clips across languages, all preloading
+ * at once on page load overwhelmed the browser's per-host connection limit
+ * to the huggingface CDN and every clip stalled with zero bytes received.
  */
 export function MotionShowcaseGrid({ rows }: { rows: readonly MotionShowcaseRow[] }) {
   return (
