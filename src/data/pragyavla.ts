@@ -60,21 +60,11 @@ export interface MotionShowcaseRow {
  * captions, just a fixed hand-picked subset (one locomotion + one gesture
  * clip per language) instead of the full browsable set. Added 2026-09-02 for
  * the purple motion-showcase box between the pull-quote and the simulation.
+ * English was dropped and Telugu added in its place (2026-09-02), so the
+ * rows now match the DenseWalk/DenseWorld site's Indian-language framing:
+ * Hindi, Bangla, Tamil, Telugu.
  */
 export const motionShowcase: readonly MotionShowcaseRow[] = [
-  {
-    language: "English",
-    clips: [
-      {
-        caption: "a Robot walks around in a clockwise circle",
-        video: "_D__HumanML3d_amass_data_TotalCapture_s3_walking2_poses_keypoints_retargeted",
-      },
-      {
-        caption: "a Robot raises both arms and waves.",
-        video: "_D__HumanML3d_amass_data_KIT_572_wave_both06_poses_keypoints_retargeted",
-      },
-    ],
-  },
   {
     language: "Hindi",
     clips: [
@@ -111,6 +101,19 @@ export const motionShowcase: readonly MotionShowcaseRow[] = [
       {
         caption: "ரோபோ வலது கையால் அசைகிறது",
         video: "_D__HumanML3d_amass_data_CMU_113_113_27_poses_keypoints_retargeted",
+      },
+    ],
+  },
+  {
+    language: "Telugu",
+    clips: [
+      {
+        caption: "రోబోట్ నేరుగా నడుస్తోంది మరియు ఆగిపోయింది.",
+        video: "_D__HumanML3d_amass_data_KIT_424_walking_run07_poses_keypoints_retargeted",
+      },
+      {
+        caption: "ఎడమ చేతితో ఊపుతున్న రోబోట్.",
+        video: "_D__HumanML3d_amass_data_KIT_3_wave_left13_poses_keypoints_retargeted",
       },
     ],
   },
