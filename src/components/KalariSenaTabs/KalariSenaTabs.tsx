@@ -8,6 +8,11 @@ const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
 const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
+// Switched from a self-hosted 101MB file (proxied off Google Drive) to a YouTube embed on
+// request (2026-08-30) — the raw file was heavy enough to make the page stutter; YouTube
+// handles adaptive streaming instead of shipping the whole file to every visitor. Restored
+// on request (2026-09-02) after a brief detour swapping it for the review-tool embed.
+const PROBLEM_VIDEO_URL = "https://www.youtube.com/embed/9B7wuifzrss";
 
 // Two specific moves' clips, streamed directly from the review tool's own deployment
 // (on request, 2026-09-01) — its DATA array's `human` and `mjc` fields, resolved
@@ -28,16 +33,13 @@ interface KalariSenaTabsProps {
 }
 
 /**
- * Mirrors PragyaDexTabs' shape (2026-08-30): "The Problem" (pull-quote,
- * move clips, and intro copy — no video) and "Dataset". There's no separate
- * browsable gallery here, so "Dataset" embeds the project's own human-vs-G1
- * retarget review tool live via iframe — same pattern as PragyaVLA's
- * Mechanism tab — since it's a custom interactive dashboard (synced 4-video
- * playback, physics-correction overlay, rating/export controls over 69
- * paired motions), not a standalone widget that could be reimplemented
- * natively. Dropped the "Problem" tab's own copy of that same embed on
- * request (2026-09-02) — the tab should just introduce KalariSena, not
- * duplicate the Dataset tab's tool.
+ * Mirrors PragyaDexTabs' shape (2026-08-30): "The Problem" (pull-quote) and
+ * "Dataset". There's no separate browsable gallery here, so "Dataset"
+ * embeds the project's own human-vs-G1 retarget review tool live via
+ * iframe — same pattern as PragyaVLA's Mechanism tab — since it's a
+ * custom interactive dashboard (synced 4-video playback, physics-correction
+ * overlay, rating/export controls over 69 paired motions), not a
+ * standalone widget that could be reimplemented natively.
  */
 export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
@@ -85,6 +87,16 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
           <div className="mt-10 mb-8">
             <SectionRule label="What is KalariSena?" margin="mb-8" />
             <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-4xl">{intro}</p>
+          </div>
+
+          <div className="border border-outline-variant/10 bg-surface">
+            <iframe
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full aspect-video"
+              src={PROBLEM_VIDEO_URL}
+              title="KalariSena problem overview"
+            />
           </div>
         </div>
       ) : null}
