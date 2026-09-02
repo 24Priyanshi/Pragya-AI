@@ -3,6 +3,9 @@
 import { useState } from "react";
 
 import { MotionLangGallery } from "@/components/MotionLangGallery";
+import { motionShowcase } from "@/data/pragyavla";
+
+import { MotionShowcaseGrid } from "./MotionShowcaseGrid";
 
 const TABS = ["The Problem", "Dataset", "Mechanism"] as const;
 type Tab = (typeof TABS)[number];
@@ -69,10 +72,15 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
               &ldquo;{problemQuote}&rdquo;
             </p>
           </div>
+
+          <div className="mt-16">
+            <MotionShowcaseGrid rows={motionShowcase} />
+          </div>
+
           {/* Live G1-troupe simulation, deployed from the repo (github.com/prajak002/PragyaVLA) to
               Vercel, embedded on request (2026-08-30) despite rendering 200 fully-rigged humanoids
               being heavy enough to crash a headless test tab — kept in-page rather than linking out. */}
-          <div className="border border-outline-variant/10 bg-surface">
+          <div className="mt-16 border border-outline-variant/10 bg-surface">
             <iframe className="w-full h-[720px]" src={SIMULATION_URL} title="PragyaVLA humanoid simulation" />
           </div>
         </div>

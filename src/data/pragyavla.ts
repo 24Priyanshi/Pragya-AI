@@ -43,6 +43,79 @@ export const problemBlocks: readonly ProseBlockData[] = [
 export const problemQuote =
   "We cannot interact with humanoid through text. To share a physical world, we must bridge intent through the warmth of spoken voice, the richness of native tongues, and the living cadence of natural conversation.";
 
+export interface MotionShowcaseClip {
+  readonly caption: string;
+  readonly video: string;
+}
+
+export interface MotionShowcaseRow {
+  readonly language: string;
+  readonly clips: readonly [MotionShowcaseClip, MotionShowcaseClip];
+}
+
+/**
+ * Two sample motion-instruction pairs per language, pulled straight from the
+ * MotionLang dataset (src/data/motionlang.ts) that already backs the
+ * "Dataset" tab's gallery — same HuggingFace-hosted video files, same real
+ * captions, just a fixed hand-picked subset (one locomotion + one gesture
+ * clip per language) instead of the full browsable set. Added 2026-09-02 for
+ * the purple motion-showcase box between the pull-quote and the simulation.
+ */
+export const motionShowcase: readonly MotionShowcaseRow[] = [
+  {
+    language: "English",
+    clips: [
+      {
+        caption: "a Robot walks around in a clockwise circle",
+        video: "_D__HumanML3d_amass_data_TotalCapture_s3_walking2_poses_keypoints_retargeted",
+      },
+      {
+        caption: "a Robot raises both arms and waves.",
+        video: "_D__HumanML3d_amass_data_KIT_572_wave_both06_poses_keypoints_retargeted",
+      },
+    ],
+  },
+  {
+    language: "Hindi",
+    clips: [
+      {
+        caption: "रोबोट बाएँ और दाएँ घूमता है",
+        video: "_D__HumanML3d_amass_data_BMLmovi_Subject_16_F_MoSh_Subject_16_F_14_poses_keypoints_retargeted",
+      },
+      {
+        caption: "एक रोबोट अपना दाहिना हाथ उठाता है और उसे हिलाता है और वापस नीचे लाता है।",
+        video: "_D__HumanML3d_amass_data_Eyes_Japan_Dataset_hamada_gesture_etc_32_no_hamada_poses_keypoints_retargeted",
+      },
+    ],
+  },
+  {
+    language: "Bangla",
+    clips: [
+      {
+        caption: "একটি রোবট দ্রুত এগিয়ে যাচ্ছে।",
+        video: "_D__HumanML3d_amass_data_EKUT_300_PushBK_25_poses_keypoints_retargeted",
+      },
+      {
+        caption: "একটি রোবট তার ডান হাত দোলাচ্ছে।",
+        video: "_D__HumanML3d_amass_data_KIT_572_wave_right01_poses_keypoints_retargeted",
+      },
+    ],
+  },
+  {
+    language: "Tamil",
+    clips: [
+      {
+        caption: "ரோபோ ஒரு வட்டத்தில் சாதாரணமாக நடந்து கொண்டிருக்கிறது",
+        video: "_D__HumanML3d_amass_data_KIT_4_WalkInCounterClockwiseCircle02_poses_keypoints_retargeted",
+      },
+      {
+        caption: "ரோபோ வலது கையால் அசைகிறது",
+        video: "_D__HumanML3d_amass_data_CMU_113_113_27_poses_keypoints_retargeted",
+      },
+    ],
+  },
+] as const;
+
 export const stats: readonly StatCard[] = [
   { label: "Model Scale", value: "12.4B", caption: "Dense Parameters" },
   { label: "CoT Reliability", value: "94.2%", caption: "Success on Complex Tasks" },
