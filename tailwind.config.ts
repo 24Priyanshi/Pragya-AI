@@ -3,12 +3,18 @@ import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
 
 /**
- * Verbatim port of the original `js/tailwind-config.js`.
- *
- * The original site loaded the Tailwind Play CDN with
- * `?plugins=forms,container-queries` and applied this config at runtime.
- * Every value below is copied exactly — no rounding to nearest scale token,
- * no additions, no removals. Do not "tidy" this file.
+ * Originally a verbatim port of `js/tailwind-config.js` (the original site's
+ * runtime Tailwind Play CDN config). The `colors` block below has since been
+ * retinted (2026-09-02, on request) to the purple/gold/beige palette that
+ * `TopNav`/the landing page (`PragyaHome`) already use — those two were a
+ * from-scratch port of a different reference design (2026-08-29) and never
+ * matched this file's original Material tokens, which every sub-page's
+ * content still read from. Same token names and roles, new hex values,
+ * sourced from `PragyaHome/pragyaHome.css`'s `--purple`/`--gold`/`--beige`
+ * family. `src/styles/design-system.css`'s `:root` custom properties are the
+ * same tokens under different names and must stay in sync with this file.
+ * Everything else (fontFamily, borderRadius, plugins) is still the verbatim
+ * original — do not "tidy" those.
  */
 const config: Config = {
   content: [
@@ -22,65 +28,65 @@ const config: Config = {
     extend: {
       colors: {
         /* Surface Hierarchy */
-        surface: "#FAF8F7",
-        "surface-bright": "#FAF8F7",
-        "surface-container-lowest": "#FFFFFF",
-        "surface-container-low": "#F9F7F6",
-        "surface-container": "#F3F0ED",
-        "surface-container-high": "#ECE8E5",
-        "surface-container-highest": "#E5E0DB",
-        "surface-dim": "#D9D4CE",
-        "surface-variant": "#E5E0DB",
-        "surface-tint": "#481B4C",
-        background: "#FAF8F7",
+        surface: "#F5EFE5",
+        "surface-bright": "#F5EFE5",
+        "surface-container-lowest": "#FAF6ED",
+        "surface-container-low": "#F2EBDF",
+        "surface-container": "#ECE1D1",
+        "surface-container-high": "#E5D7C2",
+        "surface-container-highest": "#DCC9AC",
+        "surface-dim": "#D0BFA0",
+        "surface-variant": "#E5D7C2",
+        "surface-tint": "#3C104E",
+        background: "#F5EFE5",
 
         /* Primary */
-        primary: "#481B4C",
-        "primary-container": "#6A3A6B",
-        "primary-fixed": "#F5E6D3",
-        "primary-fixed-dim": "#E6D4BA",
-        "inverse-primary": "#F5E6D3",
+        primary: "#3C104E",
+        "primary-container": "#5A2E6C",
+        "primary-fixed": "#F5EFE5",
+        "primary-fixed-dim": "#ECE1D1",
+        "inverse-primary": "#F5EFE5",
 
         /* On-Primary */
-        "on-primary": "#F5E6D3",
-        "on-primary-container": "#F5E6D3",
-        "on-primary-fixed": "#2D1533",
-        "on-primary-fixed-variant": "#5A2D5F",
+        "on-primary": "#F5EFE5",
+        "on-primary-container": "#F5EFE5",
+        "on-primary-fixed": "#180820",
+        "on-primary-fixed-variant": "#5A2E6C",
 
         /* Secondary */
-        secondary: "#6A4A5C",
-        "secondary-container": "#E6D4C8",
-        "secondary-fixed": "#E6D4C8",
-        "secondary-fixed-dim": "#D0BEAF",
-        "on-secondary": "#F5E6D3",
-        "on-secondary-container": "#522D47",
+        secondary: "#7F6C7F",
+        "secondary-container": "#ECE1D1",
+        "secondary-fixed": "#ECE1D1",
+        "secondary-fixed-dim": "#DCCBAF",
+        "on-secondary": "#F5EFE5",
+        "on-secondary-container": "#361E3E",
         "on-secondary-fixed": "#1C1B1B",
-        "on-secondary-fixed-variant": "#574657",
+        "on-secondary-fixed-variant": "#4B394E",
 
-        /* Tertiary */
-        tertiary: "#5A4A6B",
-        "tertiary-container": "#7A6A8B",
-        "tertiary-fixed": "#EAD5ED",
-        "tertiary-fixed-dim": "#D0BDD5",
-        "on-tertiary": "#F5E6D3",
-        "on-tertiary-container": "#E3D3E8",
+        /* Tertiary — the site's gold accent (nav underlines/hover, BITS button border) */
+        tertiary: "#C89432",
+        "tertiary-container": "#DFBA70",
+        "tertiary-fixed": "#F0DDB0",
+        "tertiary-fixed-dim": "#DFBA70",
+        "on-tertiary": "#180820",
+        "on-tertiary-container": "#180820",
         "on-tertiary-fixed": "#1A1C1E",
-        "on-tertiary-fixed-variant": "#5A4A6B",
+        "on-tertiary-fixed-variant": "#7F6C7F",
 
         /* Surface Text */
-        "on-surface": "#2D1533",
-        "on-surface-variant": "#5A5159",
-        "on-background": "#2D1533",
+        "on-surface": "#361E3E",
+        "on-surface-variant": "#7F6C7F",
+        "on-background": "#361E3E",
 
         /* Inverse */
-        "inverse-surface": "#3D2844",
-        "inverse-on-surface": "#F5E6D3",
+        "inverse-surface": "#180820",
+        "inverse-on-surface": "#F5EFE5",
 
         /* Outline */
-        outline: "#8A7A92",
-        "outline-variant": "#D9CDE5",
+        outline: "#7F6C7F",
+        "outline-variant": "#ECE1D1",
 
-        /* Error */
+        /* Error — semantic, left as-is */
         error: "#BA1A1A",
         "error-container": "#FFDAD6",
         "on-error": "#FFFFFF",

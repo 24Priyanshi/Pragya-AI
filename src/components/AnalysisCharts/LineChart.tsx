@@ -22,9 +22,9 @@ export function LineChart({ spec }: { spec: LineChartSpec }) {
     <div className="relative h-64 w-full bg-surface-container-low p-8 border border-outline-variant/10 overflow-hidden">
       {spec.overlayClass ? <div className={`absolute inset-0 ${spec.overlayClass} from-primary-fixed/20 to-transparent`} /> : null}
       <svg className="w-full h-full" {...viewBoxProps}>
-        <path d={spec.path} fill="none" stroke="#481b4c" strokeWidth="1" />
+        <path className="stroke-primary" d={spec.path} fill="none" strokeWidth="1" />
         {spec.circles.map((c) => (
-          <circle cx={c.cx} cy={c.cy} fill="#481b4c" key={`${c.cx}-${c.cy}`} r="3" />
+          <circle className="fill-primary" cx={c.cx} cy={c.cy} key={`${c.cx}-${c.cy}`} r="3" />
         ))}
         {spec.texts.map((t) => (
           <text className="inter text-[8px] fill-outline font-medium" key={t.text} x={t.x} y={t.y}>

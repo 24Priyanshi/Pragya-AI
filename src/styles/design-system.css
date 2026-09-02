@@ -6,68 +6,71 @@
 
 /* ─── 1. DESIGN TOKENS (CSS Custom Properties) ─────────────── */
 :root {
-  /* Surface Hierarchy */
-  --surface: #faf8f7;
-  --surface-bright: #faf8f7;
-  --surface-container-lowest: #ffffff;
-  --surface-container-low: #f9f7f6;
-  --surface-container: #f3f0ed;
-  --surface-container-high: #ece8e5;
-  --surface-container-highest: #e5e0db;
-  --surface-dim: #d9d4ce;
-  --surface-variant: #e5e0db;
-  --surface-tint: #481b4c;
+  /* Surface Hierarchy — retinted (2026-09-02, on request) to TopNav/PragyaHome's
+     purple/gold/beige palette; see tailwind.config.ts's colors block for the
+     full rationale. Same tokens, same roles, new hex values — keep this in
+     sync with that file. */
+  --surface: #f5efe5;
+  --surface-bright: #f5efe5;
+  --surface-container-lowest: #faf6ed;
+  --surface-container-low: #f2ebdf;
+  --surface-container: #ece1d1;
+  --surface-container-high: #e5d7c2;
+  --surface-container-highest: #dcc9ac;
+  --surface-dim: #d0bfa0;
+  --surface-variant: #e5d7c2;
+  --surface-tint: #3c104e;
 
   /* Background */
-  --background: #faf8f7;
+  --background: #f5efe5;
 
-  /* Primary — Deep Purple from Logo */
-  --primary: #481b4c;
-  --primary-container: #6a3a6b;
-  --primary-fixed: #f5e6d3;
-  --primary-fixed-dim: #e6d4ba;
-  --inverse-primary: #f5e6d3;
+  /* Primary — Deep Purple, matching TopNav/PragyaHome's --purple */
+  --primary: #3c104e;
+  --primary-container: #5a2e6c;
+  --primary-fixed: #f5efe5;
+  --primary-fixed-dim: #ece1d1;
+  --inverse-primary: #f5efe5;
 
   /* On-Primary */
-  --on-primary: #f5e6d3;
-  --on-primary-container: #f5e6d3;
-  --on-primary-fixed: #2d1533;
-  --on-primary-fixed-variant: #5a2d5f;
+  --on-primary: #f5efe5;
+  --on-primary-container: #f5efe5;
+  --on-primary-fixed: #180820;
+  --on-primary-fixed-variant: #5a2e6c;
 
   /* Secondary */
-  --secondary: #6a4a5c;
-  --secondary-container: #e6d4c8;
-  --secondary-fixed: #e6d4c8;
-  --secondary-fixed-dim: #d0beaf;
-  --on-secondary: #f5e6d3;
-  --on-secondary-container: #522d47;
+  --secondary: #7f6c7f;
+  --secondary-container: #ece1d1;
+  --secondary-fixed: #ece1d1;
+  --secondary-fixed-dim: #dccbaf;
+  --on-secondary: #f5efe5;
+  --on-secondary-container: #361e3e;
   --on-secondary-fixed: #1c1b1b;
-  --on-secondary-fixed-variant: #574657;
+  --on-secondary-fixed-variant: #4b394e;
 
-  /* Tertiary */
-  --tertiary: #5a4a6b;
-  --tertiary-container: #7a6a8b;
-  --tertiary-fixed: #ead5ed;
-  --tertiary-fixed-dim: #d0bdd5;
-  --on-tertiary: #f5e6d3;
-  --on-tertiary-container: #e3d3e8;
+  /* Tertiary — the site's gold accent (nav underlines/hover, BITS button border) */
+  --tertiary: #c89432;
+  --tertiary-container: #dfba70;
+  --tertiary-fixed: #f0ddb0;
+  --tertiary-fixed-dim: #dfba70;
+  --on-tertiary: #180820;
+  --on-tertiary-container: #180820;
   --on-tertiary-fixed: #1a1c1e;
-  --on-tertiary-fixed-variant: #5a4a6b;
+  --on-tertiary-fixed-variant: #7f6c7f;
 
   /* Surface Text */
-  --on-surface: #2d1533;
-  --on-surface-variant: #5a5159;
-  --on-background: #2d1533;
+  --on-surface: #361e3e;
+  --on-surface-variant: #7f6c7f;
+  --on-background: #361e3e;
 
   /* Inverse */
-  --inverse-surface: #3d2844;
-  --inverse-on-surface: #f5e6d3;
+  --inverse-surface: #180820;
+  --inverse-on-surface: #f5efe5;
 
   /* Outline */
-  --outline: #8a7a92;
-  --outline-variant: #d9cde5;
+  --outline: #7f6c7f;
+  --outline-variant: #ece1d1;
 
-  /* Error */
+  /* Error — semantic, left as-is */
   --error: #ba1a1a;
   --error-container: #ffdad6;
   --on-error: #ffffff;
