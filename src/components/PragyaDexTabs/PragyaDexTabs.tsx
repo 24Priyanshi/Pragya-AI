@@ -8,6 +8,8 @@ import type { GalleryDomain } from "@/types/gallery";
 const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
+const EXPLORER_URL = "https://pragyadex.vercel.app/";
+
 interface PragyaDexTabsProps {
   problemQuote: string;
   domains: readonly GalleryDomain[];
@@ -40,10 +42,18 @@ export function PragyaDexTabs({ problemQuote, domains }: PragyaDexTabsProps) {
       </div>
 
       {tab === "The Problem" ? (
-        <div className="bg-primary rounded-2xl shadow-lg px-8 py-10 md:py-14">
-          <p className="plus-jakarta-sans text-xl md:text-3xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
-            &ldquo;{problemQuote}&rdquo;
-          </p>
+        <div>
+          <div className="bg-primary rounded-2xl shadow-lg px-8 py-10 md:py-14">
+            <p className="plus-jakarta-sans text-xl md:text-3xl font-light italic leading-snug text-on-primary text-justify max-w-4xl mx-auto">
+              &ldquo;{problemQuote}&rdquo;
+            </p>
+          </div>
+
+          {/* Live paired-example explorer, deployed to Vercel — embedded via iframe the
+              same way as PragyaVLA's/DenseWorld's/KalariSena's live tools (2026-09-02). */}
+          <div className="mt-16 border border-outline-variant/10 bg-surface">
+            <iframe className="w-full h-[720px]" src={EXPLORER_URL} title="PragyaDex live dataset explorer" />
+          </div>
         </div>
       ) : null}
 
