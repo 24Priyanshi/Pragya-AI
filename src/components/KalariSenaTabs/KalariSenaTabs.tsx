@@ -8,10 +8,6 @@ const TABS = ["The Problem", "Dataset"] as const;
 type Tab = (typeof TABS)[number];
 
 const REVIEW_TOOL_URL = "https://kalarisena-review.vercel.app/";
-// Switched from a self-hosted 101MB file (proxied off Google Drive) to a YouTube embed on
-// request (2026-08-30) — the raw file was heavy enough to make the page stutter; YouTube
-// handles adaptive streaming instead of shipping the whole file to every visitor.
-const PROBLEM_VIDEO_URL = "https://www.youtube.com/embed/9B7wuifzrss";
 
 // Two specific moves' clips, streamed directly from the review tool's own deployment
 // (on request, 2026-09-01) — its DATA array's `human` and `mjc` fields, resolved
@@ -71,7 +67,7 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
           </div>
 
           <div className="mt-10 bg-primary rounded-2xl shadow-lg p-6 md:p-8">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {MOVE_CLIPS.map((clip) => (
                 <div className="space-y-2" key={clip.src}>
                   <div className="aspect-video overflow-hidden border border-on-primary/20 bg-on-primary/10">
@@ -88,14 +84,10 @@ export function KalariSenaTabs({ intro, problemQuote }: KalariSenaTabsProps) {
             <p className="inter text-sm md:text-base text-on-surface-variant leading-relaxed max-w-4xl">{intro}</p>
           </div>
 
+          {/* Swapped the YouTube problem-overview video for the live review tool itself,
+              embedded the same way as the Dataset tab below (on request, 2026-09-02). */}
           <div className="border border-outline-variant/10 bg-surface">
-            <iframe
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full aspect-video"
-              src={PROBLEM_VIDEO_URL}
-              title="KalariSena problem overview"
-            />
+            <iframe className="w-full" height={1400} src={REVIEW_TOOL_URL} title="KalariSena human vs G1 retarget review" />
           </div>
         </div>
       ) : null}
