@@ -41,8 +41,15 @@ interface PragyaVlaTabsProps {
  * iframe itself, shifted up by a measured pixel offset (the toolbar's own
  * on-screen position right after the #search anchor scroll, at this
  * fixed iframe width) — a negative-margin crop, not a redesign of the tool.
+ *
+ * The crop window was originally only 620px tall, cutting the beam-search
+ * tree off partway down. Widened to MECHANISM_VISIBLE_HEIGHT on request
+ * (2026-09-02) — measured against the tool's own #search section (~2241px
+ * tall at a representative desktop width, minus the 420px header offset
+ * above) so the full tree renders without scrolling.
  */
 const MECHANISM_CROP_OFFSET = 420;
+const MECHANISM_VISIBLE_HEIGHT = 1850;
 export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
   const [tab, setTab] = useState<Tab>("The Problem");
 
@@ -89,12 +96,12 @@ export function PragyaVlaTabs({ problemQuote }: PragyaVlaTabsProps) {
       {tab === "Dataset" ? <MotionLangGallery /> : null}
 
       {tab === "Mechanism" ? (
-        <div className="border border-outline-variant/10 bg-surface overflow-hidden h-[620px]">
+        <div className="border border-outline-variant/10 bg-surface overflow-hidden" style={{ height: MECHANISM_VISIBLE_HEIGHT }}>
           {/* Tailwind can't see dynamic arbitrary-value classes, so the crop uses inline styles. */}
           <iframe
             className="w-full"
             src={MOTION_TOKEN_TOOL_URL}
-            style={{ height: 900 + MECHANISM_CROP_OFFSET, marginTop: -MECHANISM_CROP_OFFSET }}
+            style={{ height: MECHANISM_CROP_OFFSET + MECHANISM_VISIBLE_HEIGHT, marginTop: -MECHANISM_CROP_OFFSET }}
             title="PragyaVLA motion-token search"
           />
         </div>
