@@ -1,0 +1,963 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vande Mataram at India Gate · PragyaMusic</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: full-bleed 3D stage; quiet beige cards float at the corners like the solo-video overlays */
+:root{
+  --room:#cfc9bb;        /* beige wall, also the page ground */
+  --card:#e9e2d2;        /* overlay card, same as the video title card */
+  --card-edge:#d3c9b4;
+  --ink:#2a2026;         /* plum-black text, from the carpet */
+  --ink-soft:#6b5f63;
+  --velvet:#1a0816;      /* carpet velvet, used for active controls */
+  --tan:#b38a55;         /* carpet trim and logo */
+  --font-display:"Mukta","Noto Sans Devanagari","Segoe UI",system-ui,sans-serif;
+  --font-body:"Mukta","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--room);color:var(--ink);font-family:var(--font-body);font-size:15px;overflow:hidden}
+#stage{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:none;outline:none}
+.hud{position:fixed;inset:0;pointer-events:none;
+  padding-top:max(14px,env(safe-area-inset-top,0px));padding-bottom:max(14px,env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr auto;gap:12px}
+.hud>*{pointer-events:auto}
+.card{background:var(--card);border:1px solid var(--card-edge);border-radius:6px;box-shadow:0 1px 0 rgba(42,32,38,.06),0 8px 24px rgba(42,32,38,.10)}
+.title{grid-column:1;grid-row:1;justify-self:start;align-self:start;padding:7px 12px 7px;min-width:0}
+.title h1{margin:0;font:600 17px/1.05 var(--font-display);letter-spacing:.02em;text-transform:uppercase}
+.title p{margin:2px 0 0;color:var(--ink-soft);font-size:11px}
+.right{grid-column:2;grid-row:1;align-self:start;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.logo{background:#3a1238;border-radius:6px;padding:5px 9px;box-shadow:0 1px 0 rgba(42,32,38,.06),0 8px 24px rgba(42,32,38,.10);line-height:0}
+.logo img{height:30px;width:auto;display:block}
+.views{grid-column:2;grid-row:1;align-self:start;display:flex;flex-wrap:wrap;gap:4px;padding:4px;justify-content:flex-end;max-width:min(460px,calc(100vw - 32px))}
+.views button,.legend button,.tog{font:500 14px/1 var(--font-body);color:var(--ink);background:transparent;border:0;border-radius:4px;padding:8px 11px;cursor:pointer}
+.views button:hover,.legend button:hover,.tog:hover{background:rgba(26,8,22,.07)}
+.views button[aria-pressed="true"]{background:var(--velvet);color:#eadcc4}
+button:focus-visible{outline:2px solid var(--tan);outline-offset:1px}
+.info{grid-column:1;grid-row:3;align-self:end;justify-self:start;padding:12px 16px;max-width:340px;min-width:0}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.info h2{margin:2px 0 6px;font:600 22px/1.1 var(--font-display)}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0;font-size:14px}
+.info dt{color:var(--ink-soft)}
+.info dd{margin:0}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12.5px;line-height:1.6}
+.pill.real{background:var(--velvet);color:#eadcc4}
+.pill.stand{background:transparent;border:1px dashed var(--ink-soft);color:var(--ink-soft)}
+.hint{font-size:13.5px;color:var(--ink-soft);margin:0}
+.legend{grid-column:2;grid-row:3;align-self:end;padding:8px;min-width:0}
+.legend h3{margin:2px 8px 6px;font:600 12px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.legend ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 2px}
+.legend li button{width:100%;display:flex;justify-content:space-between;gap:16px;text-align:left}
+.legend li button[aria-pressed="true"]{background:var(--velvet);color:#eadcc4}
+.legend .n{display:none}
+.legend .row{display:flex;gap:4px;margin-top:6px;border-top:1px solid var(--card-edge);padding-top:6px}
+.tog[aria-pressed="true"]{background:rgba(26,8,22,.10)}
+#loader{position:fixed;inset:0;display:grid;place-items:center;background:var(--room);z-index:5;transition:opacity .5s}
+#loader[hidden]{display:none}
+#loader .box{width:min(320px,80vw);text-align:center}
+#loader .bar{height:3px;background:var(--card-edge);border-radius:2px;overflow:hidden;margin-top:12px}
+#loader .bar i{display:block;height:100%;width:0;background:var(--velvet);transition:width .2s}
+#loader p{margin:8px 0 0;color:var(--ink-soft);font-size:13px;font-variant-numeric:tabular-nums}
+#loader h1{margin:0;font:600 24px/1 var(--font-display);text-transform:uppercase;letter-spacing:.02em}
+/* Round 1 player: a plum lyric bar along the bottom — the line being sung, its transliteration, the play button and the score */
+:root{--plum:#4a2840;--plum-deep:#3a1f33;--cream:#efe3cc;--gold:#c9a46a;--barh:0px}
+.player{position:fixed;left:0;right:0;bottom:0;z-index:3;background:var(--plum);color:var(--cream);
+  padding:8px max(16px,env(safe-area-inset-right,0px)) max(8px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  display:flex;flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 -10px 30px rgba(26,8,22,.18)}
+.p-lyric{text-align:center;display:flex;flex-direction:column;justify-content:center;gap:0}
+.p-dev{font:600 clamp(21px,2.3vw,32px)/1.2 "Mukta","Noto Sans Devanagari",sans-serif;letter-spacing:.005em;height:1.3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-dev span{color:rgba(239,227,204,.42);transition:color .12s}
+.p-dev span.sung{color:var(--cream)}
+.p-dev span.now{color:var(--gold)}
+.p-rom{font:400 clamp(13px,1.15vw,16px)/1.25 "Mukta",sans-serif;color:rgba(239,227,204,.88);height:1.3em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-row{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
+.p-btn{flex:none;width:clamp(40px,3.6vw,50px);height:clamp(40px,3.6vw,50px);border-radius:50%;border:0;background:var(--cream);color:var(--plum-deep);
+  display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.p-btn:hover{background:#f6ecd9}.p-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.p-btn svg{width:34%;height:34%;display:none}
+.p-btn[data-state="play"] .i-play,.p-btn[data-state="pause"] .i-pause,.p-btn[data-state="replay"] .i-replay{display:block}
+.p-track{position:relative;flex:1 1 auto;min-width:0;padding-top:16px}
+.p-ticks{position:absolute;left:10px;right:10px;top:0;height:16px;pointer-events:none}
+.p-ticks .lay{position:absolute;inset:0}
+.p-ticks .lit{clip-path:inset(0 calc(100% - var(--p,0%)) 0 0)}
+.p-ticks i{position:absolute;width:2px;border-radius:1px}
+.p-ticks i.n{top:0;height:6px;background:rgba(239,227,204,.38)}
+.p-ticks i.s{top:8px;height:6px;background:rgba(201,164,106,.55)}
+.p-ticks .lit i.n{background:var(--cream)}.p-ticks .lit i.s{background:var(--gold)}
+#p-seek{-webkit-appearance:none;appearance:none;width:100%;height:20px;margin:0;background:transparent;cursor:pointer;display:block}
+#p-seek::-webkit-slider-runnable-track{height:10px;border-radius:8px;border:1px solid #77696f;background:linear-gradient(to right,var(--gold) var(--p,0%),#3b3438 var(--p,0%))}
+#p-seek::-moz-range-track{height:10px;border-radius:8px;border:1px solid #77696f;background:linear-gradient(to right,var(--gold) var(--p,0%),#3b3438 var(--p,0%))}
+#p-seek::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);border:0;margin-top:-6px;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+#p-seek::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--gold);border:0;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+#p-seek:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:8px}
+.p-time{flex:none;font:400 clamp(13px,1.15vw,16px)/1 "Mukta",sans-serif;font-variant-numeric:tabular-nums;color:var(--cream);min-width:5.2em;text-align:right;padding-top:16px}
+body.export .views,body.export .info,body.export .legend,body.export .player,body.export #loader{display:none!important}
+body.export .hud{padding-bottom:14px}
+body.export.bar .player{display:flex!important}body.export.bar #stage{height:calc(100% - var(--barh))}
+/* the exported bar: the notation only - what has been played fades and blurs, the moment being played glows, the rest waits */
+body.export.bar .p-btn,body.export.bar #p-seek,body.export.bar .p-time{display:none!important}
+body.export.bar .p-row{padding:4px 0 2px}body.export.bar .p-track{padding-top:0}body.export.bar .p-ticks{position:relative;left:0;right:0;height:26px}
+body.export.bar .p-ticks i{width:2px}body.export.bar .p-ticks i.n{top:0;height:11px;background:rgba(239,227,204,.55)}body.export.bar .p-ticks i.s{top:14px;height:11px;background:rgba(201,164,106,.75)}
+body.export.bar .p-ticks .dim{clip-path:inset(0 0 0 var(--p,0%))}
+body.export.bar .p-ticks .lit{clip-path:inset(0 calc(100% - var(--p,0%)) 0 0);filter:blur(1.3px);opacity:.3}
+body.export.bar .p-ticks .lit i.n{background:rgba(239,227,204,.6)}body.export.bar .p-ticks .lit i.s{background:rgba(201,164,106,.7)}
+body.export.bar .p-ticks .now{clip-path:inset(0 calc(100% - var(--p,0%) - 1.2%) 0 calc(var(--p,0%) - 0.35%))}
+body.export.bar .p-ticks .now i.n{background:#fff;box-shadow:0 0 6px rgba(255,255,255,.9)}body.export.bar .p-ticks .now i.s{background:#ffd98a;box-shadow:0 0 7px rgba(255,217,138,.95)}
+body:not(.export) .p-ticks .now{display:none}
+body.r1on #stage{height:calc(100% - var(--barh))}
+body.r1on .hud{padding-bottom:calc(var(--barh) + 14px)}
+#v-r1{font-weight:600}
+@media (max-width:640px){
+  .hud{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr auto auto}
+  .title{grid-row:1}.right{grid-column:1;grid-row:2;justify-self:start;align-items:flex-start}.views{justify-content:flex-start}
+  .info{grid-row:4;max-width:none;justify-self:stretch}.legend{grid-column:1;grid-row:5;justify-self:stretch}
+  .legend ul{grid-template-columns:repeat(3,minmax(0,1fr))}.legend .n{display:none}
+  .title h1{font-size:15px}
+  .p-time{min-width:4.6em}
+  .p-ticks i{width:1px}.p-ticks i.n{background:rgba(239,227,204,.3)}.p-ticks i.s{background:rgba(201,164,106,.45)}
+}
+@media (prefers-reduced-motion:reduce){#loader,#loader .bar i{transition:none}}
+</style>
+
+<canvas id="stage" tabindex="0" aria-label="3D stage: 30 Kalki robots seated on PRAGYA carpets"></canvas>
+
+<div class="hud">
+  <header class="card title">
+    <h1 id="t-h1">Vande Mataram</h1>
+    <p id="t-sub">PragyaMusic &middot; Raag Desh</p>
+    <p id="t-cred" hidden style="margin:4px 0 0;font:400 11px/1.3 Mukta,sans-serif;color:rgba(243,227,194,.8)">Sarod: Atharva, BITS Pilani K K Birla Goa Campus &middot; PragyaMusic</p>
+  </header>
+
+  <div class="right">
+  <div class="logo"><img src="pragya_wordmark.jpg" alt="PRAGYA"></div>
+  <nav class="card views" aria-label="Camera views">
+    <button id="v-front" aria-pressed="true">Front</button>
+    <button id="v-corner" aria-pressed="false">Corner</button>
+    <button id="v-row" aria-pressed="false">Front row</button>
+    <button id="v-grid" aria-pressed="false">Grid</button>
+    <button id="v-orbit" aria-pressed="false">Orbit</button>
+    <button id="v-lk" aria-pressed="false" hidden>Lucknow</button>
+    <button id="v-ig" aria-pressed="false" hidden>India Gate</button>
+    <button id="v-kg" aria-pressed="false" hidden>Kenny G</button>
+    <button id="v-lib" aria-pressed="false" hidden>Vatican</button>
+    <button id="v-r1" aria-pressed="false">Play</button>
+  </nav>
+  </div>
+
+  <section class="player" id="player" aria-label="Concert player" hidden>
+    <div class="p-lyric"><div class="p-dev" id="p-dev" lang="hi"></div><div class="p-rom" id="p-rom" lang="sa-Latn"></div></div>
+    <div class="p-row">
+      <button class="p-btn" id="p-play" data-state="pause" aria-label="Pause">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h5v18H5zM14 3h5v18h-5z" fill="currentColor"/></svg>
+        <svg class="i-replay" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V1L7 5.5 12 10V6.5a6 6 0 1 1-6 6H3.5a8.5 8.5 0 1 0 8.5-8.5z" fill="currentColor"/></svg>
+      </button>
+      <div class="p-track"><div class="p-ticks" id="p-ticks"><div class="lay dim"></div><div class="lay lit"></div><div class="lay now"></div></div>
+        <input type="range" id="p-seek" min="0" max="1000" value="0" step="1" aria-label="Position in the concert"></div>
+      <span class="p-time" id="p-time">0:00 / 2:19</span>
+    </div>
+  </section>
+
+  <section class="card info" id="info" aria-live="polite" hidden>
+    <div class="eyebrow">Scene preview &middot; no music or motion yet</div>
+    <h2>30 Kalkis, 6 instruments</h2>
+    <p class="hint">Drag to orbit, scroll or pinch to zoom.</p>
+  </section>
+
+  <aside class="card legend" aria-label="Instruments" hidden>
+    <h3>Instruments</h3>
+    <ul id="legend"></ul>
+    <div class="row">
+      <button class="tog" id="t-shadow" aria-pressed="true">Shadows</button>
+      <button class="tog" id="t-labels" aria-pressed="false">Seat numbers</button>
+    </div>
+  </aside>
+</div>
+
+<button id="lib-credit-btn" hidden aria-expanded="false" aria-controls="lib-credit" onclick="const p=document.getElementById('lib-credit');p.hidden=!p.hidden;this.setAttribute('aria-expanded',String(!p.hidden))" style="position:fixed;left:24px;top:136px;z-index:4;font:400 11px/1.3 Mukta,sans-serif;color:#f3e3c2;background:rgba(42,24,38,.55);border:0;padding:3px 8px;border-radius:6px;cursor:pointer">Credits</button>
+<div id="lib-credit" hidden style="position:fixed;left:24px;top:162px;z-index:4;max-width:46vw;font:400 11px/1.3 Mukta,sans-serif;color:#f3e3c2;background:rgba(42,24,38,.85);padding:3px 8px;border-radius:6px">St Peter's Square, Vatican City: 3D model by Brian Trepanier (sketchfab.com/CMBC), CC BY 4.0</div>
+<div id="loader"><div class="box"><h1>Vande Mataram</h1><p style="margin:6px 0 0">India Gate &middot; PragyaMusic</p><div class="bar"><i id="bar"></i></div><p id="loadtxt">Loading the stage…</p></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/libs/meshopt_decoder.js"></script>
+<script>
+(async function(){
+const INST={
+  tabla:{name:'Tabla tarang',pose:'Borrowed from santoor',model:'Stand-in'},
+  sitar:{name:'Sitar',pose:'Recorded',model:'Your sitar model'},
+  dhol:{name:'Dhol',pose:'Recorded',model:'Stand-in'},
+  sarod:{name:'Sarod',pose:'Borrowed from sitar',model:'Stand-in'},
+  ghatam:{name:'Ghatam',pose:'Borrowed from dhol',model:'Stand-in'},
+  santoor:{name:'Santoor',pose:'Recorded',model:'Stand-in'}
+};
+const ORDER=['tabla','sitar','dhol','sarod','ghatam','santoor'];
+const $=id=>document.getElementById(id);
+const bar=$('bar'),loadtxt=$('loadtxt');
+
+// ---------- load data ----------
+const meta=await (await fetch('scene_v31.json')).json();
+// geometry ships as base64 text in two parts (the artifact host serves text, not raw binary)
+const PARTS=['scene_v31.b64.0.txt','scene_v31.b64.1.txt'], TOTAL=27752088;
+let gotAll=0;
+async function fetchText(url){
+  const res=await fetch(url); if(!res.ok) throw new Error('scene data returned '+res.status);
+  if(!(res.body&&res.body.getReader)) {const t=await res.text(); gotAll+=t.length; return t;}
+  const rd=res.body.getReader(),dec=new TextDecoder(),parts=[];
+  for(;;){const {done,value}=await rd.read(); if(done)break; parts.push(dec.decode(value,{stream:true})); gotAll+=value.length;
+    bar.style.width=Math.min(100,gotAll/TOTAL*100).toFixed(1)+'%'; loadtxt.textContent=`${(gotAll*0.75/1e6).toFixed(1)} of ${(TOTAL*0.75/1e6).toFixed(1)} MB`;}
+  return parts.join('')+dec.decode();
+}
+const texts=[]; for(const u of PARTS) texts.push((await fetchText(u)).trim());
+loadtxt.textContent='Placing 30 Kalkis\u2026';
+const bin=(()=>{const raw=texts.map(t=>atob(t)); const n=raw.reduce((a,r)=>a+r.length,0); const out=new Uint8Array(n); let o=0;
+  for(const r of raw){for(let i=0;i<r.length;i++) out[o++]=r.charCodeAt(i);} return out.buffer;})();
+
+// ---------- renderer & scene (MuJoCo coordinates: z up, audience at +x) ----------
+const canvas=$('stage');
+const coarse=matchMedia('(pointer:coarse)').matches;
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance',logarithmicDepthBuffer:true});   // even depth precision on every GPU: thin layers (sarod plate over its neck) never flicker
+const XP=new URLSearchParams(location.search), EXPORT=XP.get('export')==='1'; if(EXPORT){document.body.classList.add('export'); if(XP.get('bar')==='1') document.body.classList.add('bar');}
+renderer.setPixelRatio(EXPORT?devicePixelRatio:Math.min(devicePixelRatio,coarse?1.25:1.5));
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.shadowMap.enabled=!coarse; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0xd2ccbf).convertSRGBToLinear();
+THREE.Object3D.DefaultUp.set(0,0,1);
+const camera=new THREE.PerspectiveCamera(45,1,0.05,120); camera.up.set(0,0,1);
+const controls=new THREE.OrbitControls(camera,canvas);
+controls.enableDamping=true; controls.dampingFactor=.08; controls.maxPolarAngle=Math.PI*0.495; controls.minDistance=0.8; controls.maxDistance=34;
+
+const SP=meta.spacing, CX=-2*SP;
+// room: grey floor, beige walls that face inward (seen-through from outside)
+const lin=c=>new THREE.Color(c).convertSRGBToLinear();
+const roomParts=[];
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(34,38),new THREE.MeshLambertMaterial({color:lin(0x6e685f)}));
+floor.position.set(CX+4,0,0); floor.receiveShadow=true; scene.add(floor); roomParts.push(floor);
+const wallMat=new THREE.MeshLambertMaterial({color:lin(0xd9d3c6)});
+// each wall faces into the room, so from outside you see through it
+[[CX-13,0,0,Math.PI/2],[CX+21,0,0,-Math.PI/2],[CX+4,-19,-Math.PI/2,0],[CX+4,19,Math.PI/2,0]].forEach(([x,y,rx,ry])=>{
+  const w=new THREE.Mesh(ry?new THREE.PlaneGeometry(10,38):new THREE.PlaneGeometry(34,10),wallMat);
+  w.rotation.set(rx,ry,0); w.position.set(x,y,5); scene.add(w); roomParts.push(w);
+});
+const hemi=new THREE.HemisphereLight(lin(0xf4eee2),lin(0x7a7368),0.95); scene.add(hemi);
+const key=new THREE.DirectionalLight(lin(0xfff4e6),1.05); key.position.set(CX+9,6,18); key.target.position.set(CX,0,0);
+key.castShadow=true; key.shadow.mapSize.set(4096,4096); key.shadow.bias=-0.0004; key.shadow.normalBias=0.02;
+Object.assign(key.shadow.camera,{left:-12,right:12,top:12,bottom:-12,near:1,far:45}); scene.add(key,key.target);
+const fill=new THREE.DirectionalLight(0xdfe3ee,0.30); fill.position.set(CX+5,-10,8); scene.add(fill);
+const rim=new THREE.DirectionalLight(0xffffff,0.22); rim.position.set(CX-12,0,8); scene.add(rim);
+
+// textures & materials
+const texLoader=new THREE.TextureLoader(); const texCache={};
+function tex(fn){ if(!texCache[fn]){const t=texLoader.load(fn,()=>dirty=true); t.flipY=false; t.encoding=THREE.sRGBEncoding; t.anisotropy=8; texCache[fn]=t;} return texCache[fn]; }
+function srgb(r,g,b){return new THREE.Color().setRGB(r,g,b).convertSRGBToLinear()}
+const matCache={};
+function material(d){
+  const k=d.mat||('rgba'+d.rgba.join(','));
+  if(matCache[k]) return matCache[k];
+  let m;
+  if(d.mat){const M=meta.materials[d.mat];
+    m=new THREE.MeshPhongMaterial({color:srgb(...M.rgba.slice(0,3)),specular:new THREE.Color(M.spec*0.35,M.spec*0.35,M.spec*0.35),shininess:Math.max(4,M.shin*90),map:M.tex?tex(M.tex):null,
+      transparent:M.rgba[3]<1,opacity:M.rgba[3],side:THREE.DoubleSide});
+    if(M.tex) m.color.setRGB(1,1,1);
+    // thin sarod layers sit 0.2-0.6 mm apart; say explicitly which is on top so they never flicker:
+    // strings over the steel plate, steel plate over the black fingerboard, skin and bowl plate over the bowl
+    const LAYER={sarm_part0:3,sarm_part6:2,sarm_part8:2,sarm_part7:2,sarm_part4:1}[M.name];
+    if(LAYER){m.polygonOffset=true; m.polygonOffsetFactor=-LAYER; m.polygonOffsetUnits=-4*LAYER;}
+  } else m=new THREE.MeshPhongMaterial({color:srgb(...d.rgba.slice(0,3)),specular:0x222222,shininess:20});
+  return matCache[k]=m;
+}
+// mesh geometries
+const geoms=meta.meshes.map(e=>{
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(bin,e.pos,e.n*3),3));
+  g.setAttribute('normal',new THREE.BufferAttribute(new Int8Array(bin,e.nrm,e.n*4),4,true));
+  if(e.uv!==undefined) g.setAttribute('uv',new THREE.BufferAttribute(new Float32Array(bin,e.uv,e.n*2),2));
+  g.setIndex(new THREE.BufferAttribute(e.i32?new Uint32Array(bin,e.idx,e.icount):new Uint16Array(bin,e.idx,e.icount),1));
+  g.computeBoundingSphere(); return g;
+});
+// MuJoCo normals are xyz in a 4-wide int8 slot; give Three a 3-wide view of them
+geoms.forEach((g,i)=>{const e=meta.meshes[i]; const a=new Int8Array(bin,e.nrm,e.n*4); const n=new Int8Array(e.n*3);
+  for(let j=0;j<e.n;j++){n[3*j]=a[4*j];n[3*j+1]=a[4*j+1];n[3*j+2]=a[4*j+2]} g.setAttribute('normal',new THREE.BufferAttribute(n,3,true));});
+function prim(type,s){
+  let g;
+  if(type===2) g=new THREE.SphereGeometry(s[0],24,16);
+  else if(type===4){g=new THREE.SphereGeometry(1,32,20); g.scale(s[0],s[1],s[2]);}
+  else if(type===5){g=new THREE.CylinderGeometry(s[0],s[0],2*s[1],28); g.rotateX(Math.PI/2);}
+  else if(type===3){g=new THREE.CapsuleGeometry(s[0],2*s[1],6,16); g.rotateX(Math.PI/2);}
+  else g=new THREE.BoxGeometry(2*s[0],2*s[1],2*s[2]);
+  return g;
+}
+// the stage (robots, instruments, carpets, seat markers) hangs off one group so a scene can scale and place it as a whole
+const stageGrp=new THREE.Group(); stageGrp.matrixAutoUpdate=false; scene.add(stageGrp);
+const STG={x:0,y:-1.5,rot:-2*Math.PI/180,s:1.6,M:new THREE.Matrix4(),on:false};   // India Gate placement, about the stage centre: 1.5 m to the right, 2° clockwise, x1.6
+const shadowCasters=[], drawMeshes=[];
+for(const d of meta.draws){
+  const g=d.kind==='mesh'?geoms[d.mesh]:prim(d.type,d.size);
+  const im=new THREE.InstancedMesh(g,material(d),d.count*3);   // block 0: the thirty on the stage; blocks 1-2: the sixty at the War Memorial (India Gate scene)
+  im.instanceMatrix.array.set(new Float32Array(bin,d.inst,d.count*16)); im.instanceMatrix.needsUpdate=true; im.userData.count0=d.count; im.userData.rest=new Float32Array(bin,d.inst,d.count*16).slice();
+  im.computeBoundingSphere&&im.computeBoundingSphere(); im.frustumCulled=false;
+  const isCarpet=d.kind==='mesh'&&meta.meshes[d.mesh].name==='carpet';
+  im.receiveShadow=true; im.castShadow=!isCarpet; if(!isCarpet) shadowCasters.push(im);
+  stageGrp.add(im); drawMeshes.push(im);
+}
+
+// ---------- the sixty at the War Memorial: six groups of ten, one instrument each, on the paved ring round the sunken circle, facing the obelisk ----------
+// Each is a copy of one of the thirty (its carpet and instrument included), moved from its seat to the ring; two copies per stage Kalki make ten per instrument.
+// Nothing moves them yet: they sit as they do on the stage. Shown only in the India Gate scene, at the stage's own scale.
+const WM={centre:new THREE.Vector3(-390.4,20.4,0),r0:36.6,rowGap:4.8,s:1.6*1.5,pitch:2.6*1.6*1.5,ang0:0,order:['santoor','dhol','sarod','tabla','sitar','ghatam'],owner:[]};   // at 0,60,...,300 degrees; the camera tours them clockwise from 300: ghatam, sitar, tabla, sarod, dhol, santoor - the front row's order   // two concentric arcs per group; carpets 1.5x the stage's spacing apart
+{const seats=meta.seats.map(q=>new THREE.Vector3(...q.pos)), v=new THREE.Vector3();
+  for(const im of drawMeshes){const n=im.userData.count0, own=new Int16Array(n), m=new THREE.Matrix4();
+    for(let i=0;i<n;i++){m.fromArray(im.userData.rest,i*16); v.setFromMatrixPosition(m); let bj=0,bd=1e9; for(let j=0;j<seats.length;j++){const d=(v.x-seats[j].x)**2+(v.y-seats[j].y)**2; if(d<bd){bd=d;bj=j;}} own[i]=bj;}
+    WM.owner.push(own);}}
+function placeWM(on,Minv){   // instance = Minv · T(ring pos) · Rz(face obelisk) · T(row/col in group) · S · T(-seat) · stage instance
+  const seats=meta.seats, m=new THREE.Matrix4(), out=new THREE.Matrix4(), P=new THREE.Matrix4(), zero=new THREE.Matrix4().makeScale(0,0,0);
+  const place=seats.map((q,j)=>{const k=WM.order.indexOf(q.inst), rr=q.row; return [0,1].map(c=>{const n=rr*2+c, row=n<5?0:1, i=n%5;   // n: 0-9 within the group
+      if(!on) return zero.clone();
+      const r=WM.r0+row*WM.rowGap, th=(WM.ang0+k*60)*Math.PI/180+((i-2)+(row===1?0.5:0))*WM.pitch/r;   // each Kalki on its own arc, facing the obelisk
+      const px=WM.centre.x+r*Math.cos(th), py=WM.centre.y+r*Math.sin(th), face=th+Math.PI;
+      return new THREE.Matrix4().copy(Minv).multiply(new THREE.Matrix4().makeTranslation(px,py,0)).multiply(new THREE.Matrix4().makeRotationZ(face))
+        .multiply(new THREE.Matrix4().makeScale(WM.s,WM.s,WM.s)).multiply(new THREE.Matrix4().makeTranslation(-q.pos[0],-q.pos[1],0));});});
+  WM.place=on?place:null;
+  drawMeshes.forEach((im,di)=>{const n=im.userData.count0, own=WM.owner[di];
+    for(let i=0;i<n;i++){m.fromArray(im.userData.rest,i*16); for(let c=0;c<2;c++){out.multiplyMatrices(place[own[i]][c],m); im.setMatrixAt(n*(1+c)+i,out);}}
+    im.instanceMatrix.needsUpdate=true;});
+}
+placeWM(false);
+// seats: invisible pick boxes, highlight frames, seat numbers
+const seatObjs=[]; const pickMat=new THREE.MeshBasicMaterial({visible:false});
+const frameMat=new THREE.LineBasicMaterial({color:0xf3e3c2,transparent:true,opacity:.95});
+const frameGeo=new THREE.EdgesGeometry(new THREE.PlaneGeometry(2.06,2.06));
+function label(text){const c=document.createElement('canvas');c.width=256;c.height=96;const x=c.getContext('2d');
+  x.fillStyle='rgba(233,226,210,.92)';x.beginPath();x.roundRect?x.roundRect(8,8,240,80,14):x.rect(8,8,240,80);x.fill();
+  x.fillStyle='#2a2026';x.font='600 44px Mukta, system-ui, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(text,128,52);
+  const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,depthTest:false}));s.scale.set(.75,.28,1);s.renderOrder=10;return s;}
+for(const s of meta.seats){
+  const p=new THREE.Vector3(...s.pos);
+  const box=new THREE.Mesh(new THREE.BoxGeometry(1.7,1.7,1.4),pickMat); box.position.set(p.x+.15,p.y,.7); box.userData.seat=s; stageGrp.add(box);
+  const fr=new THREE.LineSegments(frameGeo,frameMat); fr.position.set(p.x,p.y,.012); fr.visible=false; stageGrp.add(fr);
+  const lb=label(`${s.row+1} \u00b7 ${s.col+1}`); lb.position.set(p.x+.2,p.y,1.55); lb.visible=false; stageGrp.add(lb);
+  seatObjs.push({s,box,fr,lb});
+}
+
+// ---------- camera views ----------
+const CTR=new THREE.Vector3(CX,0,.4);
+function stgUpdate(){   // M = T(centre + offset) · Rz(rot) · S(s) · T(-centre); identity unless the India Gate scene is up
+  if(!STG.on){STG.M.identity();}
+  else{const c=new THREE.Vector3(CX,0,0), R=new THREE.Matrix4().makeRotationZ(STG.rot), S=new THREE.Matrix4().makeScale(STG.s,STG.s,STG.s);
+    STG.M.makeTranslation(c.x+STG.x,c.y+STG.y,0).multiply(R).multiply(S).multiply(new THREE.Matrix4().makeTranslation(-c.x,-c.y,0));}
+  stageGrp.matrix.copy(STG.M); stageGrp.matrixWorldNeedsUpdate=true; placeWM(STG.on,STG.on?STG.M.clone().invert():null); dirty=true;
+}
+const _sv=new THREE.Vector3();
+// A director-camera point follows the stage's placement (the x1.6 scale) while the stage is the subject, and the world during the flights.
+// The weight is a function of show time, with smooth hand-overs, so a flight never picks up a kink from crossing a distance threshold.
+const SMS=x=>{x=Math.max(0,Math.min(1,x)); return x*x*(3-2*x);};
+function stgW(t){ if(!STG.on) return 0; if(t===undefined) return 1;
+  const a=SMS((t+8)/10)*(1-SMS((t-92.0)/3.0));                  // the trolley in, the front stage, out through the first seconds of the lift-off (flight starts at 92.0)
+  const b=SMS((t-167.2)/1.7)*(1-SMS((t-188.0)/3.5));            // the last metres of the return onto the front stage, the duet and finale, the lift into the coda
+  return Math.max(a,b); }
+function stgCam(v,t){ const w=stgW(t); if(w<=0) return v; _sv.copy(v).applyMatrix4(STG.M); return v.lerp(_sv,w); }
+function spherical(look,dist,azDeg,elDeg){const az=azDeg*Math.PI/180,el=elDeg*Math.PI/180;
+  const f=new THREE.Vector3(Math.cos(el)*Math.cos(az),Math.cos(el)*Math.sin(az),Math.sin(el));
+  return {target:look.clone(),pos:look.clone().addScaledVector(f,-dist)};}
+const VIEWS={
+  front:()=>spherical(CTR.clone().add(new THREE.Vector3(.6,0,0)),aspectDist(17.5),180,-24),
+  corner:()=>spherical(CTR,aspectDist(13.5),215,-26),
+  row:()=>spherical(new THREE.Vector3(0,0,.6),aspectDist(8.5),180,-7),
+  grid:()=>spherical(new THREE.Vector3(CX,0,0),aspectDist(16),180,-89.5),
+};
+function aspectDist(d){const a=camera.aspect||1.6; return a<1.2? d*Math.min(2.1,1.45/a*1.05):d;}
+let tween=null, orbiting=false, dirty=true;
+function go(v,instant){const goal=v; const from={pos:camera.position.clone(),target:controls.target.clone()};
+  if(instant){camera.position.copy(goal.pos);controls.target.copy(goal.target);controls.update();dirty=true;return}
+  tween={from,goal,t0:performance.now(),dur:matchMedia('(prefers-reduced-motion: reduce)').matches?1:1300};}
+function introEnd(){LK.intro=0; if(LK.playAfter){LK.playAfter=false; setDirector(true); r1.audio.play();}}
+function setPressed(id){document.querySelectorAll('.views button').forEach(b=>{if(b.id!=='v-lk'&&b.id!=='v-ig'&&b.id!=='v-kg') b.setAttribute('aria-pressed',String(b.id===id));});}
+['front','corner','row','grid'].forEach(k=>$('v-'+k).addEventListener('click',()=>{orbiting=false;introEnd();setPressed('v-'+k);go(VIEWS[k]());}));
+$('v-orbit').addEventListener('click',()=>{orbiting=!orbiting;setPressed(orbiting?'v-orbit':'');
+  if(orbiting){go(VIEWS.corner());}});
+controls.addEventListener('start',()=>{tween=null;introEnd();if(orbiting){orbiting=false;setPressed('');}});
+// ---------- Lucknow: the same stage on the terrace of La Martinière (Constantia), in front of the central tower ----------
+// The campus scan (Sketchfab, metres, Y-up) is turned Z-up and moved so the terrace centre sits under the stage, carpets on the roof.
+const LK={on:false,loading:false,group:null,C:null,intro:0,parts:[0,1,2,3,4,5].map(i=>`lucknow_cut2.b64.${i}.txt`)   /* phones: 2K textures; computers: 4K on the central buildings */,
+  sky:new THREE.Color(0xbfd3e6).convertSRGBToLinear(),room:scene.background.clone()};
+async function lkLoad(){
+  LK.loading=true; $('v-lk').textContent='Loading…';
+  const [txt,ctxt]=await Promise.all([Promise.all(LK.parts.map(u=>fetch(u).then(r=>r.text()))).then(a=>a.join('')),fetch('lk_cam_v2.b64.txt').then(r=>r.text())]);
+  {const cr=atob(ctxt.trim()), cu=new Uint8Array(cr.length); for(let i=0;i<cr.length;i++) cu[i]=cr.charCodeAt(i); LK.C=LK.Clk=new Float32Array(cu.buffer);}   // the Lucknow director camera, one pose per frame
+  const raw=atob(txt.trim()), u8=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) u8[i]=raw.charCodeAt(i);
+  const g=await new Promise((ok,no)=>new THREE.GLTFLoader().parse(u8.buffer,'',ok,no));
+  // the scanned terrace rises 3.5% toward the parapet: level it about the stage centre, then sit it 6 cm under the carpets
+  const inner=new THREE.Group(); inner.rotation.x=Math.PI/2; inner.position.set(22.5,-2.5,70.567); inner.add(g.scene);
+  const grp=new THREE.Group(); grp.rotation.y=0.0354; grp.position.set(CX,0,-0.06); grp.add(inner);
+  // the scan's photos carry their own flat overcast light: warm them to the golden hour, let the Kalkis' shadows fall on the terrace, and fade the distance into haze
+  g.scene.traverse(o=>{if(o.isMesh){o.frustumCulled=true; const map=o.material&&o.material.map; if(map) map.anisotropy=8;
+    o.receiveShadow=true; o.castShadow=false; o.material=new THREE.MeshLambertMaterial({map:map,color:lin(0xe9e2d8),emissive:lin(0x6b645c),emissiveMap:map,fog:true});}});   // ~half from the sun, half self-lit: keeps the photos' brightness, adds real shade
+  LK.group=grp; scene.add(grp);
+  // The ivory palace (Meshy, from the painted concept): a clean Constantia that stands in for the scanned one.
+  // Its own frame: tower toward -z, terrace at y=-0.379, 0.6 units from tower front to parapet. The scan's terrace is 26 m deep -> scale 43.
+  {const ptxt=(await Promise.all([0,1,2].map(i=>fetch(`ivory_v1.b64.${i}.txt`).then(r=>r.text())))).join('');
+   const pr=atob(ptxt.trim()), pu=new Uint8Array(pr.length); for(let i=0;i<pr.length;i++) pu[i]=pr.charCodeAt(i);
+   const pg=await new Promise((ok,no)=>new THREE.GLTFLoader().parse(pu.buffer,'',ok,no));
+   const S=43; const pal=new THREE.Group(); pal.add(pg.scene);
+   // palace frame (x right, y up, -z toward tower) -> page frame (z up, -x toward tower): x_page=z_pal, y_page=x_pal... keep handedness: rotate about Y then X
+   pal.rotation.set(Math.PI/2,0,Math.PI/2,'ZYX'); pal.scale.setScalar(S);   // Z first, then X: palace y->up, palace -z->toward the tower (page -x)
+   pal.position.set(CX+2.0, 0, -0.06+0.379*S);   // terrace level onto the carpets; the stage sits mid-terrace, the tower 15 m behind it
+   pg.scene.traverse(o=>{if(o.isMesh){o.frustumCulled=true; o.castShadow=true; o.receiveShadow=true; const m=o.material; if(m&&m.map) m.map.anisotropy=8; if(m){m.metalness=0; m.roughness=0.9; m.color.copy(lin(0xf4f0ea)); m.emissive=lin(0x2a2622); m.emissiveMap=m.map; m.needsUpdate=true;
+      // the flat roofs are painted near-black in the texture: lift dark, upward-facing pixels toward warm lead-grey
+      m.onBeforeCompile=(sh)=>{sh.fragmentShader=sh.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
+        { float lum=dot(diffuseColor.rgb,vec3(0.299,0.587,0.114)); float up=smoothstep(0.55,0.9,(inverse(viewMatrix)*vec4(normalize(vNormal),0.0)).z);
+          float dark=1.0-smoothstep(0.08,0.30,lum); diffuseColor.rgb=mix(diffuseColor.rgb,vec3(0.62,0.57,0.50),up*dark*0.85); }`);};}}});
+   LK.palace=pal; scene.add(pal);
+   // Meshy's palace is a shallow block (its base is only 2 m under the terrace); the real one stands 7.5 m above the courtyard.
+   // A stone plinth carries it down to the scanned ground: the main block, and the shallower front step under the arcade.
+   {const c=document.createElement('canvas'); c.width=1024; c.height=256; const x=c.getContext('2d'); x.fillStyle='#d9ccb6'; x.fillRect(0,0,1024,256);
+    let sd=5; const rn=()=>{sd=(sd*16807)%2147483647; return sd/2147483647;};
+    for(let i=0;i<6000;i++){const g=190+rn()*40; x.fillStyle=`rgba(${g+18},${g+6},${g-12},${0.10+rn()*0.14})`; x.fillRect(rn()*1024,rn()*256,3+rn()*10,2+rn()*5);}
+    x.strokeStyle='rgba(110,96,80,.35)'; x.lineWidth=2; for(let yy=0;yy<=256;yy+=64){x.beginPath(); x.moveTo(0,yy); x.lineTo(1024,yy); x.stroke();}
+    for(let yy=0;yy<256;yy+=64){const o=(yy/64%2)*64; for(let xx=o;xx<1024;xx+=128){x.beginPath(); x.moveTo(xx,yy); x.lineTo(xx,yy+64); x.stroke();}}
+    const t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding; t.wrapS=t.wrapT=THREE.RepeatWrapping;
+    const mk=(w,d,x0,y0,top,bot)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,d,top-bot),new THREE.MeshLambertMaterial({map:t.clone(),color:lin(0xf2ebdf)})); m.material.map.repeat.set(w/8,(top-bot)/4); m.material.map.needsUpdate=true; m.position.set(x0,y0,(top+bot)/2); m.castShadow=false; m.receiveShadow=true; return m;};
+    const plinth=new THREE.Group();
+    // Stone base under the whole palace (page x -44..+38, |y|<40.5), from its bottom (z -1.85) to the courtyard (-8): the real building stands on just such a terrace.
+    // Across the front, a wide flight of steps (the scan's own stairs continue below them). Warm stone, a touch darker than the walls.
+    const stone=(w,d,x,y,top,bot,col)=>{const m=mk(w,d,x,y,top,bot); m.material.color.copy(lin(col)); return m;};
+    plinth.add(stone(82,81,-3,0,-1.85,-8.1,0xe9e1d3));
+    for(let i=0;i<6;i++) plinth.add(stone(1.4,60-i*2,38+0.7+1.4*i,0,-1.85-1.0*(i+1),-8.1,0xefe8db));
+    for(const sgn of [-1,1]) plinth.add(stone(1.2,10,38.6,sgn*35.5,-1.85,-3.0,0xf2ece1));
+    LK.plinth=plinth; scene.add(plinth);}
+   // the palace had a raised, painted carpet block where our 30 real carpets go; it is cut out of the model, and this slab fills the hole at terrace level
+   {const c=document.createElement('canvas'); c.width=c.height=512; const x=c.getContext('2d'); x.fillStyle='#b4a48e'; x.fillRect(0,0,512,512);
+    let sd=11; const rn=()=>{sd=(sd*16807)%2147483647; return sd/2147483647;};
+    for(let i=0;i<9000;i++){const g=150+rn()*60; x.fillStyle=`rgba(${g+20},${g+8},${g-8},${0.08+rn()*0.12})`; x.fillRect(rn()*512,rn()*512,2+rn()*6,2+rn()*6);}
+    x.strokeStyle='rgba(90,78,66,.13)'; x.lineWidth=1.5; for(let i=0;i<=8;i++){x.beginPath(); x.moveTo(i*64,0); x.lineTo(i*64,512); x.stroke(); x.beginPath(); x.moveTo(0,i*64); x.lineTo(512,i*64); x.stroke();}
+    const t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding; t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(4,4.5);
+    const slab=new THREE.Mesh(new THREE.PlaneGeometry(17.8,18.4),new THREE.MeshLambertMaterial({map:t,color:lin(0xf0e6d6)})); slab.position.set(CX-1.9,0,-0.012); slab.receiveShadow=true; pal.userData.slab=slab; LK.slab=slab; scene.add(slab);}
+  }
+  if(!LK.dome) skySetup();
+  LK.loading=false; $('v-lk').textContent='Lucknow';
+}
+function skySetup(){
+  // sky: a painted dome with a sun glow, clouds and a warm horizon; it ignores depth so it sits behind everything
+  const SKY_R=1500, c=document.createElement('canvas'); c.width=2048; c.height=1024; const x=c.getContext('2d');
+  const grd=x.createLinearGradient(0,0,0,1024); grd.addColorStop(0,'#2f6fbf'); grd.addColorStop(0.42,'#7fb0e6'); grd.addColorStop(0.55,'#c9dcee'); grd.addColorStop(0.62,'#f1dcc0'); grd.addColorStop(1,'#d8c8b2'); x.fillStyle=grd; x.fillRect(0,0,2048,1024);
+  const sun=x.createRadialGradient(1500,360,0,1500,360,380);   // sun disc at the key light's elevation (27°) sun.addColorStop(0,'rgba(255,240,205,.9)'); sun.addColorStop(0.06,'rgba(255,230,185,.45)'); sun.addColorStop(1,'rgba(255,220,170,0)'); x.fillStyle=sun; x.fillRect(0,0,2048,1024);
+  let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647; return seed/2147483647;};
+  for(let i=0;i<90;i++){const cx=rnd()*2048, cy=40+rnd()*400, w=160+rnd()*420, h=40+rnd()*90, a=0.35+rnd()*0.45;   // clouds: soft lumps across the upper sky, big enough to read from the ground
+    for(let k=0;k<9;k++){const ox=(rnd()-.5)*w, oy=(rnd()-.5)*h*0.6, r=h*(0.45+rnd()*0.6); const g2=x.createRadialGradient(cx+ox,cy+oy,0,cx+ox,cy+oy,r); g2.addColorStop(0,`rgba(255,250,244,${a})`); g2.addColorStop(1,'rgba(255,250,244,0)'); x.fillStyle=g2; x.fillRect(cx+ox-r,cy+oy-r,2*r,2*r);}}
+  const st=new THREE.CanvasTexture(c); st.encoding=THREE.sRGBEncoding; st.mapping=THREE.EquirectangularReflectionMapping;
+  const dome=new THREE.Mesh(new THREE.SphereGeometry(SKY_R,48,24),new THREE.MeshBasicMaterial({map:st,side:THREE.BackSide,depthWrite:false,fog:false}));
+  dome.rotation.x=Math.PI/2; dome.rotation.y=Math.PI/2; dome.position.set(CX,0,0); LK.sunAz=-39*Math.PI/180; dome.renderOrder=-10; dome.visible=false; scene.add(dome); LK.dome=dome;
+  {// where does the painted sun (u=1500/2048, v=360/1024) point? sample the dome's own geometry, then spin about world Z so it matches the key light
+    const u=1500/2048, v=360/1024, g=dome.geometry, pos=g.attributes.position, uv=g.attributes.uv; let best=1e9, bi=0;
+    for(let i=0;i<uv.count;i++){const d=Math.hypot(uv.getX(i)-u,uv.getY(i)-(1-v)); if(d<best){best=d; bi=i;}}
+    const dir=new THREE.Vector3(pos.getX(bi),pos.getY(bi),pos.getZ(bi)); dome.updateMatrixWorld(); dir.applyQuaternion(dome.quaternion).normalize();
+    const azNow=Math.atan2(dir.y,dir.x); dome.rotateOnWorldAxis(new THREE.Vector3(0,0,1),LK.sunAz-azNow);}
+  LK.sun=new THREE.DirectionalLight(lin(0xffe3b8),0.0); LK.sun.position.set(CX+140,-110,95); LK.sun.target.position.set(CX,0,0); scene.add(LK.sun,LK.sun.target);
+  LK.fog=new THREE.Fog(lin(0xdfd3c4),120,900);
+}
+function lkSet(on,which){
+  // outdoor mode shared by the Lucknow and India Gate scenes: 'which' names the scene whose models are shown
+  LK.on=on; LK.scene=on?which:null; const lk=on&&which==='lk', ig=on&&which==='ig', lib=on&&which==='lib';
+  if(LK.group) LK.group.visible=lk; if(LK.palace) LK.palace.visible=lk; if(LK.slab) LK.slab.visible=lk; if(LK.plinth) LK.plinth.visible=lk;
+  if(IG.group) IG.group.visible=ig; if(LIB.group){ LIB.group.visible=lib; LIB.seaGrp.visible=lib; } if(!lib) libPlace(false);
+  if(LK.dome) LK.dome.visible=on; roomParts.forEach(o=>o.visible=!on);
+  scene.background=on?LK.sky:LK.room; scene.fog=on?LK.fog:null; camera.far=on?2500:120; camera.near=lib?0.25:0.05; camera.updateProjectionMatrix();
+  // golden-hour light on the stage: the key light swings low from the south-east and warms up; the room's lights ease off
+  key.intensity=on?1.25:1.05; key.color.copy(on?lin(0xffd9a8):lin(0xfff4e6)); {const kc=lib?-27.14:CX; if(on) key.position.set(kc+40,-32,26); else key.position.set(CX+9,6,18); key.target.position.set(kc,0,0); key.target.updateMatrixWorld();}   // Vatican: the light and its shadow centre on the obelisk, the mandala's centre
+  hemi.intensity=on?0.75:0.95; hemi.color.copy(on?lin(0xbfd3ee):lin(0xf4eee2)); hemi.groundColor.copy(on?lin(0x8a7a66):lin(0x7a7368));
+  fill.intensity=on?0.18:0.30; rim.intensity=on?0.30:0.22;
+  Object.assign(key.shadow.camera,lib?{left:-36,right:36,top:36,bottom:-36,near:18,far:100}:on?{left:-16,right:16,top:16,bottom:-16,near:44,far:72}:{left:-12,right:12,top:12,bottom:-12,near:1,far:45}); key.shadow.camera.updateProjectionMatrix(); key.shadow.needsUpdate=true; key.shadow.bias=on?-0.0008:-0.0004; key.shadow.normalBias=on?0.06:0.02;
+  if(LK.group) LK.group.traverse(o=>{if(o.isMesh&&o.material) o.material.needsUpdate=true;});
+  STG.on=ig; stgUpdate(); if(lib) libPlace(true); birds(ig); r1Swap(); {const tl=$('p-time'); if(tl&&!(r1.ready&&r1.variant===showFor())) tl.textContent='0:00 / '+(ig?'3:41':(lib?'2:39':'2:19'));} if(BAN.mesh&&!ig) BAN.mesh.visible=false; controls.maxDistance=on?((ig||lib)?900:420):34; $('v-lib').setAttribute('aria-pressed',String(lib)); $('lib-credit-btn').hidden=!lib; $('lib-credit').hidden=true; $('lib-credit-btn').setAttribute('aria-expanded','false'); $('t-h1').textContent=lib?'Kenny G':'Vande Mataram'; $('t-sub').textContent=lib?'PragyaMusic':'PragyaMusic \u00b7 Raag Desh'; $('v-lk').setAttribute('aria-pressed',String(lk)); $('v-ig').setAttribute('aria-pressed',String(ig)); dirty=true;
+}
+$('v-lk').addEventListener('click',async()=>{
+  if(LK.loading) return; if(KG.on) kgSet(false);
+  if(LK.scene==='lk'){lkSet(false); go(VIEWS.front()); return;}
+  if(!LK.group){try{await lkLoad()}catch(e){console.error(e); $('v-lk').textContent='Lucknow'; LK.loading=false; return;}}
+  lkSet(true,'lk'); LK.C=LK.Clk; LK.introC=null; LK.introLen=7.8; orbiting=false; tween=null; LK.intro=performance.now();   // the drone flies in from beyond the Lat
+});
+// ---------- India Gate: the stage on the paved apron east of the Gate, facing west; the arch is the backdrop ----------
+// Scene (Blender export, Y-up, metres): Gate at x≈-156 on the Kartavya Path axis z≈-4. Page frame: x = -scene x - 204.2, y = scene z + 4, z = scene y.
+const IG={group:null,loading:false,C:null,Cpre:null,PRE:10,parts:[0,1].map(i=>`indiagate_v2.b64.${i}.txt`),birds:null};
+async function igLoad(){
+  IG.loading=true; $('v-ig').textContent='Loading\u2026';
+  const [txt,ctxt,bbuf]=await Promise.all([Promise.all(IG.parts.map(u=>fetch(u).then(r=>r.text()))).then(a=>a.join('')),fetch('ig_cam_v3.b64.txt').then(r=>r.text()),fetch('birds_v2.mp3').then(r=>r.arrayBuffer()).catch(()=>null)]);
+  // the camera file holds a 10 s silent pre-roll (the drone's approach, flown when the scene is chosen) followed by one pose per show frame
+  {const cr=atob(ctxt.trim()), cu=new Uint8Array(cr.length); for(let i=0;i<cr.length;i++) cu[i]=cr.charCodeAt(i); const all=new Float32Array(cu.buffer); IG.Cpre=all.subarray(0,IG.PRE*60*6); IG.C=all.subarray(IG.PRE*60*6);}
+  IG.birdsBuf=bbuf;
+  const raw=atob(txt.trim()), u8=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) u8[i]=raw.charCodeAt(i);
+  const g=await new Promise((ok,no)=>new THREE.GLTFLoader().parse(u8.buffer,'',ok,no));
+  // Y-up -> Z-up, then turned 180° about Z: the stage sits on the west apron, the players' backs to the Gate (scene x -156 -> page x -48.2).
+  // page x = -scene.x - 204.2, page y = scene.z + 4, page z = scene.y
+  const grp=new THREE.Group(); grp.rotation.set(Math.PI/2,0,Math.PI,'ZYX'); grp.position.set(-204.2,4.0,-0.03); grp.add(g.scene);
+  g.scene.traverse(o=>{if(o.isMesh){o.frustumCulled=true; const m=o.material; if(m){if(m.map) m.map.anisotropy=8; m.metalness=0; m.roughness=0.95; if(m.transparent&&m.opacity<0.05) o.visible=false; m.fog=true; m.needsUpdate=true;} o.receiveShadow=true;}});
+  // a thousand trees and two hundred lamps come as separate nodes: draw each kind as one instanced mesh. Trunks and branches
+  // (3k triangles a tree) only read from near the camera's route down the axis; beyond 70 m from it the canopies stand on their own.
+  {grp.updateMatrixWorld(true); const inv=g.scene.matrixWorld.clone().invert(); g.scene.traverse(o=>{if(o.isMesh) o.matrixWorld.premultiply(inv);});   // matrices relative to the model's own frame
+    const by=new Map(), wp=new THREE.Vector3(); let trimmed=0;
+    g.scene.traverse(o=>{if(o.isMesh&&!o.isInstancedMesh){const k=o.geometry.uuid+'|'+o.material.uuid; if(!by.has(k)) by.set(k,[]); by.get(k).push(o);}});
+    for(const list of by.values()){ if(list.length<12) continue;
+      const keep=list[0].material.name==='frontend_large_2'?list.filter(o=>{wp.setFromMatrixPosition(o.matrixWorld); return Math.abs(wp.z)<=70;}):list; trimmed+=list.length-keep.length;
+      const im=new THREE.InstancedMesh(list[0].geometry,list[0].material,keep.length); keep.forEach((o,i)=>im.setMatrixAt(i,o.matrixWorld));
+      im.instanceMatrix.needsUpdate=true; im.frustumCulled=false; im.receiveShadow=true; im.name=list[0].name+'_inst'; g.scene.add(im); list.forEach(o=>o.removeFromParent());}
+    IG.treesTrimmed=trimmed;}
+  if(!LK.dome) skySetup(); if(!BAN.mesh) bannerSetup();
+  IG.group=grp; scene.add(grp); IG.loading=false; $('v-ig').textContent='India Gate';
+}
+$('v-ig').addEventListener('click',async()=>{
+  if(IG.loading||LK.loading) return; if(KG.on) kgSet(false);
+  if(LK.scene==='ig'){lkSet(false); go(VIEWS.front()); return;}
+  if(!IG.group){try{await igLoad()}catch(e){console.error(e); $('v-ig').textContent='India Gate'; IG.loading=false; return;}}
+  lkSet(true,'ig'); LK.C=IG.C; LK.introC=IG.Cpre; LK.introLen=IG.PRE; orbiting=false; tween=null; LK.intro=performance.now();   // the drone comes down Kartavya Path and round the Gate
+});
+// ---------- Vatican: St Peter's Square (photogrammetry by Brian Trepanier, CC BY 4.0, full 8K texture, uncut), thirty Kalkis just in front of the obelisk, seated on their carpets on the paving ----------
+// model -> page: x along the square's axis (away from the basilica), z up, 1 model unit = 38.5 m; the stage centre sits at (CX,0,0)
+const LIB={group:null,loading:false,parts:['/_blob/323048cf4bbcf331292158568cba9604'],   // geometry only (uncut, 1 cm quantised; the paving under the 45 carpets split fine and laid flat); the texture is the scan's own 8K JPEG, byte for byte, in five parts
+  texParts:['/_blob/ce952f1b341b35ece479745c68083b7d','/_blob/5238ee1b669952b2ae38ef0fcfa80206','/_blob/5a6052e62dce11e5f73655b7f197d6e5','/_blob/c06aaf7b25409813d091315e69a63536','/_blob/aaa852977f93f995a20d1c2ab817d770'],copies:null,
+  M:[-0.89951,-38.48949,0,0, 0,0,38.5,0, -38.48949,0.89951,0,0, -343.63655,2.77522,-5.49488,1]};   // ground of the square at the stage = page z 0
+async function libLoad(){
+  LIB.loading=true; $('v-lib').textContent='Loading\u2026';
+  const b64u8=t=>{const r=atob(t.trim()), u=new Uint8Array(r.length); for(let i=0;i<r.length;i++) u[i]=r.charCodeAt(i); return u;};
+  const texP=Promise.all(LIB.texParts.map(u=>fetch(u).then(r=>r.text()))).then(async ts=>{   // the original texture, never re-encoded
+    const blob=new Blob(ts.map(b64u8),{type:'image/jpeg'});
+    try{ return await createImageBitmap(blob,{imageOrientation:'none',premultiplyAlpha:'none',colorSpaceConversion:'none'}); }
+    catch(e){ const url=URL.createObjectURL(blob); const im=new Image(); im.src=url; await im.decode(); return im; } });
+  const txt=(await Promise.all(LIB.parts.map(u=>fetch(u).then(r=>r.text())))).join('');
+  const raw=atob(txt.trim()), u8=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) u8[i]=raw.charCodeAt(i);
+  const ld=new THREE.GLTFLoader(); if(window.MeshoptDecoder) ld.setMeshoptDecoder(MeshoptDecoder);
+  const g=await new Promise((ok,no)=>ld.parse(u8.buffer,'',ok,no));
+  const grp=new THREE.Group(); grp.matrixAutoUpdate=false; grp.matrix.fromArray(LIB.M); grp.add(g.scene);
+  // the scan is cut 300 m round the square: a plain ground just under it carries the city's colour out into the haze
+  const sea=new THREE.Mesh(new THREE.PlaneGeometry(8000,8000),new THREE.MeshBasicMaterial({color:lin(0x9a8f80),fog:true})); sea.position.set(0,0,-2.0); LIB.sea=sea;   // below every level surface of the scan (its lowest street is ~1.6 m under the square)
+  // photogrammetry carries its own light: shown as captured (unlit), fogged with distance like the other outdoor scenes
+  g.scene.traverse(o=>{if(o.isMesh){const m0=o.material; const m=new THREE.MeshBasicMaterial({map:m0.map,side:THREE.DoubleSide,fog:true,polygonOffset:true,polygonOffsetFactor:2,polygonOffsetUnits:8}); if(m.map){m.map.anisotropy=8;} o.material=m; o.frustumCulled=false; o.receiveShadow=false;}});   // the scan yields depth ties to anything resting on it (carpets, feet, instruments), which with a 2.5 km far plane would otherwise sink under the paving
+  { const img=await texP, tx=new THREE.Texture(img); tx.flipY=false; tx.encoding=THREE.sRGBEncoding; tx.anisotropy=renderer.capabilities.getMaxAnisotropy();
+    tx.minFilter=THREE.LinearMipmapLinearFilter; tx.magFilter=THREE.LinearFilter; tx.wrapS=tx.wrapT=THREE.ClampToEdgeWrapping; tx.generateMipmaps=true;
+    g.scene.traverse(o=>{ if(o.isMesh&&o.material.map&&o.material.map!==tx){ const om=o.material.map; tx.offset.copy(om.offset); tx.repeat.copy(om.repeat); tx.rotation=om.rotation; tx.center.copy(om.center);
+      o.material.map=tx; o.material.needsUpdate=true; om.dispose(); } });
+    tx.needsUpdate=true; }
+  if(!LK.dome) skySetup();
+  LIB.group=grp; scene.add(grp); const sg=new THREE.Group(); sg.add(sea);
+ LIB.seaGrp=sg; grp.userData.sea=sg; scene.add(sg); LIB.loading=false; $('v-lib').textContent='Vatican';
+}
+function libPlace(on){   // the lotus mandala, 15 sitar, 15 sarod, 15 santoor: each of the five stage seats per instrument in three copies (instance blocks 0-2), turned to face outward from the obelisk
+  const zero=new THREE.Matrix4().makeScale(0,0,0), m=new THREE.Matrix4(), out=new THREE.Matrix4();
+  if(!on){ if(LIB.copies){ drawMeshes.forEach(im=>{const n=im.userData.count0; for(let i=0;i<n;i++){m.fromArray(im.userData.rest,i*16); im.setMatrixAt(i,m);} for(let i=n;i<3*n;i++) im.setMatrixAt(i,zero); im.instanceMatrix.needsUpdate=true;}); seatObjs.forEach(o=>{o.box.visible=true; if(o.lb) o.lb.visible=true;}); LIB.copies=null; } return; }
+  const slots=LIB.slots||[]; const bySeat={};
+  const pool={sitar:[],sarod:[],santoor:[]}; meta.seats.forEach((q,j)=>{if(pool[q.inst]) for(let b=0;b<3;b++) pool[q.inst].push({seat:j,blk:b});});
+  const used={sitar:0,sarod:0,santoor:0}; LIB.copies=[];
+  slots.forEach((sl,k)=>{const c=pool[sl.inst][used[sl.inst]++]; if(!c) return; const q=meta.seats[c.seat];
+    const M=new THREE.Matrix4().makeTranslation(sl.x,sl.y,sl.z).multiply(new THREE.Matrix4().makeRotationZ(sl.rot||0)).multiply(new THREE.Matrix4().makeScale(1.6,1.6,1.6)).multiply(new THREE.Matrix4().makeTranslation(-q.pos[0],-q.pos[1],0));
+    (bySeat[c.seat]=bySeat[c.seat]||[])[c.blk]=M;
+    const R=rigs.find(r=>r.row===q.row&&r.col===q.col);
+    LIB.copies.push({R,blk:c.blk,M,col:{sitar:0,sarod:1,santoor:2}[sl.inst],seat:q,dt:((k*37)%13-6)/6*0.018});});   // a few ms apart, like people
+  drawMeshes.forEach((im,di)=>{const n=im.userData.count0, own=WM.owner[di];
+    for(let i=0;i<n;i++){ m.fromArray(im.userData.rest,i*16); for(let b=0;b<3;b++){const M=bySeat[own[i]]&&bySeat[own[i]][b]; if(M){out.multiplyMatrices(M,m); im.setMatrixAt(n*b+i,out);} else im.setMatrixAt(n*b+i,zero);} }
+    im.instanceMatrix.needsUpdate=true;});
+  seatObjs.forEach(o=>{o.box.visible=false; if(o.lb) o.lb.visible=false; o.fr.visible=false;});
+  dirty=true;
+}
+function libDais(d){ if(!d) return; if(LIB.dais){LIB.seaGrp.remove(LIB.dais);}
+  const h=d.top-d.bottom, m=new THREE.Mesh(new THREE.BoxGeometry(d.w,d.h,h),new THREE.MeshLambertMaterial({color:lin(0xd9cfbf)}));
+  m.position.set(d.cx,d.cy,d.bottom+h/2); m.receiveShadow=true; m.castShadow=false; LIB.dais=m; LIB.seaGrp.add(m); dirty=true; }
+const lqA=new Float32Array(57);
+function libApply(t){
+  if(!LIB.copies){ LIB.slots=r1.meta.lib.slots.map(s=>({...s,z:0.03})); libPlace(true); }   // seated on the square's ground, no dais
+  const fr=r1.meta.fps, N=r1.meta.frames, cols=r1.meta.cols||2, n=cols*NQ;
+  for(const c of LIB.copies){ const f=Math.max(0,Math.min(N-1.001,(t+c.dt)*fr)), i=Math.floor(f), a=f-i, A=i*n+c.col*NQ, B=A+n;
+    for(let j=0;j<NQ;j++) lqA[j]=r1.Q[A+j]+(r1.Q[B+j]-r1.Q[A+j])*a;
+    lqA[0]=c.seat.pos[0]; lqA[1]=c.seat.pos[1];
+    poseRig(c.R,lqA,0,c.blk,c.M); }
+}
+$('v-lib').addEventListener('click',async()=>{
+  if(LIB.loading||LK.loading||IG.loading) return; if(KG.on) kgSet(false);
+  if(LK.scene==='lib'){lkSet(false); go(VIEWS.front()); return;}
+  if(!LIB.group){try{await libLoad()}catch(e){console.error(e); $('v-lib').textContent='Vatican'; LIB.loading=false; return;}}
+  try{ const mj=await (await fetch('r1_vat3.json')).json(); LIB.slots=mj.lib.slots.map(s=>({...s,z:0.03})); }catch(e){}   // no dais: the Kalkis sit on their carpets on the ground
+  lkSet(true,'lib'); LK.C=null; LK.introC=null; LK.intro=0; orbiting=false; tween=null;
+  go({pos:new THREE.Vector3(163.6,-2.5,34.3),target:new THREE.Vector3(5.3,-16.2,-0.8)},true);   // the show's opening view: over the mouth of the square, the thirty by the obelisk, St Peter's beyond
+});
+// ---------- Kenny G: one Kalki on sarod in a dark room under a warm spot, playing Atharva's recording (BITS Pilani, K K Birla Goa Campus) ----------
+const KG={on:false,seat:meta.seats.findIndex(q=>q.row===4&&q.col===1),save:null,spot:null,back:null};
+function kgHide(on){   // every instance on the stage that is not the sarod seat's: hidden (zero scale) or back to rest
+  const zero=new THREE.Matrix4().makeScale(0,0,0), m=new THREE.Matrix4();
+  drawMeshes.forEach((im,di)=>{const n=im.userData.count0, own=WM.owner[di];
+    for(let i=0;i<n;i++){ if(on&&own[i]!==KG.seat) im.setMatrixAt(i,zero); else {m.fromArray(im.userData.rest,i*16); im.setMatrixAt(i,m);} }
+    im.instanceMatrix.needsUpdate=true;});
+  seatObjs.forEach(o=>{o.box.visible=!on; if(o.lb) o.lb.visible=!on; if(on) o.fr.visible=false;});
+}
+function kgSet(on){
+  if(on===KG.on) return;
+  if(on&&LK.on) lkSet(false);
+  KG.on=on;
+  if(on){ KG.save={bg:scene.background,hemi:hemi.intensity,key:key.intensity,fill:fill.intensity,rim:rim.intensity,walls:roomParts.map(o=>o.visible)};
+    if(!KG.spot){ const s=new THREE.SpotLight(lin(0xffd6a0),2.4,0,0.36,0.55,1.2); s.position.set(3.2,-2.6,6.2); s.target.position.set(0.05,-3.88,0.45); s.castShadow=true; s.shadow.mapSize.set(2048,2048); s.shadow.bias=-0.0005;
+      const b=new THREE.DirectionalLight(lin(0x9fb6ff),0.55); b.position.set(-6,-2.5,5); b.target.position.set(0,-3.9,0.6); KG.spot=s; KG.back=b; }
+    scene.add(KG.spot,KG.spot.target,KG.back,KG.back.target);
+    scene.background=lin(0x120a10); KG.save.fog=scene.fog; scene.fog=new THREE.Fog(lin(0x120a10),5,15); hemi.intensity=0.16; key.intensity=0.0; fill.intensity=0.06; rim.intensity=0.0; roomParts.forEach((o,i)=>o.visible=(o===floor));
+  } else if(KG.save){ scene.remove(KG.spot,KG.spot.target,KG.back,KG.back.target);
+    scene.background=KG.save.bg; scene.fog=KG.save.fog; hemi.intensity=KG.save.hemi; key.intensity=KG.save.key; fill.intensity=KG.save.fill; rim.intensity=KG.save.rim; roomParts.forEach((o,i)=>o.visible=KG.save.walls[i]); }
+  kgHide(on); $('v-kg').setAttribute('aria-pressed',String(on));
+  $('t-h1').textContent=on?'Kenny G':'Vande Mataram'; $('t-sub').textContent=on?'PragyaMusic':'PragyaMusic \u00b7 Raag Desh'; {const tc=$('t-cred'); if(tc) tc.hidden=!on;}
+  r1Swap(); {const tl=$('p-time'); if(tl&&!(r1.ready&&r1.variant===showFor())) tl.textContent='0:00 / '+(on?'2:39':'2:19');}
+  dirty=true;
+}
+function kgDirector(f){ if(!(r1.director&&r1.on)) return;
+  const fc=r1.camT===undefined?f:Math.max(0,Math.min(r1.meta.frames-1.001,r1.camT*r1.meta.fps)),ic=Math.floor(fc),ac=fc-ic,c0=ic*6,c1=(ic+1)*6,C=r1.C,L=j=>C[c0+j]+(C[c1+j]-C[c0+j])*ac;
+  const v=spherical(new V3(L(0),L(1),L(2)),L(5),L(3),L(4)); camera.position.copy(v.pos); controls.target.copy(v.target); }
+$('v-kg').addEventListener('click',()=>{
+  if(IG.loading||LK.loading) return;
+  if(KG.on){kgSet(false); go(VIEWS.front()); return;}
+  kgSet(true); orbiting=false; tween=null;
+  go({pos:new THREE.Vector3(7.4,-2.6,1.9),target:new THREE.Vector3(0.06,-3.88,0.62)});   // the opening shot of the cut, so Play starts where the camera already is
+});
+// birds in the trees, mild, the whole time the India Gate scene is up (music or not)
+async function birds(on){
+  if(on){ if(IG.birds||!IG.birdsBuf) return;
+    try{const ctx=IG.actx||(IG.actx=new (window.AudioContext||window.webkitAudioContext)()); await ctx.resume();
+      if(!IG.birdsDec) IG.birdsDec=await new Promise((ok,no)=>{const p=ctx.decodeAudioData(IG.birdsBuf.slice(0),ok,no); if(p&&p.then) p.then(ok,no);});
+      if(IG.birds||LK.scene!=='ig') return;
+      const g=ctx.createGain(); g.gain.setValueAtTime(0.0001,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.4,ctx.currentTime+2.5); g.connect(ctx.destination);
+      const s=ctx.createBufferSource(); s.buffer=IG.birdsDec; s.loop=true; s.connect(g); s.start(); IG.birds={s,g};}
+    catch(e){console.warn('birds',e);} }
+  else if(IG.birds){const {s,g}=IG.birds, ctx=IG.actx; IG.birds=null; g.gain.setTargetAtTime(0.0001,ctx.currentTime,0.4); setTimeout(()=>{try{s.stop()}catch(e){}},1500);}
+}
+controls.addEventListener('change',()=>dirty=true);
+// ---------- selection & legend ----------
+const info=$('info'); let filter=null;
+const legend=$('legend');
+ORDER.forEach(k=>{const li=document.createElement('li');const b=document.createElement('button');b.id='l-'+k;b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<span>${INST[k].name}</span><span class="n">5</span>`; b.addEventListener('click',()=>{filter=filter===k?null:k;showFilter();});li.appendChild(b);legend.appendChild(li);});
+function showFilter(){ORDER.forEach(k=>$('l-'+k).setAttribute('aria-pressed',String(filter===k)));
+  seatObjs.forEach(o=>o.fr.visible=!!filter&&o.s.inst===filter); dirty=true;
+  if(filter){const seats=meta.seats.filter(s=>s.inst===filter).map(s=>`${s.row+1}\u00b7${s.col+1}`).join(', ');
+    info.innerHTML=`<div class="eyebrow">Instrument</div><h2>${INST[filter].name}</h2><dl><dt>Players</dt><dd>5, on one diagonal</dd><dt>Seats</dt><dd>${seats}</dd>${statusRows(filter)}</dl>`;}
+  else resetInfo();}
+function statusRows(k){const I=INST[k];
+  return `<dt>Pose</dt><dd><span class="pill ${I.pose==='Recorded'?'real':'stand'}">${I.pose}</span></dd><dt>Instrument</dt><dd><span class="pill ${I.model==='Stand-in'?'stand':'real'}">${I.model}</span></dd>`;}
+const infoDefault=info.innerHTML; function resetInfo(){info.innerHTML=infoDefault;}
+function select(s){filter=null;ORDER.forEach(k=>$('l-'+k).setAttribute('aria-pressed','false'));
+  seatObjs.forEach(o=>o.fr.visible=o.s===s); orbiting=false;setPressed('');
+  const p=new THREE.Vector3(...s.pos); go(spherical(p.clone().add(new THREE.Vector3(.2,0,.5)),coarse?3.6:2.7,198,-14));
+  info.innerHTML=`<div class="eyebrow">Row ${s.row+1} &middot; Seat ${s.col+1}</div><h2>${INST[s.inst].name}</h2><dl>${statusRows(s.inst)}</dl><p class="hint" style="margin-top:8px">Row 1 is the back row, so the Grid view matches your tile layout.</p>`;
+  dirty=true;}
+const ray=new THREE.Raycaster(), ndc=new THREE.Vector2(); let down=null;
+canvas.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY]});
+canvas.addEventListener('pointerup',e=>{if(!down)return; if(Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;
+  const r=canvas.getBoundingClientRect(); ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
+  ray.setFromCamera(ndc,camera); const hit=ray.intersectObjects(seatObjs.map(o=>o.box),false)[0];
+  if(hit) select(hit.object.userData.seat); });
+
+// toggles
+$('t-shadow').setAttribute('aria-pressed',String(renderer.shadowMap.enabled));
+$('t-shadow').addEventListener('click',e=>{const on=!renderer.shadowMap.enabled;renderer.shadowMap.enabled=on;key.castShadow=on;
+  scene.traverse(o=>{if(o.material){[].concat(o.material).forEach(m=>m.needsUpdate=true)}}); e.currentTarget.setAttribute('aria-pressed',String(on)); dirty=true;});
+key.castShadow=renderer.shadowMap.enabled;
+$('t-labels').addEventListener('click',e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';e.currentTarget.setAttribute('aria-pressed',String(on));seatObjs.forEach(o=>o.lb.visible=on);dirty=true;});
+
+
+// ---------- the PRAGYA banner: a ceremonial cloth drop from the top of India Gate in the coda (India Gate scene only) ----------
+const BAN={mesh:null,W:15,L:34,t0:193.2,dur:4.4,at:[-36.2,0,41.5]};   // hung on the Gate's stage-side face, rod at 41.5 m
+function bannerSetup(){
+  const W=BAN.W,L=BAN.L, c=document.createElement('canvas'); c.width=1024; c.height=2560; const x=c.getContext('2d');
+  x.fillStyle='#3a1238'; x.fillRect(0,0,1024,2560);
+  // a gold border and a lighter velvet panel
+  x.strokeStyle='rgba(243,227,194,.85)'; x.lineWidth=10; x.strokeRect(44,44,936,2472); x.lineWidth=3; x.strokeRect(70,70,884,2420);
+  const tex=new THREE.CanvasTexture(c); tex.encoding=THREE.sRGBEncoding; tex.anisotropy=8;
+  const img=new Image(); img.onload=()=>{
+    // the wordmark as the emblem, centred; the line and the address below it in the logo's cream
+    const iw=800, ih=iw*img.height/img.width; x.drawImage(img,(1024-iw)/2,980,iw,ih);
+    x.fillStyle='#f3e3c2'; x.textAlign='center'; x.textBaseline='middle';
+    x.font='600 118px "Mukta", sans-serif'; const y0=980+ih+180; x.fillText("India\u2019s",512,y0); x.fillText('Sovereign',512,y0+150); x.fillText('Physical AI',512,y0+300);
+    x.font='400 66px "Mukta", sans-serif'; x.fillText('https://www.pragyalab.ai',512,y0+470);
+    x.font='600 60px "Mukta", sans-serif'; x.fillStyle='rgba(243,227,194,.9)'; x.fillText('VANDE MATARAM',512,330); x.font='400 40px "Mukta", sans-serif'; x.fillText('PragyaMusic \u00b7 Raag Desh',512,410);
+    tex.needsUpdate=true; dirty=true;};
+  img.src='pragya_wordmark.jpg';
+  const geo=new THREE.PlaneGeometry(W,L,32,96); geo.translate(0,-L/2,0);   // local: x across, y down from the rod (0 at the rod), z out of the cloth
+  const uni=Object.assign(THREE.UniformsUtils.clone(THREE.UniformsLib.fog),{map:{value:tex},uTime:{value:0},uUnroll:{value:0},uL:{value:L},uSun:{value:new THREE.Vector3(0.69,-0.56,0.45).normalize()}});
+  const mat=new THREE.ShaderMaterial({uniforms:uni,side:THREE.DoubleSide,fog:true,
+    vertexShader:`
+      uniform float uTime,uUnroll,uL; varying vec2 vUv; varying vec3 vN; varying float vSweep;
+      #include <common>
+      #include <fog_pars_vertex>
+      #include <logdepthbuf_pars_vertex>
+      vec3 shape(vec2 p){                 // p: local (x across, y <= 0 down the cloth) -> displaced position
+        float d=-p.y; float open=uUnroll*uL; float r=0.9;
+        float flutter=smoothstep(0.0,0.35,uUnroll);
+        float w=flutter*(0.22*sin(d*0.45-uTime*2.1+p.x*0.35)+0.12*sin(d*1.1+uTime*2.9)+0.08*sin(p.x*1.4+uTime*1.7+d*0.3))*pow(clamp(d/uL,0.0,1.0),1.3);
+        if(d<=open) return vec3(p.x,p.y,w);
+        float a=(d-open)/r;               // still rolled: wrap round the roll at the opening front
+        return vec3(p.x,-open-r*sin(min(a,6.2)),w+r-r*cos(min(a,6.2)));
+      }
+      void main(){ vUv=uv; vec3 P=shape(position.xy); vec3 Px=shape(position.xy+vec2(0.15,0.0)); vec3 Py=shape(position.xy+vec2(0.0,-0.15));
+        vN=normalize(normalMatrix*normalize(cross(Px-P,Py-P)));
+        vSweep=-position.y;
+        vec4 mvPosition=modelViewMatrix*vec4(P,1.0); gl_Position=projectionMatrix*mvPosition;
+        #include <logdepthbuf_vertex>
+        #include <fog_vertex>
+      }`,
+    fragmentShader:`
+      uniform sampler2D map; uniform float uTime,uUnroll,uL; uniform vec3 uSun; varying vec2 vUv; varying vec3 vN; varying float vSweep;
+      #include <common>
+      #include <fog_pars_fragment>
+      #include <logdepthbuf_pars_fragment>
+      void main(){
+        #include <logdepthbuf_fragment>
+        vec4 c=texture2D(map,vUv); vec3 n=normalize(vN); if(!gl_FrontFacing) n=-n;
+        vec3 sun=normalize((viewMatrix*vec4(uSun,0.0)).xyz); float dif=max(dot(n,sun),0.0);
+        float open=uUnroll*uL; float shimmer=exp(-pow((vSweep-open+1.5)/2.2,2.0))*0.55*step(0.01,uUnroll)*(1.0-smoothstep(0.92,1.0,uUnroll));
+        vec3 col=c.rgb*(0.70+0.55*dif)+vec3(1.0,0.93,0.8)*shimmer;
+        gl_FragColor=vec4(col,1.0);
+        #include <fog_fragment>
+      }`});
+  const m=new THREE.Mesh(geo,mat); m.frustumCulled=false;
+  const grp=new THREE.Group(); grp.add(m);
+  const rod=new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,W+1.6,14),new THREE.MeshStandardMaterial({color:lin(0xc9a24a),metalness:0.8,roughness:0.35})); rod.rotation.z=Math.PI/2; grp.add(rod);
+  for(const sx of [-1,1]){const k=new THREE.Mesh(new THREE.SphereGeometry(0.42,14,10),rod.material); k.position.set(sx*(W/2+0.8),0,0); grp.add(k);}
+  // local y runs down the cloth and z out of it: stand it upright on the Gate's east face, the cloth facing +x (the stage)
+  grp.position.set(...BAN.at); grp.setRotationFromMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,1),new THREE.Vector3(1,0,0)));   // local x -> across (world y), local y -> up (world z), local z -> toward the stage (+x)
+  grp.visible=false; scene.add(grp); BAN.mesh=grp; BAN.mat=mat;
+}
+function bannerUpdate(t,now){   // t: show time of the India Gate cut; the drop starts at BAN.t0
+  if(!BAN.mesh) return; const on=LK.scene==='ig'&&r1.variant==='ig'&&t>=BAN.t0-0.05;
+  BAN.mesh.visible=on; if(!on) return;
+  const u=Math.min(1,Math.max(0,(t-BAN.t0)/BAN.dur)); BAN.mat.uniforms.uUnroll.value=u*u*(3-2*u); BAN.mat.uniforms.uTime.value=now/1000; dirty=true;
+}
+// ---------- Round 1: the six top-row Kalkis perform, posed from their recorded joint angles ----------
+const r1={ready:false,loading:false,on:false,director:true};
+const V3=THREE.Vector3, Q4=THREE.Quaternion, M4=THREE.Matrix4, ONE=new V3(1,1,1);
+const rigs=meta.anim.map(a=>({row:a.row,col:a.col,
+  bodies:a.bodies.map(b=>({p:b.p,jt:b.jt,qa:b.qa,q0:b.q0,pos:new V3(...b.pos),quat:new Q4(b.quat[1],b.quat[2],b.quat[3],b.quat[0]),
+    axis:b.axis?new V3(...b.axis):null,jpos:b.jpos?new V3(...b.jpos):null})),
+  geoms:a.geoms.map(g=>({mesh:drawMeshes[g[0]],inst:g[1],body:g[2],local:new M4().compose(new V3(g[3],g[4],g[5]),new Q4(g[7],g[8],g[9],g[6]),ONE)})),
+  P:a.bodies.map(()=>new V3()),O:a.bodies.map(()=>new Q4())}));
+const _v=new V3(),_q=new Q4(),_m=new M4(),_g=new M4();
+function poseRig(R,q,o,blk,M){                             // q: Float32Array, o: offset of this Kalki's 53 values; blk/M: instance block and placement of a copy at the memorial
+  const B=R.bodies,P=R.P,O=R.O;
+  for(let k=0;k<B.length;k++){const b=B[k];
+    if(b.jt===0){P[k].set(q[o],q[o+1],q[o+2]);O[k].set(q[o+4],q[o+5],q[o+6],q[o+3]).normalize();continue}
+    P[k].copy(b.pos).applyQuaternion(O[b.p]).add(P[b.p]); O[k].copy(O[b.p]).multiply(b.quat);
+    if(b.jt===3){_v.copy(b.jpos).applyQuaternion(O[k]);P[k].add(_v);
+      _q.setFromAxisAngle(b.axis,q[o+b.qa]-b.q0);O[k].multiply(_q);_v.copy(b.jpos).applyQuaternion(O[k]);P[k].sub(_v);}}
+  for(const g of R.geoms){_m.compose(P[g.body],O[g.body],ONE);_g.multiplyMatrices(_m,g.local); if(M) _g.premultiply(M); g.mesh.setMatrixAt(g.inst+(blk?blk*g.mesh.userData.count0:0),_g);g.mesh.instanceMatrix.needsUpdate=true;}
+}
+let NQ=53, qbuf=new Float32Array(6*53), lbuf=new Float32Array(53); const ORDER6=['tabla','sitar','dhol','sarod','ghatam','santoor'];
+function r1Apply(t){
+  const f=Math.max(0,Math.min(r1.meta.frames-1.001,t*r1.meta.fps)),i=Math.floor(f),a=f-i,n=(r1.meta.cols||6)*NQ,A=r1.Q.subarray(i*n,i*n+n),Bq=r1.Q.subarray((i+1)*n,(i+1)*n+n);
+  for(let j=0;j<n;j++) qbuf[j]=A[j]+(Bq[j]-A[j])*a;
+  const RR=r1.meta.relay_row;
+  if(r1.meta.lib){ libApply(t); if(!(LK.intro&&LK.on)) kgDirector(f); r1Tail(t); return; }   // Liberty: thirty copies, sitar and sarod
+  if(r1.meta.solo){ poseRig(rigs[RR*6+r1.meta.solo.col],qbuf,0); if(!(LK.intro&&LK.on)) kgDirector(f); r1Tail(t); return; }   // Kenny G: one Kalki, the rest of the room empty
+  for(let c=0;c<6;c++) poseRig(rigs[RR*6+c],qbuf,c*NQ);
+  // everyone else rests and listens: a slow breath, and a small turn toward whoever is playing
+  const Lp=r1.meta.listen, fx=r1.F[2*i]+(r1.F[2*i+2]-r1.F[2*i])*a, fy=r1.F[2*i+1]+(r1.F[2*i+3]-r1.F[2*i+1])*a, ramp=Math.min(1,t)*Math.min(1,t)*(3-2*Math.min(1,t));
+  const PWa=r1.PW?r1.PW.subarray(i*6,i*6+6):null, PWb=r1.PW?r1.PW.subarray((i+1)*6,(i+1)*6+6):null, FC=r1.meta.ens?r1.meta.ens.front_cols:null;
+  for(let k=0;k<rigs.length;k++){const R=rigs[k],rr=R.row,cc=R.col; if(rr===RR) continue; const ik=ORDER6[((cc-rr)%6+6)%6], rest=r1.meta.rest[ik];
+    for(let j=0;j<NQ;j++) lbuf[j]=rest[j];
+    const sx=-(4-rr)*meta.spacing, sy=(cc-2.5)*meta.spacing; lbuf[0]+=sx; lbuf[1]+=sy;
+    const dx=fx-sx, dy=fy-sy; const yaw=Math.hypot(dx,dy)<0.1?0:Math.max(-Lp.yaw_max,Math.min(Lp.yaw_max,Lp.yaw_gain*Math.atan2(dy,dx)));
+    const br=Lp.breath*Math.sin(2*Math.PI*t/Lp.breath_period+1.7*(rr*6+cc));
+    lbuf[Lp.waist_yaw]+=yaw*ramp; lbuf[Lp.lsh]+=br; lbuf[Lp.rsh]+=br;
+    // all together: this Kalki plays what the front-row player of the same instrument plays, at its own seat
+    if(PWa){const fc=FC[ik], w=PWa[fc]+(PWb[fc]-PWa[fc])*a;
+      if(w>0.0005){const o=fc*NQ, fy0=(fc-2.5)*meta.spacing;
+        for(let j=0;j<NQ;j++){let v=qbuf[o+j]; if(j===0) v+=sx; else if(j===1) v+=sy-fy0; lbuf[j]=lbuf[j]*(1-w)+v*w;}}}
+    poseRig(R,lbuf,0);}
+  // the sixty at the War Memorial: each plays its instrument's ensemble part like the back rows (no turning: they face the obelisk), else sits and breathes
+  if(LK.scene==='ig'&&WM.place&&camera.position.distanceTo(WM.centre)<280){for(let k=0;k<rigs.length;k++){   /* only posed while the camera is near the memorial */ const R=rigs[k],rr=R.row,cc=R.col,ik=ORDER6[((cc-rr)%6+6)%6],rest=r1.meta.rest[ik];
+    const sx=-(4-rr)*meta.spacing, sy=(cc-2.5)*meta.spacing, fc=FC?FC[ik]:0, w=PWa?PWa[fc]+(PWb[fc]-PWa[fc])*a:0, o=fc*NQ, fy0=(fc-2.5)*meta.spacing;
+    for(let c=0;c<2;c++){const br=Lp.breath*Math.sin(2*Math.PI*t/Lp.breath_period+1.3*(k*2+c)+0.9);
+      for(let j=0;j<NQ;j++) lbuf[j]=rest[j]; lbuf[0]+=sx; lbuf[1]+=sy; lbuf[Lp.lsh]+=br; lbuf[Lp.rsh]+=br;
+      if(w>0.0005){for(let j=0;j<NQ;j++){let v=qbuf[o+j]; if(j===0) v+=sx; else if(j===1) v+=sy-fy0; lbuf[j]=lbuf[j]*(1-w)+v*w;}}
+      poseRig(R,lbuf,0,1+c,WM.place[rr*6+cc][c]);}}}
+  if(r1.director&&!(LK.intro&&LK.on)){   // the camera follows the plain audio clock (no frame look-ahead): a varying lead would make it shake
+    const fc=r1.camT===undefined?f:Math.max(0,Math.min(r1.meta.frames-1.001,r1.camT*r1.meta.fps)),ic=Math.floor(fc),ac=fc-ic,c0=ic*6,c1=(ic+1)*6,C=(LK.on&&LK.C)?LK.C:r1.C,L=j=>C[c0+j]+(C[c1+j]-C[c0+j])*ac;
+    const v=spherical(new V3(L(0),L(1),L(2)),L(5),L(3),L(4)), ts=r1.camT===undefined?t:r1.camT; camera.position.copy(stgCam(v.pos,ts)); controls.target.copy(stgCam(v.target,ts));}
+  r1Tail(t);
+}
+function r1Tail(t){   // the bar, the clock and the slider, shared by every cut
+  lyricUpdate(r1.audio?r1.audio.currentTime:t);
+  const fmt=x=>`${Math.floor(x/60)}:${String(Math.floor(x%60)).padStart(2,'0')}`;
+  $('p-time').textContent=`${fmt(t)} / ${fmt(r1.meta.total)}`; if(!r1.seeking) $('p-seek').value=Math.round(t/r1.meta.total*1000);
+  const pc=(Math.min(1,t/r1.meta.total)*100).toFixed(2)+'%'; $('p-seek').style.setProperty('--p',pc); $('p-ticks').style.setProperty('--p',pc);
+  dirty=true;
+}
+// The line being sung: sung syllables cream, the current one gold, the rest waiting
+function lyricLine(t){const Ls=r1.meta.lyrics; let k=-1; for(let i=0;i<Ls.length;i++){if(Ls[i].t[0]-0.35<=t)k=i;} return Math.max(0,k);}
+function lyricUpdate(t){
+  const Ls=r1.meta.lyrics; if(!Ls) return; const li=lyricLine(t), L=Ls[li];
+  if(li!==r1.li){r1.li=li; r1.sk=undefined; const dv=$('p-dev'); dv.textContent='';
+    L.dev.forEach(x=>{const sp=document.createElement('span'); sp.textContent=x; dv.appendChild(sp);});
+    const r=L.rom.join(''); $('p-rom').textContent=r.charAt(0).toUpperCase()+r.slice(1);}
+  let k=-1; for(let i=0;i<L.t.length;i++){if(L.t[i]<=t+0.02)k=i;}
+  if(k!==r1.sk){r1.sk=k; $('p-dev').querySelectorAll('span').forEach((sp,i)=>{sp.className=i<k?'sung':(i===k?'now':'');});}
+}
+function buildTicks(){
+  const T=r1.meta.total, box=$('p-ticks'), dim=box.querySelector('.dim'), lit=box.querySelector('.lit'); dim.innerHTML='';
+  const make=(cls,list)=>list.forEach(x=>{const i=document.createElement('i');i.className=cls;i.style.left=(x/T*100).toFixed(3)+'%';dim.appendChild(i);});
+  make('n',r1.meta.notes||[]); make('s',(r1.meta.lyrics||[]).flatMap(L=>L.t)); lit.innerHTML=dim.innerHTML; const now=box.querySelector('.now'); if(now) now.innerHTML=dim.innerHTML;
+}
+// Sample-accurate clock: the motion follows the moment the sound reaches the speakers, not when it was queued
+async function makePlayer(abuf){
+  const ctx=r1.ctx;
+  const dec=ab=>new Promise((ok,no)=>{const p=ctx.decodeAudioData(ab,ok,no); if(p&&p.then) p.then(ok,no);});
+  const parts=await Promise.all([].concat(abuf).map(dec));   // the show's audio comes in two halves, joined sample for sample
+  let buf=parts[0];
+  if(parts.length>1){const n=parts.reduce((s,b)=>s+b.length,0); buf=ctx.createBuffer(parts[0].numberOfChannels,n,parts[0].sampleRate);
+    for(let ch=0;ch<buf.numberOfChannels;ch++){let o=0; for(const b of parts){buf.getChannelData(ch).set(b.getChannelData(ch),o); o+=b.length;}}}
+  const P={ctx,buf,paused:true,ended:false,offset:0,startAt:0,src:null,duration:buf.duration};
+  const ui=()=>{const b=$('p-play'),st=P.ended?'replay':(P.paused?'play':'pause'); b.dataset.state=st; b.setAttribute('aria-label',st==='pause'?'Pause':st==='play'?'Play':'Play again');};
+  P.heard=()=>{   // position in the track of the sample being heard right now
+    if(P.paused) return P.offset;
+    const lat=(ctx.outputLatency||0)+(ctx.baseLatency||0), base=ctx.currentTime-lat;
+    let t=base;
+    if(ctx.getOutputTimestamp){const o=ctx.getOutputTimestamp(); if(o&&o.contextTime>0&&o.performanceTime>0){const x=o.contextTime+(performance.now()-o.performanceTime)/1000; if(Math.abs(x-base)<0.3) t=x;}}
+    // never let the picture run ahead of real elapsed time (guards odd audio drivers)
+    const wall=P.offset+(performance.now()-P.wall0)/1000; if(t-P.startAt>wall+0.05) t=P.startAt+wall;
+    return Math.max(0,Math.min(P.duration,t-P.startAt));};
+  P.play=async()=>{ if(!P.paused) return; if(P.ended){P.offset=0;P.ended=false;}
+    try{await ctx.resume();}catch(e){}
+    const src=ctx.createBufferSource(); src.buffer=buf; src.connect(ctx.destination);
+    const when=ctx.currentTime+0.03; P.startAt=when-P.offset; P.wall0=performance.now()+30; src.start(when,P.offset); P.src=src; P.paused=false; ui();
+    src.onended=()=>{if(P.src!==src) return; P.src=null; if(!P.paused){P.paused=true;P.ended=true;P.offset=P.duration;ui();}}; };
+  P.pause=()=>{ if(P.paused) return; P.offset=P.heard(); const s=P.src; P.src=null; P.paused=true; try{s.stop()}catch(e){} ui(); };
+  P.seek=(x)=>{ const was=!P.paused; if(was) P.pause(); P.offset=Math.max(0,Math.min(P.duration-0.01,x)); P.ended=false; if(was) P.play(); else ui(); };
+  Object.defineProperty(P,'currentTime',{get:()=>P.heard(),set:(x)=>P.seek(x)});
+  return P;
+}
+// two cuts of the show: the room and Lucknow play the 2:19 concert (v33); India Gate plays the 3:27 one (v34) with the song a second time from the
+// memorial, the sarod-santoor duet and the coda
+const SHOWS={std:{meta:'r1_v33.json',motion:'r1_motion_v33.b64.txt',audio:['show_v33.a.flac.b64.txt','show_v33.b.flac.b64.txt']},
+             kg:{meta:'r1_kg.json',motion:'r1_motion_kg.b64.txt',audio:['show_kg.a.flac.b64.txt','show_kg.b.flac.b64.txt']},
+             lib:{meta:'r1_vat3.json',motion:'r1_motion_vat3.b64.txt',audio:['show_kg.a.flac.b64.txt','show_kg.b.flac.b64.txt']},   // Liberty: thirty Kalkis, sitar and sarod, to Atharva's recording   // Kenny G: Atharva's sarod (BITS Pilani Goa), one Kalki
+             ig:{meta:'r1_v34.json',motion:'r1_motion_v34.b64.txt',audio:['show_v34.a.flac.b64.txt','show_v34.b.flac.b64.txt','show_v34.c.flac.b64.txt','show_v34.d.flac.b64.txt']}};
+function showFor(){return LK.scene==='ig'?'ig':(LK.scene==='lib'?'lib':(KG.on?'kg':'std'));}
+function b64buf(t){const r=atob(t.trim()), u=new Uint8Array(r.length); for(let i=0;i<r.length;i++) u[i]=r.charCodeAt(i); return u.buffer;}   // lossless FLAC, carried as text (the host serves no .flac)
+async function r1Load(variant){
+  variant=variant||showFor(); const SH=SHOWS[variant];
+  r1.loading=true; $('v-r1').textContent='Loading\u2026';
+  r1.meta=await (await fetch(SH.meta)).json();
+  let got=0; const tot=1+SH.audio.length, tick=()=>{got++; $('v-r1').textContent=`Loading ${Math.round(got/tot*100)}%`;};
+  const [txt,abuf]=await Promise.all([fetch(SH.motion).then(r=>r.text()).then(x=>{tick();return x;}),Promise.all(SH.audio.map(u=>fetch(u).then(r=>u.endsWith('.txt')?r.text().then(b64buf):r.arrayBuffer()).then(x=>{tick();return x;})))]);
+  $('v-r1').textContent='Decoding\u2026';
+  const raw=atob(txt.trim()), u8=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++) u8[i]=raw.charCodeAt(i);
+  NQ=r1.meta.nq||53; qbuf=new Float32Array(6*NQ); lbuf=new Float32Array(NQ);
+  if(r1.meta.qfmt==='i16'){   // joint angles stored as 16-bit integers, one scale per instrument and joint
+    const qi=new Int16Array(u8.buffer,0,r1.meta.qbytes/2), sc=r1.meta.qscale, m=sc.length; r1.Q=new Float32Array(qi.length);
+    for(let j=0;j<qi.length;j++) r1.Q[j]=qi[j]*sc[j%m];
+  } else r1.Q=new Float32Array(u8.buffer,0,r1.meta.qbytes/4);
+  r1.C=new Float32Array(u8.buffer,r1.meta.qbytes,r1.meta.frames*6); r1.F=new Float32Array(u8.buffer,r1.meta.qbytes+r1.meta.cbytes,r1.meta.frames*2);
+  r1.PW=r1.meta.pwbytes?new Float32Array(u8.buffer,r1.meta.qbytes+r1.meta.cbytes+r1.meta.fbytes,r1.meta.frames*6):null;
+  if(r1.audio&&!r1.audio.paused) r1.audio.pause();
+  r1.audio=await makePlayer(abuf); r1.variant=variant;
+  buildTicks();
+  if(variant!==showFor()){ r1.shown=undefined; r1.lastT=undefined; r1.loading=false; return r1Load(showFor()); }   // the scene changed while this cut loaded: fetch the right one
+  r1.ready=true; r1.loading=false; $('v-r1').textContent='Play';
+}
+async function r1Swap(){   // the scene changed to one that plays the other cut: reload the show and start it from the beginning
+  if(r1.loading||!r1.ready||r1.variant===showFor()) return;
+  const was=r1.on; r1.ready=false; r1.shown=undefined; r1.lastT=undefined;
+  try{await r1Load(showFor());}catch(e){console.error(e); r1.loading=false; $('v-r1').textContent='Play'; return;}
+  r1.audio.seek(0); if(was){r1Apply(0);} dirty=true;
+}
+function setDirector(on){r1.director=on; if(on){tween=null;orbiting=false;}}
+$('v-r1').addEventListener('click',async()=>{
+  if(r1.loading) return;
+  if(!r1.ctx){const AC=window.AudioContext||window.webkitAudioContext; r1.ctx=new AC({latencyHint:'interactive'});} r1.ctx.resume().catch(()=>{});   // inside the click, so the browser allows sound
+  if(!r1.ready){try{await r1Load()}catch(e){$('v-r1').textContent='Play';console.error(e);return}}
+  r1.on=true; $('player').hidden=false; document.body.classList.add('r1on'); barSize(); setPressed('v-r1'); orbiting=false; tween=null; setDirector(true);
+  if(LK.intro&&LK.scene==='ig'&&r1.audio.currentTime<0.05){LK.playAfter=true; $('p-play').dataset.state='pause'; return;}   // India Gate: the drone lands on the ensemble first, then the show begins
+  r1.audio.play();
+});
+r1.sync=0;   // picture/sound offset: fixed, the trim control is gone
+$('p-play').addEventListener('click',()=>{const a=r1.audio;
+  if(a.paused){ if(LK.intro&&LK.scene==='ig'&&a.currentTime<0.05){LK.playAfter=!LK.playAfter; $('p-play').dataset.state=LK.playAfter?'pause':'play'; return;}   // the drone lands first, then the show begins
+    LK.playAfter=false; setDirector(true); a.play();} else a.pause();});
+$('p-seek').addEventListener('input',e=>{r1.seeking=true; r1.audio.seek(e.target.value/1000*r1.meta.total); r1.shown=r1.audio.currentTime; r1.camT=r1.shown; r1Apply(r1.shown);});
+$('p-seek').addEventListener('change',()=>{r1.seeking=false});
+controls.addEventListener('start',()=>{if(r1.on&&r1.director) setDirector(false)});
+['front','corner','row','grid','orbit'].forEach(k=>$('v-'+k).addEventListener('click',()=>{if(r1.on) setDirector(false)}));
+
+// ---------- loop ----------
+// the bar keeps one height whatever the lyric line; the stage only resizes when that height really changes (window resize)
+let barH=-1;
+function barSize(){const p=$('player'); const h=p.hidden?0:Math.round(p.getBoundingClientRect().height); if(h===barH) return; barH=h; document.documentElement.style.setProperty('--barh',h+'px'); resize();}
+if(window.ResizeObserver) new ResizeObserver(()=>barSize()).observe($('player'));
+function resize(){const w=innerWidth,h=Math.max(100,innerHeight-((document.body.classList.contains('r1on')||document.body.classList.contains('bar'))?parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--barh'))||0:0));const cur=renderer.getSize(new THREE.Vector2()); if(cur.x===w&&cur.y===h) return;
+  renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();renderer.render(scene,camera);dirty=false;}   // redraw at once: a resized canvas is blank until drawn
+addEventListener('resize',resize); resize();
+go(VIEWS.front(),true);
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function frame(now){
+  if(LK.intro&&LK.on&&r1.on&&r1.director&&!r1.audio.paused) LK.intro=0;   // the show is already running: its camera leads
+  if(LK.intro&&LK.on){const len=LK.introLen||7.8, C=LK.introC||LK.C, u=(now-LK.intro)/1000, f=Math.min(len*60-1.001,u*60), i=Math.floor(f), a=f-i, L=j=>C[i*6+j]+(C[i*6+6+j]-C[i*6+j])*a;
+    const v=spherical(new V3(L(0),L(1),L(2)),L(5),L(3),L(4)), ts=LK.introC?u-len:undefined; camera.position.copy(stgCam(v.pos,ts)); controls.target.copy(stgCam(v.target,ts)); dirty=true;
+    if(u>=len) introEnd();}
+  else if(tween){let t=Math.min(1,(now-tween.t0)/tween.dur),k=ease(t);
+    camera.position.lerpVectors(tween.from.pos,tween.goal.pos,k); controls.target.lerpVectors(tween.from.target,tween.goal.target,k);
+    if(t>=1)tween=null; dirty=true;}
+  else if(orbiting){const off=camera.position.clone().sub(controls.target); off.applyAxisAngle(new THREE.Vector3(0,0,1),0.0016); camera.position.copy(controls.target).add(off); dirty=true;}
+  if(controls.update()) dirty=true;
+  // the frame composed now is seen about one frame interval later: pose the players for that moment, so heavy scenes don't fall behind the sound
+  r1.dt=r1.dt===undefined?0.016:r1.dt*0.9+Math.min(0.1,(now-(r1.prevNow||now))/1000)*0.1; r1.prevNow=now;
+  if(r1.on&&r1.ready&&!r1.export){const tr=r1.audio.currentTime, t=r1.audio.paused?tr:Math.max(0,Math.min(r1.audio.duration,tr+Math.min(0.08,r1.dt)+r1.sync));
+    if(r1.audio.paused||r1.seeking||r1.camT===undefined||Math.abs(tr-r1.camT)>0.08) r1.camT=r1.audio.paused?t:tr;
+    else r1.camT+=r1.dt+(tr-r1.camT)*0.08;   // smoothed frame interval + a gentle pull toward the audio clock
+    if(!r1.audio.paused||r1.seeking||r1.lastT!==t){
+      // impact frames: if a santoor strike fell between the last frame shown and now, show the moment of contact
+      let show=t; const H=r1.meta.hits||[], prev=r1.shown===undefined?t:r1.shown;
+      if(!r1.audio.paused&&t>prev&&t-prev<0.1){for(let k=0;k<H.length;k++){if(H[k]>prev+1e-4&&H[k]<=t){show=H[k];break;}}}
+      r1Apply(show); r1.shown=show; r1.lastT=t;}}
+  if(BAN.mesh&&r1.on&&r1.ready&&!r1.export) bannerUpdate(r1.audio.currentTime,now);
+  if(dirty){renderer.render(scene,camera);dirty=false;}
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+renderer.render(scene,camera);
+// ---------- frame-by-frame export (open with ?export=1): the India Gate cut, driven by show time, no sound ----------
+if(EXPORT) window.__export={
+  async prepare(){
+    await igLoad(); lkSet(true,'ig'); LK.C=IG.C; LK.introC=IG.Cpre; LK.introLen=IG.PRE; orbiting=false; tween=null; LK.intro=0; LK.playAfter=false;
+    const AC=window.AudioContext||window.webkitAudioContext; r1.ctx=new AC();
+    await r1Load('ig'); r1.on=true; r1.export=true; setDirector(true); if(document.body.classList.contains('bar')){$('player').hidden=false; $('p-play').dataset.state='pause'; barSize();}
+    await document.fonts.ready; await new Promise(ok=>{let n=0; const w=()=>{if(++n>200||(THREE.DefaultLoadingManager.itemsLoaded>=THREE.DefaultLoadingManager.itemsTotal)) ok(); else setTimeout(w,100);}; setTimeout(w,500);});
+    resize(); return {total:r1.meta.total,frames:r1.meta.frames,fps:r1.meta.fps,pre:IG.PRE,w:renderer.domElement.width,h:renderer.domElement.height};
+  },
+  frame(t){   // show time in seconds; negative = the silent approach before the music (the drone trolley)
+    if(t<0){const C=IG.Cpre, len=IG.PRE, f=Math.max(0,Math.min(len*60-1.001,(t+len)*60)), i=Math.floor(f), a=f-i, L=j=>C[i*6+j]+(C[i*6+6+j]-C[i*6+j])*a;
+      const v=spherical(new V3(L(0),L(1),L(2)),L(5),L(3),L(4)); camera.position.copy(stgCam(v.pos,t)); controls.target.copy(stgCam(v.target,t));
+      r1.camT=undefined; r1.director=false; r1.audio.seek(0); r1Apply(0); r1.director=true;}
+    else { r1.audio.seek(t); r1.camT=t; r1Apply(t); }
+    if(document.body.classList.contains('bar')) $('p-play').dataset.state='pause';   // the bar shows the playing state, as on the page while the show runs
+    controls.update(); bannerUpdate(Math.max(0,t),t*1000); renderer.render(scene,camera); dirty=false; return true;
+  },
+  jpeg(t,q){   // draw the frame and hand back the canvas as a JPEG (base64), read in the same task as the draw
+    window.__export.frame(t); return new Promise(ok=>renderer.domElement.toBlob(b=>{const r=new FileReader(); r.onload=()=>ok(r.result.split(',')[1]); r.readAsDataURL(b);},'image/jpeg',q||0.95)); },
+  hud(on){   // show only the overlay (for a one-off transparent capture of the title card and the logo)
+    renderer.domElement.style.visibility=on?'hidden':''; document.documentElement.style.background=on?'transparent':''; document.body.style.background=on?'transparent':''; const st=$('stage'); if(st) st.style.background=on?'transparent':''; const pl=$('player'); if(pl) pl.style.visibility=on?'hidden':''; },
+  bar(){ const r=$('player').getBoundingClientRect(); return {top:Math.round(r.top),height:Math.round(r.height),hidden:$('player').hidden}; },
+  lyricKey(){ return $('p-dev').innerHTML+'|'+$('p-rom').textContent+'|'+$('p-time').textContent+'|'+$('p-seek').style.getPropertyValue('--p'); },
+  timing(t){   // where the time goes in one exported frame
+    const t0=performance.now(); r1.audio.seek(t); r1.camT=t; const t1=performance.now(); r1Apply(t); const t2=performance.now(); controls.update(); bannerUpdate(Math.max(0,t),t*1000); renderer.render(scene,camera); const t3=performance.now();
+    const gl=renderer.getContext(); gl.finish(); const t4=performance.now();
+    return new Promise(ok=>renderer.domElement.toBlob(b=>{const t5=performance.now(); requestAnimationFrame(()=>{const t6=performance.now(); ok({seek:t1-t0,pose:t2-t1,render_issue:t3-t2,gpu_finish:t4-t3,toBlob:t5-t4,raf:t6-t5,bytes:b.size,info:renderer.info.render});});},'image/jpeg',0.95)); },
+  probe(t){   // render one frame and read a thousand pixels back: how much of the picture is not the clear colour (0 = blank canvas)
+    window.__export.frame(t); const gl=renderer.getContext(), w=gl.drawingBufferWidth, h=gl.drawingBufferHeight, px=new Uint8Array(4); let diff=0, n=0; const c0=new Uint8Array(4);
+    gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,c0);
+    for(let i=0;i<32;i++) for(let j=0;j<32;j++){ gl.readPixels(Math.floor((i+0.5)*w/32),Math.floor((j+0.5)*h/32),1,1,gl.RGBA,gl.UNSIGNED_BYTE,px); n++; if(Math.abs(px[0]-c0[0])+Math.abs(px[1]-c0[1])+Math.abs(px[2]-c0[2])>24) diff++; }
+    return {varied:diff/n, corner:Array.from(c0), w, h}; },
+  state(){return {scene:LK.scene,on:LK.on,igvis:!!(IG.group&&IG.group.visible),director:r1.director,intro:LK.intro,cam:camera.position.toArray().map(x=>+x.toFixed(2)),target:controls.target.toArray().map(x=>+x.toFixed(2)),camT:r1.camT,variant:r1.variant,size:renderer.getSize(new THREE.Vector2()).toArray()};},
+  gl(){const gl=renderer.getContext(), d=gl.getExtension('WEBGL_debug_renderer_info'); return d?gl.getParameter(d.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);}
+};
+if(!EXPORT){ loadtxt.textContent='Loading India Gate\u2026'; bar.style.width='100%';
+  try{ await igLoad(); lkSet(true,'ig'); LK.C=IG.C; LK.introC=IG.Cpre; LK.introLen=IG.PRE; orbiting=false; tween=null; LK.intro=performance.now(); }catch(e){ console.error(e); } }
+const L=$('loader'); L.style.opacity='0'; setTimeout(()=>L.hidden=true,500);
+})().catch(err=>{const t=document.getElementById('loadtxt'); if(t) t.textContent='The stage could not load: '+(err&&err.message||err)+'. Reload the page to try again.'; console.error(err);});
+</script>
+
+</body></html>
